@@ -191,17 +191,6 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
 
 
 
-    // <----------------------DATA PEMINJAMAN--------------------------->
-    Route::get('peminjaman', 'App\Http\Controllers\PeminjamanController@peminjaman');
-    Route::get('peminjaman/addpinjam', 'App\Http\Controllers\PeminjamanController@addpinjam');
-    Route::post('/addpinjam2', 'App\Http\Controllers\PeminjamanController@addpinjam2')->name('addpinjam2');
-    Route::get('/peminjaman/{id_peminjaman}', 'App\Http\Controllers\PeminjamanController@editpinjam');
-    // Route::get('peminjaman/editpinjam/{id_peminjaman}', [PeminjamanController::class, 'editpinjam']);
-    Route::post('/updatePinjam', 'App\Http\Controllers\PeminjamanController@updatePinjam')->name('updatePinjam');
-    Route::delete('deletepinjam/{id_peminjaman}', 'App\Http\Controllers\PeminjamanController@deletepinjam');
-    Route::post('kembali/{no_peminjaman}', 'App\Http\Controllers\PeminjamanController@kembali');
-    Route::post('confirm/{no_peminjaman}', 'App\Http\Controllers\PeminjamanController@confirm');
-    Route::get('peminjaman/detail/{peminjaman}', 'App\Http\Controllers\PeminjamanController@detailpeminjaman');
 
 
 
