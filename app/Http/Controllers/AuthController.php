@@ -110,6 +110,7 @@ class AuthController extends Controller
         $user->email = strtolower($request->email);
         $user->password = Hash::make($request->password);
         $user->email_verified_at = \Carbon\Carbon::now();
+        $user->status = 'Non Aktif';
         $simpan = $user->save();
   
         if($simpan){

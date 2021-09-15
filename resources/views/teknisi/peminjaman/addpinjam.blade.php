@@ -32,12 +32,8 @@
                     <div class="panel-wrapper collapse in ">
                         <div class="panel-body">
                             <div class="form-wrap mt-3">
-                                <form action="{{ url('addpinjam2') }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ url('teknisi/peminjaman/simpan') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
-                                    <!-- <div class="form-group">
-                                        <label class="control-label mb-10 text-left" for="example-email">Nomor PO Barang</label>
-                                        <input type="text" id="noPO" name="noPO" class="form-control" readonly>
-                                    </div> -->
                                     <div class="row">
                                         @foreach ((array)$no_peminjaman as $no_peminjaman)
                                         <div class="col-md-6">
@@ -61,14 +57,12 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <h5 class="active">Data Barang</h5>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label mb-10 text-left">Nama barang</label>
                                                 <input type="text" class="form-control" name="nama_barang" id="nama_barang">
-
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -127,7 +121,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12" style="text-align:right;">
-                                        <button type="submit" class="btn btn-primary ">Simpan</button>
+                                        <button type="submit" class="btn btn-success ">Simpan</button>
                                     </div>
                                 </form>
                             </div>
