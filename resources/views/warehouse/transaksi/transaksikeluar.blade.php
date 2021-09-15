@@ -50,6 +50,7 @@
                                                 <th>No transaksi</th>
                                                 <th>Tanggal Transaksi</th>
                                                 <th>Nama Barang</th>
+                                                <th>Jenis Barang</th>
                                                 <th>Supplier</th>
                                                 <th colspan="3">Aksi</th>
                                             </tr>
@@ -62,6 +63,7 @@
                                                 <td>{{ $transaksi_masuk->no_transaksi}}</td>
                                                 <td>{{ $transaksi_masuk->tgl_transaksi}}</td>
                                                 <td>{{ $transaksi_masuk->nama_barang }}</td>
+                                                <td>{{ $transaksi_masuk->jns_barang }}</td>
                                                 <td>{{ $transaksi_masuk->nama_supplier }}</td>
                                                 <td>
                                                     <a href="#"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-eye"></i></button></a>
@@ -70,7 +72,6 @@
                                             </tr>
                                             @endforeach
                                         </tbody>
-                                        @include('transaksi.editbrgmasuk')
                                     </table>
                                 </div>
 								

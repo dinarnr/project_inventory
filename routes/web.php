@@ -77,10 +77,11 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::get('brgkeluar/addkeluar', [TrkKeluarController::class, 'addkeluar']);
         Route::get('/transaksikeluar', [TrkKeluarController::class, 'transaksikeluar']);
         Route::get('transaksi/keluarbaru/tambah', [TrkKeluarController::class, 'addkeluarbaru']);
-        Route::post('transaksi/keluarbaru/simpan', [TrkKeluarController::class, 'addkeluarbaru2']);
+        // Route::post('transaksi/keluarbaru/simpan', [TrkKeluarController::class, 'addkeluarbaru2']);
+        Route::post('transaksi/keluarbaru/simpan', [TrkKeluarController::class, 'keluargaransi']);
         Route::get('transaksi/keluarretur/tambah', [TrkKeluarController::class, 'addkeluarretur']);
         Route::post('transaksi/keluarretur/simpan', [TrkKeluarController::class, 'addkeluarretur2']);
-        Route::post('/addkeluarbaru/fetch', [TrkKeluarController::class, 'fetch']);
+        Route::post('/addkeluarbaru/fetch', 'TrkKeluarController@fetch')->name ('trkkeluarcontroller.fetch');
 
         // <----------------------DATA SUPPLIER--------------------------->
         Route::get('supplier', [SupplierController::class, 'supplier']);
