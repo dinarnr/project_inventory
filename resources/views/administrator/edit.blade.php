@@ -1,4 +1,4 @@
-<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
+<div class="modal fade" id="edit{{$users->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -7,22 +7,20 @@
             </div>
             <div class="modal-body">
                 <!-- <h6 class="mb-15">Apakah anda yakin mengubah status</h6> -->
-                <form>
+                <form action="{{ url('administrator/ubah/simpan') }}/{{ $users->id}}" method="post">
+                {{ csrf_field() }}
                     <div class="form-group">
                         <label class="control-label mb-10 text-left">Nama</label>
-                        <input type="text" class="form-control" value="">
+                        <input name="edit_nama" type="text" class="form-control" value="{{ $users->name }}">
                     </div>
                     <div class="form-group">
-                        <label class="control-label mb-10 text-left" for="example-email">Username <span class="help"> </span></label>
-                        <input type="text" class="form-control" placeholder="">
+                        <label class="control-label mb-10 text-left">Email</label>
+                        <input name="edit_email" type="text" class="form-control" value="{{ $users->email }}">
                     </div>
-                    <div class="form-group">
-                        <label class="control-label mb-10 text-left">Password</label>
-                        <input type="password" class="form-control" value="">
-                    </div>
+                    
                     <div class="form-group mt-30 mb-30">
                         <label class="control-label mb-10 text-left">Level Hak Akses</label>
-                        <select class="form-control">
+                        <select name="edit_divisi" class="form-control">
                             <option>Warehouse</option>
                             <option>Admin</option>
                             <option>Teknisi</option>
@@ -31,13 +29,18 @@
                             <option>Purchasing</option>
                         </select>
                     </div>
-
-
+                    <div class="form-group">
+                        <label class="control-label mb-10 text-left">Status</label>
+                        <select name="edit_status" value="{{ $users->status }}" class="form-control select2">
+                            <option value="Aktif">Aktif</option>
+                            <option value="Nonaktif">Non Aktif</option>
+                        </select>
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Simpan</button>
+                <button type="submit" class="btn btn-primary" data-dismiss="modal">Simpan</button>
             </div>
         </div>
     </div>

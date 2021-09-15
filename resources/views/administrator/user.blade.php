@@ -25,25 +25,16 @@
                 <div class="panel panel-default card-view">
                     <div class="panel-heading">
                         <p>
-                          <a href="administrator/addadmin" class="btn btn-success">Tambah baru</a>
+                          <a href="{{ url('administrator/tambah') }}" class="btn btn-success">Tambah baru</a>
                         </p>    
                         <div class="clearfix"></div>
-                        <div id="myTable1_wrapper" class="dataTables_wrapper">
-                            <div class="dataTables_length" id="myTable1_length"><label>Show <select name="myTable1_length" aria-controls="myTable1" class="">
-                                        <option value="10">10</option>
-                                        <option value="25">25</option>
-                                        <option value="50">50</option>
-                                        <option value="100">100</option>
-                                    </select> entries</label></div>
-                            <div id="myTable1_filter" class="dataTables_filter"><label>Search:<input type="search" class="" placeholder="" aria-controls="myTable1"></label></div>
-                            <table id="myTable1" class="table table-hover display dataTable dtr-inline" role="grid" aria-describedby="myTable1_info" style="width: 1253px;">
-                        </div>
+                        
                     </div>
                     <div class="panel-wrapper collapse in">
                         <div class="panel-body">
                             <div class="table-wrap">
                                 <div class="">
-                                    <table id="myTable1" class="table table-bordered display  pb-30">
+                                    <table id="datable_1" class="table table-bordered display  pb-30">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -80,9 +71,9 @@
                                                 <td>
                                                     <!-- <button class="btn btn-success btn-icon-anim btn-square"><i class="fa fa-info"></i></button> -->
                                                    
-                                                    <button class="btn btn-primary btn-icon-anim btn-square" data-toggle="modal" data-target="#edit"><i class=" fa fa-pencil"></i></button>
+                                                    <button class="btn btn-primary btn-icon-anim btn-square" data-toggle="modal" data-target="#edit{{$users->id}}"><i class=" fa fa-pencil"></i></button>
                                                    
-                                                    <button class="btn btn-danger btn-icon-anim btn-square" data-toggle="modal" data-target="#hapus"><i class=" fa fa-trash"></i></button>
+                                                    <!-- <button class="btn btn-danger btn-icon-anim btn-square" data-toggle="modal" data-target="#hapus"><i class=" fa fa-trash"></i></button> -->
                                                     
                                                     @include('administrator.edit')
 

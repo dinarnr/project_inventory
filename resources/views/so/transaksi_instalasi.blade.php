@@ -9,16 +9,16 @@
 		<!-- Title -->
 		<div class="row heading-bg">
 			<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-				<h5 class="txt-dark">barang keluar baru</h5><br>
-				<a href="transaksi/keluarbaru/tambah" class="btn btn-primary btn-icon-anim"><i class="fa fa succes"></i> BARU</a>
-				<a href="transaksi/keluarretur/tambah" class="btn btn-primary btn-icon-anim"><i class="fa fa succes"></i> RETUR</a>
+				<h5 class="txt-dark">barang keluar instalasi</h5><br>
+				<!-- <a href="/addkeluarbaru" class="btn btn-primary btn-icon-anim"><i class="fa fa succes"></i> BARU</a>
+				<a href="/addkeluarretur" class="btn btn-primary btn-icon-anim"><i class="fa fa succes"></i> RETUR</a> -->
 
 			</div>
 			<!-- Breadcrumb -->
 			<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
 				<ol class="breadcrumb">
 					<li><a href="#"><span>transaksi</span></a></li>
-					<li class="active"><span> barang keluar baru </span></li>
+					<li class="active"><span> barang keluar instalasi </span></li>
 				</ol>
 			</div>
 			<!-- /Breadcrumb -->
@@ -32,10 +32,10 @@
 							<div class="row">
 								<div class="col-sm-12 col-xs-12">
                                     <div class="form-wrap">
-                                        <form action="{{ url('warehouse/transaksi/keluarbaru/simpan') }}" method="POST" enctype="multipart/form-data">
+                                        <form action="{{ url('addkeluarbaru2') }}" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             <div class="form-body" >
-												<div class="row" >
+												<!-- <div class="row" >
 													<div class="col-md-6">
 															<div class="form-group">
 																<label class="control-label mb-10">Jenis Barang</label>
@@ -45,26 +45,24 @@
 																	<option value="YES">Barang Garansi</option>
 																</select>
 															</div>
-												</div>
-													</div>
-												</div>
-												<div class="" id="box-1"  style="display:none">	
+												    </div>
+												</div> -->
+												<!-- <div class="" id="box-1" style="display: none;">	 -->
 												<div class="row" id=""> 
-													@foreach ((array)$no_trans as $no_trans)
 													<div class="col-md-6">
 														<div class="form-group">
 															<label class="control-label mb-10">No Transaksi</label>
-															<input type="hidden" id="no_transaksi" name="no_transaksi" value="{{ $no_trans }}" class="form-control" placeholder="" readonly>
-                                                			<input type="text" id="no_trans" name="no_trans" value="{{ $no_trans }}" class="form-control" placeholder="" readonly>
+															<input type="hidden" id="no_transaksi" name="no_transaksi" value="" class="form-control" placeholder="" readonly>
+                                                			<input type="text" id="no_trans" name="no_trans" value="" class="form-control" placeholder="" readonly>
 														</div>
 													</div>
-													@endforeach
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="control-label mb-10">NO SO</label>
-                                                            <select name="instansi" id="instansi" class="form-control">
-                                                            	<option value=""></option>
-                                                            </select>
+                                                            <select name="noSO" id="noSO" class="form-control dynamic1" data-dependent="TabelDinamis">
+																<option value="">Pilih No SO</option>
+																		<option value=""></option>
+															</select>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -73,9 +71,7 @@
                                                         <div class="form-group">
                                                             <label class="control-label mb-10">Instansi</label>
                                                             <select name="instansi" id="instansi" class="form-control">
-                                                            	@foreach($data_instansi as $instansi)
-																<option value="{{ $instansi->nama_instansi }}">{{ $instansi->nama_instansi }} | {{ $instansi->kode_instansi }}</option>
-																@endforeach
+																<option value=""></option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -94,55 +90,21 @@
 															<input type="text" id="pengirim" name="pengirim" class="form-control">
 														</div>
 													</div>
+													
                                                 </div>
 												<hr>
-											</div>
-												<div id="box-2" style="display:none">
-													<div class="row">
-														<div class="col-md-6">
-															<div class="form-group">
-																<label class="control-label mb-10">No PO</label>
-																<select name="no_PO" id="no_PO" class="form-control dynamic1" data-dependent="nama_barang">
-																	<option value="">Pilih No PO</option>
-																	@foreach($bar as $ba)
-																		<option value="{{ $ba->no_PO }}">{{ $ba->no_PO }}</option>
-																	@endforeach
-																</select>
-																
-															</div>
-														</div>
-														<div class="col-md-6">
-															<div class="form-group">
-																<label class="control-label mb-10">Nama Barang</label>
-																<select name="nama_barang" id="nama_barang" >
-																	{{-- <option value="">Pilih Barang</option> --}}
-																</select>
-															</div>
-															
-														</div>
-													</div>
-													<div class="row">
-														<div class="col-md-6">
-															<div class="form-group">
-																<label class="control-label mb-10">Jumlah</label>
-																<input type="number" id="jumlah" name="jumlah" class="form-control">
-																
-																<input  id="kode_barang" name="kode_barang" value="" hidden>
-																
-															</div>
-														</div>
-														<div class="col-md-6">
-															<div class="form-group">
-																<label class="control-label mb-10">Keterangan</label>
-																<input type="text" id="keterangan" name="keterangan" class="form-control">
-															</div>
-														</div>
-													</div>
-													<div class="col-md-14" style="text-align:right;">
-														<button type="button" onclick="ambildata()" class="btn btn-success ">Tambah Data</button>
-													</div>
-												</div>
+                                                <table class="table table-nobordered align-items-center">
+													<thead class="thead-light">
+														<tr>
+															<th>Nama Barang</th>
+														</tr>
+													</thead>
+													<tbody id="TabelDinamis">
+																				
+													</tbody>
+												</table>
                                             </div>
+
                                             <div class="col-md-12 mt-10">
 												<div class="panel panel-default card-view">
 													<div class="panel-heading">
@@ -163,11 +125,18 @@
 																					<th>Nama barang</th>
 																					<th>Jumlah</th>
 																					<th>Keterangan</th>
-																					<th>Remove</th>
+																					<!-- <th>Remove</th> -->
 
 																				</tr>
 																			</thead>
 																			<tbody id="TabelDinamis">
+																				<!-- <tr>
+																					<td><a name="tgl_transaksi[]" id="tgl_transaksi"></a></td>
+																					<td><a name="nama_supplier[]" id="nama_supplier"></a></td>
+																					<td><a name="nama_barang[]" id="nama_barang"></a></td>
+																					<td><a name="jumlah[]" id="jumlah"></a></td>
+																					<td><button type="button" class="btn btn-danger btn-small">&times;</button></td>
+																				</tr> -->
 																			</tbody>
 																		</table>
 
@@ -179,9 +148,8 @@
 															</div>
 														</div>
 													</div>
-												</div>
+												</div> 
 											</div>
-											{{ csrf_field() }}
                                         </form>
                                     </div>
                                 </div>
@@ -204,7 +172,7 @@
 		var kode_barang = document.getElementById('kode_barang').value;
 		var jumlah = document.getElementById('jumlah').value;
 
-		addrow(no_trans, no_PO, keterangan, nama_barang, kode_barang, jumlah,);
+		addrow(no_trans, no_PO, keterangan, nama_barang, kode_barang, jumlah);
 	}
 	var i = 0;
 
@@ -226,7 +194,7 @@
 		$('#nama_barang').select2();
 		$('#nama_supplier').select2();
 </script>
-<script>
+<!-- <script>
 	var select = document.getElementById('jenistransaksi');
 	var currentOption = 0;
 
@@ -244,10 +212,10 @@
 		document.getElementById('box-2').style.display = 'block';
     }
 });
-
-
-</script>
-<!-- <script>
+	$('#nama_barang').select2();
+	$('#nama_supplier').select2();
+</script> -->
+<script>
 	$('.dynamic1').change(function(){
 		if($(this).val() != ''){
 			var select = $(this).attr("id");
@@ -256,7 +224,7 @@
 			var dependent = $(this).data('dependent');
 			var _token = $('input[name="_token"]').val();
 			$.ajax({
-				url: "{{ route('trkkeluarcontroller.fetch')}}",
+				url: "{{ route('fetch')}}",
 				method: "POST",
 				data: {
 					select: select,value: value,_token:_token,dependent: dependent
@@ -267,5 +235,5 @@
 			});
 		}
 	});
-</script> -->
+</script>
 @endsection

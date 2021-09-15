@@ -1,11 +1,14 @@
 <?php
 
+use App\Http\Controllers\Administrator\UserController;
+use App\Http\Controllers\Administrator\LogController;
 use App\Http\Controllers\Warehouse\DataBarangController;
 use App\Http\Controllers\Warehouse\KategoriController;
 use App\Http\Controllers\Warehouse\TrkMasukController;
 use App\Http\Controllers\Warehouse\TrkKeluarController;
 use App\Http\Controllers\Warehouse\InstansiController;
 use App\Http\Controllers\Warehouse\PoController;
+use App\Http\Controllers\SoController;
 use App\Http\Controllers\Warehouse\SupplierController;
 use App\Http\Controllers\Warehouse\PeminjamanController;
 
@@ -80,7 +83,7 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::post('transaksi/keluarbaru/simpan', [TrkKeluarController::class, 'addkeluarbaru2']);
         Route::get('transaksi/keluarretur/tambah', [TrkKeluarController::class, 'addkeluarretur']);
         Route::post('transaksi/keluarretur/simpan', [TrkKeluarController::class, 'addkeluarretur2']);
-        Route::post('/addkeluarbaru/fetch', [TrkKeluarController::class, 'fetch']);
+        Route::post('/addkeluarbaru/fetch', 'TrkKeluarController@fetch')->name('trkkeluarcontroller.fetch');
 
         // <----------------------DATA SUPPLIER--------------------------->
         Route::get('supplier', [SupplierController::class, 'supplier']);
@@ -106,6 +109,11 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::post('po/tambahketerangan/{id_po}', [POController::class, 'addket']);
         Route::post('confirmpo/{id_PO}', 'App\Http\Controllers\PoController@confirmpo');
         Route::post('reject/{id_PO}', 'App\Http\Controllers\PoController@reject');
+
+        Route::get('so', [SOController::class, 'index']);
+        Route::get('so/transaksi_instalasi/{no_PO}', [SOController::class, 'transaksi_instalasi']);
+
+ 
 
         // <----------------------DATA PEMINJAMAN--------------------------->
         Route::get('peminjaman', [PeminjamanController::class, 'peminjaman']);
@@ -147,6 +155,13 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::get('peminjaman/detail/{peminjaman}', [PeminjamanController::class, 'detailpeminjaman']);
     });
 
+    Route::group(['prefix' => 'administrator/'], function(){
+        Route::get('/user', [UserController::class,'users']);
+        Route::get('/log', [LogController::class,'log']);
+        Route::get('/tambah',[UserController::class,'addadmin']);
+        Route::post('/tambah/simpan', [UserController::class,'addadmin2']); 
+        Route::post('/ubah/simpan/{id}', [UserController::class,'updateUser']); 
+    });
 
     // <----------------------DATA PENGAJUAN--------------------------->
     //----------------------------- BARU -----------------------------------------------
@@ -203,11 +218,7 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
 
 
 
-    // ADMINISTRASI
-    Route::get('administrator', 'App\Http\Controllers\AdministratorController@users');
-    Route::get('log', 'App\Http\Controllers\AdministratorController@log');
-    Route::get('administrator/addadmin', 'App\Http\Controllers\AdministratorController@addadmin');
-    Route::post('/addadmin2', 'App\Http\Controllers\AdministratorController@addadmin2')->name('addadmin2');
+    
 
 
     // <----------------------DATA INSTANSI--------------------------->

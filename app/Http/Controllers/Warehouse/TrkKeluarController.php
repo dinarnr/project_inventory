@@ -48,17 +48,17 @@ class TrkKeluarController extends Controller
         return view('warehouse/transaksi/addkeluarbaru', compact('no_trans','data_instansi', 'barang', 'transaksi_keluar','bar'));
     }
 
-    public function fetch(Request $request){
-       $select = $request->get('select');
-       $values = $request->get('value');
-       $dependent = $request->get('dependent');
-       $data = DB::table('detail_PO')->where('no_PO', $values)->groupBy('nama_barang')->get();
-       $output = '<option value="">Pilih Barang'.'</option>';
-       foreach ($data as $row) {
-           $output .= '<option value=""'.$row->nama_barang.'">'.$row->nama_barang.'</option>';
-       }
-       echo $output;
-    }
+    // public function fetch(Request $request){
+    //    $select = $request->get('select');
+    //    $values = $request->get('value');
+    //    $dependent = $request->get('dependent');
+    //    $data = DB::table('detail_PO')->where('no_PO', $values)->groupBy('nama_barang')->get();
+    //    $output = '<option value="">Pilih Barang'.'</option>';
+    //    foreach ($data as $row) {
+    //        $output .= '<option value=""'.$row->nama_barang.'">'.$row->nama_barang.'</option>';
+    //    }
+    //    echo $output;
+    // }
 
     public function addkeluarbaru2(Request $request)
     {
