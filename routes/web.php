@@ -14,6 +14,9 @@ use App\Http\Controllers\Warehouse\PeminjamanController;
 
 use App\Http\Controllers\Marketing\InstansiMktController;
 use App\Http\Controllers\Marketing\POMktController;
+
+use App\Http\Controllers\Teknisi\PeminjamanTeknisiController;
+
 use App\Http\Controllers\PengajuanController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
@@ -119,7 +122,7 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::get('peminjaman', [PeminjamanController::class, 'peminjaman']);
         Route::post('peminjaman/kembali/{no_peminjaman}', [PeminjamanController::class, 'kembali']);
         Route::post('peminjaman/confirm/{no_peminjaman}', [PeminjamanController::class, 'confirm']);
-        Route::get('peminjaman/detail/{peminjaman}', [PeminjamanController::class, 'detailpeminjaman']);
+        Route::get('peminjaman/detail/{no_peminjaman}', [PeminjamanController::class, 'detailpeminjaman']);
     });
 
 
@@ -149,10 +152,13 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
 
     Route::group(['prefix' => 'teknisi/'], function () {
         // <----------------------DATA PEMINJAMAN--------------------------->
-        Route::get('peminjaman', [PeminjamanController::class, 'peminjaman']);
-        Route::post('peminjaman/kembali/{no_peminjaman}', [PeminjamanController::class, 'kembali']);
-        Route::post('peminjaman/confirm/{no_peminjaman}', [PeminjamanController::class, 'confirm']);
-        Route::get('peminjaman/detail/{peminjaman}', [PeminjamanController::class, 'detailpeminjaman']);
+        Route::get('peminjaman', [PeminjamanTeknisiController::class, 'peminjaman']);
+        Route::get('peminjaman/tambah', [PeminjamanTeknisiController::class, 'addpinjam']);
+        Route::post('peminjaman/simpan', [PeminjamanTeknisiController::class, 'addpinjam2']);
+        Route::get('peminjaman/ubah/{no_PO}', [PeminjamanTeknisiController::class, 'editpinjam']); 
+        Route::post('peminjaman/ubah/simpan', [PeminjamanTeknisiController::class, 'updatePinjam']);
+        Route::post('peminjaman/kembali/{no_peminjaman}', [PeminjamanTeknisiController::class, 'kembali']);
+        Route::get('peminjaman/detail/{no_peminjaman}', [PeminjamanTeknisiController::class, 'detailpeminjaman']);
     });
 
     Route::group(['prefix' => 'administrator/'], function(){
@@ -165,70 +171,66 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
 
     // <----------------------DATA PENGAJUAN--------------------------->
     //----------------------------- BARU -----------------------------------------------
-    Route::get('/brgbaru', 'App\Http\Controllers\PengajuanController@tabelBaru');
-    Route::get('/addbaru', 'App\Http\Controllers\PengajuanController@addbaru');
-    Route::post('/addbaru2', 'App\Http\Controllers\PengajuanController@addbaru2')->name('addbaru2');
-    Route::get('pengajuan/editBaru/{id_pengajuan}', [PengajuanController::class, 'editBaru']);
-    Route::post('/updateBaru', 'App\Http\Controllers\PengajuanController@updateBaru')->name('updateBaru');
-    Route::delete('deletebaru/{id_pengajuan}', 'App\Http\Controllers\PengajuanController@deletebaru');
-    Route::get('pengajuan/detailbaru/{id_pengajuan}', [PengajuanController::class, 'detailbaru']);
+    // Route::get('/brgbaru', 'App\Http\Controllers\PengajuanController@tabelBaru');
+    // Route::get('/addbaru', 'App\Http\Controllers\PengajuanController@addbaru');
+    // Route::post('/addbaru2', 'App\Http\Controllers\PengajuanController@addbaru2')->name('addbaru2');
+    // Route::get('pengajuan/editBaru/{id_pengajuan}', [PengajuanController::class, 'editBaru']);
+    // Route::post('/updateBaru', 'App\Http\Controllers\PengajuanController@updateBaru')->name('updateBaru');
+    // Route::delete('deletebaru/{id_pengajuan}', 'App\Http\Controllers\PengajuanController@deletebaru');
+    // Route::get('pengajuan/detailbaru/{id_pengajuan}', [PengajuanController::class, 'detailbaru']);
 
-    //----------------------------- RETUR -----------------------------------------------
-    Route::get('/brgretur', 'App\Http\Controllers\PengajuanController@tabelRetur');
-    Route::get('/addretur', 'App\Http\Controllers\PengajuanController@addretur');
-    Route::post('/addretur2', 'App\Http\Controllers\PengajuanController@addretur2')->name('addretur2');
-    Route::get('pengajuan/editRetur/{id_pengajuan}', [PengajuanController::class, 'editRetur']);
-    Route::get('pengajuan/detailbaru/{id_pengajuan}', [PengajuanController::class, 'detailbaru']);
-    Route::post('/updateRetur', 'App\Http\Controllers\PengajuanController@updateRetur')->name('updateRetur');
-    Route::delete('deleteretur/{id_pengajuan}', 'App\Http\Controllers\PengajuanController@deleteretur');
-    //----------------------------------- confirm//reject ---------------------------------------------------
-    Route::post('Confirm/{id_pengajuan}', 'App\Http\Controllers\PengajuanController@Confirm');
-    Route::post('Reject/{id_pengajuan}', 'App\Http\Controllers\PengajuanController@Reject');
+    // //----------------------------- RETUR -----------------------------------------------
+    // Route::get('/brgretur', 'App\Http\Controllers\PengajuanController@tabelRetur');
+    // Route::get('/addretur', 'App\Http\Controllers\PengajuanController@addretur');
+    // Route::post('/addretur2', 'App\Http\Controllers\PengajuanController@addretur2')->name('addretur2');
+    // Route::get('pengajuan/editRetur/{id_pengajuan}', [PengajuanController::class, 'editRetur']);
+    // Route::get('pengajuan/detailbaru/{id_pengajuan}', [PengajuanController::class, 'detailbaru']);
+    // Route::post('/updateRetur', 'App\Http\Controllers\PengajuanController@updateRetur')->name('updateRetur');
+    // Route::delete('deleteretur/{id_pengajuan}', 'App\Http\Controllers\PengajuanController@deleteretur');
+    // //----------------------------------- confirm//reject ---------------------------------------------------
+    // Route::post('Confirm/{id_pengajuan}', 'App\Http\Controllers\PengajuanController@Confirm');
+    // Route::post('Reject/{id_pengajuan}', 'App\Http\Controllers\PengajuanController@Reject');
 
-    Route::get('/pengpembelian', 'App\Http\Controllers\PengajuanController@pengpembelian');
-    Route::get('/addpembelian', 'App\Http\Controllers\PengajuanController@addpembelian');
+    // Route::get('/pengpembelian', 'App\Http\Controllers\PengajuanController@pengpembelian');
+    // Route::get('/addpembelian', 'App\Http\Controllers\PengajuanController@addpembelian');
 
 
 
     // <----------------------DATA PEMBELIAN--------------------------->
-    Route::get('/pembelian', 'App\Http\Controllers\PembelianController@pembelian');
-    Route::get('/addinvoice/{id_PO}', 'App\Http\Controllers\PembelianController@addinvoice');
-    Route::get('purchase', 'App\Http\Controllers\PembelianController@purchase');
-    Route::post('addpembelian2', 'App\Http\Controllers\PembelianController@addpembelian2');
-    Route::post('lunas/{id_pembelian}', 'App\Http\Controllers\PembelianController@lunas');
-
+    // Route::get('/pembelian', 'App\Http\Controllers\PembelianController@pembelian');
+    // Route::get('/addinvoice/{id_PO}', 'App\Http\Controllers\PembelianController@addinvoice');
+    // Route::get('purchase', 'App\Http\Controllers\PembelianController@purchase');
+    // Route::post('addpembelian2', 'App\Http\Controllers\PembelianController@addpembelian2');
+    // Route::post('lunas/{id_pembelian}', 'App\Http\Controllers\PembelianController@lunas');
 
 
 
     // <----------------------DATA PEMINJAMAN--------------------------->
-    Route::get('peminjaman', 'App\Http\Controllers\PeminjamanController@peminjaman');
-    Route::get('peminjaman/addpinjam', 'App\Http\Controllers\PeminjamanController@addpinjam');
-    Route::post('/addpinjam2', 'App\Http\Controllers\PeminjamanController@addpinjam2')->name('addpinjam2');
-    Route::get('/peminjaman/{id_peminjaman}', 'App\Http\Controllers\PeminjamanController@editpinjam');
-    // Route::get('peminjaman/editpinjam/{id_peminjaman}', [PeminjamanController::class, 'editpinjam']);
-    Route::post('/updatePinjam', 'App\Http\Controllers\PeminjamanController@updatePinjam')->name('updatePinjam');
-    Route::delete('deletepinjam/{id_peminjaman}', 'App\Http\Controllers\PeminjamanController@deletepinjam');
-    Route::post('kembali/{no_peminjaman}', 'App\Http\Controllers\PeminjamanController@kembali');
-    Route::post('confirm/{no_peminjaman}', 'App\Http\Controllers\PeminjamanController@confirm');
-    Route::get('peminjaman/detail/{peminjaman}', 'App\Http\Controllers\PeminjamanController@detailpeminjaman');
+    // Route::get('peminjaman', 'App\Http\Controllers\PeminjamanController@peminjaman');
+    // Route::get('peminjaman/addpinjam', 'App\Http\Controllers\PeminjamanController@addpinjam');
+    // Route::post('/addpinjam2', 'App\Http\Controllers\PeminjamanController@addpinjam2')->name('addpinjam2');
+    // Route::get('/peminjaman/{id_peminjaman}', 'App\Http\Controllers\PeminjamanController@editpinjam');
+    // // Route::get('peminjaman/editpinjam/{id_peminjaman}', [PeminjamanController::class, 'editpinjam']);
+    // Route::post('/updatePinjam', 'App\Http\Controllers\PeminjamanController@updatePinjam')->name('updatePinjam');
+    // Route::delete('deletepinjam/{id_peminjaman}', 'App\Http\Controllers\PeminjamanController@deletepinjam');
+    // Route::post('kembali/{no_peminjaman}', 'App\Http\Controllers\PeminjamanController@kembali');
+    // Route::post('confirm/{no_peminjaman}', 'App\Http\Controllers\PeminjamanController@confirm');
+    // Route::get('peminjaman/detail/{peminjaman}', 'App\Http\Controllers\PeminjamanController@detailpeminjaman');
 
 
-
-
-
-
-
-    
-
+    // // ADMINISTRASI
+    // Route::get('administrator', 'App\Http\Controllers\AdministratorController@users');
+    // Route::get('log', 'App\Http\Controllers\AdministratorController@log');
+    // Route::get('administrator/addadmin', 'App\Http\Controllers\AdministratorController@addadmin');
+    // Route::post('/addadmin2', 'App\Http\Controllers\AdministratorController@addadmin2')->name('addadmin2');
 
     // <----------------------DATA INSTANSI--------------------------->
 
-
-    Route::get('instansi', [InstansiMktController::class, 'instansiview']);
-    Route::get('instansi', [InstansiMktController::class, 'instansi']);
-    Route::post('/addInstansi', [InstansiMktController::class, 'addInstansi']);
-    Route::post('/addInstansi2', [InstansiMktController::class, 'addInstansi2']);
-    Route::get('instansi/addinstansi', [InstansiMktController::class, 'add']);
-    Route::get('instansi/editInstansi/{id_instansi}', [InstansiMktController::class, 'editInstansi']);
-    Route::post('/updateInstansi', [InstansiMktController::class, 'updateInstansi']);
+    // Route::get('instansi', [InstansiMktController::class, 'instansiview']);
+    // Route::get('instansi', [InstansiMktController::class, 'instansi']);
+    // Route::post('/addInstansi', [InstansiMktController::class, 'addInstansi']);
+    // Route::post('/addInstansi2', [InstansiMktController::class, 'addInstansi2']);
+    // Route::get('instansi/addinstansi', [InstansiMktController::class, 'add']);
+    // Route::get('instansi/editInstansi/{id_instansi}', [InstansiMktController::class, 'editInstansi']);
+    // Route::post('/updateInstansi', [InstansiMktController::class, 'updateInstansi']);
 });

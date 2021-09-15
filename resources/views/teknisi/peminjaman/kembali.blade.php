@@ -5,7 +5,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h5 class="modal-title" id="exampleModalLabel1">Peminjaman</h5>
             </div>
-            <form action="{{ url('kembali') }}/{{$peminjaman->no_peminjaman }}" class="modal-body" method="post">
+            <form action="{{ url('teknisi/peminjaman/kembali') }}/{{$peminjaman->no_peminjaman }}" class="modal-body" method="post">
                 {{ csrf_field() }}
                 <div class="container">
                     <h6 class="mb-15">Apakah anda yakin mengembalikan barang ?</h6>
