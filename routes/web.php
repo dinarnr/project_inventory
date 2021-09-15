@@ -11,6 +11,9 @@ use App\Http\Controllers\Warehouse\PeminjamanController;
 
 use App\Http\Controllers\Marketing\InstansiMktController;
 use App\Http\Controllers\Marketing\POMktController;
+
+use App\Http\Controllers\Teknisi\PeminjamanTeknisiController;
+
 use App\Http\Controllers\PengajuanController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
@@ -111,7 +114,7 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::get('peminjaman', [PeminjamanController::class, 'peminjaman']);
         Route::post('peminjaman/kembali/{no_peminjaman}', [PeminjamanController::class, 'kembali']);
         Route::post('peminjaman/confirm/{no_peminjaman}', [PeminjamanController::class, 'confirm']);
-        Route::get('peminjaman/detail/{peminjaman}', [PeminjamanController::class, 'detailpeminjaman']);
+        Route::get('peminjaman/detail/{no_peminjaman}', [PeminjamanController::class, 'detailpeminjaman']);
     });
 
 
@@ -141,10 +144,13 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
 
     Route::group(['prefix' => 'teknisi/'], function () {
         // <----------------------DATA PEMINJAMAN--------------------------->
-        Route::get('peminjaman', [PeminjamanController::class, 'peminjaman']);
-        Route::post('peminjaman/kembali/{no_peminjaman}', [PeminjamanController::class, 'kembali']);
-        Route::post('peminjaman/confirm/{no_peminjaman}', [PeminjamanController::class, 'confirm']);
-        Route::get('peminjaman/detail/{peminjaman}', [PeminjamanController::class, 'detailpeminjaman']);
+        Route::get('peminjaman', [PeminjamanTeknisiController::class, 'peminjaman']);
+        Route::get('peminjaman/tambah', [PeminjamanTeknisiController::class, 'addpinjam']);
+        Route::post('peminjaman/simpan', [PeminjamanTeknisiController::class, 'addpinjam2']);
+        Route::get('peminjaman/ubah/{no_PO}', [PeminjamanTeknisiController::class, 'editpinjam']); 
+        Route::post('peminjaman/ubah/simpan', [PeminjamanTeknisiController::class, 'updatePinjam']);
+        Route::post('peminjaman/kembali/{no_peminjaman}', [PeminjamanTeknisiController::class, 'kembali']);
+        Route::get('peminjaman/detail/{no_peminjaman}', [PeminjamanTeknisiController::class, 'detailpeminjaman']);
     });
 
 

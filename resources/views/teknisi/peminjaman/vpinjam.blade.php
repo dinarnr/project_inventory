@@ -11,11 +11,13 @@
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
                 <h5 class="txt-dark">Data peminjaman</h5>
             </div>
+            <!-- Breadcrumb -->
             <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                 <ol class="breadcrumb">
                     <li class="active"><span>Data peminjaman</span></li>
                 </ol>
             </div>
+            <!-- /Breadcrumb -->
         </div>
         <!-- /Title -->
 
@@ -25,8 +27,7 @@
                 <div class="panel panel-default card-view">
                     <div class="panel-heading">
                         <p>
-                            <a href="peminjaman/addpinjam" class="btn btn-success"> Tambah Data</a>
-
+                            <a href="{{url('teknisi/peminjaman/tambah')}}" class="btn btn-success"> Tambah Data</a>
                         </p>
                         <div class="clearfix"></div>
 
@@ -44,7 +45,6 @@
                                                     <th>Tanggal kembali</th>
                                                     <th>Status</th>
                                                     <th>Aksi</th>
-
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -55,7 +55,6 @@
                                                     <td>{{ $peminjaman->pic_teknisi }}</td>
                                                     <td>{{ $peminjaman->kebutuhan }}</td>
                                                     <td>{{ date('d-m-Y',strtotime($peminjaman->tglPinjam)) }}</td>
-
                                                     <td>{{ date('d-m-Y',strtotime($peminjaman->tglKembali)) }}</td>
 
                                                     <td style="text-align:center;">
@@ -67,27 +66,16 @@
                                                         <button class="btn btn-success btn-sm btn-rounded">Dikembalikan</button>
                                                         @endif
                                                     </td>
-
-
                                                     <td>
-                                                        <a href="peminjaman/detail/{{ $peminjaman->no_peminjaman}}"><button class="btn btn-success btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
-                                                        <a href="/peminjaman/{{ $peminjaman->no_peminjaman }}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-edit"></i></button></a>
-                                                        @if (auth()->user()->divisi == "teknisi")
+                                                        <a href="{{url('teknisi/peminjaman/detail')}}/{{ $peminjaman->no_peminjaman}}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
+                                                        <!-- <a href="/peminjaman/{{ $peminjaman->no_peminjaman }}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-edit"></i></button></a> -->
                                                         @if($peminjaman->status == 'pinjam')
-                                                        <button class="btn btn-success btn-icon-anim btn-square" data-toggle="modal" data-target="#kembali{{ $peminjaman->no_peminjaman }}" action="( {{url('kembali')}}/{{ $peminjaman->no_peminjaman }})"><i class="fa fa-undo"></i></button>
+                                                        <button class="btn btn-success btn-icon-anim btn-square" data-toggle="modal" data-target="#kembali{{ $peminjaman->no_peminjaman }}" action="( {{url('teknisi/peminjaman/kembali')}}/{{ $peminjaman->no_peminjaman }})"><i class="fa fa-undo"></i></button>
                                                         @endif
-                                                        @endif
-                                                        @if (auth()->user()->divisi == "warehouse")
-                                                        @if($peminjaman->status == 'Diproses Warehouse')
-                                                        <button class="btn btn-success btn-icon-anim btn-square" data-toggle="modal" data-target="#confirm{{ $peminjaman->no_peminjaman}}" action="( {{url('confirm')}}/{{ $peminjaman->no_peminjaman}})"><i class="fa fa-check"></i></button>
-                                                        @endif
-                                                        @endif
-                                                        @include('peminjaman.kembali')
-                                                        @include('peminjaman.confirm')
                                                     </td>
+                                                    @include('teknisi.peminjaman.kembali')
                                                 </tr>
                                                 @endforeach
-                                                @include('peminjaman.kembali')
                                             </tbody>
                                     </div>
                                 </div>
