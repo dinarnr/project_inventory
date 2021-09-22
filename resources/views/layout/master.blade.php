@@ -180,7 +180,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="{{ url('warehouse/po') }}">
+                    <a href="{{ url('warehouse/so') }}">
                         <div class="pull-left"><i class="zmdi zmdi-shopping-cart mr-20"></i><span class="right-nav-text">Data SO</span></div>
                         <div class="clearfix"></div>
                     </a>
@@ -252,6 +252,20 @@
                 <!-- <-------------------------------ADMIN----------------------------------->
                 <!-- <-------------------------------PURCHASING----------------------------------->
                 <!-- <-------------------------------ADMINISTRATOR----------------------------------->
+                @if (auth()->user()->divisi == "administrator")
+                <li>
+                    <a href="{{ url('administrator/user') }}">
+                        <div class="pull-left"><i class="zmdi zmdi-account mr-20"></i><span class="right-nav-text">User</span></div>
+                        <div class="clearfix"></div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('administrator/log') }}">
+                        <div class="pull-left"><i class="zmdi zmdi-search-in-file mr-20"></i><span class="right-nav-text">Log Sistem</span></div>
+                        <div class="clearfix"></div>
+                    </a>
+                </li>
+                @endif
                 <!-- <-------------------------------OFFICE----------------------------------->
 
 

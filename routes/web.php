@@ -1,11 +1,14 @@
 <?php
 
+use App\Http\Controllers\Administrator\UserController;
+use App\Http\Controllers\Administrator\LogController;
 use App\Http\Controllers\Warehouse\DataBarangController;
 use App\Http\Controllers\Warehouse\KategoriController;
 use App\Http\Controllers\Warehouse\TrkMasukController;
 use App\Http\Controllers\Warehouse\TrkKeluarController;
 use App\Http\Controllers\Warehouse\InstansiController;
 use App\Http\Controllers\Warehouse\PoController;
+use App\Http\Controllers\SoController;
 use App\Http\Controllers\Warehouse\SupplierController;
 use App\Http\Controllers\Warehouse\PeminjamanController;
 
@@ -69,7 +72,7 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         //MASUK 
         Route::get('transaksi/masuk', [TrkMasukController::class, 'transaksi']);
         Route::get('transaksi/masukbaru/tambah', [TrkMasukController::class, 'addmasukbaru']);
-        Route::post('transaksi/masukbaru/simpan', [TrkMasukController::class, 'addmasuk2']);
+        Route::post('transaksi/masukbaru/simpan', [TrkMasukController::class, 'addmasukbaru2']);
         Route::get('transaksi/masukretur/tambah', [TrkMasukController::class, 'addmasukretur']);
         Route::post('transaksi/masukretur/simpan', [TrkMasukController::class, 'addmasukretur2']);
         Route::get('transaksi/detailmasukbaru/{no_transaksi}', [TrkMasukController::class, 'detailmasuk']);
@@ -80,10 +83,11 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::get('brgkeluar/addkeluar', [TrkKeluarController::class, 'addkeluar']);
         Route::get('/transaksikeluar', [TrkKeluarController::class, 'transaksikeluar']);
         Route::get('transaksi/keluarbaru/tambah', [TrkKeluarController::class, 'addkeluarbaru']);
-        Route::post('transaksi/keluarbaru/simpan', [TrkKeluarController::class, 'addkeluarbaru2']);
+        // Route::post('transaksi/keluarbaru/simpan', [TrkKeluarController::class, 'addkeluarbaru2']);
+        Route::post('transaksi/keluarbaru/simpan', [TrkKeluarController::class, 'keluargaransi']);
         Route::get('transaksi/keluarretur/tambah', [TrkKeluarController::class, 'addkeluarretur']);
         Route::post('transaksi/keluarretur/simpan', [TrkKeluarController::class, 'addkeluarretur2']);
-        Route::post('/addkeluarbaru/fetch', [TrkKeluarController::class, 'fetch']);
+        Route::post('/addkeluarbaru/fetch', 'TrkKeluarController@fetch')->name ('trkkeluarcontroller.fetch');
 
         // <----------------------DATA SUPPLIER--------------------------->
         Route::get('supplier', [SupplierController::class, 'supplier']);
@@ -109,6 +113,11 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::post('po/tambahketerangan/{id_po}', [POController::class, 'addket']);
         Route::post('confirmpo/{id_PO}', 'App\Http\Controllers\PoController@confirmpo');
         Route::post('reject/{id_PO}', 'App\Http\Controllers\PoController@reject');
+
+        Route::get('so', [SOController::class, 'index']);
+        Route::get('so/transaksi_instalasi/{no_PO}', [SOController::class, 'transaksi_instalasi']);
+
+ 
 
         // <----------------------DATA PEMINJAMAN--------------------------->
         Route::get('peminjaman', [PeminjamanController::class, 'peminjaman']);
@@ -153,6 +162,13 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::get('peminjaman/detail/{no_peminjaman}', [PeminjamanTeknisiController::class, 'detailpeminjaman']);
     });
 
+    Route::group(['prefix' => 'administrator/'], function(){
+        Route::get('/user', [UserController::class,'users']);
+        Route::get('/log', [LogController::class,'log']);
+        Route::get('/tambah',[UserController::class,'addadmin']);
+        Route::post('/tambah/simpan', [UserController::class,'addadmin2']); 
+        Route::post('/ubah/simpan/{id}', [UserController::class,'updateUser']); 
+    });
 
     // <----------------------DATA PENGAJUAN--------------------------->
     //----------------------------- BARU -----------------------------------------------

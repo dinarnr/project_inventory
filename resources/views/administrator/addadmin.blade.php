@@ -33,7 +33,7 @@
                         <div class="panel-body">
                             <div class="form-wrap mt-3">
 
-                            <form action="{{ url('addadmin2') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ url('administrator/tambah/simpan') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                                 <div class="form-group">
                                     <label class="control-label mb-10 text-left">Nama</label>
@@ -59,11 +59,9 @@
                                         <option value="teknisi">Teknisi</option>
                                     </select>
                                 </div>
-                                <div class="form-group-justified">
+                                <div class="form-group-justified" style="text-align: right;">
                                         <button class="btn btn-success mr-5" name="submit" type="submit">
                                             Simpan
-                                        </button>
-                                        <button class="btn btn-danger  " name="reset" type="reset">Batal
                                         </button>
                                 </div>
                                 </div>

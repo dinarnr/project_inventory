@@ -68,7 +68,7 @@
                                 </div>
 								
                                 <!-- aksi -->
-                                <div  id="admin" class="tab-pane fade" role="tabpanel">
+                                <div  id="admin2" class="tab-pane fade" role="tabpanel">
                                     <table id="datable_1" class="table table-bordered display  pb-30">
                                         <thead>
                                             <tr>

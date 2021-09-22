@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Warehouse;
-use App\Http\Controllers\Controller; 
+use App\Http\Controllers\Controller;
+use App\Models\DetailPO;
 use App\Models\DetailTrkKeluar;
 use App\Models\Log;
 use App\Models\Master;
@@ -38,26 +39,71 @@ class TrkKeluarController extends Controller
         $data_instansi = Instansi::all();
         $barang = Master::where([['status', 'aktif']])->get();
         $bar = DB::table('detail_PO')->groupBy('no_PO')->get();
+
+        $noPO=PO::all();
+        $brg=DetailPO::all();
          // $no_trans = IdGenerator::generate(['table' => 'transaksi_masuk', 'length' => 8, 'prefix' => 'TRK-',date('ym')]);
         $now = Carbon::now();
         $thnBln = $now->year . $now->month;
         $kode = strtoupper(substr("TRK", 0, 3));
-        $check = count(TransaksiModel::where('no_transaksi', 'like', "%$thnBln%")->get()->toArray());
+        $check = count(TransaksiKeluar::where('no_transaksi', 'like', "%$thnBln%")->get()->toArray());
         $angka = sprintf("%03d", (int)$check + 1);
         $no_trans =  $kode.  "-"  .$now->year . $now->month . $angka;
-        return view('warehouse/transaksi/addkeluarbaru', compact('no_trans','data_instansi', 'barang', 'transaksi_keluar','bar'));
+        return view('warehouse/transaksi/addkeluarbaru', compact('no_trans', 'noPO','brg','data_instansi', 'barang', 'transaksi_keluar','bar'));
     }
 
-    public function fetch(Request $request){
-       $select = $request->get('select');
-       $values = $request->get('value');
-       $dependent = $request->get('dependent');
-       $data = DB::table('detail_PO')->where('no_PO', $values)->groupBy('nama_barang')->get();
-       $output = '<option value="">Pilih Barang'.'</option>';
-       foreach ($data as $row) {
-           $output .= '<option value=""'.$row->nama_barang.'">'.$row->nama_barang.'</option>';
-       }
-       echo $output;
+    // public function fetch(Request $request){
+    //    $select = $request->get('select');
+    //    $values = $request->get('value');
+    //    $dependent = $request->get('dependent');
+    //    $data = DB::table('detail_PO')->where('no_PO', $values)->groupBy('nama_barang')->get();
+    //    $output = '<option value="">Pilih Barang'.'</option>';
+    //    foreach ($data as $row) {
+    //        $output .= '<option value=""'.$row->nama_barang.'">'.$row->nama_barang.'</option>';
+    //    }
+    //    echo $output;
+    // }
+
+    public function keluargaransi(Request $request)
+    {   
+        // dd($request->jns_);
+        $jumlah_data = count($request->no_trans);
+        for ($i = 0; $i < $jumlah_data; $i++) {
+            DetailTrkKeluar::create(
+                [
+                    'no_transaksi' => $request->no_trans[$i],
+                    'jumlah' => $request->jumlah[$i],
+                    'no_PO' => $request->no_PO[$i],
+                    'kode_barang' => $request->kode_barang[$i],
+                    'nama_barang' => $request->nama_barang[$i],
+                    'jns_barang' => $request->jns_barang[$i],
+                ]
+            );
+        }
+        TransaksiKeluar::create(
+            [
+                    'no_transaksi' => $request->no_trans,
+                    'jumlah' => $request->jumlah,
+                    'no_PO' => $request->no_PO,
+                    'kode_barang' => $request->kode_barang,
+                    'nama_barang' => $request->nama_barang,
+                    'tgl_transaksi' => $request->tgl_transaksi,
+                    'jns_barang' => $request->jns_barang,
+            ]
+        );
+        $user = Auth::user();
+        Log::create(
+            [
+                'name' => $user->name,
+                'email' => $user->email,
+                'divisi' => $user->divisi,
+                'deskripsi' => 'Create Kelaur Garansi',
+                'status' => '2',
+                'ip' => $request->ip()
+            ]
+        );
+
+        return redirect('warehouse/transaksikeluar');
     }
 
     public function addkeluarbaru2(Request $request)
