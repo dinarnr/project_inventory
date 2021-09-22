@@ -67,7 +67,6 @@
                                                 <td>{{ $transaksi_masuk->nama_supplier }}</td>
                                                 <td>
                                                     <a href="#"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-eye"></i></button></a>
-                                                    <a href="#"><button class="btn btn-success btn-icon-anim btn-square"><i class="fa fa-edit"></i></button></a>
                                                 </td>
                                             </tr>
                                             @endforeach
@@ -99,7 +98,6 @@
                                                 <td>{{ $transaksi_retur->created_at }}</td>
                                                 <td>
                                                     <a href="#"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-eye"></i></button></a>
-                                                    <a href="#"><button class="btn btn-success btn-icon-anim btn-square"><i class="fa fa-edit"></i></button></a>
                                                 </td>
                                             </tr>
                                             @endforeach

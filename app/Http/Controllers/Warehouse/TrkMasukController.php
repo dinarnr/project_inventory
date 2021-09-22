@@ -21,7 +21,7 @@ class TrkMasukController extends Controller
     {
         $transaksi_masuk = TransaksiModel::all()->where('instansi', '', '');
         $transaksi_retur = TransaksiModel::all()->where('nama_supplier', '', '');
-        return view('transaksi/transaksi', compact('transaksi_masuk', 'transaksi_retur'));
+        return view('warehouse/transaksi/transaksimasuk', compact('transaksi_masuk', 'transaksi_retur'));
     }
 
     // <------------------Masuk Baru------------------->
@@ -78,7 +78,7 @@ class TrkMasukController extends Controller
                 'ip' => $request->ip()
             ]
         );
-        return redirect('transaksi');
+        return redirect('warehouse/transaksi/masuk');
     }
 
     public function detailmasuk($no_transaksi)

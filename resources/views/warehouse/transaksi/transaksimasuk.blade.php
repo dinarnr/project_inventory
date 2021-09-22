@@ -70,7 +70,6 @@
                                             </tr>
                                             @endforeach
                                         </tbody>
-                                        @include('transaksi.editbrgmasuk')
                                     </table>
                                 </div>
 								
@@ -102,10 +101,8 @@
                                                     <a href="transaksi/detailmasukretur/{{ $transaksi_retur->no_transaksi }}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
                                                 </td>
                                             </tr>
-                                            @include('transaksi.hapusbrngmasuk')
                                             @endforeach
                                         </tbody>
-                                        @include('transaksi.editbrgmasuk')
                                     </table>
 								</div>
 								
@@ -117,7 +114,6 @@
 		</div>
         
         <!-- /Row -->
-        @include('transaksi.hapusbrngmasuk')
     </div>
 </div>
 <!-- /Main Content -->
