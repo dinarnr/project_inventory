@@ -66,12 +66,10 @@
                                                 <td>{{ $transaksi_masuk->penerima }}</td>
                                                 <td>
                                                     <a href="transaksi/detailmasuk/{{ $transaksi_masuk->no_transaksi }}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
-                                                    <a href="#"><button class="btn btn-success btn-icon-anim btn-square"><i class="fa fa-edit"></i></button></a>
                                                 </td>
                                             </tr>
                                             @endforeach
                                         </tbody>
-                                        @include('transaksi.editbrgmasuk')
                                     </table>
                                 </div>
 								
@@ -101,13 +99,10 @@
                                                 <td>{{ $transaksi_retur->created_at }}</td>
                                                 <td>
                                                     <a href="transaksi/detailmasukretur/{{ $transaksi_retur->no_transaksi }}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
-                                                    <a href="#"><button class="btn btn-success btn-icon-anim btn-square"><i class="fa fa-edit"></i></button></a>
                                                 </td>
                                             </tr>
-                                            @include('transaksi.hapusbrngmasuk')
                                             @endforeach
                                         </tbody>
-                                        @include('transaksi.editbrgmasuk')
                                     </table>
 								</div>
 								
@@ -119,7 +114,6 @@
 		</div>
         
         <!-- /Row -->
-        @include('transaksi.hapusbrngmasuk')
     </div>
 </div>
 <!-- /Main Content -->

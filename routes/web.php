@@ -72,7 +72,7 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         //MASUK 
         Route::get('transaksi/masuk', [TrkMasukController::class, 'transaksi']);
         Route::get('transaksi/masukbaru/tambah', [TrkMasukController::class, 'addmasukbaru']);
-        Route::post('transaksi/masukbaru/simpan', [TrkMasukController::class, 'addmasuk2']);
+        Route::post('transaksi/masukbaru/simpan', [TrkMasukController::class, 'addmasukbaru2']);
         Route::get('transaksi/masukretur/tambah', [TrkMasukController::class, 'addmasukretur']);
         Route::post('transaksi/masukretur/simpan', [TrkMasukController::class, 'addmasukretur2']);
         Route::get('transaksi/detailmasukbaru/{no_transaksi}', [TrkMasukController::class, 'detailmasuk']);
