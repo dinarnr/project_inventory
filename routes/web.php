@@ -8,7 +8,7 @@ use App\Http\Controllers\Warehouse\TrkMasukController;
 use App\Http\Controllers\Warehouse\TrkKeluarController;
 use App\Http\Controllers\Warehouse\InstansiController;
 use App\Http\Controllers\Warehouse\PoController;
-use App\Http\Controllers\SoController;
+use App\Http\Controllers\Warehouse\SoController;
 use App\Http\Controllers\Warehouse\SupplierController;
 use App\Http\Controllers\Warehouse\PeminjamanController;
 
@@ -108,14 +108,15 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::post('instansi/ubah/simpan', [InstansiController::class, 'updateInstansi']);
 
         // <----------------------DATA SO--------------------------->
-        Route::get('po', [POController::class, 'index']);
+        Route::get('so/dataSO', [SoController::class, 'dataSO']);
         Route::get('po/detail/{no_PO}', [POController::class, 'detailpo']);
         Route::post('po/tambahketerangan/{id_po}', [POController::class, 'addket']);
         Route::post('confirmpo/{id_PO}', 'App\Http\Controllers\PoController@confirmpo');
         Route::post('reject/{id_PO}', 'App\Http\Controllers\PoController@reject');
 
-        Route::get('so', [SOController::class, 'index']);
-        Route::get('so/transaksi_instalasi/{no_PO}', [SOController::class, 'transaksi_instalasi']);
+        Route::get('so/keluarinstalasi/tambah/{no_PO}', [SOController::class, 'transaksiinstalasi']);
+        Route::post('/addinstalasi/fetch', 'SOController@fetch')->name ('socontroller.fetch');
+
 
  
 

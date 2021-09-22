@@ -6,13 +6,13 @@
             <!-- Title -->
             <div class="row heading-bg">
                 <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                    <h5 class="txt-dark">Data Purchase Order</h5>
+                    <h5 class="txt-dark">Data SO</h5>
                 </div>
                 <!-- Breadcrumb -->
                 <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                     <ol class="breadcrumb">
                         <!-- <li><a href="inventory"></a></li> -->
-                        <li class="active"><span>Data Purchasing</span></li>
+                        <li class="active"><span>Data SO</span></li>
                     </ol>
                 </div>
                 <!-- /Breadcrumb -->
@@ -136,7 +136,7 @@
                                                             <a href="po/detail/{{ $data_po->no_PO }}"><button class="btn btn-success btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
 
                                                             @endif
-                                                            <a href="so/transaksi_instalasi/{{ $data_po->no_PO }}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-paper-plane-o"></i></button></a>
+                                                            <a href="{{ url('warehouse/so/keluarinstalasi/tambah/{no_PO}') }}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-paper-plane-o"></i></button></a>
 
                                                         </td>
                                                         @endif

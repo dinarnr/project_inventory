@@ -24,7 +24,7 @@ class TrkKeluarController extends Controller
         return view('transaksi/brgkeluar');
     }
 
-    // ----------------------Keluar Baru----------------------//
+    // ----------------------Keluar Garansi----------------------//
 
     public function transaksikeluar()
     {
@@ -51,18 +51,6 @@ class TrkKeluarController extends Controller
         $no_trans =  $kode.  "-"  .$now->year . $now->month . $angka;
         return view('warehouse/transaksi/addkeluarbaru', compact('no_trans', 'noPO','brg','data_instansi', 'barang', 'transaksi_keluar','bar'));
     }
-
-    // public function fetch(Request $request){
-    //    $select = $request->get('select');
-    //    $values = $request->get('value');
-    //    $dependent = $request->get('dependent');
-    //    $data = DB::table('detail_PO')->where('no_PO', $values)->groupBy('nama_barang')->get();
-    //    $output = '<option value="">Pilih Barang'.'</option>';
-    //    foreach ($data as $row) {
-    //        $output .= '<option value=""'.$row->nama_barang.'">'.$row->nama_barang.'</option>';
-    //    }
-    //    echo $output;
-    // }
 
     public function keluargaransi(Request $request)
     {   
@@ -106,45 +94,45 @@ class TrkKeluarController extends Controller
         return redirect('warehouse/transaksikeluar');
     }
 
-    public function addkeluarbaru2(Request $request)
-    {
-        // dd($request->no_trans);
-        $jumlah_data = count($request->no_trans);
-        for ($i = 0; $i < $jumlah_data; $i++) {
-            DetailTrkKeluar::create(
-                [
-                    'no_transaksi' => $request->no_trans[$i],
-                    'jumlah' => $request->jumlah[$i],
-                    'no_PO' => $request->no_PO[$i],
-                    'kode_barang' => $request->kode_barang[$i],
-                    'nama_barang' => $request->nama_barang[$i],
-                    'keterangan' => $request->keterangan[$i],
-                ]
-            );
-        }
-        TransaksiKeluar::create(
-            [
-                'no_transaksi' => $request->no_transaksi,
-                'instansi' => $request->instansi,
-                'pengirim' => $request->pengirim,
-                'penerima' => $request->penerima,
-            ]
-        );
+    // public function addkeluarbaru2(Request $request)
+    // {
+    //     // dd($request->no_trans);
+    //     $jumlah_data = count($request->no_trans);
+    //     for ($i = 0; $i < $jumlah_data; $i++) {
+    //         DetailTrkKeluar::create(
+    //             [
+    //                 'no_transaksi' => $request->no_trans[$i],
+    //                 'jumlah' => $request->jumlah[$i],
+    //                 'no_PO' => $request->no_PO[$i],
+    //                 'kode_barang' => $request->kode_barang[$i],
+    //                 'nama_barang' => $request->nama_barang[$i],
+    //                 'keterangan' => $request->keterangan[$i],
+    //             ]
+    //         );
+    //     }
+    //     TransaksiKeluar::create(
+    //         [
+    //             'no_transaksi' => $request->no_transaksi,
+    //             'instansi' => $request->instansi,
+    //             'pengirim' => $request->pengirim,
+    //             'penerima' => $request->penerima,
+    //         ]
+    //     );
 
-        $user = Auth::user();
-        Log::create(
-            [
-                'name' => $user->name,
-                'email' => $user->email,
-                'divisi' => $user->divisi,
-                'deskripsi' => 'Create Masuk Baru',
-                'status' => '2',
-                'ip' => $request->ip()
-            ]
-        );
+    //     $user = Auth::user();
+    //     Log::create(
+    //         [
+    //             'name' => $user->name,
+    //             'email' => $user->email,
+    //             'divisi' => $user->divisi,
+    //             'deskripsi' => 'Create Masuk Baru',
+    //             'status' => '2',
+    //             'ip' => $request->ip()
+    //         ]
+    //     );
 
-        return redirect('warehouse/transaksikeluar');
-    }
+    //     return redirect('warehouse/transaksikeluar');
+    // }
 
     // -----------------------KELUAR RETURR----------------------------
 

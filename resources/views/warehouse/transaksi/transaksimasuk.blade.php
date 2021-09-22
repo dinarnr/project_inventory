@@ -66,7 +66,6 @@
                                                 <td>{{ $transaksi_masuk->penerima }}</td>
                                                 <td>
                                                     <a href="transaksi/detailmasuk/{{ $transaksi_masuk->no_transaksi }}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
-                                                    <a href="#"><button class="btn btn-success btn-icon-anim btn-square"><i class="fa fa-edit"></i></button></a>
                                                 </td>
                                             </tr>
                                             @endforeach
@@ -101,7 +100,6 @@
                                                 <td>{{ $transaksi_retur->created_at }}</td>
                                                 <td>
                                                     <a href="transaksi/detailmasukretur/{{ $transaksi_retur->no_transaksi }}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
-                                                    <a href="#"><button class="btn btn-success btn-icon-anim btn-square"><i class="fa fa-edit"></i></button></a>
                                                 </td>
                                             </tr>
                                             @include('transaksi.hapusbrngmasuk')
