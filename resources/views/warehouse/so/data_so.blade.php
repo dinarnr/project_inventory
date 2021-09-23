@@ -136,7 +136,7 @@
                                                             <a href="po/detail/{{ $data_po->no_PO }}"><button class="btn btn-success btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
 
                                                             @endif
-                                                            <a href="{{ url('warehouse/so/keluarinstalasi/tambah/{no_PO}') }}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-paper-plane-o"></i></button></a>
+                                                            <!-- <a href="{{ url('warehouse/so/keluarinstalasi/tambah/{no_PO}') }}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-paper-plane-o"></i></button></a> -->
 
                                                         </td>
                                                         @endif

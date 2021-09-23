@@ -86,12 +86,16 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::get('transaksi/keluar', [TrkKeluarController::class, 'transaksikeluar']);
         Route::get('brgkeluar', [TrkKeluarController::class, 'brgkeluar']);
         Route::get('brgkeluar/addkeluar', [TrkKeluarController::class, 'addkeluar']);
-        Route::get('transaksikeluar', [TrkKeluarController::class, 'transaksikeluar']);
+        Route::get('/transaksikeluar', [TrkKeluarController::class, 'transaksikeluar']);
         Route::get('transaksi/keluarbaru/tambah', [TrkKeluarController::class, 'addkeluarbaru']);
-        Route::post('transaksi/keluarbaru/simpan', [TrkKeluarController::class, 'keluargaransi']);
+        Route::get('transaksi/keluargaransi/tambah', [TrkKeluarController::class, 'addkeluarbaru']);
+        Route::post('transaksi/keluargaransi/simpan', [TrkKeluarController::class, 'keluargaransi']);
         Route::get('transaksi/keluarretur/tambah', [TrkKeluarController::class, 'addkeluarretur']);
         Route::post('transaksi/keluarretur/simpan', [TrkKeluarController::class, 'addkeluarretur2']);
-        Route::post('addkeluarbaru/fetch', 'TrkKeluarController@fetch')->name('trkkeluarcontroller.fetch');
+    
+        Route::get('transaksi/keluarinstalasi/tambah', [TrkKeluarController::class, 'transaksiinstalasi']);
+        Route::post('transaksi/keluarinstalasi/tambah/fetch', [TrkKeluarController::class, 'fetch'])->name ('trkkeluarcontroller.fetch');
+        // Route::post('transaksi/keluarinstalasi/simpan', [TrkKeluarController::class, 'keluarinstalasi']);
 
         // <----------------------DATA SUPPLIER--------------------------->
         Route::get('supplier', [SupplierController::class, 'supplier']);
@@ -115,10 +119,9 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::post('confirmpo/{id_PO}', 'App\Http\Controllers\PoController@confirmpo');
         Route::post('reject/{id_PO}', 'App\Http\Controllers\PoController@reject');
 
-        Route::get('so/keluarinstalasi/tambah/{no_PO}', [SOController::class, 'transaksiinstalasi']);
-        Route::post('/addinstalasi/fetch', 'SOController@fetch')->name('socontroller.fetch');
-
-
+        // Route::get('so/keluarinstalasi/tambah/{no_PO}', [SOController::class, 'transaksiinstalasi']);
+        // Route::post('/addinstalasi/fetch', 'SOController@fetch')->name ('socontroller.fetch');
+        
 
 
         // <----------------------DATA PEMINJAMAN--------------------------->

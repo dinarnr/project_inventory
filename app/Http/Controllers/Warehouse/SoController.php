@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Warehouse;
 use App\Http\Controllers\Controller;
+use App\Models\Instansi;
 use Illuminate\Http\Request;
 use App\Models\PO;
 use App\Models\TransaksiKeluar;
@@ -22,30 +23,28 @@ class SoController extends Controller
 
 
     //---------------------Transaksi Instalasi----------------------------//
-    public function transaksiinstalasi($no_PO)
-    {
-        $data_so = PO::all()->where('no_PO', $no_PO);
-        $SO = PO::all();
-        $brg = DB::table('detail_PO')->groupBy('no_SO')->get();
-        // dd($data_detail);
-        return view('warehouse/so/transaksi_instalasi', compact('data_so', 'SO', 'brg')); 
+    // public function transaksiinstalasi($no_PO)
+    // {
+    //     $data_so = PO::all()->where('no_PO', $no_PO);
+    //     $SO = PO::all();
+    //     $instansi = Instansi::all();
+    //     // dd($data_detail);
+    //     return view('warehouse/so/transaksi_instalasi', compact('data_so', 'SO', 'brg', 'instansi')); 
 
-    }
+    // }
 
-    public function fetch(Request $request){
-        // dd($request);
-    $select = $request->get('select');
-    $values = $request->get('value');
-    $dependent = $request->get('dependent');
+    // public function fetch(Request $request, $no_PO){ 
+    //     // dd($request);
+    // $select = $request->get('select');
+    // $values = $request->get('value');
+    // $dependent = $request->get('dependent');
 
-    //    dd($dependent);
-    $data = DB::table('detail_PO')->where('no_SO', $values)->groupBy('nama_barang')->get();
-    $output = '<tr id="row"></tr>';
-       foreach ($data as $row) {
-           $output .= '<tr id="row"></td>
-            <td><input type="text" style="outline:none;border:0;" readonly name="nama_barang[]" id="nama_barang" value="'.$row->nama_barang.'"></td>
-            </tr>';
-       }
-       echo $output;
-    }
+    // //    dd($dependent);
+    // $data = DB::table('detail_PO')->where('no_SO', $values)->groupBy('nama_barang')->get();
+    // $output = '<li></li>';
+    //    foreach ($data as $row) {
+    //        $output .= '<li>'.$row->nama_barang.'</li>';
+    //    }
+    //    echo $output;
+    // }
 }
