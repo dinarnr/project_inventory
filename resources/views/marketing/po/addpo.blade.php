@@ -50,9 +50,6 @@
                                             </div>
                                         </div>
                                         @endforeach
-
-                                    </div>
-                                    <div class="row">
                                         @foreach ((array)$noPO as $noPO)
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -62,6 +59,15 @@
                                             </div>
                                         </div>
                                         @endforeach
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label mb-10">Tanggal Pemasangan</label>
+                                                <input type="date" name="tgl_transaksi" id="tgl_transaksi" class="form-control">
+                                            </div>
+                                        </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label class="control-label mb-10 text-left" for="example-email">Instansi<span class="help"> </span></label>
@@ -79,14 +85,6 @@
                                             </div>
                                         </div>
 
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label mb-10">Tanggal Pemasangan</label>
-                                                <input type="date" name="tgl_transaksi" id="tgl_transaksi" class="form-control">
-                                            </div>
-                                        </div>
                                     </div>
                                     <hr>
                                     <div>
@@ -180,7 +178,7 @@
                                     <label for="ppn" class="col-sm-4 control-label">PPn (%)</label>
                                     <div class="">
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="ppn" name="ppn" placeholder="" >
+                                            <input type="text" class="form-control" id="ppn" name="ppn" placeholder="">
                                         </div>
                                     </div>
                                 </div>
@@ -279,6 +277,7 @@
     function ambildata(prefix) {
         var noPO = document.getElementById('noPO').value;
         var noSO = document.getElementById('noSO').value;
+        var instansi = document.getElementById('instansi').value;
         var nama_barang = document.getElementById('nama_barang').value;
         var jumlah = document.getElementById('jumlah').value;
         var rate1 = document.getElementById('rate').value.replace(/[^,\d]/g, '').toString();
@@ -287,7 +286,7 @@
         var amount = document.getElementById('amount').value;
         var keterangan = document.getElementById('keterangan').value;
         var total = document.getElementById('total').value;
-        addrow(noPO, noSO, nama_barang, jumlah, keterangan, rate, amount, rate1, amount1);
+        addrow(noPO, noSO, nama_barang, jumlah, keterangan, rate, amount, rate1, amount1, instansi);
 
     }
     var i = 0;
@@ -307,10 +306,11 @@
         return rupiah;
     }
 
-    function addrow(noPO, noSO, nama_barang, jumlah, keterangan, rate, amount, rate1, amount1) {
+    function addrow(noPO, noSO, nama_barang, jumlah, keterangan, rate, amount, rate1, amount1, instansi) {
         i++;
         $('#TabelDinamis').append('<tr id="row' + i + '"><td style="display:none;"><input type="text" style="outline:none;border:0;" readonly name="noPO[]" id="noPO" value="' + noPO +
             '"><td style="display:none;"><input type="text" style="outline:none;border:0; font-weight: bold;" readonly name="noSO[]" id="noSO" value="' + noSO +
+            '"><td style="display:none;"><input type="text" style="outline:none;border:0; font-weight: bold;" readonly name="instansi1[]" id="instansi1" value="' + instansi +
             '"><td><input type="text" style="outline:none;border:0; font-weight: bold;" readonly name="nama_barang[]" id="nama_barang" value="' + nama_barang +
             '"><br><input type="text" style="outline:none;border:0;" name="keterangan[]" id="keterangan" value="    ' + keterangan +
             '"></br ></td><td><input type="text" style="outline:none;border:0;" readonly name="jumlah[]" id="jumlah" value="' + jumlah +
@@ -325,16 +325,17 @@
 
     };
 
-    $("#ppn, #pph").keyup(function(){
-    update();
-});
-function update() {
-    var ppn = $('#ppn').val();
-    var pph = $('#pph').val();
-    $("#balance").val(pecah(parseInt(total) + ((ppn/100)*parseInt(total)) + ((pph/100)*parseInt(total))));
+    $("#ppn, #pph").keyup(function() {
+        update();
+    });
+
+    function update() {
+        var ppn = $('#ppn').val();
+        var pph = $('#pph').val();
+        $("#balance").val(pecah(parseInt(total) + ((ppn / 100) * parseInt(total)) + ((pph / 100) * parseInt(total))));
         var balance = $("#balance").val();
         $("#balance1").val(balance.replace(/[^,\d]/g, '').toString());
-}
+    }
 
 
     $(document).on('click', '.remove_row', function() {
@@ -344,7 +345,7 @@ function update() {
         $("#total1").val(total);
 
         var pph = $('#pph').val();
-        $("#balance").val(pecah(parseInt(total) + ((ppn/100)*parseInt(total)) + ((pph/100)*parseInt(total))));
+        $("#balance").val(pecah(parseInt(total) + ((ppn / 100) * parseInt(total)) + ((pph / 100) * parseInt(total))));
         var balance = $("#balance").val();
         $("#balance1").val(balance.replace(/[^,\d]/g, '').toString());
 

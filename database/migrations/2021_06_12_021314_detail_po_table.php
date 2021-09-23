@@ -18,6 +18,7 @@ class DetailPoTable extends Migration
             $table->string('no_PO',50);
             $table->string('no_SO',50);
             $table->string('nama_barang',50);
+            $table->string('instansi',50)->nullable();
             $table->integer('jumlah');
             $table->decimal('rate', $precision = 19, $scale = 3);
             $table->decimal('amount',  $precision = 19, $scale = 3);

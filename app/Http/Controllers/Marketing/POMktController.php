@@ -11,6 +11,7 @@ use App\Models\Profil;
 use  App\Models\Instansi;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class POMktController extends Controller
 {
@@ -50,6 +51,7 @@ class POMktController extends Controller
                 [
                     'no_PO' => $request->noPO[$i],
                     'no_SO' => $request->noSO[$i],
+                    'instansi' => $request->instansi1[$i],
                     'nama_barang' => $request->nama_barang[$i],
                     'jumlah' => $request->jumlah[$i],
                     'rate' => $request->rate1[$i],
@@ -94,6 +96,7 @@ class POMktController extends Controller
                     [
                         'no_PO' => $request->noPO[$i],
                         'no_SO' => $request->noSO[$i],
+                        'instansi' => $request->instansi1[$i],
                         'nama_barang' => $request->nama_barang[$i],
                         'jumlah' => $request->jumlah[$i],
                         'rate' => $request->rate1[$i],
@@ -195,7 +198,7 @@ class POMktController extends Controller
 
     public function detailpo($no_PO)
     {
-       $data_detail = DetailPO::where('no_PO', $no_PO)->get();
+        $data_detail = DetailPO::where('no_PO', $no_PO)->get();
         $profil = Profil::all();
         $data_po = PO::where('no_PO', $no_PO)->get();
         $tanggal = Carbon::now();
@@ -209,7 +212,7 @@ class POMktController extends Controller
     //di edit draft bisa tambah data
     public function add($no_PO)
     {
-         $no_PO = $no_PO;
+        $no_PO = $no_PO;
         $data_detail = DetailPO::where('no_PO', $no_PO)->get();
         $data_po = PO::all()->where('no_PO', $no_PO);
         $tanggal = Carbon::now();
