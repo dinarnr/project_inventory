@@ -178,7 +178,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="{{ url('warehouse/so') }}">
+                    <a href="{{ url('warehouse/so/dataSO') }}">
                         <div class="pull-left"><i class="zmdi zmdi-shopping-cart mr-20"></i><span class="right-nav-text">Data SO</span></div>
                         <div class="clearfix"></div>
                     </a>
