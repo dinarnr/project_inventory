@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Warehouse;
 use App\Http\Controllers\Controller;
-use App\Models\Instansi;
 use Illuminate\Http\Request;
 use App\Models\PO;
-use App\Models\TransaksiKeluar;
-use Illuminate\Support\Facades\DB;
+use App\Models\Log;
+use App\Models\DetailPO;
+use Illuminate\Support\Facades\Auth;
 
 class SoController extends Controller
 {
@@ -15,8 +15,38 @@ class SoController extends Controller
     {
         $data_po_wh = PO::all()->where('status', '1');
         $data_po = PO::all();
-        // dd($data_po_wh);
         return view('warehouse/so/data_so', compact('data_po', 'data_po_wh'));
+    }
+
+    public function detailso($no_PO)
+    {
+        $data_detail = DetailPO::where('no_PO', $no_PO)->get();
+        $data_po = PO::where('no_PO', $no_PO)->get();
+        // $tanggal = Carbon::now();
+        $user = Auth::user();
+        return view('warehouse/so/detailso', compact('data_po', 'data_detail', 'user'));
+    }
+
+    public function addket(Request $request, $id_po )
+    {
+        DetailPO::where('id_po', $id_po)
+            ->update([
+                
+                'keterangan' => $request->edit_keterangan
+            ]);
+
+            $user = Auth::user();
+        Log::create(
+            [
+            'name' => $user->name,
+            'email' => $user->email,
+            'divisi' => $user->divisi,
+            'deskripsi' => 'Update Draft',
+            'status' => '2',
+            'ip'=> $request->ip()
+            ]
+        );
+        return redirect()->back();
     }
 
 

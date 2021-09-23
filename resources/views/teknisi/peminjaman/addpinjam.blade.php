@@ -62,25 +62,30 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label mb-10 text-left">Nama barang</label>
-                                                <input type="text" class="form-control" name="nama_barang" id="nama_barang">
+                                                <select name="nama_brg" id="nama_brg" class="form-control select2">
+                                                    @foreach($nama_barang) as $nama_barang)
+                                                    <option value="{{ $nama_barang->nama_barang}}">{{ $nama_barang->kode_barang }} | {{ $nama_barang->nama_barang }}</option>
+                                                    @endforeach
+                                                <!-- </select>
+                                                <label class="control-label mb-10 text-left">Nama barang</label>
+                                                <input type="text" class="form-control" name="nama_barang" id="nama_barang"> -->
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label mb-10">Jumlah</label>
                                                 <input type="number" id="jumlah" name="jumlah" class="form-control">
-                                                <!-- <span class="help-block"> This is inline help </span>  -->
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                         <label class="control-label mb-10 text-left" for="example-email">keterangan<span class="help"> </span></label>
                                         <input type="text" id="keterangan" name="keterangan" class="form-control" placeholder="">
 
                                         @error('keterangan')
                                         <div class="tulisan">{{$message}}</div>
                                         @enderror
-                                    </div>
+                                    </div> -->
 
                                     <div class="form-group" style="text-align:right;">
                                         <button type="button" onclick="ambildata()" class="btn btn-primary ">Tambah Data</button>

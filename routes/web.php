@@ -115,15 +115,12 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
 
         // <----------------------DATA SO--------------------------->
         Route::get('so/dataSO', [SoController::class, 'dataSO']);
-        Route::get('po/detail/{no_PO}', [POController::class, 'detailpo']);
-        Route::post('po/tambahketerangan/{id_po}', [POController::class, 'addket']);
+        Route::get('so/detail/{no_PO}', [SOController::class, 'detailso']);
+        Route::post('so/tambah/keterangan/{id_po}', [SOController::class, 'addket']);
         Route::post('confirmpo/{id_PO}', 'App\Http\Controllers\PoController@confirmpo');
         Route::post('reject/{id_PO}', 'App\Http\Controllers\PoController@reject');
-
         // Route::get('so/keluarinstalasi/tambah/{no_PO}', [SOController::class, 'transaksiinstalasi']);
         // Route::post('/addinstalasi/fetch', 'SOController@fetch')->name ('socontroller.fetch');
-        
-
 
         // <----------------------DATA PEMINJAMAN--------------------------->
         Route::get('peminjaman', [PeminjamanController::class, 'peminjaman']);
@@ -157,7 +154,6 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         //  Route::post('lunas/{id_pembelian}', 'App\Http\Controllers\PembelianController@lunas');
     });
 
-
     Route::group(['prefix' => 'marketing/'], function () {
         // <----------------------DATA INSTANSI--------------------------->
         Route::get('instansi', [InstansiMktController::class, 'instansi']);
@@ -180,7 +176,6 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::post('po/ubah/draft/{id_po}', [POMktController::class, 'editisidraft']); // edit keterangan di draft
         Route::get('po/detail/{no_PO}', [POMktController::class, 'detailpo']);
     });
-
 
     Route::group(['prefix' => 'teknisi/'], function () {
         // <----------------------DATA PEMINJAMAN--------------------------->
