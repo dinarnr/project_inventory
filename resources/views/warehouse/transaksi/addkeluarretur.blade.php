@@ -10,8 +10,8 @@
 		<div class="row heading-bg">
 			<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
 				<h5 class="txt-dark">barang keluar retur</h5><br>
-				<a href="transaksi/keluarbaru/tambah" class="btn btn-primary btn-icon-anim"><i class="fa fa succes"></i> BARU</a>
-				<a href="transaksi/keluarretur/tambah" class="btn btn-primary btn-icon-anim"><i class="fa fa succes"></i> RETUR</a>
+				<a href="{{url('warehouse/transaksi/keluarbaru/tambah')}}" class="btn btn-primary btn-icon-anim"><i class="fa fa succes"></i> BARU</a>
+				<a href="{{url('warehouse/transaksi/keluarretur/tambah')}}" class="btn btn-primary btn-icon-anim"><i class="fa fa succes"></i> RETUR</a>
 
 			</div>
 			<!-- Breadcrumb -->

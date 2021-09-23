@@ -13,8 +13,6 @@
             <!-- Breadcrumb -->
             <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                 <ol class="breadcrumb">
-                    <!-- <li><a href="inventory"></a></li> -->
-                    <!-- <li class="active"><span>Data Pembelian</span></li> -->
                 </ol>
             </div>
             <!-- /Breadcrumb -->
@@ -24,10 +22,6 @@
             <div class="col-sm-12">
                 <div class="panel panel-default card-view">
                     <div class="panel-heading">
-                        <div class="pull-left">
-                            <a href="{{url('warehouse/pembelian/tambah')}}" class="btn btn-success">Tambah Data</a>
-                        </div>
-
                         <div class="clearfix"></div>
 
                         <div class="panel-wrapper collapse in">
@@ -53,9 +47,7 @@
                                                     <td>{{ $purchase->namaBarang }}</td>
                                                     <td>{{ $purchase->jumlah }}</td>
                                                     <td>
-                                                        <!-- <a href="#"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-eye"></i></button></a> -->
-                                                        <a href="addinvoice/{{ $purchase->id_PO }}"><button class="btn btn-primary btn-icon-anim">Tambah Invoice </button></a>
-                                                        <!-- <i class="fa fa-edit"></i> <button class="btn btn-danger btn-icon-anim btn-square" data-toggle="modal" data-target="#" action="#"><i class="fa fa-trash"></i></button> -->
+                                                        <a href="{{url('warehouse/pembelian/purchase/tambah')}}/{{ $purchase->id_PO }}"><button class="btn btn-primary btn-icon-anim">Tambah Invoice </button></a>
                                                     </td>
                                                 </tr>
                                                 @endforeach
