@@ -12,7 +12,7 @@ class DetailPO extends Model
     protected $table = "detail_po";
     protected $primaryKey = "id_po";
     protected $fillable = [
-        'id_po', 'no_PO', 'nama_barang', 'jumlah', 'keterangan','rate','amount','keterangan_barang', 'status', 'created_at'
+        'id_po', 'no_PO', 'nama_barang', 'jumlah', 'keterangan','rate','amount','keterangan_barang','instansi', 'status', 'created_at'
     ];
 
 
