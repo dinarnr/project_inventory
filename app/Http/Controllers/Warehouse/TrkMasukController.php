@@ -97,7 +97,16 @@ class TrkMasukController extends Controller
         $barang = Master::all();
         $noPO = PO::all();
         $data_instansi = Instansi::all();
-        $no_retur = IdGenerator::generate(['table' => 'transaksi_masuk', 'length' => 9, 'prefix' => date('ymd')]);
+
+        $now = Carbon::now();
+        $thnBln = $now->year . $now->month;
+        $kode = strtoupper(substr("TRK", 0, 3));
+        $check = count(TransaksiModel::where('no_transaksi', 'like', "%$thnBln%")->get()->toArray());
+        $angka = sprintf("%03d", (int)$check + 1);
+        // $no_PO = $thnBln . "" . $angka;
+        $no_retur =  $kode .  "-"  . $now->year . $now->month . $angka;
+
+        
         return view('warehouse/transaksi/addmasukretur', compact('data_instansi', 'no_retur', 'noPO', 'supplier', 'barang', 'transaksi_masuk'));
     }
 
@@ -138,13 +147,36 @@ class TrkMasukController extends Controller
             ]
         );
 
-        return redirect('transaksi');
+        return redirect('/warehouse/transaksi/masuk');
+    }
+    public function editjumlah(Request $request, $id_transaksi )//modal edit jumalah -> baru retur sama saja
+    {
+        // dd($request->edit_nama);
+        DetailTrkMasuk::where('id_transaksi', $id_transaksi)
+            ->update([
+                
+                'jumlah' => $request->edit_jumlah
+            ]);
+
+            $user = Auth::user();
+        Log::create(
+            [
+            'name' => $user->name,
+            'email' => $user->email,
+            'divisi' => $user->divisi,
+            'deskripsi' => 'Update Detail',
+            'status' => '2',
+            'ip'=> $request->ip()
+
+            ]
+        );
+        return redirect()->back();
     }
 
     public function detailmasukretur($no_transaksi)
     {
         $data_detail = DetailTrkMasuk::where('no_transaksi', $no_transaksi)->get();
         $transaksi_retur = TransaksiModel::where('no_transaksi', $no_transaksi)->get();
-        return view('transaksi/detailmasukretur', compact('transaksi_retur', 'data_detail'));
+        return view('/warehouse/transaksi/detailmasukretur', compact('transaksi_retur', 'data_detail'));
     }
 }

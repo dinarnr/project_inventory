@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Master;
+use App\Models\Profil;
 use Illuminate\Database\Seeder;
 
 class MasterSeeder extends Seeder
@@ -33,5 +34,11 @@ class MasterSeeder extends Seeder
             'status' => '1',
         ]);
         $Master->save();
+
+        $profil = Profil::create([
+            'telp' => '08123456789',
+            'email' => 'NakulaSadewa@gmail.com',
+        ]);
+        $profil->save();
     }
 }

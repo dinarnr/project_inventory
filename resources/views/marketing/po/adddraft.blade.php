@@ -1,5 +1,5 @@
 @extends('layout.master')
-@section('title', 'Purchase Order')
+@section('title', ' Purchase Order')
 @section('content')
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">
@@ -31,8 +31,11 @@
                     <div class="panel-wrapper collapse in ">
                         <div class="panel-body">
                             <div class="form-wrap mt-3">
-                                <form action="{{ url('marketing/po/simpan2') }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ url('marketing/po/simpan2/draft') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
+    
+
+
                                     <div style="text-align: center;">
                                         <h5 class="active">Data Barang</h5>
                                     </div>
@@ -104,10 +107,18 @@
 
                                         </div>
                                     </div>
+
                             </div>
+                           
+
                             <div class="col-md-12" style="text-align:right;">
                                 <button type="submit" class="btn btn-primary ">Simpan</button>
                             </div>
+                            <!-- <div class="col-sm-4 col-xs-4">
+                                <div class="form-wrap">
+                                    <form class="form-horizontal"> -->
+
+                            <!-- </form> -->
                         </div>
                     </div>
                     </form>
@@ -119,6 +130,9 @@
 </div>
 </div>
 <div class="">
+
+    <!-- Basic Table -->
+
 </div>
 <!-- /Row -->
 <!-- /Main Content -->
@@ -174,20 +188,24 @@
         var nama_barang = document.getElementById('nama_barang').value;
         var jumlah = document.getElementById('jumlah').value;
         var rate = document.getElementById('rate').value;
+        var rate1 = document.getElementById('rate').value.replace(/[^,\d]/g, '').toString();
         var amount = document.getElementById('amount').value;
+        var amount1 = document.getElementById('amount').value.replace(/[^,\d]/g, '').toString();
         var keterangan = document.getElementById('keterangan').value;
-        addrow(noPO, nama_barang, jumlah, keterangan, rate, amount);
+        addrow(noPO, nama_barang, jumlah, keterangan, rate, amount, rate1, amount1);
     }
     var i = 0;
 
-    function addrow(noPO, nama_barang, jumlah, keterangan, rate, amount) {
+    function addrow(noPO, nama_barang, jumlah, keterangan, rate, amount, rate1, amount1) {
         i++;
         $('#TabelDinamis').append('<tr id="row' + i + '"><td style="display:none;"><input type="text" style="outline:none;border:0;" readonly name="noPO[]" id="noPO" value="' + noPO +
             '"><td><input type="text" style="outline:none;border:0; font-weight: bold;" readonly name="nama_barang[]" id="nama_barang" value="' + nama_barang +
             '"><br><input type="text" style="outline:none;border:0;" name="keterangan[]" id="keterangan" value="    ' + keterangan +
             '"></br ></td><td><input type="text" style="outline:none;border:0;" readonly name="jumlah[]" id="jumlah" value="' + jumlah +
             '"></td><td>Rp <input type="text" style="outline:none;border:0;" readonly name="rate[]" id="rate" value="' + rate +
+            '"></td><td style="display:none;"> <input type="text" style="outline:none;border:0;" readonly name="rate1[]" id="rate1" value="' + rate1 +
             '"></td><td>Rp <input type="text" style="outline:none;border:0;" readonly name="amount[]" id="amount" value="' + amount +
+            '"></td><td style="display:none;"><input type="text" style="outline:none;border:0;" readonly name="amount1[]" id="amount1" value="' + amount1 +
             '"></td><td><button type="button" id="' + i + '" class="btn btn-danger btn-small remove_row">&times;</button></td></tr>');
     };
     $(document).on('click', '.remove_row', function() {
