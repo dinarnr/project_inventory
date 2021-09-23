@@ -254,6 +254,27 @@
 
 
                 <!-- <-------------------------------ADMIN----------------------------------->
+                @if (auth()->user()->divisi == "admin")
+                <li>
+                    <a href="javascript:void(0);" data-toggle="collapse" data-target="#pengajuan">
+                        <div class="pull-left"><i class="zmdi zmdi-collection-text mr-20"></i><span class="right-nav-text">Pengajuan</span></div>
+                        <div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>
+                        <div class="clearfix"></div>
+                    </a>
+                    <ul id="pengajuan" class="collapse collapse-level-1">
+                        <li>
+                            <a href="{{ url('admin/pengajuan/pembelian') }}">Pengajuan Pembelian</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="{{ url('admin/po') }}">
+                        <div class="pull-left"><i class="zmdi zmdi-shopping-cart mr-20"></i><span class="right-nav-text">Puchase Order</span></div>
+                        <div class="clearfix"></div>
+                    </a>
+                </li>
+                @endif
+
                 <!-- <-------------------------------PURCHASING----------------------------------->
                 @if (auth()->user()->divisi == "purchasing")
                 <li>
