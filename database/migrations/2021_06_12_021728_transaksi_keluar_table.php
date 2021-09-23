@@ -23,6 +23,7 @@ class TransaksiKeluarTable extends Migration
             $table->string('instansi',50);
             $table->string('ekspedisi',50);
             $table->string('pengirim',50);
+            $table->string('penerima',50);
             $table->string('pic_teknisi',50);
             $table->string('pic_marketing',50);
             $table->string('pic_warehouse',50);
