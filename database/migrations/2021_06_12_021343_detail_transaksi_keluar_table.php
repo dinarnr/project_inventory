@@ -16,7 +16,11 @@ class DetailTransaksiKeluarTable extends Migration
         Schema::create('detail_transaksi_keluar', function (Blueprint $table) {
             $table->increments('id_transaksi');
             $table->string('no_transaksi',50);
+            $table->string('no_PO',50);
+            $table->string('no_SO',50);
             $table->string('kode_barang',50);
+            $table->string('nama_barang',255);
+            $table->string('jns_barang',50);
             $table->string('keterangan',50);
             $table->integer('jumlah');
             $table->integer('kategori');

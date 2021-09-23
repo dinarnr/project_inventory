@@ -14,7 +14,7 @@ class TransaksiKeluar extends Model
     // public $incrementing = false;
 
     protected $fillable = [
-        'id_transaksi', 'no_transaksi', 'no_PO','tgl_transaksi','jns_transaksi', 'instansi',  'ekspedisi',  
+        'id_transaksi', 'no_transaksi', 'no_PO','tgl_transaksi','jns_barang', 'instansi',  'ekspedisi',  
         'pengirim', 'pic_teknisi', 'pic_teknisi', 'pic_marketing', 'pic_warehouse', 'created_at', 'updated_at'
     ];
 

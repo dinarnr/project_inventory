@@ -57,8 +57,8 @@
                                                 <td>{{ $data_kategori->kategori }}</td>
                                                 <td>{{ $data_kategori->keterangan }}</td>
                                                 <td>
-                                                    <a href="{{ url('warehouse/kategori/ubah') }}/{{ $data_kategori->id_kategori }}"class="text-inverse pr-10" title="Edit" data-toggle="tooltip"><button class="btn btn-success btn-icon-anim btn-square"><i class="fa fa-edit"></i></button></a>
-                                                    <button class="btn btn-danger btn-icon-anim btn-square " data-toggle="modal" data-target="#hapusktg{{ $data_kategori->id_kategori }}" action="( {{url('deletekategori')}}/{{ $data_kategori->id_kategori }})"><i class="fa fa-trash"></i></button>
+                                                    <a href="{{ url('warehouse/kategori/ubah') }}/{{ $data_kategori->id_kategori }}"class="text-inverse pr-10" title="Edit" data-toggle="tooltip"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-edit"></i></button></a>
+                                                    <!-- <button class="btn btn-danger btn-icon-anim btn-square " data-toggle="modal" data-target="#hapusktg{{ $data_kategori->id_kategori }}" action="( {{url('deletekategori')}}/{{ $data_kategori->id_kategori }})"><i class="fa fa-trash"></i></button> -->
                                                 </td>
                                             </tr>
                                             @include('master.hapusktg')

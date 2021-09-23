@@ -1,5 +1,5 @@
 @extends('layout.master')
-@section('title', 'Purchase Order')
+@section('title', 'Tambah Purchase Order')
 @section('content')
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">
@@ -28,11 +28,30 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="panel panel-default card-view ">
+                    <!-- <div class="panel-heading">
+                                <div class="clearfix"></div>
+                            </div> -->
                     <div class="panel-wrapper collapse in ">
                         <div class="panel-body">
                             <div class="form-wrap mt-3">
                                 <form action="{{ url('marketing/po/simpan') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
+                                    <!-- <div class="form-group">
+                                        <label class="control-label mb-10 text-left" for="example-email">Nomor PO Barang</label>
+                                        <input type="text" id="noPO" name="noPO" class="form-control" readonly>
+                                    </div> -->
+                                    <div class="row">
+                                        @foreach ((array)$noSO as $noSO)
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label mb-10 text-left" for="example-email">No SO</label>
+                                                <input type="hidden" id="no_SO" name="no_SO" value="{{ $noSO }}" class="form-control" placeholder="" readonly>
+                                                <input type="text" id="noSO" name="noSO" value="{{ $noSO }}" class="form-control" placeholder="" readonly>
+                                            </div>
+                                        </div>
+                                        @endforeach
+
+                                    </div>
                                     <div class="row">
                                         @foreach ((array)$noPO as $noPO)
                                         <div class="col-md-6">
@@ -92,14 +111,17 @@
                                         <div class="col-md-4">
                                             <label class="control-label mb-10">Quantity</label>
                                             <input type="text" id="jumlah" name="jumlah" class="form-control a2" value="">
+                                            <!-- <span class="help-block"> This is inline help </span>  -->
                                         </div>
                                         <div class="col-md-4">
                                             <label class="control-label mb-10">Rate</label>
                                             <input type="text" id="rate" name="rate" class="form-control b2" value="">
+                                            <!-- <span class="help-block"> This is inline help </span>  -->
                                         </div>
                                         <div class="col-md-4">
                                             <label class="control-label mb-10">Amount</label>
                                             <input type="text" id="amount" name="amount" class="form-control" value="" readonly>
+                                            <!-- <span class="help-block"> This is inline help </span>  -->
                                         </div>
                                     </div>
                                     <div class="form-group mt-20" style="text-align:right;">
@@ -139,8 +161,10 @@
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
+
                             </div>
                             <div class="row">
                                 <div class="form-group">
@@ -156,7 +180,7 @@
                                     <label for="ppn" class="col-sm-4 control-label">PPn (%)</label>
                                     <div class="">
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="ppn" placeholder="" >
+                                            <input type="text" class="form-control" id="ppn" name="ppn" placeholder="" >
                                         </div>
                                     </div>
                                 </div>
@@ -164,7 +188,7 @@
                                     <label for="pph" class="col-sm-4 control-label">PPh (%)</label>
                                     <div class="">
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="pph" placeholder="">
+                                            <input type="text" class="form-control" id="pph" name="pph" placeholder="">
                                         </div>
                                     </div>
                                 </div>
@@ -172,8 +196,8 @@
                                     <label for="balance" class="col-sm-4 control-label">Balance Due (Rp)</label>
                                     <div class="">
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="balance" placeholder="" readonly>
-                                            <input type="hidden" class="form-control" id="balance1" placeholder="" readonly>
+                                            <input type="text" class="form-control" id="balance" name="balance" placeholder="" readonly>
+                                            <input type="hidden" class="form-control" id="balance1" name="balance1" placeholder="" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -198,6 +222,9 @@
 </div>
 </div>
 <div class="">
+
+    <!-- Basic Table -->
+
 </div>
 <!-- /Row -->
 <!-- /Main Content -->
@@ -249,8 +276,9 @@
         return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
     };
 
-    function ambildata() {
+    function ambildata(prefix) {
         var noPO = document.getElementById('noPO').value;
+        var noSO = document.getElementById('noSO').value;
         var nama_barang = document.getElementById('nama_barang').value;
         var jumlah = document.getElementById('jumlah').value;
         var rate1 = document.getElementById('rate').value.replace(/[^,\d]/g, '').toString();
@@ -259,7 +287,7 @@
         var amount = document.getElementById('amount').value;
         var keterangan = document.getElementById('keterangan').value;
         var total = document.getElementById('total').value;
-        addrow(noPO, nama_barang, jumlah, keterangan, rate, amount, rate1, amount1);
+        addrow(noPO, noSO, nama_barang, jumlah, keterangan, rate, amount, rate1, amount1);
 
     }
     var i = 0;
@@ -279,9 +307,10 @@
         return rupiah;
     }
 
-    function addrow(noPO, nama_barang, jumlah, keterangan, rate, amount, rate1, amount1) {
+    function addrow(noPO, noSO, nama_barang, jumlah, keterangan, rate, amount, rate1, amount1) {
         i++;
         $('#TabelDinamis').append('<tr id="row' + i + '"><td style="display:none;"><input type="text" style="outline:none;border:0;" readonly name="noPO[]" id="noPO" value="' + noPO +
+            '"><td style="display:none;"><input type="text" style="outline:none;border:0; font-weight: bold;" readonly name="noSO[]" id="noSO" value="' + noSO +
             '"><td><input type="text" style="outline:none;border:0; font-weight: bold;" readonly name="nama_barang[]" id="nama_barang" value="' + nama_barang +
             '"><br><input type="text" style="outline:none;border:0;" name="keterangan[]" id="keterangan" value="    ' + keterangan +
             '"></br ></td><td><input type="text" style="outline:none;border:0;" readonly name="jumlah[]" id="jumlah" value="' + jumlah +
@@ -294,12 +323,20 @@
         $("#total").val(pecah(total));
         $("#total1").val(total);
 
-        var ppn = $('#ppn').val();
-        var pph = $('#pph').val();
-        $("#balance").val(pecah(parseInt(total) + ((ppn/100)*parseInt(total)) + ((pph/100)*parseInt(total))));
+    };
+
+    $("#ppn, #pph").keyup(function(){
+    update();
+});
+function update() {
+    var ppn = $('#ppn').val();
+    var pph = $('#pph').val();
+    $("#balance").val(pecah(parseInt(total) + ((ppn/100)*parseInt(total)) + ((pph/100)*parseInt(total))));
         var balance = $("#balance").val();
         $("#balance1").val(balance.replace(/[^,\d]/g, '').toString());
-    };
+}
+
+
     $(document).on('click', '.remove_row', function() {
         var row_id = $(this).attr("id");
         total = (parseInt(total) - parseInt($('#amount' + row_id + '').val().split('.').join(''))).toString().split('').join('');
