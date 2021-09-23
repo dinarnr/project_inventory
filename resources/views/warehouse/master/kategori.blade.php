@@ -61,7 +61,7 @@
                                                     <!-- <button class="btn btn-danger btn-icon-anim btn-square " data-toggle="modal" data-target="#hapusktg{{ $data_kategori->id_kategori }}" action="( {{url('deletekategori')}}/{{ $data_kategori->id_kategori }})"><i class="fa fa-trash"></i></button> -->
                                                 </td>
                                             </tr>
-                                            @include('master.hapusktg')
+                                            
                                             @endforeach
                                         </tbody>
                                     </table>

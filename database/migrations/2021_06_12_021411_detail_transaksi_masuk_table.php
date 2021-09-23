@@ -23,7 +23,7 @@ class DetailTransaksiMasukTable extends Migration
             $table->string('nama_barang',50)->nullable();
             $table->string('instansi',50)->nullable();
             $table->integer('jumlah')->nullable();
-            $table->string('kondisi',50)->nullable();
+            $table->string('keterangan',50)->nullable();
             $table->timestamps();
         });
     }

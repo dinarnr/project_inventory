@@ -80,7 +80,7 @@
                                                         @endif
                                                         @endif
                                                     </td>
-                                                    @include('po.batal')
+                                                    @include('marketing.po.batal')
                                                 </tr>
                                             </tbody>
                                             @endforeach

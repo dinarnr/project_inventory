@@ -147,13 +147,36 @@ class TrkMasukController extends Controller
             ]
         );
 
-        return redirect('transaksi');
+        return redirect('/warehouse/transaksi/masuk');
+    }
+    public function editjumlah(Request $request, $id_transaksi )//modal edit jumalah -> baru retur sama saja
+    {
+        // dd($request->edit_nama);
+        DetailTrkMasuk::where('id_transaksi', $id_transaksi)
+            ->update([
+                
+                'jumlah' => $request->edit_jumlah
+            ]);
+
+            $user = Auth::user();
+        Log::create(
+            [
+            'name' => $user->name,
+            'email' => $user->email,
+            'divisi' => $user->divisi,
+            'deskripsi' => 'Update Detail',
+            'status' => '2',
+            'ip'=> $request->ip()
+
+            ]
+        );
+        return redirect()->back();
     }
 
     public function detailmasukretur($no_transaksi)
     {
         $data_detail = DetailTrkMasuk::where('no_transaksi', $no_transaksi)->get();
         $transaksi_retur = TransaksiModel::where('no_transaksi', $no_transaksi)->get();
-        return view('transaksi/detailmasukretur', compact('transaksi_retur', 'data_detail'));
+        return view('/warehouse/transaksi/detailmasukretur', compact('transaksi_retur', 'data_detail'));
     }
 }
