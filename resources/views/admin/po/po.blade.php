@@ -1,7 +1,9 @@
 @extends('layout.master')
-@section('title', 'Data SO')
+@section('title', 'Data Purchase Order')
 @section('content')
-<div class="page-wrapper">
+ 
+ <!-- Main Content -->
+ <div class="page-wrapper">
         <div class="container-fluid">
             <!-- Title -->
             <div class="row heading-bg">
@@ -37,24 +39,13 @@
                                                     <tr>
                                                         <th>no</th>
                                                         <th>No PO</th>
-                                                        <th>No SO</th>
                                                         <th>Instansi</th>
+                                                        <th>Tanggal Pemasangan</th>
                                                         <th>Status</th>
-                                                        <th>Tanggal Pengajuan PO</th>
-                                                        <th>Tanggal Check List</th>
+                                                        <th>Tanggal Pembuatan PO</th>
                                                         <th>Aksi</th>
                                                     </tr>
                                                 </thead>
-                                                <!-- <tfoot>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Position</th>
-                                                <th>Office</th>
-                                                <th>Age</th>
-                                                <th>Start date</th>
-                                                <th>Salary</th>
-                                            </tr>
-                                        </tfoot> -->
                                                 <tbody>
                                                     <?php $no = 1; ?>
                                                     @foreach ($data_po_wh as $data_po)
@@ -63,8 +54,8 @@
                                                         @if($data_po->status >=2 )
                                                         <td>{{ $no++ }}</td>
                                                         <td>{{ $data_po->no_PO}}</td>
-                                                        <td>{{ $data_po->no_SO}}</td>
                                                         <td>{{ $data_po->instansi}}</td>
+                                                        <td>{{ $data_po->tgl_pemasangan}}</td>
                                                         <td>
                                                             @if($data_po->status === 1 )
                                                             Purchase Order diproses Warehouse
@@ -81,7 +72,6 @@
                                                             @endif
                                                         </td>
                                                         <td>{{ $data_po->created_at}}</td>
-                                                        <td>{{ $data_po->tgl_pemasangan}}</td>
                                                         <td>
                                                             @if($data_po->status >= 3 )
                                                             <a href="po/detail/{{ $data_po->no_PO }}"><button class="btn btn-success btn-icon-anim btn-square"><i class="fa fa-edit"></i></button></a>
@@ -93,12 +83,13 @@
                                                             <button class="btn btn-danger btn-icon-anim btn-square" data-toggle="modal" data-target="#reject{{ $data_po->id_PO }}" action="( {{url('reject')}}/{{ $data_po->id_PO }})"><i class="fa fa-times"></i></button>
                                                             @endif
                                                         </td>
+
                                                         @endif
                                                         @elseif (auth()->user()->divisi == "warehouse")
                                                         <td>{{ $no++ }}</td>
                                                         <td>{{ $data_po->no_PO}}</td>
-                                                        <td>{{ $data_po->no_SO}}</td>
                                                         <td>{{ $data_po->instansi}}</td>
+                                                        <td>{{ $data_po->tgl_pemasangan}}</td>
                                                         <td>
                                                             @if($data_po->status === 1 )
                                                             Purchase Order diproses Warehouse
@@ -113,21 +104,7 @@
                                                             @else
                                                             Draft
                                                             @endif
-                                                            <!-- @if($data_po->status === 1 )
-                                                            Purchase Order ditolak Warehouse
-                                                            @elseif ($data_po->status === 2 )
-                                                            Purchase Order disetujui Warehouse
-                                                            @elseif ($data_po->status === 3 )
-                                                            Purchase Order ditolak Admin
-                                                            @elseif ($data_po->status === 4 )
-                                                            Purchase Order disetujui Admin dan dalam proses pembelian
-                                                            @elseif ($data_po->status === 5 )
-                                                            Barang sudah dibeli
-                                                            @else
-                                                            Purchase Order diproses Marketing
-                                                            @endif -->
                                                         </td>
-                                                        <td>{{ $data_po->tgl_pemasangan}}</td>
                                                         <td>{{ $data_po->created_at}}</td>
                                                         <td>
                                                             @if($data_po->status >= 1 )
@@ -136,8 +113,6 @@
                                                             <a href="po/detail/{{ $data_po->no_PO }}"><button class="btn btn-success btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
 
                                                             @endif
-                                                            <a href="so/transaksi_instalasi/{{ $data_po->no_PO }}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-paper-plane-o"></i></button></a>
-
                                                         </td>
                                                         @endif
                                                     </tr>
@@ -154,8 +129,4 @@
                 <!-- /Row -->
             </div>
         </div>
-    </div>
-</div>
-        </div>
-
-@endsection
+        @endsection
