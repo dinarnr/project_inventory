@@ -22,9 +22,11 @@
                                             <table>
                                                 <tr>
                                                     <div class="row">
-                                                        <td class="txt-dark"> Jl Candi Mendut Utara 1 No. 11 <br>
-                                                            Kel. Mojolangu Kec. Lowokwaru Malang - Jawa Timur<br>
-                                                            Phone : <br> Email : </td>
+                                                        @foreach ($profil as $profil)
+                                                <td class="txt-dark"> Jl Candi Mendut Utara 1 No. 11 <br>
+                                                    Kel. Mojolangu Kec. Lowokwaru Malang - Jawa Timur<br>
+                                                    Phone : {{$profil->telp}}<br> Email : {{$profil->email}}</td>
+                                                    @endforeach
                                                     </div>
                                                 </tr>
                                             </table>
@@ -48,11 +50,17 @@
                                                 <div class="text-left">
                                                     <h6 class="txt-dark"><strong>TO</strong></h6>
                                                 </div>
-                                                <tr>
-                                                    <div class="">
-                                                        <td class="txt-dark"> </td>
-                                                    </div>
-                                                </tr>
+                                               @foreach ($instansi as $instansi)
+                                        <tr>
+                                            <div class="">
+                                                <td class="txt-dark"> {{$instansi->nama_instansi}} <br>
+                                                                {{$instansi->alamat_instansi}} <br>
+                                                                {{$instansi->telp_instansi}} <br>
+                                                                {{$instansi->email_instansi}} <br>
+                                                </td>
+                                            </div>
+                                        </tr>
+                                        @endforeach
                                             </table>
 
                                         </div>
@@ -66,11 +74,11 @@
                                                 <!-- <form action="{{ url('confirmpo/{id_PO}') }}" method="POST" enctype="multipart/form-data"> -->
                                                 @foreach ($data_po as $data_po)
                                                 <tr>
-                                                    <div class="">
-                                                        <td class="txt-dark"> Number : <input type="text" id="no_PO" name="no_PO" value="{{$data_po->no_PO}}" style="outline:none;border:0;" readonly> <br>
-                                                            Date : {{$data_po->created_at}} <br>
-                                                            Note : </td>
-                                                    </div>
+                                                   <div class="">
+                                                <td class="txt-dark"> Number : {{$data_po->no_PO}}<input type="text" id="no_PO" name="no_PO" value="{{$data_po->no_PO}}" style="outline:none;border:0;" readonly> <br>
+                                                    Date : {{$data_po->created_at->format('d/m/Y')}} <br>
+                                                    Note : </td>
+                                            </div>
                                                 </tr>
                                                 @endforeach
                                             </table>
