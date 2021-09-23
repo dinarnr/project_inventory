@@ -207,13 +207,13 @@
                     </a>
                     <ul id="pengajuan" class="collapse collapse-level-1">
                         <li>
-                            <a href="/brgbaru">Barang rekomendasi</a>
+                            <a href="/marketing/pengajuan/brgbaru">Barang rekomendasi</a>
                         </li>
                         <li>
-                            <a href="/brgretur">Barang retur</a>
+                            <a href="/marketing/pengajuan/brgretur">Barang retur</a>
                         </li>
                         <li>
-                            <a href="/pengpembelian">Pengajuan Pembelian</a>
+                            <a href="/marketing/pengajuan/pembelian">Pengajuan Pembelian</a>
                         </li>
                     </ul>
                 </li>
@@ -284,8 +284,8 @@
                         <div class="clearfix"></div>
                     </a>
                     <ul id="pengajuan" class="collapse collapse-level-1">
-                    <li>
-                            <a href="/purchasing/pengajuan/brgretur">Barang retur</a>
+                        <li>
+                        <a href="/purchasing/pengajuan/brgretur">Barang retur</a>
                         </li>
                         <li>
                             <a href="/purchasing/pengajuan/pembelian">Pengajuan Pembelian</a>
@@ -303,7 +303,7 @@
                             <a href="/purchasing/pembelian/purchase">Purchasing</a>
                         </li>
                         <li>
-                            <a href="/purchasing/pembelian/pembelian">Invoice</a>
+                            <a href="/purchasing/pembelian/invoice">Invoice</a>
                         </li>
                     </ul>
                 </li>
