@@ -236,10 +236,10 @@
                     </a>
                     <ul id="pengajuan" class="collapse collapse-level-1">
                         <li>
-                            <a href="/brgbaru">Barang rekomendasi</a>
+                            <a href="{{ url('teknisi/pengajuan/brgrekom') }}">Barang rekomendasi</a>
                         </li>
                         <li>
-                            <a href="/brgretur">Barang retur</a>
+                            <a href="{{ url('teknisi/pengajuan/brgretur') }}">Barang retur</a>
                         </li>
                     </ul>
                 </li>
@@ -250,7 +250,6 @@
                     </a>
                 </li>
                 @endif
-
 
 
                 <!-- <-------------------------------ADMIN----------------------------------->
