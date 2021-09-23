@@ -63,7 +63,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label mb-10 text-left">Status</label>
-                                        <select name="status" id="status" class="form-control">
+                                        <select name="status" class="form-control">
                                             <option value="aktif">Aktif</option>
                                             <option value="nonaktif">NonAktif</option>
                                         </select>

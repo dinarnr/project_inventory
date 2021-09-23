@@ -97,7 +97,16 @@ class TrkMasukController extends Controller
         $barang = Master::all();
         $noPO = PO::all();
         $data_instansi = Instansi::all();
-        $no_retur = IdGenerator::generate(['table' => 'transaksi_masuk', 'length' => 9, 'prefix' => date('ymd')]);
+
+        $now = Carbon::now();
+        $thnBln = $now->year . $now->month;
+        $kode = strtoupper(substr("TRK", 0, 3));
+        $check = count(TransaksiModel::where('no_transaksi', 'like', "%$thnBln%")->get()->toArray());
+        $angka = sprintf("%03d", (int)$check + 1);
+        // $no_PO = $thnBln . "" . $angka;
+        $no_retur =  $kode .  "-"  . $now->year . $now->month . $angka;
+
+        
         return view('warehouse/transaksi/addmasukretur', compact('data_instansi', 'no_retur', 'noPO', 'supplier', 'barang', 'transaksi_masuk'));
     }
 

@@ -68,7 +68,7 @@
                                                         <a href="{{url('warehouse/peminjaman/detail')}}/{{ $peminjaman->no_peminjaman}}"><button class="btn btn-success btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
                                                         <!-- <a href="/peminjaman/{{ $peminjaman->no_peminjaman }}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-edit"></i></button></a> -->
                                                         <button class="btn btn-success btn-icon-anim btn-square" data-toggle="modal" data-target="#confirm{{ $peminjaman->no_peminjaman}}" action="( {{url('warehouse/peminjaman/confirm')}}/{{ $peminjaman->no_peminjaman}})"><i class="fa fa-check"></i></button>
-                                                        @include('peminjaman.confirm')
+                                                        @include('warehouse.peminjaman.confirm')
                                                     </td>
                                                 </tr>
                                                 @endforeach

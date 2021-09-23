@@ -236,10 +236,10 @@
                     </a>
                     <ul id="pengajuan" class="collapse collapse-level-1">
                         <li>
-                            <a href="/brgbaru">Barang rekomendasi</a>
+                            <a href="{{ url('teknisi/pengajuan/brgrekom') }}">Barang rekomendasi</a>
                         </li>
                         <li>
-                            <a href="/brgretur">Barang retur</a>
+                            <a href="{{ url('teknisi/pengajuan/brgretur') }}">Barang retur</a>
                         </li>
                     </ul>
                 </li>
@@ -250,7 +250,6 @@
                     </a>
                 </li>
                 @endif
-
 
 
                 <!-- <-------------------------------ADMIN----------------------------------->
@@ -325,7 +324,55 @@
                 </li>
                 @endif
                 <!-- <-------------------------------OFFICE----------------------------------->
+                @if (auth()->user()->divisi == "office")
+                <li>
+                    <a href="{{ url('office/report') }}">
+                        <div class="pull-left"><i class="zmdi zmdi-book mr-20"></i><span class="right-nav-text">Report</span></div>
+                        <div class="clearfix"></div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0);" data-toggle="collapse" data-target="#dashboard_dr">
+                        <div class="pull-left"><i class="zmdi zmdi-landscape mr-20"></i><span class="right-nav-text">Data Barang</span></div>
+                        <div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>
+                        <div class="clearfix"></div>
+                    </a>
+                    <ul id="dashboard_dr" class="collapse collapse-level-1">
+                        <li>
+                            <a href="{{ url('office/stok') }}">Stok</a>
+                        </li>
+                        <li>
+                            <a href="{{ url('office/transaksi') }}">Transaksi Masuk</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="{{ url('office/po') }}">
+                        <div class="pull-left"><i class="zmdi zmdi-shopping-cart mr-20"></i><span class="right-nav-text">Data PO</span></div>
+                        <div class="clearfix"></div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('office/so') }}">
+                        <div class="pull-left"><i class="zmdi zmdi-shopping-cart mr-20"></i><span class="right-nav-text">Data SO</span></div>
+                        <div class="clearfix"></div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('office/datapinjam') }}">
+                        <div class="pull-left"><i class="zmdi zmdi-balance-wallet mr-20"></i><span class="right-nav-text">Data Peminjaman</span></div>
+                        <div class="clearfix"></div>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="{{ url('office/datapembelian') }}">
+                        <div class="pull-left"><i class="zmdi zmdi-shopping-basket mr-20"></i><span class="right-nav-text">Data Pembelian</span></div>
+                        <div class="clearfix"></div>
+                    </a>
+                </li>  
 
+                @endif
 
                 <li>
                     <a href="{{ route('logout') }}">

@@ -47,11 +47,11 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="control-label mb-10">No PO</label>
-                                                            <select name="no_PO" id="no_PO" class="form-control select2">
-                                                                @foreach($noPO as $noPO)
-                                                                <option value="{{ $noPO->no_PO }}">{{ $noPO->no_PO }}</option>
-                                                                @endforeach
-                                                            </select>
+                                                            <select name="no_PO" id="no_PO" class="form-control">
+																@foreach($noPO as $noPO)
+																<option value="{{ $noPO->no_PO }}">{{ $noPO->no_PO }}</option>
+																@endforeach
+															</select>
                                                         </div>
                                                     </div>
                                                 </div>
