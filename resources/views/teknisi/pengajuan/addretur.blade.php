@@ -98,7 +98,7 @@
                                                                         </tbody>
                                                                     </table>
                                                                 <div class="col-md-12" style="text-align:right;">
-                                                                    <button type="button" onclick="submitForm()" class="btn btn-primary ">Simpan</button>
+                                                                    <button type="button" onclick="submitForm()" class="btn btn-success ">Simpan</button>
                                                                 </div>
                                                             </div>
                                                         </div>
