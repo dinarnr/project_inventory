@@ -50,9 +50,6 @@
                                             </div>
                                         </div>
                                         @endforeach
-
-                                    </div>
-                                    <div class="row">
                                         @foreach ((array)$noPO as $noPO)
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -62,6 +59,15 @@
                                             </div>
                                         </div>
                                         @endforeach
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label mb-10">Tanggal Pemasangan</label>
+                                                <input type="date" name="tgl_transaksi" id="tgl_transaksi" class="form-control">
+                                            </div>
+                                        </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label class="control-label mb-10 text-left" for="example-email">Instansi<span class="help"> </span></label>
@@ -79,14 +85,6 @@
                                             </div>
                                         </div>
 
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label mb-10">Tanggal Pemasangan</label>
-                                                <input type="date" name="tgl_transaksi" id="tgl_transaksi" class="form-control">
-                                            </div>
-                                        </div>
                                     </div>
                                     <hr>
                                     <div>
@@ -180,7 +178,7 @@
                                     <label for="ppn" class="col-sm-4 control-label">PPn (%)</label>
                                     <div class="">
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="ppn" name="ppn" placeholder="" >
+                                            <input type="text" class="form-control" id="ppn" name="ppn" placeholder="">
                                         </div>
                                     </div>
                                 </div>
@@ -214,7 +212,7 @@
                         </div>
                     </div>
                     </form>
-                    @include('po.tambahinstansi')
+                    @include('marketing.po.tambahinstansi')
                 </div>
             </div>
         </div>
@@ -325,16 +323,17 @@
 
     };
 
-    $("#ppn, #pph").keyup(function(){
-    update();
-});
-function update() {
-    var ppn = $('#ppn').val();
-    var pph = $('#pph').val();
-    $("#balance").val(pecah(parseInt(total) + ((ppn/100)*parseInt(total)) + ((pph/100)*parseInt(total))));
+    $("#ppn, #pph").keyup(function() {
+        update();
+    });
+
+    function update() {
+        var ppn = $('#ppn').val();
+        var pph = $('#pph').val();
+        $("#balance").val(pecah(parseInt(total) + ((ppn / 100) * parseInt(total)) + ((pph / 100) * parseInt(total))));
         var balance = $("#balance").val();
         $("#balance1").val(balance.replace(/[^,\d]/g, '').toString());
-}
+    }
 
 
     $(document).on('click', '.remove_row', function() {
@@ -344,7 +343,7 @@ function update() {
         $("#total1").val(total);
 
         var pph = $('#pph').val();
-        $("#balance").val(pecah(parseInt(total) + ((ppn/100)*parseInt(total)) + ((pph/100)*parseInt(total))));
+        $("#balance").val(pecah(parseInt(total) + ((ppn / 100) * parseInt(total)) + ((pph / 100) * parseInt(total))));
         var balance = $("#balance").val();
         $("#balance1").val(balance.replace(/[^,\d]/g, '').toString());
 
