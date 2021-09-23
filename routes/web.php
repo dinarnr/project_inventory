@@ -21,6 +21,9 @@ use App\Http\Controllers\Teknisi\PeminjamanTeknisiController;
 
 use App\Http\Controllers\Purchasing\PembelianPurchasingController;
 
+use App\Http\Controllers\Admin\PengajuanAdminController;
+use App\Http\Controllers\Admin\PoAdminController;
+
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 
@@ -200,6 +203,10 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::get('pembelian/invoice/tambah', [PembelianPurchasingController::class, 'addpembelian']);
         Route::post('pembelian/invoice/simpan', [PembelianPurchasingController::class, 'addpembelian2']);
         
+    });
+    Route::group(['prefix' => 'admin/'], function () {
+        Route::get('po', [PoAdminController::class, 'index']);
+        Route::get('pengajuan/pembelian', [PengajuanAdminController::class, 'pengpembelian']);
     });
 
 
