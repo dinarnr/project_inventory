@@ -277,6 +277,7 @@
     function ambildata(prefix) {
         var noPO = document.getElementById('noPO').value;
         var noSO = document.getElementById('noSO').value;
+        var instansi = document.getElementById('instansi').value;
         var nama_barang = document.getElementById('nama_barang').value;
         var jumlah = document.getElementById('jumlah').value;
         var rate1 = document.getElementById('rate').value.replace(/[^,\d]/g, '').toString();
@@ -285,7 +286,7 @@
         var amount = document.getElementById('amount').value;
         var keterangan = document.getElementById('keterangan').value;
         var total = document.getElementById('total').value;
-        addrow(noPO, noSO, nama_barang, jumlah, keterangan, rate, amount, rate1, amount1);
+        addrow(noPO, noSO, nama_barang, jumlah, keterangan, rate, amount, rate1, amount1, instansi);
 
     }
     var i = 0;
@@ -305,10 +306,11 @@
         return rupiah;
     }
 
-    function addrow(noPO, noSO, nama_barang, jumlah, keterangan, rate, amount, rate1, amount1) {
+    function addrow(noPO, noSO, nama_barang, jumlah, keterangan, rate, amount, rate1, amount1, instansi) {
         i++;
         $('#TabelDinamis').append('<tr id="row' + i + '"><td style="display:none;"><input type="text" style="outline:none;border:0;" readonly name="noPO[]" id="noPO" value="' + noPO +
             '"><td style="display:none;"><input type="text" style="outline:none;border:0; font-weight: bold;" readonly name="noSO[]" id="noSO" value="' + noSO +
+            '"><td style="display:none;"><input type="text" style="outline:none;border:0; font-weight: bold;" readonly name="instansi1[]" id="instansi1" value="' + instansi +
             '"><td><input type="text" style="outline:none;border:0; font-weight: bold;" readonly name="nama_barang[]" id="nama_barang" value="' + nama_barang +
             '"><br><input type="text" style="outline:none;border:0;" name="keterangan[]" id="keterangan" value="    ' + keterangan +
             '"></br ></td><td><input type="text" style="outline:none;border:0;" readonly name="jumlah[]" id="jumlah" value="' + jumlah +
