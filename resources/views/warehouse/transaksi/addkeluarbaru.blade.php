@@ -10,7 +10,8 @@
 		<div class="row heading-bg">
 			<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
 				<h5 class="txt-dark">barang keluar garansi</h5><br>
-				<a href="{{ url('warehouse/transaksi/keluarbaru/tambah') }}" class="btn btn-primary btn-icon-anim"><i class="fa fa succes"></i> GARANSI</a>
+				<a href="{{ url('warehouse/transaksi/keluargaransi/tambah') }}" class="btn btn-primary btn-icon-anim"><i class="fa fa succes"></i> GARANSI</a>
+				<a href="{{ url('warehouse/transaksi/keluarinstalasi/tambah') }}" class="btn btn-primary btn-icon-anim"><i class="fa fa succes"></i> INSTALASI</a>
 				<a href="{{ url('warehouse/transaksi/keluarretur/tambah') }}" class="btn btn-primary btn-icon-anim"><i class="fa fa succes"></i> RETUR</a>
 
 			</div>
@@ -32,7 +33,7 @@
 							<div class="row">
 								<div class="col-sm-12 col-xs-12">
                                     <div class="form-wrap">
-                                        <form action="{{ url('warehouse/transaksi/keluarbaru/simpan') }}" method="POST" enctype="multipart/form-data">
+                                        <form action="{{ url('warehouse/transaksi/keluargaransi/simpan') }}" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             <div class="form-body">
                                                 <div class="row" hidden>
@@ -48,7 +49,7 @@
 													<div class="col-md-6">
 														<div class="form-group">
 															<label class="control-label mb-10">Jenis Barang</label>
-															<input type="hidden" id="jns_barang" name="jns_barang" value="garansi" class="form-control" placeholder="" readonly>
+															<input type="hidden" id="jenis_barang" name="jenis_barang" value="garansi" class="form-control" placeholder="" readonly>
 															<input type="hidden" id="jns_barang" name="jns_barang" value="garansi" class="form-control" placeholder="" readonly>
 														</div>
 													</div>
@@ -68,6 +69,7 @@
 														<div class="form-group">
 															<label class="control-label mb-10">Tanggal Transaksi</label>
                                                             <input type="date" id="tgl_transaksi" name="tgl_transaksi" class="form-control" placeholder="">
+                                                            <input type="hidden" id="tgl_trans" name="tgl_trans" class="form-control" placeholder="">
                                                         </div>
 													</div>
 												</div>

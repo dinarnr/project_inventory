@@ -10,9 +10,9 @@
 		<div class="row heading-bg">
 			<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
 				<h5 class="txt-dark">barang keluar instalasi</h5><br>
-				<!-- <a href="{{ url('warehouse/transaksi/keluarbaru/tambah') }}" class="btn btn-primary btn-icon-anim"><i class="fa fa succes"></i> INSTALASI</a>
-				<a href="{{ url('warehouse/transaksi/keluarretur/tambah') }}" class="btn btn-primary btn-icon-anim"><i class="fa fa succes"></i> RETUR</a> -->
-
+				<a href="{{ url('warehouse/transaksi/keluargaransi/tambah') }}" class="btn btn-primary btn-icon-anim"><i class="fa fa succes"></i> GARANSI</a>
+				<a href="{{ url('warehouse/transaksi/keluarinstalasi/tambah') }}" class="btn btn-primary btn-icon-anim"><i class="fa fa succes"></i> INSTALASI</a>
+				<a href="{{ url('warehouse/transaksi/keluarretur/tambah') }}" class="btn btn-primary btn-icon-anim"><i class="fa fa succes"></i> RETUR</a>
 			</div>
 			<!-- Breadcrumb -->
 			<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
@@ -32,22 +32,22 @@
 							<div class="row">
 								<div class="col-sm-12 col-xs-12">
                                     <div class="form-wrap">
-                                        <form action="{{ url('warehouse/transaksi/keluarbaru/simpan') }}" method="POST" enctype="multipart/form-data">
+                                        <form action="{{ url('warehouse/transaksi/keluarinstalasi/simpan') }}" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             <div class="form-body">
                                                 <div class="row" hidden>
 													<div class="col-md-6">
 														<div class="form-group">
 															<label class="control-label mb-10">No Transaksi</label>
-															<input type="hidden" id="no_transaksi" name="no_transaksi" value="" class="form-control" placeholder="" readonly>
-                                                			<input type="text" id="no_trans" name="no_trans" value="" class="form-control" placeholder="" readonly>
+															<input type="hidden" id="no_transaksi" name="no_transaksi" value="{{ $no_trans }}" class="form-control" placeholder="" readonly>
+                                                			<input type="text" id="no_trans" name="no_trans" value="{{ $no_trans }}" class="form-control" placeholder="" readonly>
 														</div>
 													</div>
 													<div class="col-md-6">
 														<div class="form-group">
 															<label class="control-label mb-10">Jenis Barang</label>
-															<input type="hidden" id="jns_barang" name="jns_barang" value="" class="form-control" placeholder="" readonly>
-															<input type="hidden" id="jns_barang" name="jns_barang" value="" class="form-control" placeholder="" readonly>
+															<input type="hidden" id="jenis_barang" name="jenis_barang" value="instalasi" class="form-control" placeholder="" readonly>
+															<input type="hidden" id="jns_barang" name="jns_barang" value="instalasi" class="form-control" placeholder="" readonly>
 														</div>
 													</div>
                                                 </div>
@@ -55,7 +55,7 @@
 													<div class="col-md-6">
 														<div class="form-group">
 															<label class="control-label mb-10">NO SO</label>
-															<select name="no_SO" id="no_SO" class="form-control">
+															<select name="no_SO dynamic2" id="no_SO" class="form-control" data-dependent="nama_barang">
 																@foreach ($SO as $no_SO)
 																	<option value="{{ $no_SO->no_SO }}">{{ $no_SO->no_SO }}</option>
 																@endforeach
@@ -65,24 +65,26 @@
 													<div class="col-md-6">
 														<div class="form-group">
 															<label class="control-label mb-10">Tanggal Instalasi</label>
-                                                            <input type="date" id="tgl_transaksi" name="tgl_transaksi" class="form-control" placeholder="">
+                                                            <input type="date" id="tgl_instalasi" name="tgl_instalasi" class="form-control" placeholder="">
                                                         </div>
 													</div>
 												</div>
                                                 <div class="row">
                                                     <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label class="control-label mb-10">Pengirim Ekpedisi</label>
+														<div class="form-group">
+                                                            <label class="control-label mb-10">Pengirim Ekspedisi</label>
                                                             <input type="text" id="pengirim" name="pengirim" class="form-control">
+                                                                                                        
                                                         </div>
                                                     </div>
 													<div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="control-label mb-10">Instansi</label>
-                                                            <input type="number" id="jumlah" name="jumlah" class="form-control">
-                                                            
-                                                            <input  id="instansi" name="instansi" value="" hidden>
-                                                            
+                                                            <select name="instansi" id="instansi" class="form-control">
+																@foreach ($instansi as $instansi)
+																	<option value="{{ $instansi->nama_instansi }}">{{ $instansi->nama_instansi }}</option>
+																@endforeach
+															</select>
                                                         </div>
                                                     </div>
 												</div>
@@ -98,19 +100,15 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="control-label mb-10">Nama Barang</label>
-															<table class="table table-bordered align-items-center">
-																<tbody id="tabelbrg">
-																						<!-- <tr>
-																							<td><a name="tgl_transaksi[]" id="tgl_transaksi"></a></td>
-																							<td><a name="nama_supplier[]" id="nama_supplier"></a></td>
-																							<td><a name="nama_barang[]" id="nama_barang"></a></td>
-																							<td><a name="jumlah[]" id="jumlah"></a></td>
-																							<td><button type="button" class="btn btn-danger btn-small">&times;</button></td>
-																						</tr> -->
-																</tbody>
+															<table>
+																<tr>
+																	<td id="nama_barang" name="nama_barang"></td>
+																	<td id="jumlah" name="jumlah"></td>
+																</tr>
 															</table>
                                                         </div>
                                                     </div>
+													{{ csrf_field() }}
 												</div>
                                             </div>
                                             <div class="col-md-14" style="text-align:right;">
@@ -132,11 +130,11 @@
 																			<thead class="thead-light">
 																				<tr>
 																					<!-- <th>No Transaksi</th> -->
-																					<th>No PO</th>
-																					<th>Tanggal Transaksi</th>
-																					<th>Nama barang</th>
-																					<th>Jumlah</th>
-																					<!-- <th>Keterangan</th> -->
+																					<th>No SO</th>
+																					<th>Tanggal Instalasi</th>
+																					<th>Pengirim Ekpedisi</th>
+																					<th>Instansi</th>
+																					<th>Penerima</th>
 																					<th>Remove</th>
 
 																				</tr>
@@ -161,7 +159,8 @@
 														</div>
 													</div>
 												</div>
-											</div>
+											</div> 
+											
                                         </form>
                                     </div>
                                 </div>
@@ -177,26 +176,30 @@
 @section('scripts')
 <script type="text/javascript">
 	function ambildata() {
-		var no_PO = document.getElementById('no_PO').value;
-		var no_trans = document.getElementById('no_trans').value;
+		var no_trans = document.getElementById('no_trans').value;		
 		var jns_barang = document.getElementById('jns_barang').value;
-		var tgl_transaksi = document.getElementById('tgl_transaksi').value;
+		var no_SO = document.getElementById('no_SO').value;
+		var tgl_instalasi = document.getElementById('tgl_instalasi').value;
+		var pengirim = document.getElementById('pengirim').value;
+		var instansi = document.getElementById('instansi').value;
+		var penerima = document.getElementById('penerima').value;
 		var nama_barang = document.getElementById('nama_barang').value;
-		var kode_barang = document.getElementById('kode_barang').value;
 		var jumlah = document.getElementById('jumlah').value;
 
-		addrow(no_trans, no_PO, tgl_transaksi, nama_barang, kode_barang, jumlah,jns_barang);
+		addrow(no_trans, no_SO, tgl_instalasi, pengirim, instansi, penerima, jns_barang, nama_barang, jumlah);
 	}
 	var i = 0;
 
-	function addrow(no_trans,no_PO, tgl_transaksi, nama_barang, kode_barang, jumlah,jns_barang) {
+	function addrow(no_trans, no_SO, tgl_instalasi, pengirim, instansi, penerima, jns_barang, nama_barang, jumlah) {
 		i++;
 		$('#TabelDinamis').append('<tr id="row' + i + '"></td><td style=display:none;"><input type="text" style="outline:none;border:0;"  name="no_trans[]" id="no_trans" value="' + no_trans + 
 													 '"></td><td style=display:none;"><input type="text" style="outline:none;border:0;"  name="jns_barang[]" id="jns_barang" value="' + jns_barang + 
-														'"></td><td><input type="text" style="outline:none;border:0;" readonly name="no_PO[]" id="no_PO" value="' + no_PO + 
-														'"></td><td><input type="text" style="outline:none;border:0;" readonly name="tgl_transaksi[]" id="tgl_transaksi" value="' + tgl_transaksi + 
+														'"></td><td style=display:none;"><input type="text" style="outline:none;border:0;" readonly name="no_SO[]" id="no_SO" value="' + no_SO + 
+														'"></td><td style=display:none;"><input type="text" style="outline:none;border:0;" readonly name="tgl_transaksi[]" id="tgl_transaksi" value="' + tgl_instalasi + 
+														'"></td><td><input type="text" style="outline:none;border:0;" readonly name="pengirim[]" id="pengirim" value="' + pengirim + 
+														'"></td><td><input type="text" style="outline:none;border:0;" readonly name="instansi[]" id="instansi" value="' + instansi + 
+														'"></td><td><input type="text" style="outline:none;border:0;" readonly name="penerima[]" id="penerima" value="' + penerima + 
 														'"></td><td><input type="text" style="outline:none;border:0;" readonly name="nama_barang[]" id="nama_barang" value="' + nama_barang + 
-														'"></td><td style=display:none;"><input type="text" style="outline:none;border:0;"  name="kode_barang[]" id="kode_barang" value="' + kode_barang + 
 														'"></td><td><input type="text" style="outline:none;border:0;" readonly name="jumlah[]" id="jumlah" value="' + jumlah + 
 														'"></td><td><button type="button" id="' + i + '" class="btn btn-danger btn-small remove_row">&times;</button></td></tr>');
 	};
@@ -205,25 +208,10 @@
 		$('#row' + row_id + '').remove();
 	});
 
-		$('#nama_barang').select2();
 		$('#nama_supplier').select2();
 </script>
-@section('scripts')
-<script type="text/javascript">
-	function addrow(nama_barang, kode_barang, jumlah) {
-		i++;
-		$('#tabelbrg').append('<tr id="row' + i + '"></td><td><input type="text" style="outline:none;border:0;" readonly name="nama_barang[]" id="nama_barang" value="' + nama_barang + 
-														'"></td><td style=display:none;"><input type="text" style="outline:none;border:0;"  name="kode_barang[]" id="kode_barang" value="' + kode_barang + 
-														'"></td><td><input type="text" style="outline:none;border:0;" readonly name="jumlah[]" id="jumlah" value="' + jumlah + 
-														'"></td><td><button type="button" id="' + i + '" class="btn btn-danger btn-small remove_row">&times;</button></td></tr>');
-	};
-	$(document).on('click', '.remove_row', function() {
-		var row_id = $(this).attr("id");
-		$('#row' + row_id + '').remove();
-	});
-</script>
 <script>
-	$('.dynamic1').change(function(){
+	$('#no_SO').change(function(){
 		if($(this).val() != ''){
 			var select = $(this).attr("id");
 			var value = $(this).val();
@@ -231,14 +219,15 @@
 			var dependent = $(this).data('dependent');
 			var _token = $('input[name="_token"]').val();
 			$.ajax({
-				url: "{{ route('socontroller.fetch')}}",
+				url: "{{ route('trkkeluarcontroller.fetch')}}",
 				method: "POST",
 				data: {
 					select: select,value: value,_token:_token,dependent: dependent
 				},
 				success: function(result) {
 					$('#'+dependent).html(result);
-				}
+				},
+		
 			});
 		}
 	});
