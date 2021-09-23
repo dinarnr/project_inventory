@@ -201,15 +201,15 @@ class TrkKeluarController extends Controller
                 ]
             );
         }
-        // TransaksiKeluar::create(
-        //     [
-        //         'no_transaksi' => $request->no_transaksi,
-        //         'tgl_transaksi' => $request->tgl_transaksi,
-        //         'nama_supplier' => $request->nama_supplier,
-        //         'pengirim' => $request->pengirim,
-        //         'penerima' => $request->penerima,
-        //     ]
-        // );
+        TransaksiKeluar::create(
+            [
+                'no_transaksi' => $request->no_transaksi,
+                // 'tgl_transaksi' => $request->tgl_transaksi,
+                'nama_supplier' => $request->nama_supplier,
+                'pengirim' => $request->pengirim,
+                'penerima' => $request->penerima,
+            ]
+        );
 
         $user = Auth::user();
         Log::create(

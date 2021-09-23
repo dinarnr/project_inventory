@@ -90,6 +90,7 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::get('transaksi/keluarbaru/tambah', [TrkKeluarController::class, 'addkeluarbaru']);
         Route::get('transaksi/keluargaransi/tambah', [TrkKeluarController::class, 'addkeluarbaru']);
         Route::post('transaksi/keluargaransi/simpan', [TrkKeluarController::class, 'keluargaransi']);
+        
         Route::get('transaksi/keluarretur/tambah', [TrkKeluarController::class, 'addkeluarretur']);
         Route::post('transaksi/keluarretur/simpan', [TrkKeluarController::class, 'addkeluarretur2']);
     
