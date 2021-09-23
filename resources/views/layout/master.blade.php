@@ -147,14 +147,12 @@
                         <div class="clearfix"></div>
                     </a>
                     <ul id="pengajuan" class="collapse collapse-level-1">
+                        
                         <li>
-                            <a href="/brgbaru">Barang rekomendasi</a>
+                            <a href="/warehouse/pengajuan/brgretur">Barang retur</a>
                         </li>
                         <li>
-                            <a href="/brgretur">Barang retur</a>
-                        </li>
-                        <li>
-                            <a href="/pengpembelian">Pengajuan Pembelian</a>
+                            <a href="/warehouse/pengajuan/pembelian">Pengajuan Pembelian</a>
                         </li>
                     </ul>
                 </li>
@@ -172,16 +170,22 @@
                     </a>
                     <ul id="pembelian" class="collapse collapse-level-1">
                         <li>
-                            <a href="/purchase">Purchasing</a>
+                            <a href="/warehouse/pembelian/purchase">Purchasing</a>
                         </li>
                         <li>
-                            <a href="/pembelian">Invoice</a>
+                            <a href="/warehouse/pembelian/invoice">Invoice</a>
                         </li>
                     </ul>
                 </li>
                 <li>
                     <a href="{{ url('warehouse/so/dataSO') }}">
                         <div class="pull-left"><i class="zmdi zmdi-shopping-cart mr-20"></i><span class="right-nav-text">Data SO</span></div>
+                        <div class="clearfix"></div>
+                    </a>
+                </li>
+                <li>
+                    <a href=" ">
+                        <div class="pull-left"><i class="zmdi zmdi-settings mr-20"></i><span class="right-nav-text">Setting</span></div>
                         <div class="clearfix"></div>
                     </a>
                 </li>
@@ -232,10 +236,10 @@
                     </a>
                     <ul id="pengajuan" class="collapse collapse-level-1">
                         <li>
-                            <a href="/brgbaru">Barang rekomendasi</a>
+                            <a href="{{ url('teknisi/pengajuan/brgrekom') }}">Barang rekomendasi</a>
                         </li>
                         <li>
-                            <a href="/brgretur">Barang retur</a>
+                            <a href="{{ url('teknisi/pengajuan/brgretur') }}">Barang retur</a>
                         </li>
                     </ul>
                 </li>
@@ -248,9 +252,62 @@
                 @endif
 
 
-
                 <!-- <-------------------------------ADMIN----------------------------------->
+                @if (auth()->user()->divisi == "admin")
+                <li>
+                    <a href="javascript:void(0);" data-toggle="collapse" data-target="#pengajuan">
+                        <div class="pull-left"><i class="zmdi zmdi-collection-text mr-20"></i><span class="right-nav-text">Pengajuan</span></div>
+                        <div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>
+                        <div class="clearfix"></div>
+                    </a>
+                    <ul id="pengajuan" class="collapse collapse-level-1">
+                        <li>
+                            <a href="{{ url('admin/pengajuan/pembelian') }}">Pengajuan Pembelian</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="{{ url('admin/po') }}">
+                        <div class="pull-left"><i class="zmdi zmdi-shopping-cart mr-20"></i><span class="right-nav-text">Puchase Order</span></div>
+                        <div class="clearfix"></div>
+                    </a>
+                </li>
+                @endif
+
                 <!-- <-------------------------------PURCHASING----------------------------------->
+                @if (auth()->user()->divisi == "purchasing")
+                <li>
+                    <a href="javascript:void(0);" data-toggle="collapse" data-target="#pengajuan">
+                        <div class="pull-left"><i class="zmdi zmdi-collection-text mr-20"></i><span class="right-nav-text">Pengajuan</span></div>
+                        <div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>
+                        <div class="clearfix"></div>
+                    </a>
+                    <ul id="pengajuan" class="collapse collapse-level-1">
+                    <li>
+                            <a href="/purchasing/pengajuan/brgretur">Barang retur</a>
+                        </li>
+                        <li>
+                            <a href="/purchasing/pengajuan/pembelian">Pengajuan Pembelian</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:void(0);" data-toggle="collapse" data-target="#pembelian">
+                        <div class="pull-left"><i class="zmdi zmdi-shopping-basket mr-20"></i><span class="right-nav-text">Pembelian</span></div>
+                        <div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>
+                        <div class="clearfix"></div>
+                    </a>
+                    <ul id="pembelian" class="collapse collapse-level-1">
+                        <li>
+                            <a href="/purchasing/pembelian/purchase">Purchasing</a>
+                        </li>
+                        <li>
+                            <a href="/purchasing/pembelian/pembelian">Invoice</a>
+                        </li>
+                    </ul>
+                </li>
+                @endif
+
                 <!-- <-------------------------------ADMINISTRATOR----------------------------------->
                 @if (auth()->user()->divisi == "administrator")
                 <li>

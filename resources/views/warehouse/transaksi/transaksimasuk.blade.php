@@ -98,7 +98,7 @@
                                                 <td>{{ $transaksi_retur->penerima }}</td>
                                                 <td>{{ $transaksi_retur->created_at }}</td>
                                                 <td>
-                                                    <a href="transaksi/detailmasukretur/{{ $transaksi_retur->no_transaksi }}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
+                                                    <a href="{{ url('warehouse/transaksi/detailmasukretur') }}/{{ $transaksi_retur->no_transaksi }}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
                                                 </td>
                                             </tr>
                                             @endforeach
