@@ -44,6 +44,7 @@ class POMktController extends Controller
     // ketika memilih proses atau draft
     public function addpo2(Request $request)
     {
+        // dd($request->no_SO);
        $user = Auth::user();
         if ($request->proses == 'proses') {
         $jumlah_data = count($request->noPO);
