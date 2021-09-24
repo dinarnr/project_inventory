@@ -180,10 +180,6 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         // Route::post('po/simpan/draft', [POMktController::class, 'adddraft2']);
         Route::post('po/ubah/draft/{id_po}', [POMktController::class, 'editisidraft']); // edit keterangan di draft
         Route::get('po/detail/{no_PO}', [POMktController::class, 'detailpo']);
-<<<<<<< HEAD
-        Route::delete('po/deletepo/{id_po}', [POMktController::class, 'deletepo']);
-
-=======
          // ----------------PENGAJUAN------------
         //  -------------------------RETUR-----------------------------
          Route::get('pengajuan/brgretur', [PengajuanMarketingController::class, 'tabelRetur']);
@@ -198,7 +194,6 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::post('/updateBaru', 'App\Http\Controllers\PengajuanController@updateBaru')->name('updateBaru');
         Route::delete('deletebaru/{id_pengajuan}', 'App\Http\Controllers\PengajuanController@deletebaru');
         Route::get('pengajuan/detailbaru/{id_pengajuan}', [PengajuanController::class, 'detailbaru']);
->>>>>>> 2c36c3bb5595bb0d31b9a4c1a131c184c63ccb66
     });
 
     Route::group(['prefix' => 'teknisi/'], function () {
