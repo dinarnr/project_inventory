@@ -30,7 +30,7 @@ class SoController extends Controller
         $nama_instansi = PO::where('no_PO', $no_PO)->pluck('instansi');
         $user = Auth::user();
         $instansi = Instansi::where('nama_instansi', $nama_instansi)->get();
-        return view('warehouse/so/detailso', compact('data_po', 'data_detail', 'user'));
+        return view('warehouse/so/detailso', compact('data_po', 'data_detail', 'user', 'profil', 'instansi', ));
     }
 
    public function addket(Request $request, $id_po )

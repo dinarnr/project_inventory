@@ -169,12 +169,14 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::post('po/simpan', [POMktController::class, 'addpo2']);
         Route::get('po/ubah/{no_PO}', [POMktController::class, 'editpo']); //edit po
         Route::get('po/tambah/{no_PO}', [POMktController::class, 'add']); //tambah data di editpo
-        Route::post('po/simpan2', [POMktController::class, 'add2']);
-        Route::post('po/draft/{no_PO}', [POMktController::class, 'draft']);
+        Route::post('po/simpan2/draft', [POMktController::class, 'add2']);
+        Route::post('po/proses/draft/{no_PO}', [POMktController::class, 'draft']);
         Route::post('po/batal/{id_PO}', [POMktController::class, 'batal']);
-        Route::post('po/simpan/draft', [POMktController::class, 'adddraft2']);
+        // Route::post('po/simpan/draft', [POMktController::class, 'adddraft2']);
         Route::post('po/ubah/draft/{id_po}', [POMktController::class, 'editisidraft']); // edit keterangan di draft
         Route::get('po/detail/{no_PO}', [POMktController::class, 'detailpo']);
+        Route::delete('po/deletepo/{id_po}', [POMktController::class, 'deletepo']);
+
     });
 
     Route::group(['prefix' => 'teknisi/'], function () {

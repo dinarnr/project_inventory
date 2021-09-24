@@ -40,6 +40,7 @@ class POMktController extends Controller
         return view('marketing/po/addpo', compact('noPO', 'noSO', 'data_instansi'));
     }
 
+    // ketika memilih proses atau draft
     public function addpo2(Request $request)
     {
        $user = Auth::user();
@@ -54,7 +55,6 @@ class POMktController extends Controller
                     'jumlah' => $request->jumlah[$i],
                     'rate' => $request->rate1[$i],
                     'amount' => $request->amount1[$i],
-                    'keterangan' => '-',
                     'keterangan_barang' => $request->keterangan[$i],
                 ]
             );
@@ -133,52 +133,52 @@ class POMktController extends Controller
         return redirect('marketing/po');
     }
 
-    // ketika memilih proses atau draft
-    public function adddraft2(Request $request)
-    {
-        $user = Auth::user();
-        $jumlah_data = count($request->noPO);
-        for ($i = 0; $i < $jumlah_data; $i++) {
-            DetailPO::create(
-                [
-                    'no_PO' => $request->noPO[$i],
-                    'nama_barang' => $request->nama_barang[$i],
-                    'jumlah' => $request->jumlah[$i],
-                    'rate' => $request->rate1[$i],
-                    'amount' => $request->amount1[$i],
-                    'keterangan_barang' => $request->keterangan[$i],
-                ]
-            );
-        }
+    
+    // public function adddraft2(Request $request)
+    // {
+    //     $user = Auth::user();
+    //     $jumlah_data = count($request->noPO);
+    //     for ($i = 0; $i < $jumlah_data; $i++) {
+    //         DetailPO::create(
+    //             [
+    //                 'no_PO' => $request->noPO[$i],
+    //                 'nama_barang' => $request->nama_barang[$i],
+    //                 'jumlah' => $request->jumlah[$i],
+    //                 'rate' => $request->rate1[$i],
+    //                 'amount' => $request->amount1[$i],
+    //                 'keterangan_barang' => $request->keterangan[$i],
+    //             ]
+    //         );
+    //     }
 
-        PO::create(
-            [
-                'no_PO' => $request->no_PO,
-                'instansi' => $request->instansi,
-                'total' => $request->total1,
-                'ppn' => $request->ppn,
-                'pph' => $request->pph,
-                'balance' => $request->balance,
-                'tgl_pemasangan' => $request->tgl_transaksi,
-                'pic_marketing' => $user->name,
-                'status' => '7'
-            ]
-        );
+    //     PO::create(
+    //         [
+    //             'no_PO' => $request->no_PO,
+    //             'instansi' => $request->instansi,
+    //             'total' => $request->total1,
+    //             'ppn' => $request->ppn,
+    //             'pph' => $request->pph,
+    //             'balance' => $request->balance,
+    //             'tgl_pemasangan' => $request->tgl_transaksi,
+    //             'pic_marketing' => $user->name,
+    //             'status' => '7'
+    //         ]
+    //     );
 
-        $user = Auth::user();
-        Log::create(
-            [
-                'name' => $user->name,
-                'email' => $user->email,
-                'divisi' => $user->divisi,
-                'deskripsi' => 'Create Draft PO',
-                'status' => '2',
-                'ip' => $request->ip()
+    //     $user = Auth::user();
+    //     Log::create(
+    //         [
+    //             'name' => $user->name,
+    //             'email' => $user->email,
+    //             'divisi' => $user->divisi,
+    //             'deskripsi' => 'Create Draft PO',
+    //             'status' => '2',
+    //             'ip' => $request->ip()
 
-            ]
-        );
-        return redirect('marketing/po');
-    }
+    //         ]
+    //     );
+    //     return redirect('marketing/po');
+    // }
 
     //ketika status draft
     public function editpo($no_PO)
@@ -251,11 +251,12 @@ class POMktController extends Controller
                 'ip' => $request->ip()
             ]
         );
-        return Redirect::back();
+        return redirect()->back();
     }
 //         return redirect('marketing/editpo');
 //     }
 
+    #simpan/proses draft
     public function draft($no_PO, Request $request)
     {
         $user = Auth::user();
@@ -280,6 +281,7 @@ class POMktController extends Controller
         );
         return redirect('marketing/po');
     }
+
     public function batal(Request $request, $id_PO)
     {
         // dd($request->non);
@@ -327,5 +329,26 @@ class POMktController extends Controller
             ]
         );
         return redirect()->back();
+    }
+
+    public function deletepo($id_po, Request $request)
+    {
+        $data_detail = DetailPO::where('id_po', $id_po)->first();
+        $data_detail->delete();
+
+        $user = Auth::user();
+        Log::create(
+            [
+                'name' => $user->name,
+                'email' => $user->email,
+                'divisi' => $user->divisi,
+                'deskripsi' => 'Delete Data Detail PO',
+                'status' => '2',
+                'ip' => $request->ip()
+
+            ]
+        );
+        // //mengirim data_brg ke view
+        return back()->with('success', "Data telah terhapus");
     }
 }

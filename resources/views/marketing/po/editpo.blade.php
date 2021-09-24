@@ -132,10 +132,10 @@
                                                     </td>
                                                     <td id="total">{{number_format($detail->amount), 2}}</td>
                                                     <td>
-                                                        <!-- <button class="btn btn-danger btn-icon-anim btn-square" data-toggle="modal" data-target="#hapus{{ $detail->id_po }}" action="( {{url('deletepo')}}/{{ $detail->id_po}})"><i class="fa fa-trash"></i></button> -->
-                                                        <button class="btn btn-primary btn-icon-anim btn-square" data-toggle="modal" data-target="#editdraft{{ $detail->id_po }}" action="( {{url('marketing/po/ubah/draft')}}/{{ $detail->id_po}})"><i class="fa fa-pencil"></i></button>
-                                                     
-                                                        @include ('po.editdraft')
+                                                        <button class="btn btn-danger btn-icon-anim btn-square" data-toggle="modal" data-target="#hapus{{ $detail->id_po }}" action="( {{url('deletepo')}}/{{ $detail->id_po}})"><i class="fa fa-trash"></i></button>
+                                                        <button class="btn btn-primary btn-icon-anim btn-square" data-toggle="modal" data-target="#editdraft{{ $detail->id_po }}" action="( {{url('marketing/po/simpan/draft')}}/{{ $detail->id_po}})"><i class="fa fa-pencil"></i></button>
+                                                        @include ('marketing.po.hapus')
+                                                        @include ('marketing.po.editdraft')
                                                     </td>
                                                 </tr>
                                                 @endforeach
@@ -198,10 +198,10 @@
 
                     </div>
                     <div class="pull-right hide-from-printer">
-                        <button type="submit" class="btn btn-primary mr-10" data-toggle="modal" data-target="#draft{{ $data_po->no_PO }}" action="( {{url('marketing/ubah/draft')}}/{{ $data_po->no_PO }})">
+                        <button type="submit" class="btn btn-primary mr-10" data-toggle="modal" data-target="#draft{{ $data_po->no_PO }}" action="( {{url('marketing/po/proses/draft')}}/{{ $data_po->no_PO }})">
                             Proses
                         </button>
-                        @include('po.proses')
+                        @include('marketing.po.proses')
                     </div>
                 </div>
     </div>
