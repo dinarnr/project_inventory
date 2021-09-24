@@ -80,6 +80,7 @@
 													<div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="control-label mb-10">Instansi</label>
+															
                                                             <select name="instansi" id="instansi" class="form-control">
 																@foreach ($instansi as $instansi)
 																	<option value="{{ $instansi->nama_instansi }}">{{ $instansi->nama_instansi }}</option>
@@ -185,13 +186,15 @@
 		var penerima = document.getElementById('penerima').value;
 		var nama_barang = document.getElementById('nama_barang').value;
 		var jumlah = document.getElementById('jumlah').value;
-
+		console.log(instansi);
 		addrow(no_trans, no_SO, tgl_instalasi, pengirim, instansi, penerima, jns_barang, nama_barang, jumlah);
 	}
 	var i = 0;
 
 	function addrow(no_trans, no_SO, tgl_instalasi, pengirim, instansi, penerima, jns_barang, nama_barang, jumlah) {
 		i++;
+		 var instansi= instansi;
+		 
 		$('#TabelDinamis').append('<tr id="row' + i + '"></td><td style=display:none;"><input type="text" style="outline:none;border:0;"  name="no_trans[]" id="no_trans" value="' + no_trans + 
 													 '"></td><td style=display:none;"><input type="text" style="outline:none;border:0;"  name="jns_barang[]" id="jns_barang" value="' + jns_barang + 
 														'"></td><td style=display:none;"><input type="text" style="outline:none;border:0;" readonly name="no_SO[]" id="no_SO" value="' + no_SO + 

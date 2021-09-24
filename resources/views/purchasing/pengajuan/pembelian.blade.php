@@ -1,5 +1,5 @@
 @extends('layout.master')
-@section('title', 'Detail Masuk Baru')
+@section('title', 'Data Pengajuan Pembelian')
 @section('content')
 
 <!-- Main Content -->
@@ -8,59 +8,61 @@
         <!-- Title -->
         <div class="row heading-bg">
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                <h5 class="txt-dark">Detail Masuk Baru</h5>
+                <h5 class="txt-dark">Pengajuan Pembelian</h5>
             </div>
             <!-- Breadcrumb -->
             <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                 <ol class="breadcrumb">
-                    <li><a href="index.html">Transaksi</a></li>
-                    <li><a href="#"><span>Transaksi Masuk Baru</span></a></li>
-                    <li class="active"><span>Detail Masuk Baru</span></li>
+                    <!-- <li><a href="inventory"></a></li> -->
+                    <!-- <li class="active"><span>Data Pembelian</span></li> -->
                 </ol>
             </div>
             <!-- /Breadcrumb -->
         </div>
-        <!-- /Title -->
-
         <!-- Row -->
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-sm-12">
                 <div class="panel panel-default card-view">
                     <div class="panel-heading">
+                        <div class="pull-left">
+                            <a href="{{ url('purchasing/pengajuan/pembelian/tambah') }}" class="btn btn-success">Tambah Data</a>
+                        </div>
+
+                        <div class="clearfix"></div>
+
                         <div class="panel-wrapper collapse in">
                             <div class="panel-body">
-                                
-                                <!-- <div class="seprator-block"></div> -->
-
-                                <div class="invoice-bill-table">
-                                    <div class="table-responsive">
-                                        <table id="myTable1" class="table table display pb-30">
+                                <div class="table-wrap">
+                                    <div class="">
+                                        <table id="datable_1" class="table table-bordered">
                                             <thead>
                                                 <tr>
-                                                    <th>No</th>
-                                                    <th>Nama barang</th>
+                                                    <th>#</th>
+                                                    <th>No Pengajuan</th>
+                                                    <th>Nama Barang</th>
+                                                    <th>Tanggal Pengajuan</th>
                                                     <th>Jumlah</th>
-                                                    <th>Keterangan</th>
+                                                    <th>Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php $no = 1; ?>
-                                                @foreach ($data_detail as $data_detail)
+                                                @foreach($pembelian as $pembelian)
                                                 <tr>
                                                     <td>{{ $no++ }}</td>
-                                                    <td>{{ $data_detail->nama_barang}}</td>
-                                                    <td>{{ $data_detail->jumlah}} &nbsp; &nbsp;
-                                                        <a href="#" class="mr-25" data-toggle="modal" data-target="#editjumlah{{  $data_detail->id_transaksi }}" action="( {{url('warehouse/transaksi/edit/jumlah')}}/{{ $data_detail->id_transaksi}})"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
-                                                        @include('warehouse.transaksi.editjumlahbaru')
+                                                    <td>{{ $pembelian->no_PO }}</td>
+                                                    <td>{{ $pembelian->tgl_pengajuan }}</td>
+                                                    <td>{{ $pembelian->namaBarang }}</td>
+                                                    <td>{{ $pembelian->jumlah }}</td>
+                                                    <td>
+                                                        <a href="detailpo"><button class="btn btn-success btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
+                                                        
                                                     </td>
-                                                    <td>{{ $data_detail->keterangan}}</td>
                                                 </tr>
                                                 @endforeach
                                             </tbody>
                                         </table>
                                     </div>
-                                    <!--  -->
-                                    <div class="clearfix"></div>
                                 </div>
                             </div>
                         </div>
@@ -69,12 +71,8 @@
             </div>
             <!-- /Row -->
         </div>
-        <!-- /Footer -->
     </div>
     <!-- /Main Content -->
 </div>
 <!-- /#wrapper -->
-</div>
-</div>
-</div>
 @endsection

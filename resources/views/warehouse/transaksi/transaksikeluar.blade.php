@@ -76,7 +76,8 @@
                                                 <th>#</th>
                                                 <th>No transaksi</th>
                                                 <th>Tanggal Transaksi</th>
-                                                <th>Nama Barang</th>
+                                                <th>Pengirim Ekpedisi</th>
+                                                <th>Penerima</th>
                                                 <th>Created at</th>
                                                 <th>Aksi</th>
                                             </tr>
@@ -88,7 +89,8 @@
                                                 <td>{{ $no++ }}</td>
                                                 <td>{{ $transaksi_retur->no_transaksi}}</td>
                                                 <td>{{ $transaksi_retur->tgl_transaksi}}</td>
-                                                <td>{{ $transaksi_retur->nama_barang }}</td>
+                                                <td>{{ $transaksi_retur->pengirim}}</td>
+                                                <td>{{ $transaksi_retur->penerima}}</td>
                                                 <td>{{ $transaksi_retur->created_at }}</td>
                                                 <td>
                                                     <a href="#"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-eye"></i></button></a>

@@ -28,8 +28,9 @@ class TrkKeluarController extends Controller
 
     public function transaksikeluar()
     {
-        $transaksi_masuk = TransaksiKeluar::all();
-        $transaksi_retur = TransaksiKeluar::all();
+
+        $transaksi_masuk = TransaksiKeluar::all()->where('jns_barang', '!=', '');
+        $transaksi_retur = TransaksiKeluar::all()->where('jns_barang', '', '');
         return view('warehouse/transaksi/transaksikeluar', compact('transaksi_masuk', 'transaksi_retur'));
     }
 
@@ -204,7 +205,7 @@ class TrkKeluarController extends Controller
         TransaksiKeluar::create(
             [
                 'no_transaksi' => $request->no_transaksi,
-                // 'tgl_transaksi' => $request->tgl_transaksi,
+                'tgl_transaksi' => $request->tgl_transaksi,
                 'nama_supplier' => $request->nama_supplier,
                 'pengirim' => $request->pengirim,
                 'penerima' => $request->penerima,
