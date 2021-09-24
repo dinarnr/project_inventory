@@ -182,6 +182,9 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         // Route::post('po/simpan/draft', [POMktController::class, 'adddraft2']);
         Route::post('po/ubah/draft/{id_po}', [POMktController::class, 'editisidraft']); // edit keterangan di draft
         Route::get('po/detail/{no_PO}', [POMktController::class, 'detailpo']);
+        Route::delete('po/deletepo/{id_po}', [POMktController::class, 'deletepo']);
+
+
          // ----------------PENGAJUAN------------
         //  -------------------------RETUR-----------------------------
          Route::get('pengajuan/brgretur', [PengajuanMarketingController::class, 'tabelRetur']);
@@ -206,6 +209,7 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::get('peminjaman/ubah/{no_PO}', [PeminjamanTeknisiController::class, 'editpinjam']);
         Route::post('peminjaman/ubah/simpan', [PeminjamanTeknisiController::class, 'updatePinjam']);
         Route::post('peminjaman/kembali/{no_peminjaman}', [PeminjamanTeknisiController::class, 'kembali']);
+        Route::post('peminjaman/detailkembali/{id_peminjaman}', [PeminjamanTeknisiController::class, 'detailkembali']);
         Route::get('peminjaman/detail/{no_peminjaman}', [PeminjamanTeknisiController::class, 'detailpeminjaman']);
 
         // <----------------------DATA PENGAJUAN--------------------------->
