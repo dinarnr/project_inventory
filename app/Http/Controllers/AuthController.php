@@ -108,6 +108,7 @@ class AuthController extends Controller
         $user = new User;
         $user->name = ucwords(strtolower($request->name));
         $user->email = strtolower($request->email);
+        $user->gambar = 'user.png';
         $user->password = Hash::make($request->password);
         $user->email_verified_at = \Carbon\Carbon::now();
         $user->status = 'Non Aktif';

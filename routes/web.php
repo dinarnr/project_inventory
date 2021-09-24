@@ -59,6 +59,8 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
 
     Route::get('dashboard/home', [HomeController::class, 'index'])->name('home');
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+    
+    Route::get('admin/profile/profile', [HomeController::class, 'profil']);
 
     Route::group(['prefix' => 'warehouse/'], function () {
         // <----------------------DATA BARANG--------------------------->
