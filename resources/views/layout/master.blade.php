@@ -53,10 +53,13 @@
                 <ul class="nav navbar-right top-nav pull-right">
 
                     <li class="dropdown auth-drp">
-                        <a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown"><img src="{{asset('template')}}/dist/img/user1.png" alt="user_auth" class="user-auth-img img-circle" /><span class="user-online-status"></span></a>
+                        <a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown">    
+                                <img src="{{ url('img/logo') }}/{{ Auth::user()->gambar }}" alt="user_auth" class="user-auth-img img-circle">
+                            <span class="user-online-status"></span>
+                        </a>
                         <ul class="dropdown-menu user-auth-dropdown" data-dropdown-in="flipInX" data-dropdown-out="flipOutX">
                             <li>
-                                <a href="profile.html"><i class="zmdi zmdi-account"></i><span>Profile</span></a>
+                                <a href="{{ url('/admin/profile/profile') }}"><i class="zmdi zmdi-account"></i><span>Profile</span></a>
                             </li>
                             <li>
                                 <a href="{{ route('logout') }}"><i class="zmdi zmdi-power"></i><span>Log Out</span></a>

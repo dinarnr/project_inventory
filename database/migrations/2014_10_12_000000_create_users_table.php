@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('divisi')->nullable();
             $table->string('email')->unique();
+            $table->string('gambar')->nullable()->default('no_image.png');
             $table->timestamp('email_verified_at')->nullable();
             $table->dateTime('lastLogin')->nullable();
             $table->dateTime('lastlogout')->nullable();
