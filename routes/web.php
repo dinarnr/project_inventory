@@ -122,8 +122,10 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::get('so/dataSO', [SoController::class, 'dataSO']);
         Route::get('so/detail/{no_PO}', [SOController::class, 'detailso']);
         Route::post('so/tambah/keterangan/{id_po}', [SOController::class, 'addket']);
-        Route::post('confirmpo/{id_PO}', 'App\Http\Controllers\PoController@confirmpo');
-        Route::post('reject/{id_PO}', 'App\Http\Controllers\PoController@reject');
+        Route::post('so/confirmpo/{id_PO}', [SOController::class, 'confirmpo']);
+        Route::post('so/reject/{id_PO}', [SOController::class, 'reject']);
+        Route::post('so/draft/{id_PO}', [SOController::class, 'draft']);
+
         // Route::get('so/keluarinstalasi/tambah/{no_PO}', [SOController::class, 'transaksiinstalasi']);
         // Route::post('/addinstalasi/fetch', 'SOController@fetch')->name ('socontroller.fetch');
 

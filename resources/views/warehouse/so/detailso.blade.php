@@ -166,9 +166,10 @@
         </div>
 
         <div class="pull-right">
-            <form action="{{ url('confirmpo/{id_PO}') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ url('warehouse/so/confirmpo/{id_PO}') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" id="aktif" name="aktif[]">
+                <button class="btn btn-default" name="draft" type="submit" value="draft" id="draft">Draft</button>
                 <button type="submit" class="btn btn-primary mr-10">
                     Proses
                 </button>

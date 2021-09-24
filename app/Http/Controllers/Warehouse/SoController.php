@@ -92,7 +92,7 @@ class SoController extends Controller
 
             ]
         );
-        return redirect('warehouse/po');
+        return redirect('warehouse/so/dataSO');
     }
 
     public function reject(Request $request)
