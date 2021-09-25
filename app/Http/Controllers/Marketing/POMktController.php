@@ -218,28 +218,28 @@ class POMktController extends Controller
     //di edit draft bisa tambah data
     public function add($no_PO)
     {
-        $no_PO = $no_PO;
         $data_detail = DetailPO::where('no_PO', $no_PO)->get();
         $data_po = PO::all()->where('no_PO', $no_PO);
         $tanggal = Carbon::now();
         $total = DetailPO::where('no_PO', $no_PO)->sum('amount');
         $nama_instansi = PO::where('no_PO', $no_PO)->pluck('instansi');
-        // dd($nama_instansi);
+        $no_SO = PO::where('no_PO', $no_PO)->pluck('no_SO');
         $instansi = Instansi::where('nama_instansi', $nama_instansi)->get();
-        // dd($no_PO);
-        return view('marketing/po/adddraft', compact('no_PO', 'data_detail', 'data_po', 'tanggal', 'total', 'nama_instansi', 'instansi'));
+        return view('marketing/po/adddraft', compact('no_PO', 'data_detail', 'data_po', 'tanggal', 'total', 'nama_instansi', 'instansi','no_SO'));
     }
 
     //di edit draft bisa tambah data
     public function add2(Request $request)
     {
         $user = Auth::user();
-        // dd($request->rate);
+        // dd($request->nama_instansi);
         $jumlah_data = count($request->noPO);
         for ($i = 0; $i < $jumlah_data; $i++) {
             DetailPO::create(
                 [
                     'no_PO' => $request->noPO[$i],
+                    'no_SO' => $request->noSO[$i],
+                    'instansi' => $request->nama_instansi[$i],
                     'nama_barang' => $request->nama_barang[$i],
                     'jumlah' => $request->jumlah[$i],
                     'rate' => $request->rate1[$i],
@@ -359,5 +359,29 @@ class POMktController extends Controller
         );
         // //mengirim data_brg ke view
         return back()->with('success', "Data telah terhapus");
+    }
+    public function tglpemasangan($id_PO, Request $request)
+    {
+        $user = Auth::user();
+
+        PO::where('id_PO', $id_PO)
+            ->update(
+                [
+                    'tgl_pemasangan' => $request->tglpemasangan,
+                ]
+            );
+
+        Log::create(
+            [
+                'name' => $user->name,
+                'email' => $user->email,
+                'divisi' => $user->divisi,
+                'deskripsi' => 'Update Tanggal Pemasangan',
+                'status' => '2',
+                'ip' => $request->ip()
+
+            ]
+        );
+        return redirect('marketing/po');
     }
 }

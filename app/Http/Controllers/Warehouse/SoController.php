@@ -62,6 +62,40 @@ class SoController extends Controller
     {
         // dd($request->is_active);
         $user = Auth::user();
+        if ($request->proses == 'proses') {
+
+        DetailPO::where('id_po', $request->is_active)
+            ->update(
+                [
+                'status' => '2'
+                ]
+            );
+
+        // DetailPO::whereIn('id_po', $request->is_active)
+        // ->update(array(
+        //         'status'=> '1'
+        // ));  
+
+        PO::where('no_PO', $request->no_PO)
+            ->update(
+                [
+                    'status' => '3'
+                ]
+            );
+
+        Log::create(
+            [
+                'name' => $user->name,
+                'email' => $user->email,
+                'divisi' => $user->divisi,
+                'deskripsi' => 'Confirm PO',
+                'status' => '2',
+                'ip' => $request->ip()
+
+            ]
+        );
+        return redirect('warehouse/so');
+    } else {
         DetailPO::where('id_po', $request->is_active)
             ->update(
                 [
@@ -86,13 +120,15 @@ class SoController extends Controller
                 'name' => $user->name,
                 'email' => $user->email,
                 'divisi' => $user->divisi,
-                'deskripsi' => 'Confirm PO',
+                'deskripsi' => 'Confirm Draft SO',
                 'status' => '2',
                 'ip' => $request->ip()
 
             ]
         );
-        return redirect('warehouse/so');
+    }
+
+        return redirect('warehouse/so/dataSO');
     }
 
     public function reject(Request $request)
@@ -137,7 +173,30 @@ class SoController extends Controller
         }
         return back()->with('success', "Data telah ditolak");
     }
-    
+    public function keterangan($id_po, Request $request)
+    {
+        $user = Auth::user();
+
+        PO::where('id_po', $id_po)
+            ->update(
+                [
+                    'keterangan' => $request->edit_keterangan,
+                ]
+            );
+
+        Log::create(
+            [
+                'name' => $user->name,
+                'email' => $user->email,
+                'divisi' => $user->divisi,
+                'deskripsi' => 'Update Keterangan SO',
+                'status' => '2',
+                'ip' => $request->ip()
+
+            ]
+        );
+        return redirect('warehouse/so/dataSO');
+    }
     
 
 

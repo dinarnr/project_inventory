@@ -59,6 +59,8 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
 
     Route::get('dashboard/home', [HomeController::class, 'index'])->name('home');
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+    
+    Route::get('admin/profile/profile', [HomeController::class, 'profil']);
 
     Route::group(['prefix' => 'warehouse/'], function () {
         // <----------------------DATA BARANG--------------------------->
@@ -122,8 +124,10 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::get('so/dataSO', [SoController::class, 'dataSO']);
         Route::get('so/detail/{no_PO}', [SOController::class, 'detailso']);
         Route::post('so/tambah/keterangan/{id_po}', [SOController::class, 'addket']);
-        Route::post('confirmpo/{id_PO}', 'App\Http\Controllers\PoController@confirmpo');
-        Route::post('reject/{id_PO}', 'App\Http\Controllers\PoController@reject');
+        Route::post('so/confirmpo/{id_PO}', [SOController::class, 'confirmpo']);
+        Route::post('so/reject/{id_PO}', [SOController::class, 'reject']);
+        Route::post('so/draft/{id_PO}', [SOController::class, 'draft']);
+
         // Route::get('so/keluarinstalasi/tambah/{no_PO}', [SOController::class, 'transaksiinstalasi']);
         // Route::post('/addinstalasi/fetch', 'SOController@fetch')->name ('socontroller.fetch');
 
@@ -180,6 +184,10 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         // Route::post('po/simpan/draft', [POMktController::class, 'adddraft2']);
         Route::post('po/ubah/draft/{id_po}', [POMktController::class, 'editisidraft']); // edit keterangan di draft
         Route::get('po/detail/{no_PO}', [POMktController::class, 'detailpo']);
+        Route::delete('po/deletepo/{id_po}', [POMktController::class, 'deletepo']);
+        Route::delete('po/deletepo/{nid_PO}', [POMktController::class, 'deletepo']);
+        Route::post('/po/tglpemasangan/{id_PO}', [POMktController::class, 'tglpemasangan']); // edit tanggal pemasangan
+
          // ----------------PENGAJUAN------------
         //  -------------------------RETUR-----------------------------
          Route::get('pengajuan/brgretur', [PengajuanMarketingController::class, 'tabelRetur']);
@@ -204,6 +212,7 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::get('peminjaman/ubah/{no_PO}', [PeminjamanTeknisiController::class, 'editpinjam']);
         Route::post('peminjaman/ubah/simpan', [PeminjamanTeknisiController::class, 'updatePinjam']);
         Route::post('peminjaman/kembali/{no_peminjaman}', [PeminjamanTeknisiController::class, 'kembali']);
+        Route::post('peminjaman/detailkembali/{id_peminjaman}', [PeminjamanTeknisiController::class, 'detailkembali']);
         Route::get('peminjaman/detail/{no_peminjaman}', [PeminjamanTeknisiController::class, 'detailpeminjaman']);
 
         // <----------------------DATA PENGAJUAN--------------------------->
