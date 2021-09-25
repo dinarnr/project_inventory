@@ -1,3 +1,4 @@
+@foreach ($data_detail as $detail)
 <div class="modal fade" id="addket{{ $detail->id_po }}" role="dialog" aria-labelledby="exampleModalLabel1">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -5,7 +6,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h5 class="modal-title" id="exampleModalLabel1">Tambah Keterangan</h5>
             </div>
-            <form action="{{ url('warehouse/po/tambahketerangan') }}/{{ $detail->id_po }}" class="modal-body" method="post">
+            <form action="{{ url('warehouse/so/tambah/keterangan') }}/{{ $detail->id_po }}" class="modal-body" method="post">
                 {{ csrf_field() }}
                 <div class="modal-body">
                     <div class="form-group">
@@ -21,3 +22,4 @@
         </div>
     </div>
 </div>
+@endforeach
