@@ -89,7 +89,9 @@
                                                             <label class="control-label mb-10">Jumlah</label>
                                                             <input type="number" id="jumlah" name="jumlah" class="form-control">
                                                             
-                                                            <input  id="kode_barang" name="kode_barang" value="" hidden>
+                                                            @foreach($barang as $brg)
+																<input id="kode_barang" name="kode_barang" value="{{$brg->kode_barang}}" hidden>
+															@endforeach
                                                             
                                                         </div>
                                                     </div>

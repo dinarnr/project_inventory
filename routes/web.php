@@ -101,7 +101,7 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
     
         Route::get('transaksi/keluarinstalasi/tambah', [TrkKeluarController::class, 'transaksiinstalasi']);
         Route::post('transaksi/keluarinstalasi/tambah/fetch', [TrkKeluarController::class, 'fetch'])->name ('trkkeluarcontroller.fetch');
-        // Route::post('transaksi/keluarinstalasi/simpan', [TrkKeluarController::class, 'keluarinstalasi']);
+        Route::post('transaksi/keluarinstalasi/simpan', [TrkKeluarController::class, 'keluarinstalasi']);
 
         // <----------------------DATA SUPPLIER--------------------------->
         Route::get('supplier', [SupplierController::class, 'supplier']);

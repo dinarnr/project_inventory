@@ -55,7 +55,7 @@
 													<div class="col-md-6">
 														<div class="form-group">
 															<label class="control-label mb-10">NO SO</label>
-															<select name="no_SO dynamic2" id="no_SO" class="form-control" data-dependent="nama_barang">
+															<select name="no_SO dynamic2" id="no_SO" class="form-control" data-dependent="TabelDinamis">
 																@foreach ($SO as $no_SO)
 																	<option value="{{ $no_SO->no_SO }}">{{ $no_SO->no_SO }}</option>
 																@endforeach
@@ -79,42 +79,15 @@
                                                     </div>
 													<div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label class="control-label mb-10">Instansi</label>
-															
-                                                            <select name="instansi" id="instansi" class="form-control">
-																@foreach ($instansi as $instansi)
-																	<option value="{{ $instansi->nama_instansi }}">{{ $instansi->nama_instansi }}</option>
-																@endforeach
-															</select>
-                                                        </div>
-                                                    </div>
-												</div>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
                                                             <label class="control-label mb-10">Penerima</label>
 															<input type="text" id="penerima" name="penerima" class="form-control">
                                                         </div>
                                                     </div>
 												</div>
-												<div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label class="control-label mb-10">Nama Barang</label>
-															<table>
-																<tr>
-																	<td id="nama_barang" name="nama_barang"></td>
-																	<td id="jumlah" name="jumlah"></td>
-																</tr>
-															</table>
-                                                        </div>
-                                                    </div>
-													{{ csrf_field() }}
-												</div>
                                             </div>
-                                            <div class="col-md-14" style="text-align:right;">
+                                            <!-- <div class="col-md-14" style="text-align:right;">
 												<button type="button" onclick="ambildata()" class="btn btn-success ">Tambah Data</button>
-											</div>
+											</div> -->
                                             <div class="col-md-12 mt-10">
 												<div class="panel panel-default card-view">
 													<div class="panel-heading">
@@ -131,12 +104,9 @@
 																			<thead class="thead-light">
 																				<tr>
 																					<!-- <th>No Transaksi</th> -->
-																					<th>No SO</th>
-																					<th>Tanggal Instalasi</th>
-																					<th>Pengirim Ekpedisi</th>
+																					<th>Nama Barang</th>
+																					<th>Jumlah</th>
 																					<th>Instansi</th>
-																					<th>Penerima</th>
-																					<th>Remove</th>
 
 																				</tr>
 																			</thead>
@@ -161,7 +131,7 @@
 													</div>
 												</div>
 											</div> 
-											
+											{{ csrf_field() }}
                                         </form>
                                     </div>
                                 </div>

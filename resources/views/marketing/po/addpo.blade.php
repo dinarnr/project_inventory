@@ -94,12 +94,19 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label class="control-label mb-10 text-left">Nama barang</label>
-                                                <input type="text" class="form-control" name="nama_barang" id="nama_barang">
+                                                    <select name="nama_barang" id="nama_barang" class="form-control">
+                                                        @foreach($barang as $brg)
+                                                        <option value="{{$brg->nama_barang}}">{{$brg->nama_barang}}</option>
+                                                        @endforeach
+                                                    </select>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label class="control-label mb-10 text-left" for="example-email">Keterangan<span class="help"> </span></label>
+                                                @foreach($barang as $brg)
+													<input id="kode_barang" name="kode_barang" value="{{$brg->kode_barang}}" hidden>
+												@endforeach
                                                 <input type="text" id="keterangan" name="keterangan" class="form-control" placeholder="">
                                             </div>
                                         </div>
@@ -279,6 +286,7 @@
         var noSO = document.getElementById('noSO').value;
         var instansi = document.getElementById('instansi').value;
         var nama_barang = document.getElementById('nama_barang').value;
+        var kode_barang = document.getElementById('kode_barang').value;
         var jumlah = document.getElementById('jumlah').value;
         var rate1 = document.getElementById('rate').value.replace(/[^,\d]/g, '').toString();
         var amount1 = document.getElementById('amount').value.replace(/[^,\d]/g, '').toString();
@@ -286,7 +294,7 @@
         var amount = document.getElementById('amount').value;
         var keterangan = document.getElementById('keterangan').value;
         var total = document.getElementById('total').value;
-        addrow(noPO, noSO, nama_barang, jumlah, keterangan, rate, amount, rate1, amount1, instansi);
+        addrow(noPO, noSO, nama_barang, kode_barang, jumlah, keterangan, rate, amount, rate1, amount1, instansi);
 
     }
     var i = 0;
@@ -306,12 +314,13 @@
         return rupiah;
     }
 
-    function addrow(noPO, noSO, nama_barang, jumlah, keterangan, rate, amount, rate1, amount1, instansi) {
+    function addrow(noPO, noSO, nama_barang, kode_barang, jumlah, keterangan, rate, amount, rate1, amount1, instansi) {
         i++;
         $('#TabelDinamis').append('<tr id="row' + i + '"><td style="display:none;"><input type="text" style="outline:none;border:0;" readonly name="noPO[]" id="noPO" value="' + noPO +
             '"><td style="display:none;"><input type="text" style="outline:none;border:0; font-weight: bold;" readonly name="noSO[]" id="noSO" value="' + noSO +
             '"><td style="display:none;"><input type="text" style="outline:none;border:0; font-weight: bold;" readonly name="instansi1[]" id="instansi1" value="' + instansi +
             '"><td><input type="text" style="outline:none;border:0; font-weight: bold;" readonly name="nama_barang[]" id="nama_barang" value="' + nama_barang +
+            '"><td style="display:none;"><input type="text" style="outline:none;border:0; font-weight: bold;" readonly name="kode_barang[]" id="kode_barang" value="' + kode_barang +
             '"><br><input type="text" style="outline:none;border:0;" name="keterangan[]" id="keterangan" value="    ' + keterangan +
             '"></br ></td><td><input type="text" style="outline:none;border:0;" readonly name="jumlah[]" id="jumlah" value="' + jumlah +
             '"></td><td>Rp <input type="text" style="outline:none;border:0;" readonly name="rate[]" id="rate" value="' + rate +

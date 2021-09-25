@@ -9,6 +9,7 @@ use App\Models\Log;
 use App\Models\PO;
 use App\Models\Profil;
 use  App\Models\Instansi;
+use App\Models\Master;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -18,7 +19,7 @@ class POMktController extends Controller
     //
     public function index()
     {
-         $data_po_wh = PO::all()->where('status','>=', '1');
+        $data_po_wh = PO::all()->where('status','>=', '1');
         $data_po = PO::all();
         return view('marketing/po/po', compact('data_po', 'data_po_wh'));
     }
@@ -29,7 +30,10 @@ class POMktController extends Controller
         $check = count(PO::where('no_PO', 'like', "%$kode%")->get()->toArray());
         $angka = sprintf("%04d", (int)$check + 1);
         $noPO = $kode . "" . $angka;
+
         $data_instansi = Instansi::all();
+        $barang = Master::where([['status', 'aktif']])->get();
+
         
         $kode = strtoupper(substr("SO-", 0, 3));
         $check = count(PO::where('no_SO', 'like', "%$kode%")->get()->toArray());
@@ -38,7 +42,7 @@ class POMktController extends Controller
 
         // $noPO = IdGenerator::generate(['table' => 'purchase_order', 'length' => 8, 'prefix' => date('ym')]);
       
-        return view('marketing/po/addpo', compact('noPO', 'noSO', 'data_instansi'));
+        return view('marketing/po/addpo', compact('noPO', 'noSO', 'data_instansi', 'barang'));
     }
 
     // ketika memilih proses atau draft
@@ -55,6 +59,7 @@ class POMktController extends Controller
                     'no_SO' => $request->noSO[$i],
                     'instansi' => $request->instansi1[$i],
                     'nama_barang' => $request->nama_barang[$i],
+                    'kode_barang' => $request->kode_barang[$i],
                     'jumlah' => $request->jumlah[$i],
                     'rate' => $request->rate1[$i],
                     'amount' => $request->amount1[$i],
