@@ -104,7 +104,7 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
     
         Route::get('transaksi/keluarinstalasi/tambah', [TrkKeluarController::class, 'transaksiinstalasi']);
         Route::post('transaksi/keluarinstalasi/tambah/fetch', [TrkKeluarController::class, 'fetch'])->name ('trkkeluarcontroller.fetch');
-        // Route::post('transaksi/keluarinstalasi/simpan', [TrkKeluarController::class, 'keluarinstalasi']);
+        Route::post('transaksi/keluarinstalasi/simpan', [TrkKeluarController::class, 'keluarinstalasi']);
 
         // <----------------------DATA SUPPLIER--------------------------->
         Route::get('supplier', [SupplierController::class, 'supplier']);
@@ -185,6 +185,10 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         // Route::post('po/simpan/draft', [POMktController::class, 'adddraft2']);
         Route::post('po/ubah/draft/{id_po}', [POMktController::class, 'editisidraft']); // edit keterangan di draft
         Route::get('po/detail/{no_PO}', [POMktController::class, 'detailpo']);
+        Route::delete('po/deletepo/{id_po}', [POMktController::class, 'deletepo']);
+        Route::delete('po/deletepo/{nid_PO}', [POMktController::class, 'deletepo']);
+        Route::post('/po/tglpemasangan/{id_PO}', [POMktController::class, 'tglpemasangan']); // edit tanggal pemasangan
+
          // ----------------PENGAJUAN------------
         //  -------------------------RETUR-----------------------------
          Route::get('pengajuan/brgretur', [PengajuanMarketingController::class, 'tabelRetur']);
@@ -209,6 +213,7 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::get('peminjaman/ubah/{no_PO}', [PeminjamanTeknisiController::class, 'editpinjam']);
         Route::post('peminjaman/ubah/simpan', [PeminjamanTeknisiController::class, 'updatePinjam']);
         Route::post('peminjaman/kembali/{no_peminjaman}', [PeminjamanTeknisiController::class, 'kembali']);
+        Route::post('peminjaman/detailkembali/{id_peminjaman}', [PeminjamanTeknisiController::class, 'detailkembali']);
         Route::get('peminjaman/detail/{no_peminjaman}', [PeminjamanTeknisiController::class, 'detailpeminjaman']);
 
         // <----------------------DATA PENGAJUAN--------------------------->

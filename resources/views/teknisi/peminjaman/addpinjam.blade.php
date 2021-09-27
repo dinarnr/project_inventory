@@ -63,14 +63,15 @@
                                             <div class="form-group">
                                                 <label class="control-label mb-10 text-left">Nama barang</label>
                                                 <select name="nama_brg" id="nama_brg" class="form-control select2">
-                                                    @foreach($nama_barang) as $nama_barang)
-                                                    <option value="{{ $nama_barang->nama_barang}}">{{ $nama_barang->kode_barang }} | {{ $nama_barang->nama_barang }}</option>
+                                                    @foreach($barang as $brg)
+                                                    <option value="{{ $brg->nama_barang}}">{{ $brg->kode_barang }} | {{ $brg->nama_barang }}</option>
                                                     @endforeach
-                                                <!-- </select>
-                                                <label class="control-label mb-10 text-left">Nama barang</label>
+                                                </select>
+                                                <!-- <label class="control-label mb-10 text-left">Nama barang</label>
                                                 <input type="text" class="form-control" name="nama_barang" id="nama_barang"> -->
                                             </div>
                                         </div>
+
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label mb-10">Jumlah</label>
@@ -109,7 +110,6 @@
                                                                         <th>No</th>
                                                                         <th>Nama barang</th>
                                                                         <th>Jumlah</th>
-                                                                        <th>keterangan</th>
                                                                         <th>Remove</th>
                                                                     </tr>
                                                                 </thead>
@@ -149,19 +149,17 @@
     <script type="text/javascript">
         function ambildata() {
             var no_peminjaman = document.getElementById('no_peminjaman').value;
-            var nama_barang = document.getElementById('nama_barang').value;
+            var nama_brg = document.getElementById('nama_brg').value;
             var jumlah = document.getElementById('jumlah').value;
-            var keterangan = document.getElementById('keterangan').value;
-            addrow(no_peminjaman, nama_barang, jumlah, keterangan);
+            addrow(no_peminjaman, nama_brg, jumlah);
         }
         var i = 0;
 
-        function addrow(no_peminjaman, nama_barang, jumlah, keterangan) {
+        function addrow(no_peminjaman, nama_brg, jumlah) {
             i++;
             $('#TabelDinamis').append('<tr id="row' + i + '"><td><input type="text" style="outline:none;border:0;" readonly value="' + i +
-                '"><td><input type="text" style="outline:none;border:0;" readonly name="nama_barang[]" id="nama_barang" value="' + nama_barang +
+                '"><td><input type="text" style="outline:none;border:0;" readonly name="nama_brg[]" id="nama_brg" value="' + nama_brg +
                 '"></td><td><input type="text" style="outline:none;border:0;" name="jumlah[]" id="jumlah" value="' + jumlah +
-                '"></td><td><input type="text" style="outline:none;border:0;" name="keterangan[]" id="keterangan" value="' + keterangan +
                 '"></td><td style="display:none;"><input type="text" style="outline:none;border:0;" name="no_peminjaman[]" id="no_peminjaman" value="' + no_peminjaman +
                 '"></td><td><button type="button" id="' + i + '" class="btn btn-danger btn-small remove_row">&times;</button></td></tr>');
         };
@@ -169,5 +167,7 @@
             var row_id = $(this).attr("id");
             $('#row' + row_id + '').remove();
         });
+
+        $('#nama_brg').select2();
     </script>
     @endsection

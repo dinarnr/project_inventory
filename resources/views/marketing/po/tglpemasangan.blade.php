@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h5 class="modal-title" id="exampleModalLabel1">Ubah</h5>
+                <h5 class="modal-title" id="exampleModalLabel1">Tambah Tanggal</h5>
             </div>
             <form action="{{ url('marketing/po/tglpemasangan') }}/{{ $data_po->id_PO }}" class="modal-body" method="post">
                 {{ csrf_field() }}

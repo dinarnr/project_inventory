@@ -44,6 +44,10 @@
                                             <label class="control-label mb-10 text-left">Nama barang</label>
                                             <input type="text" class="form-control" name="nama_barang" id="nama_barang">
                                             <input type="hidden" class="form-control" name="noPO" id="noPO" value="{{$no_PO}}">
+                                            @foreach ($data_po as $po)
+                                            <input type="hidden" class="form-control" name="noSO" id="noSO" value="{{$po->no_SO}}">
+                                            <input type="hidden" class="form-control" name="nama_instansi" id="nama_instansi" value="{{$po->instansi}}">
+                                            @endforeach
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label mb-10 text-left" for="example-email">Keterangan<span class="help"> </span></label>
@@ -185,6 +189,8 @@
 
     function ambildata() {
         var noPO = document.getElementById('noPO').value;
+        var noSO = document.getElementById('noSO').value;
+        var nama_instansi = document.getElementById('nama_instansi').value;
         var nama_barang = document.getElementById('nama_barang').value;
         var jumlah = document.getElementById('jumlah').value;
         var rate = document.getElementById('rate').value;
@@ -192,11 +198,11 @@
         var amount = document.getElementById('amount').value;
         var amount1 = document.getElementById('amount').value.replace(/[^,\d]/g, '').toString();
         var keterangan = document.getElementById('keterangan').value;
-        addrow(noPO, nama_barang, jumlah, keterangan, rate, amount, rate1, amount1);
+        addrow(noPO, nama_barang, jumlah, keterangan, rate, amount, rate1, amount1, nama_instansi, noSO);
     }
     var i = 0;
 
-    function addrow(noPO, nama_barang, jumlah, keterangan, rate, amount, rate1, amount1) {
+    function addrow(noPO, nama_barang, jumlah, keterangan, rate, amount, rate1, amount1, nama_instansi, noSO) {
         i++;
         $('#TabelDinamis').append('<tr id="row' + i + '"><td style="display:none;"><input type="text" style="outline:none;border:0;" readonly name="noPO[]" id="noPO" value="' + noPO +
             '"><td><input type="text" style="outline:none;border:0; font-weight: bold;" readonly name="nama_barang[]" id="nama_barang" value="' + nama_barang +
@@ -206,6 +212,8 @@
             '"></td><td style="display:none;"> <input type="text" style="outline:none;border:0;" readonly name="rate1[]" id="rate1" value="' + rate1 +
             '"></td><td>Rp <input type="text" style="outline:none;border:0;" readonly name="amount[]" id="amount" value="' + amount +
             '"></td><td style="display:none;"><input type="text" style="outline:none;border:0;" readonly name="amount1[]" id="amount1" value="' + amount1 +
+            '"></td><td style="display:none;"><input type="text" style="outline:none;border:0;" readonly name="noSO[]" id="noSO" value="' + noSO +
+            '"></td><td style="display:none;"><input type="text" style="outline:none;border:0;" readonly name="nama_instansi[]" id="nama_instansi" value="' + nama_instansi +
             '"></td><td><button type="button" id="' + i + '" class="btn btn-danger btn-small remove_row">&times;</button></td></tr>');
     };
     $(document).on('click', '.remove_row', function() {

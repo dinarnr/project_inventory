@@ -21,7 +21,7 @@ class MasterSeeder extends Seeder
             'kode_barang' => '111',
             'stok' => '200',
             'gambar' => 'no_image.png',
-            'status' => '1',
+            'status' => 'aktif',
         ]);
         $Master->save();
 
@@ -31,7 +31,7 @@ class MasterSeeder extends Seeder
             'kode_barang' => '112',
             'stok' => '100',
             'gambar' => 'no_image.png',
-            'status' => '1',
+            'status' => 'aktif',
         ]);
         $Master->save();
 

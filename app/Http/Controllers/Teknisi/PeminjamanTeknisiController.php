@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\DetailPeminjaman;
 use App\Models\Log;
+use App\Models\Master;
 use App\Models\Peminjaman;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -22,11 +23,12 @@ class PeminjamanTeknisiController extends Controller
 
     public function addpinjam()
     {
+        $barang = Master::all();
         $kode = strtoupper(substr("PJM", 0, 3));
         $check = count(Peminjaman::where('no_peminjaman', 'like', "%$kode%")->get()->toArray());
         $angka = sprintf("%03d", (int)$check + 1);
         $no_peminjaman = $kode . "-" . $angka;
-        return view('teknisi/peminjaman/addpinjam', compact('no_peminjaman'));
+        return view('teknisi/peminjaman/addpinjam', compact('no_peminjaman', 'barang'));
     }
 
     public function addpinjam2(Request $request)
@@ -37,13 +39,12 @@ class PeminjamanTeknisiController extends Controller
             DetailPeminjaman::create(
                 [
                     'no_peminjaman'  => $request->no_peminjaman[$i],
-                    'nama_barang' => $request->nama_barang[$i],
+                    'nama_barang' => $request->nama_brg[$i],
                     'jumlah' => $request->jumlah[$i],
-                    'keterangan' => $request->keterangan[$i],
                 ]
             );
         }
-        $jumlah_barang = count($request->nama_barang);
+        $jumlah_barang = count($request->nama_brg);
 
         Peminjaman::create([
             'pic_teknisi'          => $user->name,
@@ -84,6 +85,38 @@ class PeminjamanTeknisiController extends Controller
             ->update(
                 [
                     'status' => 'Diproses Warehouse',
+                    'tglKembali' => Carbon::now()
+                ]
+            );
+
+        Log::create(
+            [
+                'name' => $user->name,
+                'email' => $user->email,
+                'divisi' => $user->divisi,
+                'deskripsi' => 'Pinjaman di Proses Warehouse',
+                'status' => '2',
+                'ip' => $request->ip()
+
+            ]
+        );
+        return redirect()->back();
+    }
+
+    public function detailkembali(Request $request, $id_peminjaman)
+    {
+        $user = Auth::user();
+        DetailPeminjaman::where('id_peminjaman', $id_peminjaman)
+            ->update(
+                [
+                    'status' => '1',
+                ]
+            );
+
+        Peminjaman::where('id_peminjaman', $request->id_peminjaman)
+            ->update(
+                [
+                    'status' => '1',
                     'tglKembali' => Carbon::now()
                 ]
             );

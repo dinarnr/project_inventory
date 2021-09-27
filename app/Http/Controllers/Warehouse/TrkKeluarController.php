@@ -137,7 +137,7 @@ class TrkKeluarController extends Controller
         $data_so = PO::all();
         $SO = PO::all();
         $instansi = Instansi::all();
-        $brg = DB::table('detail_PO')->groupBy('no_SO')->get();
+        $brg = DB::table('detail_PO')->groupBy('no_SO', 'status')->get();
 
         $now = Carbon::now();
         $thnBln = $now->year . $now->month;
@@ -156,15 +156,68 @@ class TrkKeluarController extends Controller
         $values = $request->get('value');
         $dependent = $request->get('dependent');
 
+        $now = Carbon::now();
+        $thnBln = $now->year . $now->month;
+        $kode = strtoupper(substr("TRK", 0, 3));
+        $check = count(TransaksiKeluar::where('no_transaksi', 'like', "%$thnBln%")->get()->toArray());
+        $angka = sprintf("%03d", (int)$check + 1);
+        $no_trans =  $kode.  "-"  .$now->year . $now->month . $angka;
+
         //    dd($dependent);
         $data = DB::table('detail_PO')->where([['no_SO', $values],['status', '2']])->groupBy('nama_barang')->get();
-        $output = '<tr> <td> </td> </tr>';
+        $output = '<tr id="row"></tr>';
         foreach ($data as $row) {
-            $output .= '<tr>'.'<td>'.$row->nama_barang.'</td>'.
-                            '<td>'.$row->jumlah.' </td>
-                            </tr>';
-        } 
+            $output .= '<tr id="row"></td>
+            <td><input type="text" style="outline:none;border:0;" name="no_trans" id="no_trans" value="'.$no_trans.'"></td>
+            <td><input type="text" style="outline:none;border:0;" readonly name="nama_barang[]" id="nama_barang" value="'.$row->nama_barang.'"></td> 
+            <td style="display:none;"><input type="text" style="outline:none;border:0;" readonly name="kode_barang[]" id="kode_barang" value="'.$row->kode_barang.'"></td> 
+            <td style="display:none;"><input type="text" style="outline:none;border:0;" readonly name="no_SO[]" id="no_SO" value="'.$row->no_SO.'"></td> 
+            <td><input type="text" style="outline:none;border:0;" readonly name="jumlah[]" id="jumlah" value="'.$row->jumlah.'"></td>
+            <td><input type="text" style="outline:none;border:0;" readonly name="instansi[]" id="instansi" value="'.$row->instansi.'"></td>
+             </tr>';
+        }
         echo $output;
+    }
+ 
+    public function keluarinstalasi(Request $request)
+    {
+        // dd($request->jumlah);
+        $jumlah_data = count($request->jumlah);
+        for ($i = 0; $i < $jumlah_data; $i++) {
+            DetailTrkKeluar::create(
+                [
+                    'no_transaksi' => $request->no_trans[$i],
+                    'jumlah' => $request->jumlah[$i],
+                    'kode_barang' => $request->kode_barang[$i],
+                    'nama_barang' => $request->nama_barang[$i],            
+                    'jns_barang' => $request->jns_barang[$i],
+                    'no_SO' => $request->no_SO[$i],
+                ]
+            );
+        }
+        TransaksiKeluar::create(
+            [
+                    'no_transaksi' => $request->no_transaksi,
+                    'tgl_instalasi' => $request->tgl_instalasi,
+                    'no_SO' => $request->no_SO,
+                    // 'instansi' => $request->instansi,
+                    'pengirim' => $request->pengirim,
+                    'penerima' => $request->penerima,
+                    'jns_barang' => $request->jenis_barang,
+            ]
+        );
+        $user = Auth::user();
+        Log::create(
+            [
+                'name' => $user->name,
+                'email' => $user->email,
+                'divisi' => $user->divisi,
+                'deskripsi' => 'Create Kelaur Instalasi',
+                'status' => '2',
+                'ip' => $request->ip()
+            ]
+        );
+        return redirect('warehouse/transaksikeluar');
     }
 
     // -----------------------KELUAR RETURR----------------------------
