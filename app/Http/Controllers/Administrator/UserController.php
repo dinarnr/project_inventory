@@ -51,16 +51,23 @@ class UserController extends Controller
         ]);
         return back();
     }
-    public function updateUser(Request $request){
+    public function editUser($id)
+    {
+        $users = User::find($id);
+        return view('administrator/update', compact('users'));
+    }
+
+    public function updateUser(Request $request)
+    {
         User::where('id', $request->edit_id)
         ->update([
-            'name' => $request->edit_nama,
-            'email' => $request->edit_email,
+            'name'      => $request->edit_nama,
+            'email'     => $request->edit_email,
             // 'password' => $request->edit_password,
-            'divisi' => $request->edit_divisi,
-            'status' => $request->edit_status
+            'divisi'    => $request->edit_divisi,
+            'status'    => $request->edit_status
         ]);
-    return redirect()->back();
+    return redirect('administrator/user');
     }
 
 }

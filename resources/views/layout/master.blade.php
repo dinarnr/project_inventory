@@ -329,7 +329,7 @@
                 <!-- <-------------------------------OFFICE----------------------------------->
                 @if (auth()->user()->divisi == "office")
                 <li>
-                    <a href="{{ url('office/report') }}">
+                    <a href="{{ url('office/report/report') }}">
                         <div class="pull-left"><i class="zmdi zmdi-book mr-20"></i><span class="right-nav-text">Report</span></div>
                         <div class="clearfix"></div>
                     </a>
@@ -342,7 +342,7 @@
                     </a>
                     <ul id="dashboard_dr" class="collapse collapse-level-1">
                         <li>
-                            <a href="{{ url('office/stok') }}">Stok</a>
+                            <a href="{{ url('office/barang/stok') }}">Stok</a>
                         </li>
                         <li>
                             <a href="{{ url('office/transaksi') }}">Transaksi Masuk</a>

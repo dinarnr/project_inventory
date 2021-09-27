@@ -29,7 +29,8 @@ use App\Http\Controllers\Admin\PoAdminController;
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
-
+use App\Http\Controllers\Office\ReportController;
+use App\Http\Controllers\Office\StokController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -228,7 +229,9 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::get('/log', [LogController::class, 'log']);
         Route::get('/tambah', [UserController::class, 'addadmin']);
         Route::post('/tambah/simpan', [UserController::class, 'addadmin2']);
-        Route::post('/ubah/simpan/{id}', [UserController::class, 'updateUser']);
+        Route::get('/edit/{id}', [UserController::class, 'editUser']);
+        Route::post('/edit/simpan', [UserController::class, 'updateUSer']);
+
     });
     Route::group(['prefix' => 'purchasing/'], function () {
         Route::get('pembelian/invoice', [PembelianPurchasingController::class, 'pembelian']);
@@ -241,16 +244,21 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::get('pengajuan/pembelian', [PengajuanPurchasingController::class, 'pengpembelian']);
         Route::get('pengajuan/pembelian/tambah', [PengajuanPurchasingController::class, 'addpembelian']);
         Route::post('pengajuan/pembelian/simpan', [PengajuanPurchasingController::class, 'addpembelian2']); 
-
+        
         
     });
+    
     Route::group(['prefix' => 'admin/'], function () {
         Route::get('po', [PoAdminController::class, 'index']);
         Route::get('pengajuan/pembelian', [PengajuanAdminController::class, 'pengpembelian']);
     });
 
     Route::group(['prefix' => 'office/'], function () {
-        Route::get('po', [PoAdminController::class, 'index']);
-        Route::get('pengajuan/pembelian', [PengajuanAdminController::class, 'pengpembelian']);
+        Route::get('report/report', [ReportController::class, 'report']);
+
+        Route::get('barang/stok', [StokController::class, 'stok']);
+        
     });
+
+    
 });

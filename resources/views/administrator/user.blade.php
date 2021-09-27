@@ -70,12 +70,13 @@
                                                 </td>
                                                 <td>
                                                     <!-- <button class="btn btn-success btn-icon-anim btn-square"><i class="fa fa-info"></i></button> -->
-                                                   
-                                                    <button class="btn btn-primary btn-icon-anim btn-square" data-toggle="modal" data-target="#edit{{$users->id}}"><i class=" fa fa-pencil"></i></button>
+                                                    <a href="{{ url('administrator/edit') }}/{{ $users->id}}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-pencil"></i></button></a>
+
+                                                    <!-- <button class="btn btn-primary btn-icon-anim btn-square" ><i class=" fa fa-pencil"></i></button> -->
                                                    
                                                     <!-- <button class="btn btn-danger btn-icon-anim btn-square" data-toggle="modal" data-target="#hapus"><i class=" fa fa-trash"></i></button> -->
                                                     
-                                                    @include('administrator.edit')
+                                                    
 
                                                     <!-- <div class="btn btn-round btn-danger btn-sm btn-icon"><i class="fa fa-trash"></i></div> -->
                                                 </td>
