@@ -168,7 +168,7 @@ class TrkKeluarController extends Controller
         $output = '<tr id="row"></tr>';
         foreach ($data as $row) {
             $output .= '<tr id="row"></td>
-            <td><input type="text" style="outline:none;border:0;" name="no_trans" id="no_trans" value="'.$no_trans.'"></td>
+            <td style="display:none;"><input type="text" style="outline:none;border:0;" name="no_trans" id="no_trans" value="'.$no_trans.'"></td>
             <td><input type="text" style="outline:none;border:0;" readonly name="nama_barang[]" id="nama_barang" value="'.$row->nama_barang.'"></td> 
             <td style="display:none;"><input type="text" style="outline:none;border:0;" readonly name="kode_barang[]" id="kode_barang" value="'.$row->kode_barang.'"></td> 
             <td style="display:none;"><input type="text" style="outline:none;border:0;" readonly name="no_SO[]" id="no_SO" value="'.$row->no_SO.'"></td> 
