@@ -128,7 +128,8 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::post('so/confirmpo/{id_PO}', [SOController::class, 'confirmpo']);
         Route::post('so/reject/{id_PO}', [SOController::class, 'reject']);
         Route::post('so/draft/{id_PO}', [SOController::class, 'draft']);
-
+        
+        Route::get('so/draft/{no_PO}', [SOController::class, 'draftso']);
         // Route::get('so/keluarinstalasi/tambah/{no_PO}', [SOController::class, 'transaksiinstalasi']);
         // Route::post('/addinstalasi/fetch', 'SOController@fetch')->name ('socontroller.fetch');
 
