@@ -94,7 +94,6 @@ class SoController extends Controller
 
             ]
         );
-        return redirect('warehouse/so');
     } else {
         DetailPO::where('id_po', $request->is_active)
             ->update(
