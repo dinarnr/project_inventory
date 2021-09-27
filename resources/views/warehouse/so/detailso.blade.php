@@ -95,7 +95,7 @@
                                             <th>Deskripsi</th>
                                             <th>Keterangan</th>
                                             <th>Qty</th>
-                                            <th>Confirm</th>
+                                            <th> <input type="checkbox" id='checkall' class="check_all"/>&nbsp;Check All</th>
                                         </tr>
                                     </thead>
                                 
@@ -117,7 +117,8 @@
                                                 <a href="#" id="" style="font-weight:bold" data-type="text" data-pk="1" data-title="Jumlah">{{$detail->jumlah}}</a>
                                             </td>
                                             <td>
-                                                <input type="checkbox" id="is_active[]" name="is_active[]" value="{{$detail->id_po}}" />
+                                                <input type="checkbox" class="checkbox" id="is_active[]" name="is_active[]" value="{{$detail->id_po}}" 
+                                                @if($detail->status == 2) checked=checked @endif />
                                                 <input type="hidden" id="non[]" name="non[]" value="{{$detail->id_po}}">        
                                             </td>
                                         </tr>
@@ -149,4 +150,40 @@
         <!-- /Main Content -->
     </div>
     <!-- /#wrapper -->
+
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous">
+    </script>
+
+
+    <script type='text/javascript'>
+    $(document).ready(function(){
+   // Check or Uncheck All checkboxes
+    $("#checkall").change(function(){
+        var checked = $(this).is(':checked');
+        if(checked){
+        $(".checkbox").each(function(){
+            $(this).prop("checked",true);
+        });
+        }else{
+        $(".checkbox").each(function(){
+            $(this).prop("checked",false);
+        });
+        }
+    });
+    
+    // Changing state of CheckAll checkbox 
+    $(".checkbox").click(function(){
+    
+        if($(".checkbox").length == $(".checkbox:checked").length) {
+        $("#checkall").prop("checked", true);
+        } else {
+        $("#checkall").prop("checked", false);
+        }
+
+    });
+    });
+    </script>
     @endsection
