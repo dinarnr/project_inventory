@@ -166,15 +166,16 @@ class TrkKeluarController extends Controller
         //    dd($dependent);
         $data = DB::table('detail_PO')->where([['no_SO', $values],['status', '2']])->groupBy('nama_barang')->get();
         $output = '<tr id="row"></tr>';
+                    '<option value="">Select</option>';
         foreach ($data as $row) {
             $output .= '<tr id="row"></td>
             <td style="display:none;"><input type="text" style="outline:none;border:0;" name="no_trans" id="no_trans" value="'.$no_trans.'"></td>
             <td><input type="text" style="outline:none;border:0;" readonly name="nama_barang[]" id="nama_barang" value="'.$row->nama_barang.'"></td> 
             <td style="display:none;"><input type="text" style="outline:none;border:0;" readonly name="kode_barang[]" id="kode_barang" value="'.$row->kode_barang.'"></td> 
             <td style="display:none;"><input type="text" style="outline:none;border:0;" readonly name="no_SO[]" id="no_SO" value="'.$row->no_SO.'"></td> 
-            <td><input type="text" style="outline:none;border:0;" readonly name="jumlah[]" id="jumlah" value="'.$row->jumlah.'"></td>
-            <td><input type="text" style="outline:none;border:0;" readonly name="instansi[]" id="instansi" value="'.$row->instansi.'"></td>
-             </tr>';
+            <td><input type="text" style="outline:none;border:0;" readonly name="jumlah[]" id="jumlah" value="'.$row->jumlah.'"></td></tr>';
+             '<option value="">Select</option>';
+            '<input type="text" name="instansi[]" id="instansi" value="'.$row->instansi.'">';
         }
         echo $output;
     }
