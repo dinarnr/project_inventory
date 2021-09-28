@@ -64,10 +64,17 @@
 													</div>
 													<div class="col-md-6">
 														<div class="form-group">
+															<label class="control-label mb-10">Instansi</label>
+                                                            <input type="text" id="instansi" name="instansi" class="form-control" placeholder="">
+                                                        </div>
+													</div>
+													<div class="col-md-6">
+														<div class="form-group">
 															<label class="control-label mb-10">Tanggal Instalasi</label>
                                                             <input type="date" id="tgl_instalasi" name="tgl_instalasi" class="form-control" placeholder="">
                                                         </div>
 													</div>
+													{{ csrf_field() }}
 												</div>
                                                 <div class="row">
                                                     <div class="col-md-6">
@@ -106,7 +113,6 @@
 																					<!-- <th>No Transaksi</th> -->
 																					<th>Nama Barang</th>
 																					<th>Jumlah</th>
-																					<th>Instansi</th>
 
 																				</tr>
 																			</thead>
