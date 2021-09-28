@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\CekDivisi;
 use App\Models\Log;
 use Illuminate\Http\Request;
 
@@ -46,9 +47,12 @@ class AuthController extends Controller
         $data = [
             'email'     => $request->input('email'),
             'password'  => $request->input('password'),
+            
+           
         ];
         // Auth::attempt($data);
-        if(Auth::attempt($request->only('email','password'))){
+        // if(Auth::attempt($request->only('email','password')) ){
+        if(Auth::attempt(['email' => $request->input('email'),'password' => $request->input('password'), 'status' => 2]) ){
             $user = Auth::user();
             Log::create(
                 [
@@ -67,7 +71,10 @@ class AuthController extends Controller
                     'lastIP' => $request->ip()
                 ]);
             return redirect('/dashboard/home');
-        } else { // false
+        }elseif(Auth::attempt(['email' => $request->input('email'),'password' => $request->input('password'), 'status' => 1]) ){
+            Session::flash('error', 'aaaaaaaaaaaaaaaaaaaaaaaaa');
+            return redirect()->route('login');
+        }else { // false
   
             //Login Fail
             Session::flash('error', 'Email atau password salah');
@@ -111,7 +118,7 @@ class AuthController extends Controller
         $user->gambar = 'user.png';
         $user->password = Hash::make($request->password);
         $user->email_verified_at = \Carbon\Carbon::now();
-        $user->status = 'Non Aktif';
+        $user->status = '1';
         $simpan = $user->save();
   
         if($simpan){
