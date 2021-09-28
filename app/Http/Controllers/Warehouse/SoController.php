@@ -196,6 +196,18 @@ class SoController extends Controller
         );
         return redirect('warehouse/so/dataSO');
     }
+    public function draftso($no_PO)
+    {  
+        $data_detail = DetailPO::where('no_PO', $no_PO)->get();
+        $profil = Profil::all();
+        $data_po = PO::where('no_PO', $no_PO)->get();
+        $tanggal = Carbon::now();
+        $total = DetailPO::where('no_PO', $no_PO)->sum('amount');
+        $nama_instansi = PO::where('no_PO', $no_PO)->pluck('instansi');
+        $user = Auth::user();
+        $instansi = Instansi::where('nama_instansi', $nama_instansi)->get();
+        return view('warehouse/so/draftso', compact('data_po', 'data_detail', 'user', 'profil', 'instansi', ));
+    }
     
 
 
