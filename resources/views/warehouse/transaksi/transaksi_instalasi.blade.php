@@ -208,7 +208,21 @@
 				},
 		
 			});
+			var url = '{{ route("trkkeluarcontroller.instansi", ":no_so") }}';
+			url = url.replace(':no_so', value);
+
+			$.ajax({
+				url: url,
+				type: 'get',
+				dataType: 'json',
+				success: function(response){
+					if(response != null){
+						$('#instansi').val(response.instansi);
+					}
+				}
+			});
 		}
 	});
 </script>
 @endsection
+
