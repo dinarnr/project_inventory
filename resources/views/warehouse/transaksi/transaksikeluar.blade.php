@@ -41,7 +41,7 @@
                                 <li role="presentation" class=""><a  data-toggle="tab" id="profile_tab_7" role="tab" href="#masuk_retur" aria-expanded="false">Retur</a></li>
 								
 							</ul>
-                            <!-- BARANG instalasi -->
+                            <!-- BARANG GARANSI -->
 							<div class="tab-content" id="myTabContent_7">
 								<div  id="masuk_baru" class="tab-pane fade active in" role="tabpanel">
 								<table id="data_table1" class="table table-bordered display  pb-30">
@@ -50,24 +50,24 @@
                                                 <th>#</th>
                                                 <th>No transaksi</th>
                                                 <th>Jenis Barang</th>
-                                                <th>Tanggal Instalasi</th>
-                                                <th>Pengirim</th>
-                                                <th>Penerima</th>
+                                                <th>Tanggal Transaksi</th>
+                                                <!-- <th>Pengirim</th>
+                                                <th>Penerima</th> -->
                                                 <th colspan="3">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php $no = 1; ?>
-                                            @foreach($transaksi_masuk as $transaksi_masuk)
+                                            @foreach($transaksi_garansi as $garansi)
                                             <tr>
                                                 <td>{{ $no++ }}</td>
-                                                <td>{{ $transaksi_masuk->no_transaksi}}</td>
-                                                <td>{{ $transaksi_masuk->jns_barang }}</td>
-                                                <td>{{ $transaksi_masuk->tgl_instalasi }}</td>
-                                                <td>{{ $transaksi_masuk->pengirim }}</td>
-                                                <td>{{ $transaksi_masuk->penerima }}</td>
+                                                <td>{{ $garansi->no_transaksi}}</td>
+                                                <td>{{ $garansi->jns_barang }}</td>
+                                                <td>{{ $garansi->tgl_transaksi }}</td>
+                                                <!-- <td>{{ $garansi->pengirim }}</td>
+                                                <td>{{ $garansi->penerima }}</td> -->
                                                 <td>
-                                                    <a href="#"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-eye"></i></button></a>
+                                                    <a href="{{ url('warehouse/transaksi/detailkeluargaransi') }}/{{ $garansi->no_transaksi }}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
                                                 </td>
                                             </tr>
                                             @endforeach
@@ -90,18 +90,19 @@
                                         </thead>
                                         <tbody>
                                             <?php $no = 1; ?>
-                                            
+                                            @foreach($transaksi_instalasi as $instalasi)
                                             <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                <td>{{ $no++ }}</td>
+                                                <td>{{ $instalasi->no_transaksi}}</td>
+                                                <td>{{ $instalasi->jns_barang}}</td>
+                                                <td>{{ $instalasi->tgl_instalasi}}</td>
+                                                <td>{{ $instalasi->pengirim}}</td>
+                                                <td>{{ $instalasi->penerima}}</td>
                                                 <td>
-                                                    <a href="#"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-eye"></i></button></a>
+                                                    <a href="{{ url('warehouse/transaksi/detailkeluarinstalasi') }}/{{ $garansi->no_transaksi }}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
                                                 </td>
                                             </tr>
+                                            @endforeach
                                             
                                         </tbody>
                                     </table>
@@ -132,7 +133,7 @@
                                                 <td>{{ $transaksi_retur->penerima}}</td>
                                                 <td>{{ $transaksi_retur->created_at }}</td>
                                                 <td>
-                                                    <a href="#"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-eye"></i></button></a>
+                                                    <a href="{{ url('warehouse/transaksi/detailkeluarretur') }}/{{ $garansi->no_transaksi }}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
                                                 </td>
                                             </tr>
                                             @endforeach
