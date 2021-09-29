@@ -104,14 +104,17 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::get('transaksi/keluarbaru/tambah', [TrkKeluarController::class, 'addkeluarbaru']);
         Route::get('transaksi/keluargaransi/tambah', [TrkKeluarController::class, 'addkeluarbaru']);
         Route::post('transaksi/keluargaransi/simpan', [TrkKeluarController::class, 'keluargaransi']);
+        Route::get('transaksi/detailkeluargaransi/{no_transaksi}', [TrkKeluarController::class, 'detailgaransi']);
 
         Route::get('transaksi/keluarretur/tambah', [TrkKeluarController::class, 'addkeluarretur']);
         Route::post('transaksi/keluarretur/simpan', [TrkKeluarController::class, 'addkeluarretur2']);
-
+        Route::get('transaksi/detailkeluarretur/{no_transaksi}', [TrkKeluarController::class, 'detailretur']);
+    
         Route::get('transaksi/keluarinstalasi/tambah', [TrkKeluarController::class, 'transaksiinstalasi']);
         Route::post('transaksi/keluarinstalasi/tambah/fetch', [TrkKeluarController::class, 'fetch'])->name('trkkeluarcontroller.fetch');
         Route::get('transaksi/keluarinstalasi/tambah/instansi/{no_so}', [TrkKeluarController::class, 'instansi'])->name('trkkeluarcontroller.instansi');
         Route::post('transaksi/keluarinstalasi/simpan', [TrkKeluarController::class, 'keluarinstalasi']);
+        Route::get('transaksi/detailkeluarinstalasi/{no_transaksi}', [TrkKeluarController::class, 'detailinstalasi']);
 
         // <----------------------DATA SUPPLIER--------------------------->
         Route::get('supplier', [SupplierController::class, 'supplier']);

@@ -29,9 +29,10 @@ class TrkKeluarController extends Controller
     public function transaksikeluar()
     {
 
-        $transaksi_masuk = TransaksiKeluar::all()->where('jns_barang', '!=', '');
+        $transaksi_garansi = TransaksiKeluar::all()->where('jns_barang', '', 'garansi');
+        $transaksi_instalasi = TransaksiKeluar::all()->where('jns_barang', '', 'instalasi');
         $transaksi_retur = TransaksiKeluar::all()->where('jns_barang', '', '');
-        return view('warehouse/transaksi/transaksikeluar', compact('transaksi_masuk', 'transaksi_retur'));
+        return view('warehouse/transaksi/transaksikeluar', compact('transaksi_garansi', 'transaksi_instalasi', 'transaksi_retur'));
     }
 
     public function addkeluarbaru()
@@ -73,6 +74,7 @@ class TrkKeluarController extends Controller
         TransaksiKeluar::create(
             [
                     'no_transaksi' => $request->no_transaksi,
+                    'tgl_transaksi' => $request->tgl_transaksi,
                     'jns_barang' => $request->jenis_barang,
             ]
         );
@@ -91,45 +93,12 @@ class TrkKeluarController extends Controller
         return redirect('warehouse/transaksikeluar');
     }
 
-    // public function addkeluarbaru2(Request $request)
-    // {
-    //     // dd($request->no_trans);
-    //     $jumlah_data = count($request->no_trans);
-    //     for ($i = 0; $i < $jumlah_data; $i++) {
-    //         DetailTrkKeluar::create(
-    //             [
-    //                 'no_transaksi' => $request->no_trans[$i],
-    //                 'jumlah' => $request->jumlah[$i],
-    //                 'no_PO' => $request->no_PO[$i],
-    //                 'kode_barang' => $request->kode_barang[$i],
-    //                 'nama_barang' => $request->nama_barang[$i],
-    //                 'keterangan' => $request->keterangan[$i],
-    //             ]
-    //         );
-    //     }
-    //     TransaksiKeluar::create(
-    //         [
-    //             'no_transaksi' => $request->no_transaksi,
-    //             'instansi' => $request->instansi,
-    //             'pengirim' => $request->pengirim,
-    //             'penerima' => $request->penerima,
-    //         ]
-    //     );
-
-    //     $user = Auth::user();
-    //     Log::create(
-    //         [
-    //             'name' => $user->name,
-    //             'email' => $user->email,
-    //             'divisi' => $user->divisi,
-    //             'deskripsi' => 'Create Masuk Baru',
-    //             'status' => '2',
-    //             'ip' => $request->ip()
-    //         ]
-    //     );
-
-    //     return redirect('warehouse/transaksikeluar');
-    // }
+    public function detailgaransi($no_transaksi)
+    {
+        $detail_keluar = DetailTrkKeluar::where('no_transaksi', $no_transaksi)->get();
+        $transaksi_garansi = DetailTrkKeluar::where('no_transaksi', $no_transaksi)->get();
+        return view('warehouse/transaksi/detailkeluargaransi', compact('detail_keluar', 'transaksi_garansi'));
+    }
 
     //---------------------Transaksi Instalasi----------------------------//
     public function transaksiinstalasi(Request $request)
@@ -196,9 +165,7 @@ class TrkKeluarController extends Controller
                     'no_transaksi' => $request->no_trans[$i],
                     'jumlah' => $request->jumlah[$i],
                     'kode_barang' => $request->kode_barang[$i],
-                    'nama_barang' => $request->nama_barang[$i],            
-                    'jns_barang' => $request->jns_barang[$i],
-                    'no_SO' => $request->no_SO[$i],
+                    'nama_barang' => $request->nama_barang[$i],
                 ]
             );
         }
@@ -207,7 +174,7 @@ class TrkKeluarController extends Controller
                     'no_transaksi' => $request->no_transaksi,
                     'tgl_instalasi' => $request->tgl_instalasi,
                     'no_SO' => $request->no_SO,
-                    // 'instansi' => $request->instansi,
+                    'instansi' => $request->instansi,
                     'pengirim' => $request->pengirim,
                     'penerima' => $request->penerima,
                     'jns_barang' => $request->jenis_barang,
@@ -226,6 +193,14 @@ class TrkKeluarController extends Controller
         );
         return redirect('warehouse/transaksikeluar');
     }
+
+    public function detailinstalasi($no_transaksi)
+    {
+        $detail_keluar = DetailTrkKeluar::where('no_transaksi', $no_transaksi)->get();
+        $transaksi_instalasi = DetailTrkKeluar::where('no_transaksi', $no_transaksi)->get();
+        return view('warehouse/transaksi/detailkeluarinstalasi', compact('detail_keluar', 'transaksi_instalasi'));
+    }
+
 
     // -----------------------KELUAR RETURR----------------------------
 
@@ -286,4 +261,12 @@ class TrkKeluarController extends Controller
 
         return redirect('warehouse/transaksikeluar');
     }
+
+    public function detailretur($no_transaksi)
+    {
+        $detail_keluar = DetailTrkKeluar::where('no_transaksi', $no_transaksi)->get();
+        $transaksi_instalasi = DetailTrkKeluar::where('no_transaksi', $no_transaksi)->get();
+        return view('warehouse/transaksi/detailkeluarretur', compact('detail_keluar', 'transaksi_instalasi'));
+    }
 }
+

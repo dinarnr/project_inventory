@@ -57,6 +57,7 @@
 															<label class="control-label mb-10">NO SO</label>
 															<select name="no_SO dynamic2" id="no_SO" class="form-control" data-dependent="TabelDinamis">
 																@foreach ($SO as $no_SO)
+																	<option value="">Pilih NO SO</option>
 																	<option value="{{ $no_SO->no_SO }}">{{ $no_SO->no_SO }}</option>
 																@endforeach
 															</select>
@@ -65,26 +66,26 @@
 													<div class="col-md-6">
 														<div class="form-group">
 															<label class="control-label mb-10">Instansi</label>
-                                                            <input type="text" id="instansi" name="instansi" class="form-control" placeholder="" readonly>
+                                                            <input type="text" id="instansi" name="instansi" class="form-control" readonly>
                                                         </div>
 													</div>
-													<div class="col-md-6">
+												</div>
+                                                <div class="row">
+													<div class="col-md-4">
 														<div class="form-group">
 															<label class="control-label mb-10">Tanggal Instalasi</label>
                                                             <input type="date" id="tgl_instalasi" name="tgl_instalasi" class="form-control" placeholder="">
                                                         </div>
 													</div>
 													{{ csrf_field() }}
-												</div>
-                                                <div class="row">
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-4">
 														<div class="form-group">
                                                             <label class="control-label mb-10">Pengirim Ekspedisi</label>
                                                             <input type="text" id="pengirim" name="pengirim" class="form-control">
                                                                                                         
                                                         </div>
                                                     </div>
-													<div class="col-md-6">
+													<div class="col-md-4">
                                                         <div class="form-group">
                                                             <label class="control-label mb-10">Penerima</label>
 															<input type="text" id="penerima" name="penerima" class="form-control">
@@ -154,29 +155,29 @@
 <script type="text/javascript">
 	function ambildata() {
 		var no_trans = document.getElementById('no_trans').value;		
-		var jns_barang = document.getElementById('jns_barang').value;
-		var no_SO = document.getElementById('no_SO').value;
-		var tgl_instalasi = document.getElementById('tgl_instalasi').value;
+		// var jns_barang = document.getElementById('jns_barang').value;
+		// var no_SO = document.getElementById('no_SO').value;
+		// var tgl_instalasi = document.getElementById('tgl_instalasi').value;
 		var pengirim = document.getElementById('pengirim').value;
-		var instansi = document.getElementById('instansi').value;
+		// var instansi = document.getElementById('instansi').value;
 		var penerima = document.getElementById('penerima').value;
 		var nama_barang = document.getElementById('nama_barang').value;
 		var jumlah = document.getElementById('jumlah').value;
 		console.log(instansi);
-		addrow(no_trans, no_SO, tgl_instalasi, pengirim, instansi, penerima, jns_barang, nama_barang, jumlah);
+		addrow(no_trans, pengirim, penerima, nama_barang, jumlah);
 	}
 	var i = 0;
 
-	function addrow(no_trans, no_SO, tgl_instalasi, pengirim, instansi, penerima, jns_barang, nama_barang, jumlah) {
+	function addrow(no_trans,  pengirim,  penerima, nama_barang, jumlah) {
 		i++;
 		 var instansi= instansi;
 		 
 		$('#TabelDinamis').append('<tr id="row' + i + '"></td><td style=display:none;"><input type="text" style="outline:none;border:0;"  name="no_trans[]" id="no_trans" value="' + no_trans + 
-													 '"></td><td style=display:none;"><input type="text" style="outline:none;border:0;"  name="jns_barang[]" id="jns_barang" value="' + jns_barang + 
-														'"></td><td style=display:none;"><input type="text" style="outline:none;border:0;" readonly name="no_SO[]" id="no_SO" value="' + no_SO + 
-														'"></td><td style=display:none;"><input type="text" style="outline:none;border:0;" readonly name="tgl_transaksi[]" id="tgl_transaksi" value="' + tgl_instalasi + 
+													//  '"></td><td style=display:none;"><input type="text" style="outline:none;border:0;"  name="jns_barang[]" id="jns_barang" value="' + jns_barang + 
+														// '"></td><td style=display:none;"><input type="text" style="outline:none;border:0;" readonly name="no_SO[]" id="no_SO" value="' + no_SO + 
+														// '"></td><td style=display:none;"><input type="text" style="outline:none;border:0;" readonly name="tgl_transaksi[]" id="tgl_transaksi" value="' + tgl_instalasi + 
 														'"></td><td><input type="text" style="outline:none;border:0;" readonly name="pengirim[]" id="pengirim" value="' + pengirim + 
-														'"></td><td><input type="text" style="outline:none;border:0;" readonly name="instansi[]" id="instansi" value="' + instansi + 
+														// '"></td><td><input type="text" style="outline:none;border:0;" readonly name="instansi[]" id="instansi" value="' + instansi + 
 														'"></td><td><input type="text" style="outline:none;border:0;" readonly name="penerima[]" id="penerima" value="' + penerima + 
 														'"></td><td><input type="text" style="outline:none;border:0;" readonly name="nama_barang[]" id="nama_barang" value="' + nama_barang + 
 														'"></td><td><input type="text" style="outline:none;border:0;" readonly name="jumlah[]" id="jumlah" value="' + jumlah + 

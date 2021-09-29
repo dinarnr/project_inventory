@@ -107,7 +107,9 @@
                                                             <label class="control-label mb-10">Jumlah</label>
                                                             <input type="number" id="jumlah" name="jumlah" class="form-control">
                                                             
-                                                            <input  id="kode_barang" name="kode_barang" value="" hidden>
+                                                            @foreach($barang as $brg)
+																<input id="kode_barang" name="kode_barang" value="{{$brg->kode_barang}}" hidden>
+															@endforeach
                                                             
                                                         </div>
                                                     </div>
@@ -193,7 +195,7 @@
 		var kode_barang = document.getElementById('kode_barang').value;
 		var jumlah = document.getElementById('jumlah').value;
 
-		addrow(no_trans, no_PO, keterangan, nama_barang, kode_barang, jumlah,);
+		addrow(no_trans, no_PO, keterangan, nama_barang, kode_barang, jumlah);
 	}
 	var i = 0;
 
@@ -201,7 +203,7 @@
 		i++;
 		$('#TabelDinamis').append('<tr id="row' + i + '"></td><td><input type="text" style="outline:none;border:0;"  name="no_trans[]" id="no_trans" value="' + no_trans + 
 														'"></td><td><input type="text" style="outline:none;border:0;" readonly name="no_PO[]" id="no_PO" value="' + no_PO + 
-														// '"></td><td style=display:none;"><input type="text" style="outline:none;border:0;" readonly name="tgl_trans[]" id="tgl_trans" value="' + tgl_transaksi + 
+														// '"></td><td style=display:none;"><input type="text" style="outline:none;border:0;" readonly name="tgl_transaksi[]" id="tgl_transaksi" value="' + tgl_transaksi + 
 														'"></td><td><input type="text" style="outline:none;border:0;" readonly name="nama_barang[]" id="nama_barang" value="' + nama_barang + 
 														'"></td><td style=display:none;"><input type="text" style="outline:none;border:0;"  name="kode_barang[]" id="kode_barang" value="' + kode_barang + 
 														'"></td><td><input type="text" style="outline:none;border:0;" readonly name="jumlah[]" id="jumlah" value="' + jumlah + 
