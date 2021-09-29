@@ -36,11 +36,12 @@
 					<div class="panel-body">
 						<div  class="tab-struct custom-tab-1 ">
 							<ul role="tablist" class="nav nav-tabs" id="myTabs_7">
-								<li class="active" role="presentation"><a aria-expanded="true"  data-toggle="tab" role="tab" id="home_tab_7" href="#masuk_baru">Baru</a></li>
-								<li role="presentation" class=""><a  data-toggle="tab" id="profile_tab_7" role="tab" href="#masuk_retur" aria-expanded="false">Retur</a></li>
+								<li class="active" role="presentation"><a aria-expanded="true"  data-toggle="tab" role="tab" id="home_tab_7" href="#masuk_baru">Garansi</a></li>
+                                <li role="presentation" class=""><a  data-toggle="tab" id="profile_tab_7" role="tab" href="#garansi" aria-expanded="false">Instalasi</a></li>
+                                <li role="presentation" class=""><a  data-toggle="tab" id="profile_tab_7" role="tab" href="#masuk_retur" aria-expanded="false">Retur</a></li>
 								
 							</ul>
-                            <!-- BARANG -->
+                            <!-- BARANG instalasi -->
 							<div class="tab-content" id="myTabContent_7">
 								<div  id="masuk_baru" class="tab-pane fade active in" role="tabpanel">
 								<table id="data_table1" class="table table-bordered display  pb-30">
@@ -70,6 +71,38 @@
                                                 </td>
                                             </tr>
                                             @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- INSTALASI -->
+                                <div  id="garansi" class="tab-pane fade" role="tabpanel">
+								<table id="data_table1" class="table table-bordered display  pb-30">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>No transaksi</th>
+                                                <th>Jenis Barang</th>
+                                                <th>Tanggal Instalasi</th>
+                                                <th>Pengirim</th>
+                                                <th>Penerima</th>
+                                                <th colspan="3">Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php $no = 1; ?>
+                                            
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>
+                                                    <a href="#"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-eye"></i></button></a>
+                                                </td>
+                                            </tr>
+                                            
                                         </tbody>
                                     </table>
                                 </div>

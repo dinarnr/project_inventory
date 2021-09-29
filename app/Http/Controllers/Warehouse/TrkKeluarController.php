@@ -179,6 +179,12 @@ class TrkKeluarController extends Controller
         }
         echo $output;
     }
+
+    public function instansi($no_so)
+    {
+        $data = PO::where('no_SO',$no_so)->first();
+        return response()->json($data);
+    }
  
     public function keluarinstalasi(Request $request)
     {

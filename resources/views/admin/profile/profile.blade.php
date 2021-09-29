@@ -41,7 +41,7 @@
                                 <h6>Upload your photo...</h6>
 
                                 <input type="file" name="profImage">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <input type="hidden" class="form-control-file" id="hidden_gambar" name="hidden_gambar" value="">
                             </div>
                         </div>
 
@@ -53,7 +53,7 @@
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Nama:</label>
                                 <div class="col-lg-8">
-                                <input class="form-control" name="fname" type="text" value="{{ Auth::user()->name }}">
+                                <input class="form-control" name="name" type="text" value="{{ Auth::user()->name }}">
                                 </div>
                             </div>
                             
