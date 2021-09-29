@@ -345,31 +345,31 @@
                             <a href="{{ url('office/barang/stok') }}">Stok</a>
                         </li>
                         <li>
-                            <a href="{{ url('office/transaksi') }}">Transaksi Masuk</a>
+                            <a href="{{ url('office/barang/transaksimasuk') }}">Transaksi Masuk</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="{{ url('office/po') }}">
+                    <a href="{{ url('office/po/datapo') }}">
                         <div class="pull-left"><i class="zmdi zmdi-shopping-cart mr-20"></i><span class="right-nav-text">Data PO</span></div>
                         <div class="clearfix"></div>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('office/so') }}">
+                    <a href="{{ url('office/so/dataso') }}">
                         <div class="pull-left"><i class="zmdi zmdi-shopping-cart mr-20"></i><span class="right-nav-text">Data SO</span></div>
                         <div class="clearfix"></div>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('office/datapinjam') }}">
+                    <a href="{{ url('office/peminjaman/datapinjam') }}">
                         <div class="pull-left"><i class="zmdi zmdi-balance-wallet mr-20"></i><span class="right-nav-text">Data Peminjaman</span></div>
                         <div class="clearfix"></div>
                     </a>
                 </li>
                 
                 <li>
-                    <a href="{{ url('office/datapembelian') }}">
+                    <a href="{{ url('office/pembelian/datapembelian') }}">
                         <div class="pull-left"><i class="zmdi zmdi-shopping-basket mr-20"></i><span class="right-nav-text">Data Pembelian</span></div>
                         <div class="clearfix"></div>
                     </a>

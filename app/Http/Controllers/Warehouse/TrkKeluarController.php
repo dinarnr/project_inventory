@@ -64,7 +64,7 @@ class TrkKeluarController extends Controller
                     'no_PO' => $request->no_PO[$i],
                     'jumlah' => $request->jumlah[$i],
                     'kode_barang' => $request->kode_barang[$i],
-                    'tgl_trans' => $request->tgl_transaksi[$i],
+                    'tgl_trans' => $request->tgl_trans[$i],
                     'nama_barang' => $request->nama_barang[$i],            
                     'jns_barang' => $request->jns_barang[$i],
                 ]

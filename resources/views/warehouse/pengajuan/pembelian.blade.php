@@ -51,8 +51,8 @@
                                                 <tr>
                                                     <td>{{ $no++ }}</td>
                                                     <td>{{ $pembelian->no_PO }}</td>
-                                                    <td>{{ $pembelian->tgl_pengajuan }}</td>
                                                     <td>{{ $pembelian->namaBarang }}</td>
+                                                    <td>{{ $pembelian->created_at }}</td>
                                                     <td>{{ $pembelian->jumlah }}</td>
                                                     <td>
                                                         <a href="detailpo"><button class="btn btn-success btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>

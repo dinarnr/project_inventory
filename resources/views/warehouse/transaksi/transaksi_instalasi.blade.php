@@ -65,7 +65,7 @@
 													<div class="col-md-6">
 														<div class="form-group">
 															<label class="control-label mb-10">Instansi</label>
-                                                            <input type="text" id="instansi" name="instansi" class="form-control" placeholder="">
+                                                            <input type="text" id="instansi" name="instansi" class="form-control" placeholder="" readonly>
                                                         </div>
 													</div>
 													<div class="col-md-6">
