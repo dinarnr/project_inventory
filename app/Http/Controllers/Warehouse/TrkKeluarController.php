@@ -64,7 +64,6 @@ class TrkKeluarController extends Controller
                     'no_PO' => $request->no_PO[$i],
                     'jumlah' => $request->jumlah[$i],
                     'kode_barang' => $request->kode_barang[$i],
-                    'tgl_trans' => $request->tgl_transaksi[$i],
                     'nama_barang' => $request->nama_barang[$i],            
                     'jns_barang' => $request->jns_barang[$i],
                 ]
@@ -73,6 +72,7 @@ class TrkKeluarController extends Controller
         TransaksiKeluar::create(
             [
                     'no_transaksi' => $request->no_transaksi,
+                    'tgl_transaksi' => $request->tgl_transaksi,
                     'jns_barang' => $request->jenis_barang,
             ]
         );
