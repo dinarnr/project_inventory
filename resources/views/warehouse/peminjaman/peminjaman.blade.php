@@ -53,21 +53,27 @@
                                                     <td>{{ $peminjaman->kebutuhan }}</td>
                                                     <td>{{ date('d-m-Y',strtotime($peminjaman->tglPinjam)) }}</td>
 
-                                                    <td>{{ date('d-m-Y',strtotime($peminjaman->tglKembali)) }}</td>
+                                                    <td>@if (empty($peminjaman->tglKembali))
+                                                        @else
+                                                        {{ date('d-m-Y',strtotime($peminjaman->tglKembali)) }}
+                                                        @endif
+                                                    </td>
 
                                                     <td style="text-align:center;">
-                                                        @if($peminjaman->status == 'pinjam')
+                                                        @if(empty($peminjaman->status))
                                                         <button class="btn btn-primary btn-sm btn-rounded">Pinjam</button>
-                                                        @elseif($peminjaman->status == 'Diproses Warehouse')
+                                                        @elseif($peminjaman->status = 1 )
                                                         <button class="btn btn-warning btn-sm btn-rounded">Diproses Warehouse</button>
                                                         @else
                                                         <button class="btn btn-success btn-sm btn-rounded">Dikembalikan</button>
                                                         @endif
                                                     </td>
                                                     <td>
-                                                        <a href="{{url('warehouse/peminjaman/detail')}}/{{ $peminjaman->no_peminjaman}}"><button class="btn btn-success btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
+                                                    
+                                                        <a href="{{url('warehouse/peminjaman/detail')}}/{{ $peminjaman->no_peminjaman}}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
+                                                    
                                                         <!-- <a href="/peminjaman/{{ $peminjaman->no_peminjaman }}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-edit"></i></button></a> -->
-                                                        <button class="btn btn-success btn-icon-anim btn-square" data-toggle="modal" data-target="#confirm{{ $peminjaman->no_peminjaman}}" action="( {{url('warehouse/peminjaman/confirm')}}/{{ $peminjaman->no_peminjaman}})"><i class="fa fa-check"></i></button>
+                                                        <!-- <button class="btn btn-success btn-icon-anim btn-square" data-toggle="modal" data-target="#confirm{{ $peminjaman->no_peminjaman}}" action="( {{url('warehouse/peminjaman/confirm')}}/{{ $peminjaman->no_peminjaman}})"><i class="fa fa-check"></i></button> -->
                                                         @include('warehouse.peminjaman.confirm')
                                                     </td>
                                                 </tr>

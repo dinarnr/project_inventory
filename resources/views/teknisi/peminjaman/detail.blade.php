@@ -20,73 +20,131 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-default card-view">
-                    <div class="panel-heading">
-                        <div class="panel-wrapper collapse in">
+                <div class="panel-wrapper collapse in">
                             <div class="panel-body">
+                                
+                            <div class="row">
+                                    <div class="col-xs-8">
+                                        <div class="form-group">
+                                            <div class="">
+                                                <h4 text-style="left" class="txt-dark">Nakula Sadewa, CV</h4>
+                                            </div>
+                                            <table>
+                                                <tr>
+                                                    <div class="row">
+                                                        @foreach ($profil as $profil)
+                                                    <td class="txt-dark"> Jl Candi Mendut Utara 1 No. 11 <br>
+                                                    Kel. Mojolangu Kec. Lowokwaru Malang - Jawa Timur<br>
+                                                    Phone : {{$profil->telp}}<br> Email : {{$profil->email}}</td>
+                                                    @endforeach
+                                                    </div>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-4">
+                                        <div class="form-group mt-20 ">
+
+                                            <img src="{{asset('template')}}/dist/img/ns.jpg">
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                @foreach ($peminjaman as $peminjaman)
                                 <div class="row">
                                     <div class="col-xs-6">
-                                        @foreach ($peminjaman as $peminjaman)
-                                        <tr>
-                                            <td class="txt-dark">No Peminjaman : {{$peminjaman->no_peminjaman}}</td><br>
-                                            <td class="txt-dark">Nama Peminjam : {{$peminjaman->pic_teknisi}}</td><br>
-                                            <td class="txt-dark">Tanggal Pinjam : {{$peminjaman->tglPinjam}} </td>
-                                        </tr>
-                                        @endforeach
-                                    </div>
-                                    <!-- <div class="col-xs-6 text-right">
-                                        <tr>
-                                            <td class="txt-dark head-font inline-block capitalize-font mb-5">Pengirim : </td><br>
-                                            <td class="txt-dark head-font inline-block capitalize-font mb-5">Penerima : </td>
-                                        </tr>
-                                    </div> -->
-                                </div>
-                                <br>
-                                <div class="invoice-bill-table">
-                                    <div class="table-responsive">
-                                        <table id="myTable1" class="table table display pb-30">
-                                            <thead>
+                                        <div class="form-group">
+                                            <table>
+                                                <div class="text-left">
+                                                    <h6 class="txt-dark"><strong>No Peminjaman :</strong></h6>
+                                                </div>
+                                                
                                                 <tr>
-                                                    <th>No</th>
-                                                    <th>Nama barang</th>
-                                                    <th>Jumlah</th>
-                                                    <th>Status</th>
-                                                    <th>Aksi</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php $no = 1; ?>
-                                                @foreach ($data_detail as $detail)
-                                                <tr>
-                                                    <td>{{ $no++ }}</td>
-                                                    <td>{{$detail->nama_barang}}</td>
-                                                    <td>{{$detail->jumlah}}</td>
-                                                    <td>
-                                                        @if($detail->status === 1 )
-                                                        Pengembalian diproses warehouse
-                                                        @elseif ($detail->status === 2 )
-                                                        Pengembalian telah diverifikasi warehouse
-                                                        @else
-                                                        Barang dipinjam
-                                                        @endif
+                                                <div class="">
+                                                    <td class="txt-dark">
+                                                    {{$peminjaman->no_peminjaman}}
                                                     </td>
-                                                    <td>
-                                                        @if($detail->status < 1 )
-                                                        <button class="btn btn-success btn-icon-anim btn-square" data-toggle="modal" data-target="#detailkembali{{ $peminjaman->id_peminjaman }}" action="( {{url('teknisi/peminjaman/detailkembali')}}/{{ $peminjaman->id_peminjaman }})"><i class="fa fa-undo"></i></button>
-                                                        @endif
-                                                        @include('teknisi.peminjaman.detailkembali')
-                                                        <!-- <a href="#" class="mr-25" data-toggle="modal" data-target="#addket{{ $detail->id_po }}" action="( {{url('warehouse/so/tambah/keterangan')}}/{{ $detail->id_po}})"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a> -->
+                                                </div>
+                                            </tr>
+                                            </table>
+                                            <table>
+                                                <div class="text-left">
+                                                    <h6 class="txt-dark"><strong>Nama Peminjaman :</strong></h6>
+                                                </div>
+                                            <tr>
+                                                <div class="">
+                                                    <td class="txt-dark">
+                                                    {{$peminjaman->pic_teknisi}}
                                                     </td>
+                                                </div>
+                                            </tr>
+                                            </table>
 
-                                                </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
+
+                                        </div>
                                     </div>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </div>
-                        </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <table>
+                                                <div class="text-left">
+                                                    <h6 class="txt-dark"><strong>Tanggal Pinjam :</strong></h6>
+                                                </div>
+                                                <tr>
+                                                    <div class="">
+                                                        <td class="txt-dark">
+                                                        {{$peminjaman->tglPinjam}}
+                                                      </td>
+                                                    </div>
+                                                </tr>
+                                            </table>
+                                            <table>
+                                                <div class="text-left">
+                                                    <h6 class="txt-dark"><strong>Kebutuhan :</strong></h6>
+                                                </div>
+                                            <tr>
+                                                <div class="">
+                                                    <td class="txt-dark">
+                                                    {{$peminjaman->kebutuhan}}
+                                                    </td>
+                                                </div>
+                                            </tr>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                @endforeach
+
+                                
+                </div>
+                <div class="invoice-bill-table">
+                    <div class="table-responsive">
+                        <table id="myTable1" class="table table display pb-30">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama barang</th>
+                                    <th>Jumlah</th>
+                                   
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $no = 1; ?>
+                                @foreach ($data_detail as $detail)
+                                <tr>
+                                    <td>{{ $no++ }}</td>
+                                    <td>{{$detail->nama_barang}}</td>
+                                    <td>{{$detail->jumlah}}</td>
+                                   
+                                    
+
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
+                    <div class="clearfix"></div>
                 </div>
             </div>
             <!-- /Row -->

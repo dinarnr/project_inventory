@@ -10,6 +10,11 @@
                 <div class="container">
                     <h6 class="mb-15">Apakah anda yakin mengembalikan barang ?</h6>
                 </div>
+                <div class="modal-body">
+                <label class="control-label mb-10 text-left">*Catatan</label>
+                <textarea id="catatan" name="catatan" class="form-control" rows="3"></textarea>
+                               
+                </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>

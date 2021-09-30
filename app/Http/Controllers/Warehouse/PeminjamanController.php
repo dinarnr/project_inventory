@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\DetailPeminjaman;
 use App\Models\Log;
 use App\Models\Peminjaman;
+use App\Models\Profil;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,40 +20,7 @@ class PeminjamanController extends Controller
         return view('warehouse/peminjaman/peminjaman', compact('peminjaman'));
     }
 
-    public function kembali(Request $request, $no_peminjaman)
-    {
-        // dd($request->no_peminjaman);
-        $user = Auth::user();
-        DetailPeminjaman::where('no_peminjaman', $no_peminjaman)
-            ->update(
-                [
-                    'status' => 'Diproses Warehouse',
-                ]
-            );
-
-
-        Peminjaman::where('no_peminjaman', $request->no_peminjaman)
-            ->update(
-                [
-                    'status' => 'Diproses Warehouse',
-                    'tglKembali' => Carbon::now()
-                ]
-            );
-
-        Log::create(
-            [
-                'name' => $user->name,
-                'email' => $user->email,
-                'divisi' => $user->divisi,
-                'deskripsi' => 'Pinjaman di Proses Warehouse',
-                'status' => '2',
-                'ip' => $request->ip()
-
-            ]
-        );
-        return redirect('/peminjaman');
-    }
-
+   
     public function confirm(Request $request, $no_peminjaman)
     {
         // dd($request->no_peminjaman);
@@ -60,7 +28,8 @@ class PeminjamanController extends Controller
         DetailPeminjaman::where('no_peminjaman', $no_peminjaman)
             ->update(
                 [
-                    'status' => 'Dikembalikan',
+                    'status' => '2',
+                    'konfirmasi' => $request -> konfirmasi,
 
                 ]
             );
@@ -69,7 +38,8 @@ class PeminjamanController extends Controller
         Peminjaman::where('no_peminjaman', $request->no_peminjaman)
             ->update(
                 [
-                    'status' => 'Dikembalikan',
+                    'status' => '2',
+                    'konfirmasi' => $request -> konfirmasi,
                     'pic_warehouse' => $user->name,
                     'tglKembali' => Carbon::now()
                 ]
@@ -86,7 +56,7 @@ class PeminjamanController extends Controller
 
             ]
         );
-        return redirect('/peminjaman');
+        return redirect('warehouse/peminjaman');
     }
 
     public function detailpeminjaman($no_peminjaman)
@@ -95,6 +65,7 @@ class PeminjamanController extends Controller
         $peminjaman = Peminjaman::where('no_peminjaman', $no_peminjaman)->get();
         // dd($data_detail);
         // $user = Auth::user();
-        return view('peminjaman/detail', compact('peminjaman', 'data_detail'));
+        $profil = Profil::all();
+        return view('warehouse/peminjaman/detail', compact('peminjaman', 'data_detail', 'profil'));
     }
 }
