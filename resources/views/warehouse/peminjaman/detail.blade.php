@@ -157,7 +157,7 @@
         <!-- /Footer -->
         <div class="pull-right">
                 <!-- <button class="btn btn-primary mr-10" name="konfirmasi" type="submit"  value="proses" id="proses">Konfirmasi</button> -->
-                @if($peminjaman->status = '1')   
+                @if($peminjaman->status == "di proses warehouse")   
                 <button class="btn btn-success btn-icon-anim" data-toggle="modal" data-target="#confirm{{ $peminjaman->no_peminjaman}}" action="( {{url('warehouse/peminjaman/confirm')}}/{{ $peminjaman->no_peminjaman}})"><i class=""></i>Konfirmasi</button>
                 @include('warehouse.peminjaman.confirm')
                 @endif
