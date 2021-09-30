@@ -103,6 +103,12 @@
                     </ul>
                 </li>
                 <li>
+                    <a href="{{ url('warehouse/stok') }}">
+                        <div class="pull-left"><i class="zmdi zmdi-landscape mr-20"></i><span class="right-nav-text">Data Stok</span></div>
+                        <div class="clearfix"></div>
+                    </a>
+                </li>
+                <li>
                     <a href="javascript:void(0);" data-toggle="collapse" data-target="#ecom_dr">
                         <div class="pull-left"><i class="zmdi zmdi-shopping-basket mr-20"></i><span class="right-nav-text">Transaksi</span></div>
                         <div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>

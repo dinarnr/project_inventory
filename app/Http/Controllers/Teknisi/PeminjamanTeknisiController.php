@@ -8,6 +8,7 @@ use App\Models\DetailPeminjaman;
 use App\Models\Log;
 use App\Models\Master;
 use App\Models\Peminjaman;
+use App\Models\Profil;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -53,7 +54,7 @@ class PeminjamanTeknisiController extends Controller
             'kebutuhan'    => $request->kebutuhan,
             'tglPinjam'     => $request->tgl_pinjam,
             // 'tglKembali'    => $request->null,
-            'status'        => 'pinjam'
+            'status'        => ''
         ]);
 
         Log::create(
@@ -77,14 +78,16 @@ class PeminjamanTeknisiController extends Controller
         DetailPeminjaman::where('no_peminjaman', $no_peminjaman)
             ->update(
                 [
-                    'status' => 'Diproses Warehouse',
+                    'status' => '1',
+                    'keterangan' => $request->catatan,
                 ]
             );
 
         Peminjaman::where('no_peminjaman', $request->no_peminjaman)
             ->update(
                 [
-                    'status' => 'Diproses Warehouse',
+                    'status' => '1',
+                    'keterangan' => $request->catatan,
                     'tglKembali' => Carbon::now()
                 ]
             );
@@ -139,6 +142,7 @@ class PeminjamanTeknisiController extends Controller
     {
         $data_detail = DetailPeminjaman::where('no_peminjaman', $no_peminjaman)->get();
         $peminjaman = Peminjaman::where('no_peminjaman', $no_peminjaman)->get();
-        return view('teknisi/peminjaman/detail', compact('peminjaman', 'data_detail'));
+        $profil = Profil::all();
+        return view('teknisi/peminjaman/detail', compact('peminjaman', 'data_detail', 'profil'));
     }
 }

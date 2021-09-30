@@ -10,6 +10,16 @@
                 <div class="container">
                     <h6 class="mb-15">Apakah anda yakin menyetujui pengembalian ini ?</h6>
                 </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="control-label mb-10 text-left">*Catatan Dari Teknisi</label>
+                        <input type="text" class="form-control" name="edit_stok" value="{{ $peminjaman->keterangan }}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label mb-10 text-left">*Tambah Catatan</label>
+                        <textarea type="text" class="form-control" name="konfirmasi" value=""></textarea>
+                    </div>
+                </div>
                 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>

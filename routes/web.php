@@ -3,6 +3,7 @@
 use App\Http\Controllers\Administrator\UserController;
 use App\Http\Controllers\Administrator\LogController;
 use App\Http\Controllers\Warehouse\DataBarangController;
+use App\Http\Controllers\Warehouse\StokController;
 use App\Http\Controllers\Warehouse\KategoriController;
 use App\Http\Controllers\Warehouse\TrkMasukController;
 use App\Http\Controllers\Warehouse\TrkKeluarController;
@@ -76,6 +77,8 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::post('barang/simpan', [DataBarangController::class, 'addbarang2']);
         Route::get('barang/ubah/{id_master}', [DataBarangController::class, 'editBarang']);
         Route::put('barang/ubah/simpan', [DataBarangController::class, 'updateBarang']);
+        // <---------------------DATA STOK _--------------------------->
+        Route::get('stok', [StokController::class, 'data_stok']);
 
         // <----------------------DATA KATEGORI--------------------------->
         Route::get('kategori', [KategoriController::class, 'kategori']);

@@ -39,7 +39,7 @@
                                 <li role="presentation" class=""><a  data-toggle="tab" id="profile_tab_7" role="tab" href="#masuk_retur" aria-expanded="false">Retur</a></li>
 								
 							</ul>
-                            
+
                             <!-- BARANG GARANSI -->
 							<div class="tab-content" id="myTabContent_7">
 								<div  id="masuk_baru" class="tab-pane fade active in" role="tabpanel">
@@ -50,6 +50,8 @@
                                                 <th>No transaksi</th>
                                                 <th>Jenis Barang</th>
                                                 <th>Tanggal Transaksi</th>
+                                                <!-- <th>Pengirim</th>
+                                                <th>Penerima</th> -->
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -69,7 +71,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-
+                                
                                 <!-- INSTALASI -->
                                 <div  id="garansi" class="tab-pane fade" role="tabpanel">
 								<table id="datable_3" class="table table-bordered display  pb-30">

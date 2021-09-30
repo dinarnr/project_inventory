@@ -10,7 +10,7 @@ class DetailPeminjaman extends Model
     use HasFactory;
     protected $table = "detail_peminjaman";
     protected $primaryKey = "id_peminjaman";
-    protected $fillable = ['id_peminjaman','no_peminjaman','nama_barang', 'jumlah','keterangan','status'
+    protected $fillable = ['id_peminjaman','no_peminjaman','nama_barang', 'jumlah','keterangan','status','konfirmasi'
                             ,'created_at'];
                         
 }
