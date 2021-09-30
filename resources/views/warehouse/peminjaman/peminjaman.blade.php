@@ -60,9 +60,9 @@
                                                     </td>
 
                                                     <td style="text-align:center;">
-                                                        @if(empty($peminjaman->status))
+                                                        @if($peminjaman->status == "pinjam")
                                                         <button class="btn btn-primary btn-sm btn-rounded">Pinjam</button>
-                                                        @elseif($peminjaman->status = 1 )
+                                                        @elseif($peminjaman->status == "di proses warehouse" )
                                                         <button class="btn btn-warning btn-sm btn-rounded">Diproses Warehouse</button>
                                                         @else
                                                         <button class="btn btn-success btn-sm btn-rounded">Dikembalikan</button>
