@@ -19,6 +19,7 @@ class DetailPeminjamanTable extends Migration
             $table->string('nama_barang',50);
             $table->integer('jumlah');
             $table->string('keterangan')->nullable();
+            $table->string('konfirmasi')->nullable();
             $table->integer('status')->nullable();
             $table->timestamps();
         });
