@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Office;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class StokController extends Controller
+class StokOfficeController extends Controller
 {
     public function stok()
     {
