@@ -12,6 +12,8 @@ use App\Models\PO;
 use App\Models\Instansi;
 use Illuminate\Http\Request;
 use App\Models\TransaksiModel;
+use App\Models\Profil;
+
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -94,9 +96,10 @@ class TrkKeluarController extends Controller
 
     public function detailgaransi($no_transaksi)
     {
+        $profil = Profil::all();
         $detail_keluar = DetailTrkKeluar::where('no_transaksi', $no_transaksi)->get();
         $transaksi_garansi = DetailTrkKeluar::where('no_transaksi', $no_transaksi)->get();
-        return view('warehouse/transaksi/detailkeluargaransi', compact('detail_keluar', 'transaksi_garansi'));
+        return view('warehouse/transaksi/detailkeluargaransi', compact('detail_keluar', 'transaksi_garansi', 'profil'));
     }
 
     //---------------------Transaksi Instalasi----------------------------//
@@ -134,7 +137,7 @@ class TrkKeluarController extends Controller
         //    dd($dependent);
         $data = DB::table('detail_PO')->where([['no_SO', $values],['status', '2']])->groupBy('nama_barang')->get();
         $output = '<tr id="row"></tr>';
-                    '<option value="">Select</option>';
+                    '<option value=""></option>';
         foreach ($data as $row) {
             $output .= '<tr id="row"></td>
             <td style="display:none;"><input type="text" style="outline:none;border:0;" name="no_trans" id="no_trans" value="'.$no_trans.'"></td>
@@ -195,9 +198,10 @@ class TrkKeluarController extends Controller
 
     public function detailinstalasi($no_transaksi)
     {
+        $profil = Profil::all();
         $detail_keluar = DetailTrkKeluar::where('no_transaksi', $no_transaksi)->get();
         $transaksi_instalasi = DetailTrkKeluar::where('no_transaksi', $no_transaksi)->get();
-        return view('warehouse/transaksi/detailkeluarinstalasi', compact('detail_keluar', 'transaksi_instalasi'));
+        return view('warehouse/transaksi/detailkeluarinstalasi', compact('detail_keluar', 'transaksi_instalasi', 'profil'));
     }
 
 
@@ -263,9 +267,10 @@ class TrkKeluarController extends Controller
 
     public function detailretur($no_transaksi)
     {
+        $profil = Profil::all();
         $detail_keluar = DetailTrkKeluar::where('no_transaksi', $no_transaksi)->get();
         $transaksi_instalasi = DetailTrkKeluar::where('no_transaksi', $no_transaksi)->get();
-        return view('warehouse/transaksi/detailkeluarretur', compact('detail_keluar', 'transaksi_instalasi'));
+        return view('warehouse/transaksi/detailkeluarretur', compact('detail_keluar', 'transaksi_instalasi', 'profil'));
     }
 }
 

@@ -29,49 +29,109 @@
                     <div class="panel-heading">
                         <div class="panel-wrapper collapse in">
                             <div class="panel-body">
-                                
 
-                    <div class="invoice-bill-table">
-                        <div class="table-responsive">
-                            <table id="myTable1" class="table table display pb-30">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>No PO</th>
-                                        <th>Nama barang</th>
-                                        <th>Jumlah</th>
-                                        <th>Keterangan</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php $no = 1; ?>
-                                    @foreach ($data_detail as $detail_retur)
-                                    <tr>
-                                        <td>{{ $no++ }}</td>
-                                        <td>{{ $detail_retur->no_PO}}</td>
-                                        <td>{{ $detail_retur->nama_barang}}</td>
-                                        <td>{{ $detail_retur->jumlah}} &nbsp;&nbsp;
-                                            <a href="#" class="mr-25" data-toggle="modal" data-target="#editjumlah{{  $detail_retur->id_transaksi }}" action="( {{url('warehouse/transaksi/edit/jumlah')}}/{{ $detail_retur->id_transaksi}})"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
-                                            @include('warehouse.transaksi.editjumlahretur')
-                                        </td>
-                                        <td>{{ $detail_retur->keterangan}}</td>
-                                    </tr>
-                                    @endforeach
-                                    
-                                </tbody>
-                            </table>
+                                <div class="row">
+                                    <div class="col-xs-8">
+                                        <div class="form-group">
+                                            <div class="">
+                                                <h4 text-style="left" class="txt-dark">Nakula Sadewa, CV</h4>
+                                            </div>
+                                            <table>
+                                                <tr>
+                                                    <div class="row">
+                                                        @foreach ($profil as $profil)
+                                                        <td class="txt-dark"> Jl Candi Mendut Utara 1 No. 11 <br>
+                                                            Kel. Mojolangu Kec. Lowokwaru Malang - Jawa Timur<br>
+                                                            Phone : {{$profil->telp}}<br> Email : {{$profil->email}}</td>
+                                                        @endforeach
+                                                    </div>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-4">
+                                        <div class="form-group mt-20 ">
+
+                                            <img src="{{asset('template')}}/dist/img/ns.jpg">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xs-8">
+                                        <div class="form-group">
+                                            <table>
+                                                <div class="text-left">
+                                                    <h6 class="txt-dark"><strong>No Transaksi</strong></h6>
+                                                </div>
+                                                <tr>
+                                                    <div class="">
+                                                        <td class="txt-dark">
+                                                        </td>
+                                                    </div>
+                                                </tr>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <table>
+                                                <div class="text-left">
+                                                    <h6 class="txt-dark"><strong>Tanggal Transaksi</strong></h6>
+                                                </div>
+                                                <tr>
+                                                    <div class="">
+                                                        <td class="txt-dark"> </td>
+                                                    </div>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="invoice-bill-table">
+                                    <div class="table-responsive">
+                                        <table id="myTable1" class="table table display pb-30">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>No PO</th>
+                                                    <th>Nama barang</th>
+                                                    <th>Jumlah</th>
+                                                    <th>Keterangan</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php $no = 1; ?>
+                                                @foreach ($data_detail as $detail_retur)
+                                                <tr>
+                                                    <td>{{ $no++ }}</td>
+                                                    <td>{{ $detail_retur->no_PO}}</td>
+                                                    <td>{{ $detail_retur->nama_barang}}</td>
+                                                    <td>{{ $detail_retur->jumlah}} &nbsp;&nbsp;
+                                                        <a href="#" class="mr-25" data-toggle="modal" data-target="#editjumlah{{  $detail_retur->id_transaksi }}" action="( {{url('warehouse/transaksi/edit/jumlah')}}/{{ $detail_retur->id_transaksi}})"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
+                                                        @include('warehouse.transaksi.editjumlahretur')
+                                                    </td>
+                                                    <td>{{ $detail_retur->keterangan}}</td>
+                                                </tr>
+                                                @endforeach
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!--  -->
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
                         </div>
-                        <!--  -->
-                        <div class="clearfix"></div>
                     </div>
                 </div>
             </div>
+            <!-- /Row -->
         </div>
     </div>
-</div>
-<!-- /Row -->
-</div>
-</div>
 </div>
 </div>
 </div>
