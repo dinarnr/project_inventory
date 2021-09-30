@@ -10,6 +10,7 @@ use App\Models\SupplierModel;
 use App\Models\PO;
 use App\Models\Instansi;
 use App\Models\TransaksiModel;
+use App\Models\Profil;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
@@ -83,9 +84,10 @@ class TrkMasukController extends Controller
 
     public function detailmasuk($no_transaksi)
     {
+        $profil = Profil::all();
         $data_detail = DetailTrkMasuk::where('no_transaksi', $no_transaksi)->get();
         $transaksi_masuk = TransaksiModel::where('no_transaksi', $no_transaksi)->get();
-        return view('warehouse/transaksi/detailmasukbaru', compact('transaksi_masuk', 'data_detail'));
+        return view('warehouse/transaksi/detailmasukbaru', compact('transaksi_masuk', 'data_detail', 'profil'));
     }
 
     // <------------------Masuk Retur------------------->
@@ -175,8 +177,9 @@ class TrkMasukController extends Controller
 
     public function detailmasukretur($no_transaksi)
     {
+        $profil = Profil::all();
         $data_detail = DetailTrkMasuk::where('no_transaksi', $no_transaksi)->get();
         $transaksi_retur = TransaksiModel::where('no_transaksi', $no_transaksi)->get();
-        return view('/warehouse/transaksi/detailmasukretur', compact('transaksi_retur', 'data_detail'));
+        return view('/warehouse/transaksi/detailmasukretur', compact('transaksi_retur', 'data_detail', 'profil'));
     }
 }
