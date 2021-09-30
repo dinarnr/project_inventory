@@ -28,7 +28,7 @@ class PeminjamanController extends Controller
         DetailPeminjaman::where('no_peminjaman', $no_peminjaman)
             ->update(
                 [
-                    'status' => '2',
+                    'status' => 'di kembalikan',
                     'konfirmasi' => $request -> konfirmasi,
 
                 ]
@@ -38,7 +38,7 @@ class PeminjamanController extends Controller
         Peminjaman::where('no_peminjaman', $request->no_peminjaman)
             ->update(
                 [
-                    'status' => '2',
+                    'status' => 'di kembalikan',
                     'konfirmasi' => $request -> konfirmasi,
                     'pic_warehouse' => $user->name,
                     'tglKembali' => Carbon::now()
