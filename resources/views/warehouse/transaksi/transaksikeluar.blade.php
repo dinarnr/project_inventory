@@ -9,8 +9,6 @@
         <div class="row heading-bg">
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
                 <h5 class="txt-dark">Data Barang keluar</h5><br>
-                <!-- <a href="/transaksi" class="btn btn-primary btn-icon-anim"><i class="fa fa succes"></i> MASUK</a>
-                <a href="/transaksikeluar" class="btn btn-primary btn-icon-anim"><i class="fa fa succes"></i> KELUAR</a> -->
             </div>
 
 
@@ -41,19 +39,18 @@
                                 <li role="presentation" class=""><a  data-toggle="tab" id="profile_tab_7" role="tab" href="#masuk_retur" aria-expanded="false">Retur</a></li>
 								
 							</ul>
+                            
                             <!-- BARANG GARANSI -->
 							<div class="tab-content" id="myTabContent_7">
 								<div  id="masuk_baru" class="tab-pane fade active in" role="tabpanel">
-								<table id="data_table1" class="table table-bordered display  pb-30">
+								<table id="datable_1" class="table table-bordered display  pb-30">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
                                                 <th>No transaksi</th>
                                                 <th>Jenis Barang</th>
                                                 <th>Tanggal Transaksi</th>
-                                                <!-- <th>Pengirim</th>
-                                                <th>Penerima</th> -->
-                                                <th colspan="3">Aksi</th>
+                                                <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -64,8 +61,6 @@
                                                 <td>{{ $garansi->no_transaksi}}</td>
                                                 <td>{{ $garansi->jns_barang }}</td>
                                                 <td>{{ $garansi->tgl_transaksi }}</td>
-                                                <!-- <td>{{ $garansi->pengirim }}</td>
-                                                <td>{{ $garansi->penerima }}</td> -->
                                                 <td>
                                                     <a href="{{ url('warehouse/transaksi/detailkeluargaransi') }}/{{ $garansi->no_transaksi }}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
                                                 </td>
@@ -74,9 +69,10 @@
                                         </tbody>
                                     </table>
                                 </div>
+
                                 <!-- INSTALASI -->
                                 <div  id="garansi" class="tab-pane fade" role="tabpanel">
-								<table id="data_table1" class="table table-bordered display  pb-30">
+								<table id="datable_3" class="table table-bordered display  pb-30">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -85,7 +81,7 @@
                                                 <th>Tanggal Instalasi</th>
                                                 <th>Pengirim</th>
                                                 <th>Penerima</th>
-                                                <th colspan="3">Aksi</th>
+                                                <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -110,7 +106,7 @@
 								
                                 <!-- BARANG RETUR -->
                                 <div  id="masuk_retur" class="tab-pane fade" role="tabpanel">
-                                <table id="data_table1" class="table table-bordered display  pb-30">
+                                <table id="datable_4" class="table table-bordered display  pb-30">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
