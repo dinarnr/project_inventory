@@ -53,7 +53,7 @@
                                                 <th>Tanggal Transaksi</th>
                                                 <!-- <th>Pengirim</th>
                                                 <th>Penerima</th> -->
-                                                <th colspan="3">Aksi</th>
+                                                <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -86,7 +86,7 @@
                                                 <th>Tanggal Instalasi</th>
                                                 <th>Pengirim</th>
                                                 <th>Penerima</th>
-                                                <th colspan="3">Aksi</th>
+                                                <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
