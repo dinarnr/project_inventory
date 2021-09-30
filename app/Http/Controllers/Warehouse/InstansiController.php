@@ -75,7 +75,7 @@ class InstansiController extends Controller
 
             ]
         );
-        return redirect()->with('success', "");
+        return redirect()->back();
         
     }
 
@@ -97,6 +97,8 @@ class InstansiController extends Controller
             'telp_instansi.required' => '*No telp tidak boleh kosong',
         ];
         $this->validate($request, $rules, $messages);
+
+        $data_instansi=Instansi::all();
 
         //Kode supp
         $kode = strtoupper(substr("INSTANSI", 0, 3));
@@ -126,7 +128,7 @@ class InstansiController extends Controller
 
             ]
         );
-        return redirect('/addpo');
+        return view('warehouse/instansi/instansi', compact('data_instansi'));
         
     }
 

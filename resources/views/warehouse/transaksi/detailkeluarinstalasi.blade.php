@@ -75,6 +75,8 @@
 
                                         </div>
                                     </div>
+<hr>
+
                                     <div class="col-xs-4">
                                         <div class="form-group">
                                             <table>

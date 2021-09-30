@@ -131,6 +131,11 @@
         </div>
         <!-- /Footer -->
     </div>
+    <div class="pull-right">
+    <button type="button" class="btn btn-success btn-icon left-icon" target="blank">
+        <i class="fa fa-print"></i><span>Print</span>
+    </button>
+</div>
     <!-- /Main Content -->
 </div>
 <!-- /#wrapper -->

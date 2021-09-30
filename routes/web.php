@@ -91,7 +91,7 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::post('transaksi/masukbaru/simpan', [TrkMasukController::class, 'addmasukbaru2']);
         Route::get('transaksi/masukretur/tambah', [TrkMasukController::class, 'addmasukretur']);
         Route::post('transaksi/masukretur/simpan', [TrkMasukController::class, 'addmasukretur2']);
-
+        Route::post('transaksi/masukbaru/tambah/fetch', [TrkMasukController::class, 'fetch'])->name('transaksimasuk.fetch');
         Route::get('transaksi/detailmasukbaru/{no_transaksi}', [TrkMasukController::class, 'detailmasuk']);
 
         Route::post('transaksi/edit/jumlah/{id_transaksi}', [TrkMasukController::class, 'editjumlah']); //modal edit jumlah

@@ -44,7 +44,7 @@
                             <!-- BARU -->
 							<div class="tab-content" id="myTabContent_7">
 								<div  id="masuk_baru" class="tab-pane fade active in" role="tabpanel">
-								<table id="data_table1" class="table table-bordered display  pb-30">
+								<table id="datable_1" class="table table-bordered display  pb-30">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -75,7 +75,7 @@
 								
                                 <!-- BARANG RETUR -->
                                 <div  id="masuk_retur" class="tab-pane fade" role="tabpanel">
-                                <table id="data_table1" class="table table-bordered display  pb-30">
+                                <table id="datable_3" class="table table-bordered display  pb-30">
                                         <thead>
                                             <tr>
                                             <th>#</th>

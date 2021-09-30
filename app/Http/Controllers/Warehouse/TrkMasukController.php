@@ -14,6 +14,7 @@ use App\Models\Profil;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
+use Illuminate\Support\Facades\DB;
 
 class TrkMasukController extends Controller
 {
@@ -80,6 +81,21 @@ class TrkMasukController extends Controller
             ]
         );
         return redirect('warehouse/transaksi/masuk');
+    }
+
+    public function fetch(Request $request){ 
+        // dd($request);
+        $select = $request->get('select');
+        $values = $request->get('value');
+        $dependent = $request->get('dependent');
+
+        //    dd($dependent);
+        $data = DB::table('master_data')->where('kode_barang', $values)->groupBy('nama_barang')->get();
+        $output = '<option value=""></option>';
+        foreach ($data as $row) {
+            $output .= '<option value="'.$row->nama_barang.'" name="nama_barang" id="kode_barang"> </option>';
+        }
+        echo $output;
     }
 
     public function detailmasuk($no_transaksi)
