@@ -29,7 +29,7 @@ use App\Http\Controllers\Admin\PengajuanAdminController;
 use App\Http\Controllers\Admin\PoAdminController;
 
 use App\Http\Controllers\Office\ReportController;
-use App\Http\Controllers\Office\StokController;
+use App\Http\Controllers\Office\StokOfficeController;
 use App\Http\Controllers\Office\TrkMasukOfficeController;
 use App\Http\Controllers\Office\POOfficeController;
 use App\Http\Controllers\Office\SOOfficeController;
@@ -271,7 +271,7 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
 
     Route::group(['prefix' => 'office/'], function () {
         Route::get('report/report', [ReportController::class, 'report']);
-        Route::get('barang/stok', [StokController::class, 'stok']);
+        Route::get('barang/stok', [StokOfficeController::class, 'stok']);
         Route::get('barang/transaksimasuk', [TrkMasukOfficeController::class, 'transaksimasuk']);
         Route::get('po/datapo', [POOfficeController::class, 'po']);
         Route::get('so/dataso', [SOOfficeController::class, 'so']);
