@@ -84,7 +84,7 @@
                                                 <th>Pengirim Ekspedisi</th>
                                                 <th>Penerima</th>
                                                 <th>Created at</th>
-                                                <th colspan="3">Aksi</th>
+                                                <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
