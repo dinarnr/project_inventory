@@ -127,8 +127,8 @@
                                                             Purchase Order diproses Marketing
                                                             @endif -->
                                                         </td>
-                                                        <td>{{ $data_po->tgl_pemasangan}}</td>
-                                                        <td>{{ $data_po->created_at}}</td>
+                                                        <td>{{  date('d-m-Y',strtotime($data_po->tgl_pemasangan))}}</td>
+                                                        <td>{{  date('d-m-Y',strtotime($data_po->created_at))}}</td>
                                                         <td>
                                                             @if($data_po->status >= 1 )
                                                             <a href="{{ url('warehouse/so/detail') }}/{{ $data_po->no_PO }}"><button class="btn btn-success btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>

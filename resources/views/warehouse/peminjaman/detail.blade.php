@@ -97,7 +97,7 @@
                                                 <tr>
                                                     <div class="">
                                                         <td class="txt-dark">
-                                                        {{$peminjaman->tglPinjam}}
+                                                        {{ date('d-m-Y',strtotime($peminjaman->tglPinjam))}}
                                                       </td>
                                                     </div>
                                                 </tr>

@@ -46,21 +46,20 @@
 
                                     <div class="col-xs-8">
                                         <div class="form-group">
-                                            <table>
                                                 <div class="text-left">
                                                     <h6 class="txt-dark"><strong>TO</strong></h6>
                                                 </div>
-                                               @foreach ($instansi as $instansi)
                                         <tr>
                                             <div class="">
-                                                <td class="txt-dark"> {{$instansi->nama_instansi}} <br>
-                                                                {{$instansi->alamat_instansi}} <br>
-                                                                {{$instansi->telp_instansi}} <br>
-                                                                {{$instansi->email_instansi}} <br>
-                                                </td>
+                                               @foreach ($instansi as $instansi)
+                                                    <td class="txt-dark"> {{$instansi->nama_instansi}} <br>
+                                                                    {{$instansi->alamat_instansi}} <br>
+                                                                    {{$instansi->telp_instansi}} <br>
+                                                                    {{$instansi->email_instansi}} <br>
+                                                    </td>
+                                                @endforeach
                                             </div>
                                         </tr>
-                                        @endforeach
                                             </table>
 
                                         </div>
