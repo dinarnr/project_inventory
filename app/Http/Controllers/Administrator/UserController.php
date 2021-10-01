@@ -70,4 +70,31 @@ class UserController extends Controller
     return redirect('administrator/user');
     }
 
+    public function updateProfil (Request $request)
+    {
+        if ($request->gambar) {
+            $namaFile = time() . '.' . $request->gambar->extension();
+            $request->gambar->move(public_path('img/logo'), $namaFile);
+
+            User::where('id', $request->edit_id)
+            ->update([
+                'name'      => $request->edit_nama,
+                'email'     => $request->edit_email,
+                'password'  => $request->edit_password,
+                'gambar'    => $namaFile,
+                'status'    => $request->edit_status
+        ]);
+        } else {
+
+            User::where('id', $request->edit_id)               
+             ->update([
+                'name'      => $request->edit_nama,
+                'email'     => $request->edit_email,
+                'password' => $request->edit_password,
+                'status'    => $request->edit_status
+                ]);
+                return redirect()->back();
+        }
+            
+    }
 }

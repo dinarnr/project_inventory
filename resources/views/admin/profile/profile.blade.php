@@ -33,14 +33,15 @@
 
                     <div class="row">
                         <!-- left column -->
-                        <form class="form-horizontal" role="form">
+                        <form action="{{ url('admin/profil/ubah/simpan') }}" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
+                        {{ csrf_field() }}
                         <div class="col-md-3">
                             <div class="text-center">
 
                                 <img src="{{ url('img/logo') }}/{{ Auth::user()->gambar }}" class="avatar img-circle" alt="avatar" style="width: 200px; height: 200px;">
                                 <h6>Upload your photo...</h6>
 
-                                <input type="file" name="profImage">
+                                <input type="file" name="gambar">
                                 <input type="hidden" class="form-control-file" id="hidden_gambar" name="hidden_gambar" value="">
                             </div>
                         </div>
@@ -53,26 +54,27 @@
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Nama:</label>
                                 <div class="col-lg-8">
-                                <input class="form-control" name="name" type="text" value="{{ Auth::user()->name }}">
+                                <input class="form-control" name="edit_id" type="hidden" value="{{ Auth::user()->id }}" >
+                                <input class="form-control" name="edit_nama" type="text" value="{{ Auth::user()->name }}">
                                 </div>
                             </div>
                             
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Divisi</label>
                                 <div class="col-lg-8">
-                                <input class="form-control" name="divisi" type="text" value="{{ Auth::user()->divisi }}" readonly>
+                                <input class="form-control" name="edit_divisi" type="text" value="{{ Auth::user()->divisi }}" readonly>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Email:</label>
                                 <div class="col-lg-8">
-                                <input class="form-control" name="email" type="text" value="{{ Auth::user()->email }}">
+                                <input class="form-control" name="edit_email" type="text" value="{{ Auth::user()->email }}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Password</label>
                                 <div class="col-lg-8">
-                                <input class="form-control" name="email" type="password" value="">
+                                <input class="form-control" name="edit_password" type="password" value="">
                                 </div>
                             </div>
 
@@ -81,9 +83,8 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label"></label>
                                 <div class="col-md-8">
-                                <input type="submit" class="btn btn-primary" value="Save Changes">
+                                <button class="btn btn-success">Simpan</button>
                                 <span></span>
-                                <a  href="/home2"> <input type="button" href="/home2" class="btn btn-default" value="Cancel">
                                 </div>
                             </div>
                             </form>

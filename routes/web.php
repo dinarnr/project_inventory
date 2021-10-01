@@ -69,6 +69,8 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::get('admin/profile/profile', [HomeController::class, 'profil']);
+    Route::post('admin/profil/ubah/simpan', [UserController::class, 'updateProfil']);
+
 
     Route::group(['prefix' => 'warehouse/'], function () {
         // <----------------------DATA BARANG--------------------------->
