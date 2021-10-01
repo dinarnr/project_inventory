@@ -39,9 +39,8 @@
                                                 <tr>
                                                     <th>#</th>
                                                     <th>No Pengajuan</th>
-                                                    <th>Nama Barang</th>
                                                     <th>Tanggal Pengajuan</th>
-                                                    <th>Jumlah</th>
+                                                    <th>Nama Pemohon</th>
                                                     <th>Aksi</th>
                                                 </tr>
                                             </thead>
@@ -50,10 +49,9 @@
                                                 @foreach($pembelian as $pembelian)
                                                 <tr>
                                                     <td>{{ $no++ }}</td>
-                                                    <td>{{ $pembelian->no_PO }}</td>
+                                                    <td>{{ $pembelian->no_pengajuan}}</td>
                                                     <td>{{ $pembelian->tgl_pengajuan }}</td>
-                                                    <td>{{ $pembelian->namaBarang }}</td>
-                                                    <td>{{ $pembelian->jumlah }}</td>
+                                                    <td>{{ $pembelian->nama_pemohon }}</td>
                                                     <td>
                                                         <a href="detailpo"><button class="btn btn-success btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
                                                         

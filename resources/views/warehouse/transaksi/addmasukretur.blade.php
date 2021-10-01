@@ -31,7 +31,7 @@
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12">
                                     <div class="form-wrap">
-                                        <form action="{{ url('warehouse/transaksi/masukretur/simpan') }}" method="POST" enctype="multipart/form-data">
+                                        <form name="myForm" action="{{ url('warehouse/transaksi/masukretur/simpan') }}" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             <div class="form-body">
                                                 <div class="row">
@@ -56,18 +56,24 @@
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label class="control-label mb-10">Pengirim Ekspedisi</label>
                                                             <input type="text" id="pengirim" name="pengirim" class="form-control">
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label class="control-label mb-10">Penerima</label>
                                                             <input type="text" id="penerima" name="penerima" class="form-control">
                                                         </div>
                                                     </div>
+													<div class="col-md-4">
+														<div class="form-group">
+															<label class="control-label mb-10">Tanggal Terima</label>
+															<input type="date" id="tgl_transaksi" name="tgl_transaksi" class="form-control">
+														</div>
+													</div>
 
                                                 </div>
                                                 <hr>
@@ -76,13 +82,23 @@
                                                         <div class="form-group">
 
                                                             <label class="control-label mb-10">Nama Barang</label>
-                                                            <select name="nama_barang" id="nama_barang" class="form-control select2">
+                                                            <select name="nama_barang" id="nama_barang" class="form-control select2"  data-dependent="kode_barang">
                                                                 @foreach($barang as $brg)
                                                                 <option value="{{ $brg->nama_barang }}">{{ $brg->nama_barang }} | {{ $brg->kode_barang }} </option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
                                                     </div>
+                                                    <div class="col-md-4" hidden>
+														<div class="form-group">
+															<label class="control-label mb-10">Kode Barang</label>
+															<select name="kode_barang" id="kode_barang" class="form-control select2" disabled>
+																
+															</select>
+															<!-- <div id="id_barang"></div> -->
+														</div>
+													    {{ csrf_field() }}
+													</div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="control-label mb-10">Instansi</label>
@@ -166,6 +182,24 @@
 @section('scripts')
 <script type="text/javascript">
     function ambildata() {
+        var jumlah = document.forms["myForm"]["nama_barang"].value;
+        var tgl = document.forms["myForm"]["tgl_transaksi"].value;
+        var pengirim = document.forms["myForm"]["pengirim"].value;
+        var penerima = document.forms["myForm"]["penerima"].value;
+		if (jumlah == "") {
+			alert("Nama tidak boleh kosong");
+			return false;
+		}else if(tgl == ""){
+            alert("Tanggal  tidak boleh kosong");
+			return false;
+        }else if(pengirim = ""){
+            alert("Pengirim  tidak boleh kosong");
+			return false;
+        }else if(penerima = ""){
+            alert("Penerima  tidak boleh kosong");
+			return false;
+        }
+
         var no_retur = document.getElementById('no_retur').value;
         var no_PO = document.getElementById('no_PO').value;
         var nama_barang = document.getElementById('nama_barang').value;
@@ -191,5 +225,30 @@
         var row_id = $(this).attr("id");
         $('#row' + row_id + '').remove();
     });
+</script>
+<script>
+	$('#nama_barang').change(function(){
+		if($(this).val() != ''){
+			var select = $(this).attr("id");
+			var value = $(this).val();
+			
+			// $('#id_barang').val(value);
+			var dependent = $(this).data('dependent');
+			var _token = $('input[name="_token"]').val();
+			$.ajax({
+				url: "{{ route('trkmasukcontroller.fetch')}}",
+				method: "POST",
+				data: {
+					select: select,value: value,_token:_token,dependent: dependent
+				},
+				success: function(result) {
+					console.log(result);
+					$('#'+dependent).html(result);
+				},
+		
+			});
+			
+		}
+	});
 </script>
 @endsection

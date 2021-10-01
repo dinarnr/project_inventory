@@ -62,7 +62,6 @@ class TrkKeluarController extends Controller
             DetailTrkKeluar::create(
                 [
                     'no_transaksi' => $request->no_trans[$i],
-                    'no_PO' => $request->no_PO[$i],
                     'jumlah' => $request->jumlah[$i],
                     'kode_barang' => $request->kode_barang[$i],
                     'nama_barang' => $request->nama_barang[$i],            
@@ -71,7 +70,7 @@ class TrkKeluarController extends Controller
             );
         }
         TransaksiKeluar::create(
-            [
+            [       'no_PO' => $request->no_PO,
                     'no_transaksi' => $request->no_transaksi,
                     'tgl_transaksi' => $request->tgl_transaksi,
                     'jns_barang' => $request->jenis_barang,
@@ -134,7 +133,6 @@ class TrkKeluarController extends Controller
         //    dd($dependent);
         $data = DB::table('detail_PO')->where([['no_SO', $values],['status', '2']])->groupBy('nama_barang')->get();
         $output = '<tr id="row"></tr>';
-                    '<option value="">Select</option>';
         foreach ($data as $row) {
             $output .= '<tr id="row"></td>
             <td style="display:none;"><input type="text" style="outline:none;border:0;" name="no_trans" id="no_trans" value="'.$no_trans.'"></td>
@@ -143,7 +141,6 @@ class TrkKeluarController extends Controller
             <td style="display:none;"><input type="text" style="outline:none;border:0;" readonly name="no_SO[]" id="no_SO" value="'.$row->no_SO.'"></td> 
             <td><input type="text" style="outline:none;border:0;" readonly name="jumlah[]" id="jumlah" value="'.$row->jumlah.'"></td></tr>';
              '<option value="">Select</option>';
-            '<input type="text" name="instansi[]" id="instansi" value="'.$row->instansi.'">';
         }
         echo $output;
     }
@@ -153,9 +150,36 @@ class TrkKeluarController extends Controller
         $data = PO::where('no_SO',$no_so)->first();
         return response()->json($data);
     }
- 
+
+    public function kode(Request $request){ 
+        // dd($request);
+        $select = $request->get('select');
+        $values = $request->get('value');
+        $dependent = $request->get('dependent');
+
+        //    dd($dependent);
+        $data = DB::table('master_data')->where('nama_barang', $values)->groupBy('kode_barang')->get();
+        
+        foreach ($data as $row) {
+            $output = '<option value="'.$row->kode_barang.'">'.$row->kode_barang.'</option>';
+        }
+        echo $output;
+    }
+
     public function keluarinstalasi(Request $request)
     {
+        $rules = [
+            'tgl_transaksi' => 'required',
+            'pengirim' => 'required',
+            'penerima' => 'required',
+        ];
+
+        $messages = [
+            'tgl_transaksi.required' => 'Tanggal tidak boleh kosong',
+            'pengirim.required' => 'Pengirim tidak boleh kosong',
+            'penerima.required' => 'Penerima tidak boleh kosong',
+        ];
+        $this->validate($request, $rules, $messages);
         // dd($request->jumlah);
         $jumlah_data = count($request->jumlah);
         for ($i = 0; $i < $jumlah_data; $i++) {

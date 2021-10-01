@@ -50,10 +50,7 @@
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $detail_retur->no_PO}}</td>
                                         <td>{{ $detail_retur->nama_barang}}</td>
-                                        <td>{{ $detail_retur->jumlah}} &nbsp;&nbsp;
-                                            <a href="#" class="mr-25" data-toggle="modal" data-target="#editjumlah{{  $detail_retur->id_transaksi }}" action="( {{url('warehouse/transaksi/edit/jumlah')}}/{{ $detail_retur->id_transaksi}})"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
-                                            @include('warehouse.transaksi.editjumlahretur')
-                                        </td>
+                                        <td>{{ $detail_retur->jumlah}}</td>
                                         <td>{{ $detail_retur->keterangan}}</td>
                                     </tr>
                                     @endforeach

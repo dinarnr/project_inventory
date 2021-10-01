@@ -49,10 +49,7 @@
                                                 <tr>
                                                     <td>{{ $no++ }}</td>
                                                     <td>{{ $data_detail->nama_barang}}</td>
-                                                    <td>{{ $data_detail->jumlah}} &nbsp; &nbsp;
-                                                        <a href="#" class="mr-25" data-toggle="modal" data-target="#editjumlah{{  $data_detail->id_transaksi }}" action="( {{url('warehouse/transaksi/edit/jumlah')}}/{{ $data_detail->id_transaksi}})"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
-                                                        @include('warehouse.transaksi.editjumlahbaru')
-                                                    </td>
+                                                    <td>{{ $data_detail->jumlah}} </td>
                                                     <td>{{ $data_detail->keterangan}}</td>
                                                 </tr>
                                                 @endforeach

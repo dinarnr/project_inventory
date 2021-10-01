@@ -83,8 +83,11 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::get('transaksi/masuk', [TrkMasukController::class, 'transaksi']);
         Route::get('transaksi/masukbaru/tambah', [TrkMasukController::class, 'addmasukbaru']);
         Route::post('transaksi/masukbaru/simpan', [TrkMasukController::class, 'addmasukbaru2']);
+        Route::post('transaksi/masukbaru/tambah/fetch', [TrkMasukController::class, 'fetch'])->name ('trkmasukcontroller.fetch');
+        // Route::get('transaksi/masukbaru/tambah/kode_barang/{nama_barang}', [TrkMasukontroller::class, 'kode_barang'])->name ('trkmasukcontroller.kode_barang');
         Route::get('transaksi/masukretur/tambah', [TrkMasukController::class, 'addmasukretur']);
         Route::post('transaksi/masukretur/simpan', [TrkMasukController::class, 'addmasukretur2']);
+        Route::post('transaksi/masukretur/tambah/fetch', [TrkMasukController::class, 'fetch'])->name ('trkmasukcontroller.fetch');
         
         Route::get('transaksi/detailmasukbaru/{no_transaksi}', [TrkMasukController::class, 'detailmasuk']);
 
@@ -103,6 +106,7 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::get('transaksi/keluarretur/tambah', [TrkKeluarController::class, 'addkeluarretur']);
         Route::post('transaksi/keluarretur/simpan', [TrkKeluarController::class, 'addkeluarretur2']);
         Route::get('transaksi/detailkeluarretur/{no_transaksi}', [TrkKeluarController::class, 'detailretur']);
+        Route::post('transaksi/keluarretur/tambah/kode', [TrkKeluarController::class, 'kode'])->name ('trkkeluarcontroller.kode');
     
         Route::get('transaksi/keluarinstalasi/tambah', [TrkKeluarController::class, 'transaksiinstalasi']);
         Route::post('transaksi/keluarinstalasi/tambah/fetch', [TrkKeluarController::class, 'fetch'])->name ('trkkeluarcontroller.fetch');
@@ -158,7 +162,7 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
 
         Route::get('pengajuan/pembelian', [PengajuanWarehouseController::class, 'pengpembelian']);
         Route::get('pengajuan/pembelian/tambah', [PengajuanWarehouseController::class, 'addpembelian']);
-        Route::post('pengajuan/pembelian/simpan', [PengajuanWarehouseController::class, 'addpembelian2']);
+        Route::post('pengajuan/pembelian/simpan', [PengajuanWarehouseController::class, 'addpengajuanpembelian']);
 
         // <----------------------DATA PEMBELIAN--------------------------->
         Route::get('pembelian/invoice', [PembelianWarehouseController::class, 'pembelian']);

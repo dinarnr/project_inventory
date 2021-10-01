@@ -13,6 +13,7 @@ use App\Models\TransaksiModel;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
+use Illuminate\Support\Facades\DB;
 
 class TrkMasukController extends Controller
 {
@@ -42,6 +43,27 @@ class TrkMasukController extends Controller
         return view('warehouse/transaksi/addmasukbaru', compact('no_trans', 'supplier', 'barang', 'transaksi_masuk'));
     }
 
+    public function fetch(Request $request){ 
+        // dd($request);
+        $select = $request->get('select');
+        $values = $request->get('value');
+        $dependent = $request->get('dependent');
+
+        //    dd($dependent);
+        $data = DB::table('master_data')->where('nama_barang', $values)->groupBy('kode_barang')->get();
+        
+        foreach ($data as $row) {
+            $output = '<option value="'.$row->kode_barang.'">'.$row->kode_barang.'</option>';
+        }
+        echo $output;
+    }
+
+    // public function kode_barang($nama_brg)
+    // {
+    //     $data = Master::where('nama_barang',$nama_brg)->first();
+    //     return response()->json($data);
+    // }
+
     public function addmasukbaru2(Request $request)
     {
         $user = Auth::user();
@@ -61,6 +83,7 @@ class TrkMasukController extends Controller
             [
                 'no_transaksi' => $request->no_transaksi,
                 'nama_supplier' => $request->nama_supplier,
+                'tgl_transaksi' => $request->tgl_transaksi,
                 'pengirim' => $request->pengirim,
                 'penerima' => $request->penerima,
                 'pic_warehouse' => $user->name,
@@ -131,6 +154,7 @@ class TrkMasukController extends Controller
                 'no_transaksi' => $request->no_transaksi,
                 'instansi' => $request->instansi,
                 'pengirim' => $request->pengirim,
+                'tgl_transaksi' => $request->tgl_transaksi,
                 'penerima' => $request->penerima,
                 'pic_warehouse' => $user->name,
             ]

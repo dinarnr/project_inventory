@@ -50,6 +50,7 @@
                                                 <th>#</th>
                                                 <th>No transaksi</th>
                                                 <th>Supplier</th>
+                                                <th>Tanggal Terima</th>
                                                 <th>Pengirim Ekspedisi</th>
                                                 <th>Penerima</th>
                                                 <th>Aksi</th>
@@ -62,6 +63,7 @@
                                                 <td>{{ $no++ }}</td>
                                                 <td>{{ $transaksi_masuk->no_transaksi}}</td>
                                                 <td>{{ $transaksi_masuk->nama_supplier }}</td>
+                                                <td>{{ $transaksi_masuk->tgl_transaksi }}</td>
                                                 <td>{{ $transaksi_masuk->pengirim }}</td>
                                                 <td>{{ $transaksi_masuk->penerima }}</td>
                                                 <td>
@@ -81,6 +83,7 @@
                                             <th>#</th>
                                                 <th>No transaksi</th>
                                                 <th>Instansi</th>
+                                                <th>Tanggal Terima</th>
                                                 <th>Pengirim Ekspedisi</th>
                                                 <th>Penerima</th>
                                                 <th>Created at</th>
@@ -94,6 +97,7 @@
                                                 <td>{{ $no++ }}</td>
                                                 <td>{{ $transaksi_retur->no_transaksi}}</td>
                                                 <td>{{ $transaksi_retur->instansi}}</td>
+                                                <td>{{ $transaksi_retur->tgl_transaksi}}</td>
                                                 <td>{{ $transaksi_retur->pengirim }}</td>
                                                 <td>{{ $transaksi_retur->penerima }}</td>
                                                 <td>{{ $transaksi_retur->created_at }}</td>
