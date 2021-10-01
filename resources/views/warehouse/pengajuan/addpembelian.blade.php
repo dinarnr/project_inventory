@@ -156,7 +156,7 @@
 		var keterangan = document.getElementById('keterangan').value;
 		var nama_barang = document.getElementById('nama_barang').value;
 		var kode_barang = document.getElementById('kode_barang').value;
-		var jumlah = document.getElementById('jumlah').value;
+		var jumlah = document.getElementById('jumlah').value; 
 		var harga = document.getElementById('harga').value;
 
 		addrow(no_peng, keterangan, nama_barang, kode_barang, jumlah, harga);

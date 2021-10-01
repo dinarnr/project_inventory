@@ -32,7 +32,7 @@
 							<div class="row">
 								<div class="col-sm-12 col-xs-12">
 									<div class="form-wrap">
-										<form action="{{ url('warehouse/transaksi/masukbaru/simpan') }}" method="POST" enctype="multipart/form-data">
+										<form name="myForm" action="{{ url('warehouse/transaksi/masukbaru/simpan') }}" method="POST" enctype="multipart/form-data">
 											@csrf
 											<div class="form-body">
 												<div class="row">
@@ -58,42 +58,69 @@
 
 												</div>
 												<div class="row">
-													<div class="col-md-6">
+													<div class="col-md-4">
+														<div class="form-group">
+															<label class="control-label mb-10">Tanggal Terima</label>
+															<input type="date" id="tgl_transaksi" name="tgl_transaksi" class="form-control">
+														</div>
+														<div style="background-color:#ea6c41;color:#fff;border-radius:2px;border: none;">
+															<p id="text-alert"></p>
+														</div>
+													</div>
+													<div class="col-md-4">
 														<div class="form-group">
 															<label class="control-label mb-10">Pengirim Ekspedisi</label>
 															<input type="text" id="pengirim" name="pengirim" class="form-control">
 														</div>
+														
+														<div style="background-color:#ea6c41;color:#fff;border-radius:2px;border: none;">
+															<p id="text-alert2"></p>
+														</div>
 													</div>
-													<div class="col-md-6">
+													<div class="col-md-4">
 														<div class="form-group">
 															<label class="control-label mb-10">Penerima</label>
 															<input type="text" id="penerima" name="penerima" class="form-control">
 														</div>
+														<div style="background-color:#ea6c41;color:#fff;border-radius:2px;border: none;">
+															<p id="text-alert3"></p>
+														</div>
 													</div>
+
 												</div>
 												<hr>
 												<div class="row">
-													<div class="col-md-6">
+													<div class="col-md-4">
 														<div class="form-group">
-
 															<label class="control-label mb-10">Nama Barang</label>
-															<select name="nama_barang" id="nama_barang" class="form-control select2">
+															<select name="nama_barang" id="nama_barang" class="form-control select2" data-dependent="kode_barang">
 																@foreach($barang as $brg)
 																<option value="{{ $brg->nama_barang }}">{{ $brg->nama_barang }} | {{ $brg->kode_barang }} </option>
 																@endforeach
 															</select>
 														</div>
 													</div>
-													<div class="col-md-6">
+													<div class="col-md-4" hidden>
+														<div class="form-group">
+															<label class="control-label mb-10">Kode Barang</label>
+															<select name="kode_barang" id="kode_barang" class="form-control select2" disabled>
+																
+															</select>
+															<!-- <div id="id_barang"></div> -->
+														</div>
+													{{ csrf_field() }}
+													</div>
+
+													<div class="col-md-4">
 														<div class="form-group">
 															<label class="control-label mb-10">Jumlah</label>
 															<input type="number" id="jumlah" name="jumlah" class="form-control">
-															@foreach($barang as $brg)
-															<input id="kode_barang" name="kode_barang" value="{{$brg->kode_barang}}" hidden>
-															@endforeach
+														</div>
+														<div style="background-color:#ea6c41;color:#fff;border-radius:2px;border: none;">
+															<p id="text-alert4"></p>
 														</div>
 													</div>
-													<div class="col-md-12">
+													<div class="col-md-4">
 														<div class="form-group">
 															<label class="control-label mb-10">Keterangan</label>
 															<input type="text" id="keterangan" name="keterangan" class="form-control">
@@ -156,6 +183,25 @@
 @section('scripts')
 <script type="text/javascript">
 	function ambildata() {
+		var tgl = document.forms["myForm"]["tgl_transaksi"].value;
+        var pengirim = document.forms["myForm"]["pengirim"].value;
+        var penerima = document.forms["myForm"]["penerima"].value;
+		var jumlah = document.forms["myForm"]["nama_barang"].value;
+        
+		if (tgl == "") {
+			document.getElementById("text-alert").innerHTML = "Jumlah tidak boleh kosong";
+			return false;
+		}else if(pengirim == ""){
+			document.getElementById("text-alert2").innerHTML = "Tanggal tidak boleh kosong";
+			return false;
+        }else if(penerima = ""){
+			document.getElementById("text-alert3").innerHTML = "Pengirim tidak boleh kosong";
+			return false;
+        }else if(jumlah = ""){
+            document.getElementById("text-alert4").innerHTML = "Penerima tidak boleh kosong";
+			return false;
+        }
+
 		var no_trans = document.getElementById('no_trans').value;
 		var keterangan = document.getElementById('keterangan').value;
 		var nama_barang = document.getElementById('nama_barang').value;
@@ -182,5 +228,30 @@
 
 	$('#nama_barang').select2();
 	$('#nama_supplier').select2();
+</script>
+<script>
+	$('#nama_barang').change(function(){
+		if($(this).val() != ''){
+			var select = $(this).attr("id");
+			var value = $(this).val();
+			
+			// $('#id_barang').val(value);
+			var dependent = $(this).data('dependent');
+			var _token = $('input[name="_token"]').val();
+			$.ajax({
+				url: "{{ route('trkmasukcontroller.fetch')}}",
+				method: "POST",
+				data: {
+					select: select,value: value,_token:_token,dependent: dependent
+				},
+				success: function(result) {
+					console.log(result);
+					$('#'+dependent).html(result);
+				},
+		
+			});
+			
+		}
+	});
 </script>
 @endsection

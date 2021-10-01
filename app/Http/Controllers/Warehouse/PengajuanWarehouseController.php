@@ -244,8 +244,8 @@ class PengajuanWarehouseController extends Controller
     public function addpembelian()
     {
         $kode = strtoupper(substr("PEM", 0, 3));
-        $check = count(Pengajuan::where('noPO', 'like', "%$kode%")->get()->toArray());
-        $angka = sprintf("%04d", (int)$check + 1);
+        $check = count(Pengajuan::where('no_pengajuan', 'like', "%$kode%")->get()->toArray());
+        $angka = sprintf("%03d", (int)$check + 1);
         $no_peng = $kode . "" . $angka;
 
         $pembelian= Pengajuan::all();
@@ -256,17 +256,18 @@ class PengajuanWarehouseController extends Controller
         return view('warehouse/pengajuan/addpembelian', compact('pembelian','noPO','data_instansi', 'no_peng'));
     }
 
-    public function addpembelian2(Request $request)
+    public function addpengajuanpembelian(Request $request)
     {
-       // dd( $request->kode_barang);
+    //    dd( $request->all());
        $jumlah_data = count($request->no_peng);
        for ($i = 0; $i < $jumlah_data; $i++) {
            DetailPengajuan::create(
                [
                    'no_pengajuan' => $request->no_peng[$i],
-                   'jumlah' => $request->jumlah[$i],
+                   'jmlBarang' => $request->jumlah[$i],
+                   'harga' => $request->harga[$i],
                    'kode_barang' => $request->kode_barang[$i],
-                   'nama_barang' => $request->nama_barang[$i],
+                   'namaBarang' => $request->nama_barang[$i],
                    'keterangan' => $request->keterangan[$i],
                ]
            );
@@ -274,9 +275,8 @@ class PengajuanWarehouseController extends Controller
            Pengajuan::create(
                [
                    'no_pengajuan' => $request->no_pengajuan,
-                   'nama_supplier' => $request->nama_supplier,
-                   'pengirim' => $request->pengirim,
-                   'penerima' => $request->penerima,
+                   'tgl_pengajuan' => $request->tgl_pengajuan,
+                   'nama_pemohon' => $request->nama_pemohon,
                ]);
            
            $user = Auth::user();
@@ -285,11 +285,18 @@ class PengajuanWarehouseController extends Controller
                'name' => $user->name,
                'email' => $user->email,
                'divisi' => $user->divisi,
-               'deskripsi' => 'Create Masuk Baru',
+               'deskripsi' => 'Create Pengajuan Pembelian',
                'status' => '2',
                'ip'=> $request->ip()
            ]);
 
        return redirect('warehouse/pengajuan/pembelian');
+    }
+
+    public function detailpengajuanpembelian($no_peng)
+    {
+        $data_detail = DetailPengajuan::all()->where('no_pengajuan', $no_peng);
+        $pengajuan = Pengajuan::all()->where('no_pengajuan', $no_peng);
+        return view('warehouse/pengajuan/detailpengajuanpemb', compact('data_detail','pengajuan'));
     }
 }
