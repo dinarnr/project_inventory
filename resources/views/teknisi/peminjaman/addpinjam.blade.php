@@ -53,7 +53,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label class="control-label mb-10">Kebutuhan</label>
-                                                <input type="text" id="kebutuhan" name="kebutuhan" value="" class="form-control" placeholder="">
+                                                <textarea type="text" id="kebutuhan" name="kebutuhan" value="" class="form-control" placeholder="" ></textarea>
                                             </div>
                                         </div>
                                     </div>

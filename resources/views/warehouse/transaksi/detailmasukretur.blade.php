@@ -29,7 +29,6 @@
                     <div class="panel-heading">
                         <div class="panel-wrapper collapse in">
                             <div class="panel-body">
-                                
 
                     <div class="invoice-bill-table">
                         <div class="table-responsive">
@@ -58,17 +57,12 @@
                                 </tbody>
                             </table>
                         </div>
-                        <!--  -->
-                        <div class="clearfix"></div>
                     </div>
                 </div>
             </div>
+            <!-- /Row -->
         </div>
     </div>
-</div>
-<!-- /Row -->
-</div>
-</div>
 </div>
 </div>
 </div>

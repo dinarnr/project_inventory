@@ -18,6 +18,8 @@ class PeminjamanTable extends Migration
             $table->string('no_peminjaman');
             $table->string('kebutuhan',50);
             $table->string('pic_teknisi',50);
+            $table->string('konfirmasi')->nullable();
+            $table->string('keterangan')->nullable();
             $table->string('pic_warehouse',50)->nullable();
             $table->string('status')->nullable();
             $table->date('tglPinjam')->nullable();

@@ -16,7 +16,7 @@
             <div class="col-sm-12">
                 <div class="panel panel-default card-view">
                     <div class="panel-heading">
-                        <form action="{{ url('warehouse/instansi/simpan') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ url('warehouse/instansi/simpan2') }}" method="post" enctype="multipart/form-data">
                             @csrf
 
                             <div class="form-group">

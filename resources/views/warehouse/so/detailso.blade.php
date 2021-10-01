@@ -95,7 +95,7 @@
                                             <th>Deskripsi</th>
                                             <th>Keterangan</th>
                                             <th>Qty</th>
-                                            <th> <input type="checkbox" id='checkall' class="check_all"/>&nbsp;Check All</th>
+                                            <th> <input type="checkbox" id='checkall' class="check_all"/>&nbsp;</th>
                                         </tr>
                                     </thead>
                                 
