@@ -31,11 +31,11 @@
 						<div class="panel-body">
 							<div class="row">
 								<div class="col-sm-12 col-xs-12">
-									<div class="form-wrap">
-										<form action="{{ url('warehouse/transaksi/keluarinstalasi/simpan') }}" method="POST" enctype="multipart/form-data">
-											@csrf
-											<div class="form-body">
-												<div class="row" hidden>
+                                    <div class="form-wrap">
+                                        <form name="myForm" action="{{ url('warehouse/transaksi/keluarinstalasi/simpan') }}" method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="form-body">
+                                                <div class="row" hidden>
 													<div class="col-md-6">
 														<div class="form-group">
 															<label class="control-label mb-10">No Transaksi</label>
@@ -56,10 +56,9 @@
 														<div class="form-group">
 															<label class="control-label mb-10">NO SO</label>
 															<select name="no_SO dynamic2" id="no_SO" class="form-control" data-dependent="TabelDinamis">
-
 																<option value="">Pilih NO SO</option>
 																@foreach ($SO as $no_SO)
-																<option value="{{ $no_SO->no_SO }}">{{ $no_SO->no_SO }}</option>
+																	<option value="{{ $no_SO->no_SO }}">{{ $no_SO->no_SO }}</option>
 																@endforeach
 															</select>
 														</div>
@@ -75,23 +74,32 @@
 													<div class="col-md-4">
 														<div class="form-group">
 															<label class="control-label mb-10">Tanggal Instalasi</label>
-															<input type="date" id="tgl_instalasi" name="tgl_instalasi" class="form-control" placeholder="">
-														</div>
+                                                            <input type="date" id="tgl_instalasi" name="tgl_instalasi" class="form-control" placeholder="">
+                                                        </div>
+														@if ($errors->has('tgl_transaksi'))
+															<div class="alert alert-danger">{{$errors->first('tgl_transaksi')}}</div>
+														@endif
 													</div>
 													{{ csrf_field() }}
 													<div class="col-md-4">
 														<div class="form-group">
-															<label class="control-label mb-10">Pengirim Ekspedisi</label>
-															<input type="text" id="pengirim" name="pengirim" class="form-control">
-
-														</div>
-													</div>
+                                                            <label class="control-label mb-10">Pengirim Ekspedisi</label>
+                                                            <input type="text" id="pengirim" name="pengirim" class="form-control">
+                                                                                                        
+                                                        </div>
+														@if ($errors->has('pengirim'))
+															<div class="alert alert-danger">{{$errors->first('pengirim')}}</div>
+														@endif
+                                                    </div>
 													<div class="col-md-4">
 														<div class="form-group">
 															<label class="control-label mb-10">Penerima</label>
 															<input type="text" id="penerima" name="penerima" class="form-control">
-														</div>
-													</div>
+                                                        </div>
+														@if ($errors->has('penerima'))
+															<div class="alert alert-danger">{{$errors->first('penerima')}}</div>
+														@endif
+                                                    </div>
 												</div>
 											</div>
 											<!-- <div class="col-md-14" style="text-align:right;">

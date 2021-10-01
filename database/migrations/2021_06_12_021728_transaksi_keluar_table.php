@@ -17,8 +17,8 @@ class TransaksiKeluarTable extends Migration
             $table->increments('id_transaksi');
             $table->string('no_transaksi',50);
             $table->string('no_PO',50);
-            $table->date('tgl_transaksi');
-            $table->date('tgl_instalasi');
+            $table->date('tgl_transaksi')->nullable();
+            $table->date('tgl_instalasi')->nullable();
             $table->string('jns_barang',50);
             $table->string('instansi',50);
             $table->string('ekspedisi',50);

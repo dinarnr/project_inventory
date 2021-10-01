@@ -33,7 +33,7 @@
 							<div class="row">
 								<div class="col-sm-12 col-xs-12">
                                     <div class="form-wrap">
-                                        <form action="{{ url('warehouse/transaksi/keluargaransi/simpan') }}" method="POST" enctype="multipart/form-data">
+                                        <form name="myForm" action="{{ url('warehouse/transaksi/keluargaransi/simpan') }}" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             <div class="form-body">
                                                 <div class="row" hidden>
@@ -74,25 +74,33 @@
 													</div>
 												</div>
 												<div class="row">
-                                                    <div class="col-md-6">
+													<div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="control-label mb-10">Nama Barang</label>
-                                                            <select name="nama_barang" id="nama_barang" class="form-control">
+                                                            <select name="nama_barang" id="nama_barang" class="form-control" data-dependent="kode_barang">
 																@foreach($barang as $brg)
 																	<option value="{{ $brg->nama_barang }}">{{ $brg->nama_barang }} | {{ $brg->kode_barang }} </option>
 																@endforeach
                                                             </select>
                                                         </div>
                                                     </div>
+													<div class="col-md-4" hidden>
+														<div class="form-group">
+															<label class="control-label mb-10">Kode Barang</label>
+															<select name="kode_barang" id="kode_barang" class="form-control select2" disabled>
+																
+															</select>
+															<!-- <div id="id_barang"></div> -->
+														</div>
+													{{ csrf_field() }}
+													</div>
 													<div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="control-label mb-10">Jumlah</label>
                                                             <input type="number" id="jumlah" name="jumlah" class="form-control">
-                                                            
                                                             @foreach($barang as $brg)
 																<input id="kode_barang" name="kode_barang" value="{{$brg->kode_barang}}" hidden>
 															@endforeach
-                                                            
                                                         </div>
                                                     </div>
 												</div>
@@ -116,7 +124,7 @@
 																			<thead class="thead-light">
 																				<tr>
 																					<!-- <th>No Transaksi</th> -->
-																					<th>No PO</th>
+																					<!-- <th>No PO</th> -->
 																					<!-- <th>Tanggal Transaksi</th> -->
 																					<th>Nama barang</th>
 																					<th>Jumlah</th>
@@ -161,7 +169,13 @@
 @section('scripts')
 <script type="text/javascript">
 	function ambildata() {
-		var no_PO = document.getElementById('no_PO').value;
+		var jumlah = document.forms["myForm"]["jumlah"].value;
+		if (jumlah == "") {
+			alert("Jumlah tidak boleh kosong");
+			return false;
+		}
+
+		// var no_PO = document.getElementById('no_PO').value;
 		var no_trans = document.getElementById('no_trans').value;
 		var jns_barang = document.getElementById('jns_barang').value;
 		// var tgl_transaksi = document.getElementById('tgl_transaksi').value;
@@ -169,15 +183,15 @@
 		var kode_barang = document.getElementById('kode_barang').value;
 		var jumlah = document.getElementById('jumlah').value;
 
-		addrow(no_trans, no_PO, nama_barang, kode_barang, jumlah,jns_barang);
+		addrow(no_trans, nama_barang, kode_barang, jumlah,jns_barang);
 	}
 	var i = 0;
 
-	function addrow(no_trans,no_PO, nama_barang, kode_barang, jumlah,jns_barang) {
+	function addrow(no_trans, nama_barang, kode_barang, jumlah,jns_barang) {
 		i++;
 		$('#TabelDinamis').append('<tr id="row' + i + '"></td><td style=display:none;"><input type="text" style="outline:none;border:0;"  name="no_trans[]" id="no_trans" value="' + no_trans + 
 													 '"></td><td style=display:none;"><input type="text" style="outline:none;border:0;"  name="jns_barang[]" id="jns_barang" value="' + jns_barang + 
-														'"></td><td><input type="text" style="outline:none;border:0;" readonly name="no_PO[]" id="no_PO" value="' + no_PO + 
+														// '"></td><td><input type="text" style="outline:none;border:0;" readonly name="no_PO[]" id="no_PO" value="' + no_PO + 
 														// '"></td><td><input type="text" style="outline:none;border:0;" readonly name="tgl_transaksi[]" id="tgl_transaksi" value="' + tgl_transaksi + 
 														'"></td><td><input type="text" style="outline:none;border:0;" readonly name="nama_barang[]" id="nama_barang" value="' + nama_barang + 
 														'"></td><td style=display:none;"><input type="text" style="outline:none;border:0;"  name="kode_barang[]" id="kode_barang" value="' + kode_barang + 
@@ -193,45 +207,28 @@
 		$('#nama_supplier').select2();
 </script>
 <script>
-	var select = document.getElementById('jenistransaksi');
-	var currentOption = 0;
-
-// Add event listener that listens on when you click "select"
-	select.addEventListener("click", function() {
-    // If one of the other options are selected, then hide it and set it to empty
-    // Set current option to be current option
-    currentOption = this.selectedIndex;
-    // Set box-N to show
-    if(currentOption == 1 ){
-    	document.getElementById('box-1').style.display = 'block';
-      document.getElementById('box-2').style.display = 'block';
-    } else if(currentOption == 2){
-    	document.getElementById('box-1').style.display = 'none';
-		document.getElementById('box-2').style.display = 'block';
-    }
-});
-
-
-</script>
-<!-- <script>
-	$('.dynamic1').change(function(){
+	$('#nama_barang').change(function(){
 		if($(this).val() != ''){
 			var select = $(this).attr("id");
 			var value = $(this).val();
-			console.log(value);
+			
+			// $('#id_barang').val(value);
 			var dependent = $(this).data('dependent');
 			var _token = $('input[name="_token"]').val();
 			$.ajax({
-				url: "{{ route('trkkeluarcontroller.fetch')}}",
+				url: "{{ route('trkkeluarcontroller.kode')}}",
 				method: "POST",
 				data: {
 					select: select,value: value,_token:_token,dependent: dependent
 				},
 				success: function(result) {
+					console.log(result);
 					$('#'+dependent).html(result);
-				}
+				},
+		
 			});
+			
 		}
 	});
-</script> -->
+</script>
 @endsection
