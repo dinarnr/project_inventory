@@ -213,6 +213,7 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::get('pengajuan/pembelian', [PengajuanMarketingController::class, 'pengpembelian']);
         Route::get('pengajuan/pembelian/tambah', [PengajuanMarketingController::class, 'addpembelian']);
         Route::post('pengajuan/pembelian/simpan', [PengajuanMarketingController::class, 'addpembelian2']);
+        Route::get('pengajuan/detail/{no_pengajuan}', [PengajuanMarketingController::class, 'detailretur']);
         //----------------------------- BARU -----------------------------------------------
         Route::get('pengajuan/brgbaru', [PengajuanMarketingController::class, 'tabelBaru']);
         Route::get('/addbaru', 'App\Http\Controllers\PengajuanController@addbaru');
@@ -242,6 +243,7 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::get('pengajuan/rekomendasi/ubah/{id_pengajuan}', [PengajuanTeknisiController::class, 'editRekom']);
         Route::post('pengajuan/rekomendasi/ubah/simpan', [PengajuanTeknisiController::class, 'updateRekom']);
         Route::get('pengajuan/retur/tambah', [PengajuanTeknisiController::class, 'addretur']);
+        Route::post('pengajuan/retur/tambah/kode', [PengajuanTeknisiController::class, 'kode'])->name('pengajuanteknisicontroller.kode');
         Route::post('pengajuan/retur/simpan', [PengajuanTeknisiController::class, 'addretur2']);
         Route::get('pengajuan/retur/ubah/{id_pengajuan}', [PengajuanTeknisiController::class, 'editRetur']);
         Route::post('pengajuan/retur/ubah/simpan', [PengajuanTeknisiController::class, 'updateRetur']);

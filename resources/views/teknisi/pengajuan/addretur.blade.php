@@ -24,15 +24,17 @@
                     <div class="panel-wrapper collapse in ">
                         <div class="panel-body">
                             <div class="form-wrap mt-3">
-                                <form action="{{ url('teknisi/pengajuan/retur/simpan') }}" method="POST" id="form1" enctype="multipart/form-data">
+                                <form action="{{ url('teknisi/pengajuan/retur/simpan') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label mb-10 text-left" for="example-email">Nama pengajuan<span class="help"> </span></label>
-                                                <input type="text" id="nama_pengajuan" name="nama_pengajuan" class="form-control" placeholder="">
-                                               
-                                            </div>
+											@foreach ((Array) $no_peng as $no_pengajuan)
+											<div class="form-group">
+												<label class="control-label mb-10">No Pengajuan</label>
+												<input type="hidden" id="no_pengajuan" name="no_pengajuan" value="{{$no_pengajuan }} " class="form-control" placeholder="" readonly>
+                                                <input type="text" id="no_peng" name="no_peng" value="{{$no_pengajuan }} " class="form-control" placeholder="" readonly>
+											</div>
+											@endforeach
                                         </div>
                                         <div class="col-md-6">
 											<div class="form-group">
@@ -44,18 +46,34 @@
 												</select>
                                             </div>
                                         </div>
+                                        <div class="col-md-6" hidden>
+											<div class="form-group">
+												<label class="control-label mb-10">Jenis</label>
+                                                <input type="text" name="jns_brg" id="jns_brg" value="Retur">
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-6">
-											<div class="form-group">
-												<label class="control-label mb-10">Nama Barang</label>
-												<select name="nama_barang" id="nama_barang" class="form-control">
-													@foreach($barang as $brg)
-														<option value="{{ $brg->nama_barang }}">{{ $brg->nama_barang }} | {{ $brg->kode_barang }} </option>
-													@endforeach
-												</select>
-											</div>
-										</div>
+													<div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label mb-10">Nama Barang</label>
+                                                            <select name="nama_barang" id="nama_barang" class="form-control" data-dependent="kode_barang">
+																@foreach($barang as $brg)
+																	<option value="{{ $brg->nama_barang }}">{{ $brg->nama_barang }} | {{ $brg->kode_barang }} </option>
+																@endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+													<div class="col-md-4" hidden>
+														<div class="form-group">
+															<label class="control-label mb-10">Kode Barang</label>
+															<select name="kode_barang" id="kode_barang" class="form-control select2" disabled>
+																
+															</select>
+															<!-- <div id="id_barang"></div> -->
+														</div>
+													{{ csrf_field() }}
+													</div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label mb-10">Jumlah</label>
@@ -63,12 +81,23 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="control-label mb-10 text-left" for="example-email">Keterangan<span class="help"> </span></label>
-                                        <input type="text" id="keterangan" name="keterangan" class="form-control" placeholder="">
+                                    <div class="row">
+                                        <div class="col-md-6 "> 
+                                            <div class="form-group">
+                                                <label class="control-label mb-10 text-left" for="example-email">Keterangan<span class="help"> </span></label>
+                                                <input type="text" id="keterangan" name="keterangan" class="form-control" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 "> 
+                                            <div class="form-group">
+                                                <label class="control-label mb-10 text-left" for="example-email">Tanggal Pengajuan</label>
+                                                <input type="date" id="tgl_pengajuan" name="tgl_pengajuan" class="form-control" placeholder="">
+                                            </div>
+                                        </div>
                                     </div>
+
                                     <div class="form-group" style="text-align:right;">
-                                        <button type="button" onclick="ambildata()" class="btn btn-primary ">Tambah Data</button>
+                                        <button type="button" onclick="ambildata()" class="btn btn-success ">Tambah Data</button>
                                     </div>
 
                                     <div class="col-sm-14">
@@ -87,19 +116,18 @@
                                                                 <table class="table table-bordered align-items-center">
                                                                     <thead class="thead-light">
                                                                         <tr>
-                                                                            <th>Nama Pengajuan</th>
+                                                                            <th>No Pengajuan</th>
                                                                             <th>Nama barang</th>
                                                                             <th>Jumlah</th>
-                                                                            <th>Keterangan</th>
                                                                             <th>Remove</th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody id="TabelDinamis">
                                                                         </tbody>
                                                                     </table>
-                                                                <div class="col-md-12" style="text-align:right;">
-                                                                    <button type="button" onclick="submitForm()" class="btn btn-success ">Simpan</button>
-                                                                </div>
+                                                                    <div class="col-md-12" style="text-align:right;">
+																		<button type="submit" class="btn btn-primary ">Simpan</button>
+																	</div>
                                                             </div>
                                                         </div>
                                                 </div>
@@ -114,39 +142,59 @@
             </div>
         </div>
     </div>
-    @endsection
-    @section('scripts')
+</div>
+@endsection
+@section('scripts')
     <script type="text/javascript">
         function ambildata() {
-            var nama_pengajuan = document.getElementById('nama_pengajuan').value;
+            var no_peng = document.getElementById('no_peng').value;
             var nama_barang = document.getElementById('nama_barang').value;
+            var kode_barang = document.getElementById('kode_barang').value;
             var jumlah = document.getElementById('jumlah').value;
-            var keterangan = document.getElementById('keterangan').value;
-            var no_PO = document.getElementById('no_PO').value;
-            addrow(nama_pengajuan, nama_barang, jumlah, keterangan, no_PO);
+           
+            addrow(no_peng, nama_barang, kode_barang, jumlah);
         }
         var i = 0;
 
-        function addrow(nama_pengajuan, nama_barang, jumlah, keterangan, no_PO) {
+        function addrow(no_peng, nama_barang, kode_barang, jumlah) {
             i++;
-            $('#TabelDinamis').append('<tr id="row' + i + '"><td><input type="text" style="outline:none;border:0;" readonly name="nama_pengajuan[]" id="nama_pengajuan" value="' + nama_pengajuan + 
+            $('#TabelDinamis').append('<tr id="row' + i + '"><td><input type="text" style="outline:none;border:0;" readonly name="no_peng[]" id="no_peng" value="' + no_peng + 
             '"></td><td><input type="text" style="outline:none;border:0;" readonly name="nama_barang[]" id="nama_barang" value="' + nama_barang + 
+            '"></td><td style="display:none;"><input type="text" style="outline:none;border:0;" readonly name="kode_barang[]" id="kode_barang" value="' + kode_barang + 
             '"></td><td><input type="text" style="outline:none;border:0;" name="jumlah[]" id="jumlah" value="' + jumlah + 
-            '"></td><td><input type="text" style="outline:none;border:0;" name="keterangan[]" id="keterangan" value="' + keterangan + 
-            '"></td><td style="display:none;"><input type="text" style="outline:none;border:0;" readonly name="no_PO[]" id="no_PO" value="' + no_PO + 
             '"></td><td><button type="button" id="' + i + '" class="btn btn-danger btn-small remove_row">&times;</button></td></tr>');
         };
         $(document).on('click', '.remove_row', function() {
             var row_id = $(this).attr("id");
             $('#row' + row_id + '').remove();
         });
-
-        submitForm = function submitForm() {
-            document.getElementById("form1").submit();
-            // document.getElementById("form2").submit();
-        }
         $('#no_PO').select2()
         $('#nama_barang').select2()
 
     </script>
+<script>
+	$('#nama_barang').change(function(){
+		if($(this).val() != ''){
+			var select = $(this).attr("id");
+			var value = $(this).val();
+			
+			// $('#id_barang').val(value);
+			var dependent = $(this).data('dependent');
+			var _token = $('input[name="_token"]').val();
+			$.ajax({
+				url: "{{ route('pengajuanteknisicontroller.kode')}}",
+				method: "POST",
+				data: {
+					select: select,value: value,_token:_token,dependent: dependent
+				},
+				success: function(result) {
+					console.log(result);
+					$('#'+dependent).html(result);
+				},
+		
+			});
+			
+		}
+	});
+</script>
     @endsection

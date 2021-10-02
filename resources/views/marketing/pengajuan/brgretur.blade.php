@@ -40,7 +40,8 @@
                                                 <thead>
                                                     <tr>
                                                         <th>No</th>
-                                                        <th>Nama Pengajuan</th>
+                                                        <th>No PO</th>
+                                                        <th>Keterangan</th>
                                                         <th>Status</th>
                                                         <th>Tanggal pengajuan</th>
                                                         <th>Aksi</th>
@@ -48,13 +49,11 @@
                                                 </thead>
                                                 <tbody>
                                                     <?php $no = 1; ?>
-                                                    <!-------------------------------------------------------------- Warehouse ------------------------------------------------------->
                                                     @foreach ($data_retur as $data_retur)
                                                     <tr>
-                                                       
-                                                        @if($data_retur->status >=2 )
                                                         <td>{{ $no++ }}</td>
-                                                        <td>{{ $data_retur->judul}}</td>
+                                                        <td>{{ $data_retur->noPO }}</td>
+                                                        <td>{{ $data_retur->keterangan}}</td>
                                                         <td>
                                                             @if($data_retur->status === 1 )
                                                             Pengajuan ditolak Marketing
@@ -68,32 +67,12 @@
                                                             Pengajuan diproses Marketing
                                                             @endif
                                                         </td>
-                                                        <td>{{ $data_retur->created_at}}</td>
+                                                        <td>{{ $data_retur->tgl_pengajuan}}</td>
                                                         <td>
-                                                            <!-- <a href="#"> <button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a> -->
-                                                            @if ($data_retur->status >= 3)
-                                                            <button class="btn btn-success btn-icon-anim btn-square" disabled><i class="fa fa-check"></i></button>
-                                                            <button class="btn btn-danger btn-icon-anim btn-square" disabled><i class="fa fa-times"></i></button>
-                                                            @else
-                                                            <button class="btn btn-success btn-icon-anim btn-square" data-toggle="modal" data-target="#confirm{{ $data_retur->id_pengajuan }}" action="( {{url('Confirm')}}/{{ $data_retur->id_pengajuan }})"><i class="fa fa-check"></i></button>
-                                                            <button class="btn btn-danger btn-icon-anim btn-square" data-toggle="modal" data-target="#reject{{ $data_retur->id_pengajuan }}" action="( {{url('Reject')}}/{{ $data_retur->id_pengajuan }})"><i class="fa fa-times"></i></button>
-                                                            @endif
-                                                           
-                                                        <td>{{ $data_retur->created_at}}</td>
-                                                        <td>
-                                                            <!-- <a href="/pengajuan/detailretur/{{$data_retur->id_pengajuan}}"> <button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a> -->
-                                                            @if ($data_retur->status >= 1)
-                                                            <button class="btn btn-success btn-icon-anim btn-square" disabled><i class="fa fa-check"></i></button>
-                                                            <button class="btn btn-danger btn-icon-anim btn-square" disabled><i class="fa fa-times"></i></button>
-                                                            @else
-                                                            <button class="btn btn-success btn-icon-anim btn-square" data-toggle="modal" data-target="#confirm{{ $data_retur->id_pengajuan }}" action="( {{url('Confirm')}}/{{ $data_retur->id_pengajuan }})"><i class="fa fa-check"></i></button>
-                                                            <button class="btn btn-danger btn-icon-anim btn-square" data-toggle="modal" data-target="#reject{{ $data_retur->id_pengajuan }}" action="( {{url('Reject')}}/{{ $data_retur->id_pengajuan }})"><i class="fa fa-times"></i></button>
-                                                            @endif
-                                                            @endif
+                                                            <a href="{{ url('marketing/pengajuan/detail') }}/{{ $data_retur->no_pengajuan }}"> <button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
+                                                            
+                                                        </td>
                                                     </tr>
-                                                    @include('marketing.pengajuan.confirm')
-                                                    @include('marketing.pengajuan.reject')
-                                                    @include('marketing.pengajuan.hapusbrgretur')
                                                     @endforeach
                                                 </tbody>
                                         </div>
