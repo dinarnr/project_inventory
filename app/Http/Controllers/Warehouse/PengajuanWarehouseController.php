@@ -10,6 +10,7 @@ use App\Models\Pembelian;
 use App\Models\Pengajuan;
 use App\Models\PO;
 use App\Models\Instansi;
+use App\Models\Profil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\Console\Input\Input;
@@ -295,8 +296,9 @@ class PengajuanWarehouseController extends Controller
 
     public function detailpengajuanpembelian($no_peng)
     {
+        $profil = Profil::all();
         $data_detail = DetailPengajuan::all()->where('no_pengajuan', $no_peng);
         $pengajuan = Pengajuan::all()->where('no_pengajuan', $no_peng);
-        return view('warehouse/pengajuan/detailpengajuanpemb', compact('data_detail','pengajuan'));
+        return view('warehouse/pengajuan/detailpengajuanpemb', compact('data_detail','pengajuan', 'profil'));
     }
 }
