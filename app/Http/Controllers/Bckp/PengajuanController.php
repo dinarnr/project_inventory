@@ -363,8 +363,8 @@ class PengajuanController extends Controller
     public function addpembelian()
     {
         $kode = strtoupper(substr("PEM", 0, 3));
-        $check = count(Pengajuan::where('noPO', 'like', "%$kode%")->get()->toArray());
-        $angka = sprintf("%04d", (int)$check + 1);
+        $check = count(Pengajuan::where('no_pengajuan', 'like', "%$kode%")->get()->toArray());
+        $angka = sprintf("%03d", (int)$check + 1);
         $no_peng = $kode . "" . $angka;
 
         $pembelian= Pengajuan::all();

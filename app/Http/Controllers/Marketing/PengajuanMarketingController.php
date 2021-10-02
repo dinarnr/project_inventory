@@ -10,6 +10,8 @@ use App\Models\Pembelian;
 use App\Models\Pengajuan;
 use App\Models\PO;
 use App\Models\Instansi;
+use App\Models\Profil;
+use DetailPengajuanTable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -134,9 +136,10 @@ class PengajuanMarketingController extends Controller
     }
 
     // -------------RETUR------------------
-    public function tabelRetur(Request $request)
+    public function tabelRetur()
     {
-        $data_retur = Pengajuan::all()->where('jenisBarang', '', 'Retur');
+        $data_retur = Pengajuan::all()->where('jenisBarang', '', 'Retur'); 
+        // dd($data_retur);
         return view('marketing/pengajuan/brgretur', compact('data_retur'));
     }
 
@@ -149,58 +152,76 @@ class PengajuanMarketingController extends Controller
 
     public function addretur2(Request $request)
     {
-        $user = Auth::user();
+         // dd($request->is_active);
+         $user = Auth::user();
+         if ($request->proses == 'proses') {
+ 
+         DetailPengajuan::where('id_po', $request->is_active)
+             ->update(
+                 [
+                 'status' => '2'
+                 ]
+             );
+ 
+         // DetailPO::whereIn('id_po', $request->is_active)
+         // ->update(array(
+         //         'status'=> '1'
+         // ));  
+ 
+         Pengajuan::where('no_PO', $request->no_PO)
+             ->update(
+                 [
+                     'status' => '3'
+                 ]
+             );
+ 
+         Log::create(
+             [
+                 'name' => $user->name,
+                 'email' => $user->email,
+                 'divisi' => $user->divisi,
+                 'deskripsi' => 'Confirm PO',
+                 'status' => '2',
+                 'ip' => $request->ip()
+ 
+             ]
+         );
+     } else {
+         DetailPengajuan::where('id_po', $request->is_active)
+             ->update(
+                 [
+                 'status' => '2'
+                 ]
+             );
+ 
+         // DetailPO::whereIn('id_po', $request->is_active)
+         // ->update(array(
+         //         'status'=> '1'
+         // ));  
+ 
+         PO::where('no_PO', $request->no_PO)
+             ->update(
+                 [
+                     'status' => '2'
+                 ]
+             );
+ 
+         Log::create(
+             [
+                 'name' => $user->name,
+                 'email' => $user->email,
+                 'divisi' => $user->divisi,
+                 'deskripsi' => 'Confirm Draft SO',
+                 'status' => '2',
+                 'ip' => $request->ip()
+ 
+             ]
+         );
+     }
+ 
+         return redirect('warehouse/so/dataSO');
+     }
 
-        // $rules = [
-        //     'nama_pengajuan' => 'required',
-        //     'TabelDinamis' => 'required'
-        // ];
-
-        // $messages = [
-        //     'nama_pengajuan.required' => '*Nama pengajuan tidak boleh kosong',
-        //     'TabelDinamis.required' => '*Data tidak boleh kosong'
-        // ];
-        // $this->validate($request);
-
-        Pengajuan::create(
-            [
-                // 'kode' => $request->kode_pengajuan,
-                'judul' => $request->nama_pengajuan,
-                'jumlah' => $request->jumlah,
-                'keterangan' => $request->keterangan,
-                'jenisBarang' => 'Retur',
-                'pic_teknisi' => $user->name
-            ]
-        );
-        $jumlah_data = count($request->nama_barang);
-        for ($i = 0; $i < $jumlah_data; $i++) {
-            DetailPengajuan::create(
-                [
-                    'kode' => $request->kode_pengajuan[$i],
-                    'namaBarang' => $request->nama_barang[$i],
-                    'jmlBarang' => $request->jumlah[$i],
-                    'noPO' => $request->no_PO[$i],
-                    'keterangan' => $request->keterangan[$i],
-                    'jenisBarang' => 'Retur'
-                ]
-            );
-
-            $user = Auth::user();
-            Log::create(
-                [
-                    'name' => $user->name,
-                    'email' => $user->email,
-                    'divisi' => $user->divisi,
-                    'deskripsi' => 'Create Pengajuan Barang Retur',
-                    'status' => '2',
-                    'ip' => $request->ip()
-
-                ]
-            );
-        }
-        // return redirect('/brgretur');
-        return view('pengajuan/brgretur');
-    }
     public function editRetur($id_pengajuan)
     {
         $data_baru = Pengajuan::find($id_pengajuan);
@@ -256,13 +277,12 @@ class PengajuanMarketingController extends Controller
         return back()->with('success', "Data telah terhapus");
     }
 
-    public function detailretur($kode)
+    public function detailretur($no_pengajuan)
     {
-        $data_detail = DetailPengajuan::all()->where('kode', $kode);
-        return view('pengajuan/detailbaru', compact('data_detail'));
-
-        $pengajuan = Pengajuan::all()->where('kode', $kode);
-        return view('pengajuan/detailbaru', compact('pengajuan'));
+        $profil = Profil::all();
+        $data_detail = DetailPengajuan::where('no_pengajuan', $no_pengajuan)->get();
+        $pengajuan_retur = Pengajuan::where('no_pengajuan', $no_pengajuan)->get();
+        return view('/marketing/pengajuan/detailpengajuanretur', compact('pengajuan_retur', 'data_detail', 'profil'));
     }
 
     //-----------------------------------------confirm/reject---------------------------------------------------------------//
