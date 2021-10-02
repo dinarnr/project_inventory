@@ -74,11 +74,10 @@
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Password</label>
                                 <div class="col-lg-8">
-                                <input class="form-control" name="edit_password" type="password" value="">
+                                <input class="form-control" name="edit_password" type="password" id="myInput" value="">
+                                <input type="checkbox" onclick="myFunction()">Show Password
                                 </div>
                             </div>
-
-
 
                             <div class="form-group">
                                 <label class="col-md-3 control-label"></label>
@@ -98,4 +97,15 @@
         </div>
     </div>
 </div>
+
 @endsection
+<script>
+    function myFunction() {
+        var x = document.getElementById("myInput");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+</script>

@@ -46,7 +46,8 @@
                     </div>
                     <div class="form-group">
                         <label for=""><strong>Password</strong></label>
-                        <input type="password" name="password" class="form-control" placeholder="Password">
+                        <input type="password" name="password" id="myInput" class="form-control" placeholder="Password">
+                        <input type="checkbox" onclick="myFunction()">Show Password
                     </div>
                 </div>
                 <div class="card-footer">
@@ -59,3 +60,13 @@
     </div>
 </body>
 </html>
+<script>
+    function myFunction() {
+        var x = document.getElementById("myInput");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+</script>

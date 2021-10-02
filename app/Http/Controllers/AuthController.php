@@ -52,7 +52,7 @@ class AuthController extends Controller
         ];
         // Auth::attempt($data);
         // if(Auth::attempt($request->only('email','password')) ){
-        if(Auth::attempt(['email' => $request->input('email'),'password' => $request->input('password'), 'status' => 2]) ){
+        if(Auth::attempt(['email' => $request->input('email'),'password' => $request->input('password'), 'status' => '2']) ){
             $user = Auth::user();
             Log::create(
                 [
@@ -71,7 +71,7 @@ class AuthController extends Controller
                     'lastIP' => $request->ip()
                 ]);
             return redirect('/dashboard/home');
-        }elseif(Auth::attempt(['email' => $request->input('email'),'password' => $request->input('password'), 'status' => 1]) ){
+        }elseif(Auth::attempt(['email' => $request->input('email'),'password' => $request->input('password'), 'status' => '1']) ){
             Session::flash('error', 'aaaaaaaaaaaaaaaaaaaaaaaaa');
             return redirect()->route('login');
         }else { // false
