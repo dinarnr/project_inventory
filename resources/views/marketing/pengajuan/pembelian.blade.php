@@ -24,9 +24,9 @@
             <div class="col-sm-12">
                 <div class="panel panel-default card-view">
                     <div class="panel-heading">
-                        <div class="pull-left">
+                        <!-- <div class="pull-left">
                             <a href="{{ url('marketing/pengajuan/pembelian/tambah') }}" class="btn btn-success">Tambah Data</a>
-                        </div>
+                        </div> -->
 
                         <div class="clearfix"></div>
 
@@ -41,7 +41,7 @@
                                                     <th>No Pengajuan</th>
                                                     <th>Nama Barang</th>
                                                     <th>Tanggal Pengajuan</th>
-                                                    <th>Jumlah</th>
+                                                    <!-- <th>Jumlah</th> -->
                                                     <th>Aksi</th>
                                                 </tr>
                                             </thead>
@@ -53,7 +53,7 @@
                                                     <td>{{ $pembelian->no_PO }}</td>
                                                     <td>{{ $pembelian->namaBarang }}</td>
                                                     <td>{{ $pembelian->tgl_pengajuan }}</td>
-                                                    <td>{{ $pembelian->jumlah }}</td>
+                                                    <!-- <td>{{ $pembelian->jumlah }}</td> -->
                                                     <td>
                                                         <a href="detailpo"><button class="btn btn-success btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
                                                         

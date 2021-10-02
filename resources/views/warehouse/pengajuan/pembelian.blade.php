@@ -41,6 +41,7 @@
                                                     <th>No Pengajuan</th>
                                                     <th>Tanggal Pengajuan</th>
                                                     <th>Nama Pemohon</th>
+                                                    <th>Status</th>
                                                     <th>Aksi</th>
                                                 </tr>
                                             </thead>
@@ -50,10 +51,11 @@
                                                 <tr>
                                                     <td>{{ $no++ }}</td>
                                                     <td>{{ $pembelian->no_pengajuan}}</td>
-                                                    <td>{{ $pembelian->tgl_pengajuan }}</td>
+                                                    <td>{{ date('d-m-Y',strtotime($pembelian->tgl_pengajuan)) }}</td>
                                                     <td>{{ $pembelian->nama_pemohon }}</td>
+                                                    <td></td>
                                                     <td>
-                                                        <a href="detailpo"><button class="btn btn-success btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
+                                                        <a href="{{url('warehouse/pengajuan/pembelian/detail') }}/{{$pembelian->no_pengajuan}} "><button class="btn btn-success btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
                                                         
                                                     </td>
                                                 </tr>

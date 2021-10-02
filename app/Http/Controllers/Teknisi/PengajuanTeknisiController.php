@@ -10,7 +10,7 @@ use App\Models\Master;
 use App\Models\Pengajuan;
 use App\Models\PO;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\DB;
 
 class PengajuanTeknisiController extends Controller
 {
@@ -131,9 +131,9 @@ class PengajuanTeknisiController extends Controller
 
 
     //-----------------------------------------retur---------------------------------------------------------------//    
-    public function tabelRetur(Request $request)
+    public function tabelRetur()
     {
-        $data_retur = Pengajuan::all()->where('jenisBarang', '', 'Retur');
+        $data_retur = Pengajuan::all()->where('jenisBarang','','Retur');
         return view('teknisi/pengajuan/brgretur', compact('data_retur'));
     }
 
@@ -141,44 +141,55 @@ class PengajuanTeknisiController extends Controller
     {
         $noPO = PO::all();
         $barang = Master::all();
-        return view('teknisi/pengajuan/addretur', compact('noPO','barang'));
+
+        $kode = strtoupper(substr("PEM", 0, 3));
+        $check = count(Pengajuan::where('no_pengajuan', 'like', "%$kode%")->get()->toArray());
+        $angka = sprintf("%03d", (int)$check + 1);
+        $no_peng = $kode . "" . $angka;
+
+        return view('teknisi/pengajuan/addretur', compact('noPO','barang', 'no_peng'));
     }
+
+    public function kode(Request $request){ 
+        // dd($request);
+        $select = $request->get('select');
+        $values = $request->get('value');
+        $dependent = $request->get('dependent');
+
+        //    dd($dependent);
+        $data = DB::table('master_data')->where('nama_barang', $values)->groupBy('kode_barang')->get();
+        
+        foreach ($data as $row) {
+            $output = '<option value="'.$row->kode_barang.'">'.$row->kode_barang.'</option>';
+        }
+        echo $output;
+    }
+
 
     public function addretur2(Request $request)
     {
+        // dd($request->all());
         $user = Auth::user();
-
-        // $rules = [
-        //     'nama_pengajuan' => 'required',
-        //     'TabelDinamis' => 'required'
-        // ];
-
-        // $messages = [
-        //     'nama_pengajuan.required' => '*Nama pengajuan tidak boleh kosong',
-        //     'TabelDinamis.required' => '*Data tidak boleh kosong'
-        // ];
-        // $this->validate($request);
-
-        Pengajuan::create(
-            [
-                // 'kode' => $request->kode_pengajuan,
-                'judul' => $request->nama_pengajuan,
-                'jumlah' => $request->jumlah,
-                'keterangan' => $request->keterangan,
-                'jenisBarang' => 'Retur',
-                'pic_teknisi' => $user->name
-            ]
-        );
-        $jumlah_data = count($request->nama_barang);
+        $jumlah_data = count($request->no_peng);
         for ($i = 0; $i < $jumlah_data; $i++) {
             DetailPengajuan::create(
                 [
-                    'kode' => $request->kode_pengajuan[$i],
+                    'no_pengajuan' => $request->no_peng[$i],
                     'namaBarang' => $request->nama_barang[$i],
+                    'kode_barang' => $request->kode_barang[$i],
                     'jmlBarang' => $request->jumlah[$i],
-                    'noPO' => $request->no_PO[$i],
-                    'keterangan' => $request->keterangan[$i],
                     'jenisBarang' => 'Retur'
+                ]
+            );
+        }
+            Pengajuan::create(
+                [
+                    'no_pengajuan' => $request->no_pengajuan,
+                    'noPO' => $request->no_PO,
+                    'keterangan' => $request->keterangan,
+                    'tgl_pengajuan' => $request->tgl_pengajuan,
+                    'jenisBarang' => 'Retur',
+                    'pic_teknisi' => $user->name
                 ]
             );
 
@@ -194,10 +205,9 @@ class PengajuanTeknisiController extends Controller
 
                 ]
             );
-        }
-        // return redirect('/brgretur');
-        return view('teknisi/pengajuan/brgretur');
+        return redirect('teknisi/pengajuan/brgretur');
     }
+
     public function editRetur($id_pengajuan)
     {
         $data_baru = Pengajuan::find($id_pengajuan);
