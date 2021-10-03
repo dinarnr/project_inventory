@@ -36,7 +36,7 @@
                                                 <tr>
                                                     <th>No</th>
                                                     <th>NO PO</th>
-                                                    <th>Nama Pengajuan</th>
+                                                    <th>Keterangan</th>
                                                     <th>Status</th>
                                                     <th>Tanggal pengajuan</th>
                                                     <th>Aksi</th>

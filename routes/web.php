@@ -161,6 +161,8 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         // ---------------------------PENGAJUAN--------------------
         // //----------------------------- RETUR -----------------------------------------------
         Route::get('pengajuan/brgretur', [PengajuanWarehouseController::class, 'tabelRetur']);
+        Route::get('pengajuan/detailretur/{no_pengajuan}', [PengajuanWarehouseController::class, 'detailpengajuanretur']);
+        Route::post('pengajuan/comfirmretur/{id_detailPengajuan}', [PengajuanWarehouseController::class, 'comfirmretur']);
         // Route::get('/addretur', 'App\Http\Controllers\PengajuanController@addretur');
         // Route::post('/addretur2', 'App\Http\Controllers\PengajuanController@addretur2')->name('addretur2');
         // Route::get('pengajuan/editRetur/{id_pengajuan}', [PengajuanController::class, 'editRetur']);
@@ -212,6 +214,7 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         // ----------------PENGAJUAN------------
         //  -------------------------RETUR-----------------------------
         Route::get('pengajuan/brgretur', [PengajuanMarketingController::class, 'tabelRetur']);
+        Route::post('pengajuan/confirmpengajuan/{id_detailPengajuan}', [PengajuanMarketingController::class, 'proses']);
         Route::get('pengajuan/pembelian', [PengajuanMarketingController::class, 'pengpembelian']);
         Route::get('pengajuan/pembelian/tambah', [PengajuanMarketingController::class, 'addpembelian']);
         Route::post('pengajuan/pembelian/simpan', [PengajuanMarketingController::class, 'addpembelian2']);
@@ -242,6 +245,9 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::get('pengajuan/brgretur', [PengajuanTeknisiController::class, 'tabelRetur']);
         Route::get('pengajuan/rekomendasi/tambah', [PengajuanTeknisiController::class, 'addrekom']);
         Route::post('pengajuan/rekomendasi/simpan', [PengajuanTeknisiController::class, 'addrekom2']);
+        // Route::get('pengajuan/rekomendasi/detail/{no_pengajuan}', [PengajuanTeknisiController::class, 'detailrekom']);
+        Route::get('pengajuan/rekomendasi/detail/{no_pengajuan}', [PengajuanTeknisiController::class, 'detailrekom']);
+
         Route::get('pengajuan/rekomendasi/ubah/{id_pengajuan}', [PengajuanTeknisiController::class, 'editRekom']);
         Route::post('pengajuan/rekomendasi/ubah/simpan', [PengajuanTeknisiController::class, 'updateRekom']);
         Route::get('pengajuan/retur/tambah', [PengajuanTeknisiController::class, 'addretur']);

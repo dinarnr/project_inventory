@@ -34,8 +34,6 @@
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
-                                                    <th>Nama Pengajuan</th>
-                                                    <th>Jumlah</th>
                                                     <th>Keterangan</th>
                                                     <th>Status</th>
                                                     <th>Tanggal pengajuan</th>
@@ -47,16 +45,23 @@
                                                 @foreach ($data_baru as $data_baru)
                                                 <tr>
                                                     <td>{{ $no++ }}</td>
-                                                    <td>{{ $data_baru->judul}}</td>
-                                                    <td>{{ $data_baru->jumlah}}</td>
                                                     <td>{{ $data_baru->keterangan}}</td>
-                                                    <td>{{ $data_baru->status}}</td>
+                                                    <td>@if($data_baru->status === 1 )
+                                                        Pengajuan ditolak Marketing
+                                                        @elseif ($data_baru->status === 2 )
+                                                        Pengajuan disetujui Marketing
+                                                        @elseif ($data_baru->status === 3 )
+                                                        Pengajuan ditolak Warehouse
+                                                        @elseif ($data_baru->status === 4 )
+                                                        Pengajuan disetujui Warehouse dan segera dikirim
+                                                        @else
+                                                        Pengajuan diproses Marketing
+                                                        @endif</td>
                                                     <td>{{ $data_baru->created_at}}</td>
                                                     <td>
-                                                        <a href="{{ url('teknisi/pengajuan/rekomendasi/ubah') }} / {{ $data_baru->id_pengajuan }}"> <button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-edit"></i></button></a>
+                                                        <a href="{{ url('teknisi/pengajuan/rekomendasi/detail') }}/{{ $data_baru->no_pengajuan }}"> <button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
                                                     </td>
                                                 </tr>
-                                                @include('pengajuan.hapusbrgbaru')
                                                 @endforeach
                                             </tbody>
                                     </div>
