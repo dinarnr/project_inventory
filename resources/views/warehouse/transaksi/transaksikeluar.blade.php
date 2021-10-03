@@ -9,8 +9,6 @@
         <div class="row heading-bg">
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
                 <h5 class="txt-dark">Data Barang keluar</h5><br>
-                <!-- <a href="/transaksi" class="btn btn-primary btn-icon-anim"><i class="fa fa succes"></i> MASUK</a>
-                <a href="/transaksikeluar" class="btn btn-primary btn-icon-anim"><i class="fa fa succes"></i> KELUAR</a> -->
             </div>
 
 
@@ -41,6 +39,7 @@
                                 <li role="presentation" class=""><a  data-toggle="tab" id="profile_tab_7" role="tab" href="#masuk_retur" aria-expanded="false">Retur</a></li>
 								
 							</ul>
+
                             <!-- BARANG GARANSI -->
 							<div class="tab-content" id="myTabContent_7">
 								<div  id="masuk_baru" class="tab-pane fade active in" role="tabpanel">
@@ -64,8 +63,6 @@
                                                 <td>{{ $garansi->no_transaksi}}</td>
                                                 <td>{{ $garansi->jns_barang }}</td>
                                                 <td>{{ $garansi->tgl_transaksi }}</td>
-                                                <!-- <td>{{ $garansi->pengirim }}</td>
-                                                <td>{{ $garansi->penerima }}</td> -->
                                                 <td>
                                                     <a href="{{ url('warehouse/transaksi/detailkeluargaransi') }}/{{ $garansi->no_transaksi }}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
                                                 </td>

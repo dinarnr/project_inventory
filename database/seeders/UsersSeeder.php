@@ -22,7 +22,7 @@ class UsersSeeder extends Seeder
             'divisi' => 'teknisi',
             'password' => bcrypt('123456'),
             'remember_token' => Str::random(60),
-            'status' => 'Aktif',
+            'status' => '2',
 
             ]);
         $teknisi->save();
@@ -33,7 +33,7 @@ class UsersSeeder extends Seeder
             'divisi' => 'warehouse',
             'password' => bcrypt('123456'),
             'remember_token' => Str::random(60),
-            'status' => 'Aktif',
+            'status' => '2',
             ]);
         $warehouse->save();
 
@@ -43,7 +43,7 @@ class UsersSeeder extends Seeder
             'divisi' => 'marketing',
             'password' => bcrypt('123456'),
             'remember_token' => Str::random(60),
-            'status' => 'Aktif',
+            'status' => '2',
 
             ]);
         $marketing->save();
@@ -54,7 +54,7 @@ class UsersSeeder extends Seeder
             'divisi' => 'admin',
             'password' => bcrypt('123456'),
             'remember_token' => Str::random(60),
-            'status' => 'Aktif',
+            'status' => '2',
 
             ]);
         $admin->save();
@@ -65,7 +65,7 @@ class UsersSeeder extends Seeder
             'divisi' => 'purchasing',
             'password' => bcrypt('123456'),
             'remember_token' => Str::random(60),
-            'status' => 'Aktif',
+            'status' => '2',
 
             ]);
         $purchasing->save();
@@ -76,7 +76,7 @@ class UsersSeeder extends Seeder
             'divisi' => 'administrator',
             'password' => bcrypt('123456'),
             'remember_token' => Str::random(60),
-            'status' => 'Aktif',
+            'status' => '2',
 
             ]);
         $administrator->save();
@@ -87,7 +87,7 @@ class UsersSeeder extends Seeder
             'divisi' => 'office',
             'password' => bcrypt('123456'),
             'remember_token' => Str::random(60),
-            'status' => 'Aktif',
+            'status' => '2',
 
             ]);
         $office->save();

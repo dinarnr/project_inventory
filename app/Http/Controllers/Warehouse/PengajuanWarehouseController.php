@@ -300,8 +300,9 @@ class PengajuanWarehouseController extends Controller
 
     public function detailpengajuanpembelian($no_peng)
     {
+        $profil = Profil::all();
         $data_detail = DetailPengajuan::all()->where('no_pengajuan', $no_peng);
         $pengajuan = Pengajuan::all()->where('no_pengajuan', $no_peng);
-        return view('warehouse/pengajuan/detailpengajuanpemb', compact('data_detail','pengajuan'));
+        return view('warehouse/pengajuan/detailpengajuanpemb', compact('data_detail','pengajuan', 'profil'));
     }
 }

@@ -176,6 +176,8 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::get('pengajuan/pembelian', [PengajuanWarehouseController::class, 'pengpembelian']);
         Route::get('pengajuan/pembelian/tambah', [PengajuanWarehouseController::class, 'addpembelian']);
         Route::post('pengajuan/pembelian/simpan', [PengajuanWarehouseController::class, 'addpengajuanpembelian']);
+        Route::get('pengajuan/pembelian/detail/{no_pengajuan}', [PengajuanWarehouseController::class, 'detailpengajuanpembelian']);
+
 
         // <----------------------DATA PEMBELIAN--------------------------->
         Route::get('pembelian/invoice', [PembelianWarehouseController::class, 'pembelian']);
