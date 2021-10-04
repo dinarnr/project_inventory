@@ -58,7 +58,6 @@
                                 <input class="form-control" name="edit_nama" type="text" value="{{ Auth::user()->name }}">
                                 </div>
                             </div>
-                            
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Divisi</label>
                                 <div class="col-lg-8">

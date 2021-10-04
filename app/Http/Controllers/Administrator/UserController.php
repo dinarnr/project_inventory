@@ -80,9 +80,8 @@ class UserController extends Controller
             ->update([
                 'name'      => $request->edit_nama,
                 'email'     => $request->edit_email,
-                'password'  => $request->edit_password,
-                'gambar'    => $namaFile,
-                'status'    => $request->edit_status
+                'password'  => bcrypt($request->edit_password),
+                'gambar'    => $namaFile
         ]);
         } else {
 
@@ -90,10 +89,9 @@ class UserController extends Controller
              ->update([
                 'name'      => $request->edit_nama,
                 'email'     => $request->edit_email,
-                'password' => $request->edit_password,
-                'status'    => $request->edit_status
+                'password' => bcrypt($request->edit_password)
                 ]);
-                return redirect()->back();
+            return redirect('dashboard/home');
         }
             
     }
