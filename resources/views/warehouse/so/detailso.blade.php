@@ -46,20 +46,21 @@
 
                                     <div class="col-xs-8">
                                         <div class="form-group">
+                                            <table>
                                                 <div class="text-left">
                                                     <h6 class="txt-dark"><strong>TO</strong></h6>
                                                 </div>
+                                               @foreach ($instansi as $instansi)
                                         <tr>
                                             <div class="">
-                                               @foreach ($instansi as $instansi)
-                                                    <td class="txt-dark"> {{$instansi->nama_instansi}} <br>
-                                                                    {{$instansi->alamat_instansi}} <br>
-                                                                    {{$instansi->telp_instansi}} <br>
-                                                                    {{$instansi->email_instansi}} <br>
-                                                    </td>
-                                                @endforeach
+                                                <td class="txt-dark"> {{$instansi->nama_instansi}} <br>
+                                                                {{$instansi->alamat_instansi}} <br>
+                                                                {{$instansi->telp_instansi}} <br>
+                                                                {{$instansi->email_instansi}} <br>
+                                                </td>
                                             </div>
                                         </tr>
+                                        @endforeach
                                             </table>
 
                                         </div>
@@ -75,7 +76,7 @@
                                                 @foreach ($data_po as $data_po)
                                                 <tr>
                                                     <div class="">
-                                                        <td class="txt-dark"> Number : {{$data_po->no_PO}}<input type="text" id="no_PO" name="no_PO" value="{{$data_po->no_PO}}" style="outline:none;border:0;" readonly> <br>
+                                                        <td class="txt-dark"> Number : <input type="text" id="no_PO" name="no_PO" value="{{$data_po->no_PO}}" style="outline:none;border:0;" readonly> <br>
                                                         Date : {{$data_po->created_at->format('d/m/Y')}} <br>
                                                         Note : </td>
                                                     </div>
@@ -94,7 +95,7 @@
                                             <th>Deskripsi</th>
                                             <th>Keterangan</th>
                                             <th>Qty</th>
-                                            <th> <input type="checkbox" id='checkall' class="check_all"/>&nbsp;</th>
+                                            <th> <input type="checkbox" id='checkall' class="check_all"/>&nbsp;Check All</th>
                                         </tr>
                                     </thead>
                                 
@@ -118,7 +119,7 @@
                                             <td>
                                                 <input type="checkbox" class="checkbox" id="is_active[]" name="is_active[]" value="{{$detail->id_po}}" 
                                                 @if($detail->status == 2) checked=checked @endif />
-                                                <input type="hidden" id="non[]" name="non[]" value="{{$detail->id_po}}">        
+                                                <!-- <input type="hidden" id="is_active[]" name="is_active[]" value="">         -->
                                             </td>
                                         </tr>
                                         @endforeach
@@ -181,8 +182,21 @@
         } else {
         $("#checkall").prop("checked", false);
         }
- 
+
     });
     });
+
+    function update() {
+        var $checks = $('.checkbox');
+
+        arrunchecked = $('.checkbox').map(function() {
+            if(!this.checked)
+            return this.value;
+        }).get();
+
+        var non = document.getElementsByClassName("non[]").checked = false// Uncheck
+        $("#non").val(arrunchecked);
+    }
+
     </script>
     @endsection

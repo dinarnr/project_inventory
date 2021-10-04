@@ -60,14 +60,29 @@ class SoController extends Controller
     
     public function confirmpo(Request $request)
     {
-        // dd($request->is_active);
+        // dd(DetailPO::where('id_po','!=', $request->is_active)->pluck('id_po')->all());
         $user = Auth::user();
+        // dd($request->is_active);
         if ($request->proses == 'proses') {
 
         DetailPO::where('id_po', $request->is_active)
             ->update(
                 [
                 'status' => '2'
+                ]
+            );
+        
+        DetailPO::where('id_po','!=', $request->is_active)
+            ->update(
+                [
+                'status' => ''
+                ]
+            );
+
+        DetailPO::where('id_po', $request->non)
+            ->update(
+                [
+                'status' => ''
                 ]
             );
 
@@ -95,13 +110,28 @@ class SoController extends Controller
             ]
         );
     } else {
-        DetailPO::where('id_po', $request->is_active)
+        $jumlah_data = count($request->is_active);
+        for ($i = 0; $i < $jumlah_data; $i++) {
+        DetailPO::where('id_po', $request->is_active[$i])
             ->update(
                 [
                 'status' => '2'
                 ]
             );
-
+        }
+        // $null = DetailPO::where('no_PO','=',  $request->no_PO)->whereIn('id_po', $request->is_active)->pluck('id_po');
+        
+        // dd($request->is_active);
+        //     // dd($request->all());
+        // $jumlah_null = count($null);
+        // for ($i = 0; $i < $jumlah_null; $i++) {
+        // DetailPO::where('id_po','=', $null[$i])
+        //     ->update(
+        //         [
+        //         'status' => ''
+        //         ]
+        //     );
+        // }
         // DetailPO::whereIn('id_po', $request->is_active)
         // ->update(array(
         //         'status'=> '1'
