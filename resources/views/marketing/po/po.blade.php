@@ -32,7 +32,7 @@
                         <div class="panel-wrapper collapse in">
                             <div class="panel-body">
                                 <div class="table-wrap">
-                                    <div class="">
+                                    <div class="table-responsive">
                                         <table id="datable_1" class="table table-bordered display pb-30">
                                             <thead>
                                                 <tr>
@@ -58,19 +58,18 @@
                                                         @include('marketing.po.tglpemasangan')
                                                     </td>
                                                     <td>
-                                                        @if($data_po->status === 1 )
-                                                        Purchase Order diproses Warehouse
-                                                        @elseif ($data_po->status === 2 )
-                                                        Purchase Order disetujui Warehouse
-                                                        @elseif ($data_po->status === 3 )
-                                                        Purchase Order ditolak Admin
-                                                        @elseif ($data_po->status === 4 )
-                                                        Purchase Order disetujui Warehouse dan dalam proses pembelian
-                                                        @elseif ($data_po->status === 5 )
-                                                        Barang sudah dibeli
-                                                        @else
-                                                        Draft
-                                                        @endif
+                                                            @if($data_po->status === 1 )
+                                                            Purchase Order diproses Warehouse
+                                                            @elseif ($data_po->status === 2 )
+                                                            Purchase Order disetujui Warehouse 
+                                                            @elseif ($data_po->status === 5)
+                                                            Purchase Order dibatalkan <br><br>
+                                                            <div class="tulisan">
+                                                                Alasan : {{$data_po->alasan}}
+                                                            </div>
+                                                            @else
+                                                            Draft
+                                                            @endif
                                                     </td>
                                                     <td>{{ $data_po->created_at->format('d-m-y H:i:s')}}</td>
                                                     <td>
@@ -78,10 +77,9 @@
                                                         @if (empty($data_po->status))
                                                         <a href="{{url('marketing/po/ubah')}}/{{ $data_po->no_PO }}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-edit"></i></button></a>
                                                         @endif
-                                                        @if (($data_po->status >= 1))
-                                                        @if ($data_po->status != 7)
+                                                        @if ($data_po->status == 5 || $data_po->status >= 2 ) 
+                                                        @else
                                                         <button class="btn btn-danger btn-icon-anim btn-square" data-toggle="modal" data-target="#batal{{ $data_po->id_PO }}" action="( {{url('marketing/po/batal')}}/{{ $data_po->id_PO }})"><i class="fa fa-times"></i></button>
-                                                        @endif
                                                         @endif
                                                     </td>
                                                     @include('marketing.po.batal')
