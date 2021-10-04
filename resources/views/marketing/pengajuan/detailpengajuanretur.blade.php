@@ -1,13 +1,6 @@
 @extends('layout.master')
-@section('title', 'Detail Pengajuan Retur')
+@section('title', 'Detail SO')
 @section('content')
-<style type="text/css">
-    @media print {
-        .hide-from-printer {
-            display: none;
-        }
-    }
-</style>
 
 <!-- Main Content -->
 <div class="page-wrapper">
@@ -29,9 +22,11 @@
                                             <table>
                                                 <tr>
                                                     <div class="row">
-                                                        <td class="txt-dark"> Jl Candi Mendut Utara 1 No. 11 <br>
-                                                            Kel. Mojolangu Kec. Lowokwaru Malang - Jawa Timur<br>
-                                                            Phone : <br> Email : </td>
+                                                        @foreach ($profil as $profil)
+                                                <td class="txt-dark"> Jl Candi Mendut Utara 1 No. 11 <br>
+                                                    Kel. Mojolangu Kec. Lowokwaru Malang - Jawa Timur<br>
+                                                    Phone : {{$profil->telp}}<br> Email : {{$profil->email}}</td>
+                                                    @endforeach
                                                     </div>
                                                 </tr>
                                             </table>
@@ -48,36 +43,11 @@
                                 <hr>
 
                                 <div class="row">
-
-                                    <div class="col-xs-8">
-                                        <div class="form-group">
-                                            <table>
-                                                <div class="text-left">
-                                                    <h6 class="txt-dark"><strong>TO</strong></h6>
-                                                </div>
-                                                <tr>
-                                                    <div class="">
-                                                        <td class="txt-dark"> </td>
-                                                    </div>
-                                                </tr>
-                                            </table>
-
-                                        </div>
-                                    </div>
                                     <div class="col-xs-4">
                                         <div class="form-group">
                                             <table>
-                                                <div class="text-left">
-                                                    <h6 class="txt-dark"><strong>PENAWARAN</strong></h6>
-                                                </div>
-                                                <!-- <form action="{{ url('confirmpo/{id_PO}') }}" method="POST" enctype="multipart/form-data"> -->
-                                                <tr>
-                                                    <div class="">
-                                                        <td class="txt-dark"> Number : <input type="text" id="no_PO" name="no_PO" value="" style="outline:none;border:0;" readonly> <br>
-                                                            Date : <br>
-                                                            Note : </td>
-                                                    </div>
-                                                </tr>
+                                                
+                                                <form action="{{ url('marketing/pengajuan/confirmpengajuan/{id_detailPengajuan') }}" method="POST" enctype="multipart/form-data">
                                             </table>
                                         </div>
                                     </div>
@@ -93,66 +63,86 @@
                                             <th>√</th>
                                         </tr>
                                     </thead>
+                                
                                     <tbody>
                                         <?php $no = 1; ?>
                                         @csrf
+                                        @foreach ($data_detail as $detail)
+                                        <input type="hidden"  id="no_peng" name="no_peng" value="{{$detail->no_pengajuan}}" />
                                         <tr>
                                             <td>{{ $no++ }}</td>
-                                            @foreach($data_detail as $detail)
                                             <td>
-                                                <a href="#" id="" style="font-weight:bold" data-type="text" data-pk="1" data-title="Nama barang">{{$detail->namaBarang}}</a><br></br>
+                                                <a href="#" id="" style="font-weight:bold" data-type="text" data-pk="1" data-title="Nama barang">{{$detail->namaBarang}}</a>
                                             </td>
-
-                                            
                                             <td>
                                                 <a href="#" id="" style="font-weight:bold" data-type="text" data-pk="1" data-title="Jumlah">{{$detail->jmlBarang}}</a>
                                             </td>
                                             <td>
-                                                <input type="checkbox" id="is_active" name="is_active[]" onchange="aktif();" value="" />
-                                                <input type="hidden" id="non" name="non[]" value="">
-
+                                                <input type="checkbox" class="checkbox" id="is_active[]" name="is_active[]" value="{{$detail->id_detailPengajuan}}" 
+                                                @if($detail->status == 2) checked=checked @endif />
+                                                <input type="hidden" id="non[]" name="non[]" value="{{$detail->id_detailPengajuan}}">        
                                             </td>
-                                            
-                                            @endforeach
                                         </tr>
-                            </div>
-                            </tbody>
+                                        @endforeach
+                                    </div>
+                                </tbody>
                             </table>
-                            <!-- </form> -->
-                        </div>
                     </div>
-                    <div class="row">
-                        <div class="col-xs-8">
-
+                </div>
+                <div class="row">
+                    <div class="col-xs-8">
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- /Row -->
-
+            <div class="pull-right hide-from-printer">
+                <button class="btn btn-default" name="draft" type="submit" value="draft" id="draft">Draft</button>
+                <button class="btn btn-primary mr-10" name="proses" type="submit"  value="proses" id="proses">Proses</button>
+                <!-- form tutup -->
+            </div>
+        </form>
+        
         </div>
-
-        <div class="pull-right hide-from-printer">
-            <form action="" method="POST" enctype="multipart/form-data">
-                @csrf
-                <input type="hidden" id="aktif" name="aktif[]">
-                <button type="submit" class="btn btn-primary mr-10">
-                    Proses
-                </button>
-            </form>
-            <!-- form tutup -->
-        </div>
+        
+        
+        <!-- /Row -->
+        <!-- /Main Content -->
     </div>
     <!-- /#wrapper -->
-    @endsection
-    @section('scripts')
-    <script type="text/javascript">
-        function aktif() {
-            var aktif = document.getElementByName('is_active[]');
-            for (var i = 0; i < aktif.length; i++) {
-                console.log(aktif[i].value);
-            }
-            document.getElementById('aktif').value = aktif.value;
-        }
+
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous">
     </script>
-    @endsection
+
+
+    <script type='text/javascript'>
+    $(document).ready(function(){
+   // Check or Uncheck All checkboxes
+    $("#checkall").change(function(){
+        var checked = $(this).is(':checked');
+        if(checked){
+        $(".checkbox").each(function(){
+            $(this).prop("checked",true);
+        });
+        }else{
+        $(".checkbox").each(function(){
+            $(this).prop("checked",false);
+        });
+        }
+    });
+    
+    // Changing state of CheckAll checkbox 
+    $(".checkbox").click(function(){
+    
+        if($(".checkbox").length == $(".checkbox:checked").length) {
+        $("#checkall").prop("checked", true);
+        } else {
+        $("#checkall").prop("checked", false);
+        }
+ 
+    });
+    });
+    </script>
+@endsection

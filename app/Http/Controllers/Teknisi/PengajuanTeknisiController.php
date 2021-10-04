@@ -9,6 +9,7 @@ use App\Models\Log;
 use App\Models\Master;
 use App\Models\Pengajuan;
 use App\Models\PO;
+use App\Models\Profil;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -18,47 +19,59 @@ class PengajuanTeknisiController extends Controller
 
     public function tabelRekom(Request $request)
     {
-        $data_baru = Pengajuan::all()->where('jenisBarang', '', 'Baru');
+        $data_baru = Pengajuan::all()->where('jenisBarang', '', 'Rekomendasi');
         return view('teknisi/pengajuan/brgrekom', compact('data_baru'));
     }
 
     public function addrekom()
     {
-        return view('teknisi/pengajuan/addrekom');
+        $noPO = PO::all();
+        $barang = Master::all();
+
+        $kode = strtoupper(substr("PEN", 0, 3));
+        $check = count(Pengajuan::where('no_pengajuan', 'like', "%$kode%")->get()->toArray());
+        $angka = sprintf("%03d", (int)$check + 1);
+        $no_peng = $kode . "" . $angka;
+
+        return view('teknisi/pengajuan/addrekom', compact('noPO','barang','no_peng'));
     }
 
     public function addrekom2(Request $request)
     {
-        // $rules = [
-        //     'namaBarang' => 'required',
-        // ];
-
-        // $messages = [
-        //     'namaBarang.required' => '*Nama barang tidak boleh kosong',
-        // ];
-        // $this->validate($request);
-        $baru = 'Baru';
-        Pengajuan::create(
-            [
-                'judul' => $request->namaBarang,
-                'jumlah' => $request->jumlah,
-                'keterangan' => $request->keterangan,
-                'jenisBarang' => $baru
-            ]
-        );
-
+        // dd($request->all());
         $user = Auth::user();
-        Log::create(
-            [
-                'name' => $user->name,
-                'email' => $user->email,
-                'divisi' => $user->divisi,
-                'deskripsi' => 'Create Pengajuan Rekomendasi',
-                'status' => '2',
-                'ip' => $request->ip()
+        $jumlah_data = count($request->no_peng);
+        for ($i = 0; $i < $jumlah_data; $i++) {
+            DetailPengajuan::create(
+                [
+                    'no_pengajuan' => $request->no_peng[$i],
+                    'namaBarang' => $request->nama_barang[$i],
+                    'jmlBarang' => $request->jumlah[$i],
+                    'jenisBarang' => 'Rekomendasi'
+                ]
+            );
+        }
+            Pengajuan::create(
+                [
+                    'no_pengajuan' => $request->no_pengajuan,
+                    'keterangan' => $request->keterangan,
+                    'jenisBarang' => 'Rekomendasi',
+                    'pic_teknisi' => $user->name
+                ]
+            );
 
-            ]
-        );
+            $user = Auth::user();
+            Log::create(
+                [
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'divisi' => $user->divisi,
+                    'deskripsi' => 'Create Pengajuan Barang Retur',
+                    'status' => '2',
+                    'ip' => $request->ip()
+
+                ]
+            );
         return redirect('teknisi/pengajuan/brgrekom');
     }
 
@@ -70,14 +83,7 @@ class PengajuanTeknisiController extends Controller
 
     public function updateRekom(Request $request)
     {
-        $rules = [
-            'edit_nama' => 'required',
-        ];
 
-        $messages = [
-            'edit_nama.required' => '*Nama barang tidak boleh kosong',
-        ];
-        $this->validate($request, $rules, $messages);
         Pengajuan::where('id_pengajuan', $request->edit_id_pengajuan)
             ->update([
                 'judul' => $request->edit_nama,
@@ -120,13 +126,20 @@ class PengajuanTeknisiController extends Controller
         return back()->with('success', "Data telah terhapus");
     }
 
-    public function detailrekom($kode)
-    {
-        $data_detail = DetailPengajuan::all()->where('kode', $kode);
-        return view('pengajuan/detailbaru', compact('data_detail'));
+    // public function detailrekom($no_pengajuan)
+    // {
+    //     $profil = Profil::all();
+    //     $data_detail = DetailPengajuan::where('no_pengajuan', $no_pengajuan)->get();
+    //     $pengajuan_rekom = Pengajuan::where('no_pengajuan', $no_pengajuan)->get();
+    //     return view('teknisi/pengajuan/detailrekom', compact('pengajuan_rekom', 'data_detail', 'profil'));
+    // }
 
-        $pengajuan = Pengajuan::all()->where('kode', $kode);
-        return view('teknisi/pengajuan/detailrekom', compact('pengajuan'));
+    public function detailrekom($no_pengajuan)
+    {
+        $profil = Profil::all();
+        $data_detail = DetailPengajuan::where('no_pengajuan', $no_pengajuan)->get();
+        $pengajuan_rekom = Pengajuan::where('no_pengajuan', $no_pengajuan)->get();
+        return view('/teknisi/pengajuan/detailrekom', compact('pengajuan_rekom', 'data_detail', 'profil'));
     }
 
 
@@ -142,7 +155,7 @@ class PengajuanTeknisiController extends Controller
         $noPO = PO::all();
         $barang = Master::all();
 
-        $kode = strtoupper(substr("PEM", 0, 3));
+        $kode = strtoupper(substr("PEN", 0, 3));
         $check = count(Pengajuan::where('no_pengajuan', 'like', "%$kode%")->get()->toArray());
         $angka = sprintf("%03d", (int)$check + 1);
         $no_peng = $kode . "" . $angka;

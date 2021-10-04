@@ -24,7 +24,7 @@ class POController extends Controller
 
     public function confirmpo(Request $request)
     {
-        dd($request->input('aktif'));
+        // dd($request->input('aktif'));
         $user = Auth::user();
         // DetailPO::where('id_po', $request->is_active)
         //     ->update(

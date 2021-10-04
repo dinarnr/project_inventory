@@ -17,7 +17,7 @@ use Symfony\Component\Console\Input\Input;
 
 class PengajuanWarehouseController extends Controller
 {
-    public function tabelRetur(Request $request)
+    public function tabelRetur()
     {
         $data_retur = Pengajuan::all()->where('jenisBarang', '', 'Retur');
         return view('warehouse/pengajuan/brgretur', compact('data_retur'));
@@ -30,59 +30,62 @@ class PengajuanWarehouseController extends Controller
         return view('pengajuan/addbrgretur', compact('noPO','barang'));
     }
 
-    public function addretur2(Request $request)
+    public function comfirmretur(Request $request)
     {
         $user = Auth::user();
+        if ($request->proses == 'proses') {
+                DetailPengajuan::where('id_detailPengajuan', $request->is_active)
+                    ->update(
+                        [
+                        'status' => '4'
+                        ]
+                    );
+                Pengajuan::where('no_pengajuan', $request->no_peng)
+                    ->update(
+                        [
+                            'status' => '4'
+                        ]
+                    );
+        
+                Log::create(
+                    [
+                        'name' => $user->name,
+                        'email' => $user->email,
+                        'divisi' => $user->divisi,
+                        'deskripsi' => 'Confirm Pengajuan Retur ',
+                        'status' => '2',
+                        'ip' => $request->ip()
+        
+                    ]
+                );
+    } else {
+        DetailPengajuan::where('id_detailPengajuan', $request->is_active)
+            ->update(
+                [
+                'status' => '3'
+                ]
+            );
 
-        // $rules = [
-        //     'nama_pengajuan' => 'required',
-        //     'TabelDinamis' => 'required'
-        // ];
+        Pengajuan::where('no_pengajuan', $request->no_peng)
+            ->update(
+                [
+                    'status' => '3'
+                ]
+            );
 
-        // $messages = [
-        //     'nama_pengajuan.required' => '*Nama pengajuan tidak boleh kosong',
-        //     'TabelDinamis.required' => '*Data tidak boleh kosong'
-        // ];
-        // $this->validate($request);
-
-        Pengajuan::create(
+        Log::create(
             [
-                // 'kode' => $request->kode_pengajuan,
-                'judul' => $request->nama_pengajuan,
-                'jumlah' => $request->jumlah,
-                'keterangan' => $request->keterangan,
-                'jenisBarang' => 'Retur',
-                'pic_teknisi' => $user->name
+                'name' => $user->name,
+                'email' => $user->email,
+                'divisi' => $user->divisi,
+                'deskripsi' => 'Confirm Draft pengajuan retur',
+                'status' => '2',
+                'ip' => $request->ip()
+
             ]
         );
-        $jumlah_data = count($request->nama_barang);
-        for ($i = 0; $i < $jumlah_data; $i++) {
-            DetailPengajuan::create(
-                [
-                    'kode' => $request->kode_pengajuan[$i],
-                    'namaBarang' => $request->nama_barang[$i],
-                    'jmlBarang' => $request->jumlah[$i],
-                    'noPO' => $request->no_PO[$i],
-                    'keterangan' => $request->keterangan[$i],
-                    'jenisBarang' => 'Retur'
-                ]
-            );
-
-            $user = Auth::user();
-            Log::create(
-                [
-                    'name' => $user->name,
-                    'email' => $user->email,
-                    'divisi' => $user->divisi,
-                    'deskripsi' => 'Create Pengajuan Barang Retur',
-                    'status' => '2',
-                    'ip' => $request->ip()
-
-                ]
-            );
-        }
-        // return redirect('/brgretur');
-        return view('pengajuan/brgretur');
+    }
+        return redirect('warehouse/pengajuan/brgretur');
     }
     public function editRetur($id_pengajuan)
     {
@@ -139,14 +142,15 @@ class PengajuanWarehouseController extends Controller
         return back()->with('success', "Data telah terhapus");
     }
 
-    public function detailretur($kode)
-    {
-        $data_detail = DetailPengajuan::all()->where('kode', $kode);
-        return view('pengajuan/detailbaru', compact('data_detail'));
 
-        $pengajuan = Pengajuan::all()->where('kode', $kode);
-        return view('pengajuan/detailbaru', compact('pengajuan'));
+    public function detailpengajuanretur($no_pengajuan)
+    {
+        $profil = Profil ::all();
+        $data_detail = DetailPengajuan::where('no_pengajuan', $no_pengajuan)->get();
+        $pengajuan_retur = Pengajuan::where('no_pengajuan', $no_pengajuan)->get();
+        return view('/warehouse/pengajuan/detailpengajuanretur', compact('pengajuan_retur', 'data_detail', 'profil'));
     }
+
 
     //-----------------------------------------confirm/reject---------------------------------------------------------------//
 
@@ -238,7 +242,7 @@ class PengajuanWarehouseController extends Controller
     //-----------------------------------------pengajuan pembelian---------------------------------------------------------------//
     public function pengpembelian()
     {
-        $pembelian= Pengajuan::all();
+        $pembelian= Pengajuan::all()->where('jenisBarang','','');
         return view('warehouse/pengajuan/pembelian', compact('pembelian'));
     }
 

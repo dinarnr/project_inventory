@@ -150,56 +150,17 @@ class PengajuanMarketingController extends Controller
         return view('pengajuan/addbrgretur', compact('noPO','barang'));
     }
 
-    public function addretur2(Request $request)
+    public function proses(Request $request)
     {
-         // dd($request->is_active);
+        //  dd($request->no_peng);
          $user = Auth::user();
-         if ($request->proses == 'proses') {
- 
-         DetailPengajuan::where('id_po', $request->is_active)
+         DetailPengajuan::where('id_detailPengajuan', $request->is_active)
              ->update(
                  [
                  'status' => '2'
                  ]
              );
- 
-         // DetailPO::whereIn('id_po', $request->is_active)
-         // ->update(array(
-         //         'status'=> '1'
-         // ));  
- 
-         Pengajuan::where('no_PO', $request->no_PO)
-             ->update(
-                 [
-                     'status' => '3'
-                 ]
-             );
- 
-         Log::create(
-             [
-                 'name' => $user->name,
-                 'email' => $user->email,
-                 'divisi' => $user->divisi,
-                 'deskripsi' => 'Confirm PO',
-                 'status' => '2',
-                 'ip' => $request->ip()
- 
-             ]
-         );
-     } else {
-         DetailPengajuan::where('id_po', $request->is_active)
-             ->update(
-                 [
-                 'status' => '2'
-                 ]
-             );
- 
-         // DetailPO::whereIn('id_po', $request->is_active)
-         // ->update(array(
-         //         'status'=> '1'
-         // ));  
- 
-         PO::where('no_PO', $request->no_PO)
+         Pengajuan::where('no_pengajuan', $request->no_peng)
              ->update(
                  [
                      'status' => '2'
@@ -211,15 +172,14 @@ class PengajuanMarketingController extends Controller
                  'name' => $user->name,
                  'email' => $user->email,
                  'divisi' => $user->divisi,
-                 'deskripsi' => 'Confirm Draft SO',
+                 'deskripsi' => 'Confirm Pengajuan Retur ',
                  'status' => '2',
                  'ip' => $request->ip()
  
              ]
          );
-     }
  
-         return redirect('warehouse/so/dataSO');
+         return redirect('marketing/pengajuan/brgretur');
      }
 
     public function editRetur($id_pengajuan)
