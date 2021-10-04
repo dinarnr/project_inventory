@@ -22,8 +22,8 @@
                                             <table>
                                                 <tr>
                                                     <div class="row">
-                                                        @foreach ($profil as $profil)
-                                                <td class="txt-dark"> Jl Candi Mendut Utara 1 No. 11 <br>
+                                                    @foreach ($profil as $profil)
+                                                    <td class="txt-dark"> Jl Candi Mendut Utara 1 No. 11 <br>
                                                     Kel. Mojolangu Kec. Lowokwaru Malang - Jawa Timur<br>
                                                     Phone : {{$profil->telp}}<br> Email : {{$profil->email}}</td>
                                                     @endforeach
@@ -47,7 +47,7 @@
                                         <div class="form-group">
                                             <table>
                                                 
-                                                <form action="{{ url('marketing/pengajuan/confirmpengajuan/{id_detailPengajuan') }}" method="POST" enctype="multipart/form-data">
+                                                <form action="{{ url('warehouse/pengajuan/comfirmretur/{id_detailPengajuan') }}" method="POST" enctype="multipart/form-data">
                                             </table>
                                         </div>
                                     </div>
@@ -60,7 +60,6 @@
                                             <th>no</th>
                                             <th>Nama Barang</th>
                                             <th>Jumah</th>
-                                            <th>√</th>
                                         </tr>
                                     </thead>
                                 
@@ -77,11 +76,6 @@
                                             <td>
                                                 <a href="#" id="" style="font-weight:bold" data-type="text" data-pk="1" data-title="Jumlah">{{$detail->jmlBarang}}</a>
                                             </td>
-                                            <td>
-                                                <input type="checkbox" class="checkbox" id="is_active[]" name="is_active[]" value="{{$detail->id_detailPengajuan}}" 
-                                                @if($detail->status == 2) checked=checked @endif />
-                                                <input type="hidden" id="non[]" name="non[]" value="{{$detail->id_detailPengajuan}}">        
-                                            </td>
                                         </tr>
                                         @endforeach
                                     </div>
@@ -95,11 +89,11 @@
                     </div>
                 </div>
             </div>
-            <div class="pull-right hide-from-printer">
-                <!-- <button class="btn btn-default" name="draft" type="submit" value="draft" id="draft">Draft</button> -->
-                <button class="btn btn-primary mr-10" name="proses" type="submit"  value="proses" id="proses">Proses</button>
+            <!-- <div class="pull-right hide-from-printer">
+                <button class="btn btn-danger" name="draft" type="submit" value="draft" id="draft">Tolak</button>
+                <button class="btn btn-primary mr-10" name="proses" type="submit"  value="proses" id="proses">Setuju</button>
                 <!-- form tutup -->
-            </div>
+            <!-- </div> --> 
         </form>
         
         </div>

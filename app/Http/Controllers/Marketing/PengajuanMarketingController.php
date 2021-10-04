@@ -20,7 +20,7 @@ class PengajuanMarketingController extends Controller
     // ------------REKOM-----------
     public function tabelBaru(Request $request)
     {
-        $data_baru = Pengajuan::all()->where('jenisBarang', '', 'Baru');
+        $data_baru = Pengajuan::all()->where('jenisBarang', '', 'Rekomendasi');
         return view('marketing/pengajuan/brgbaru', compact('data_baru'));
     }
 
@@ -29,39 +29,62 @@ class PengajuanMarketingController extends Controller
         return view('pengajuan/addbrgbaru');
     }
 
-    public function addbaru2(Request $request)
+    public function prosesrekom(Request $request)
     {
-        // $rules = [
-        //     'namaBarang' => 'required',
-        // ];
-
-        // $messages = [
-        //     'namaBarang.required' => '*Nama barang tidak boleh kosong',
-        // ];
-        // $this->validate($request);
-        $baru = 'Baru';
-        Pengajuan::create(
-            [
-                'judul' => $request->namaBarang,
-                'jumlah' => $request->jumlah,
-                'keterangan' => $request->keterangan,
-                'jenisBarang' => $baru
-            ]
-        );
-
         $user = Auth::user();
+        if ($request->proses == 'proses') {
+                DetailPengajuan::where('id_detailPengajuan', $request->is_active)
+                    ->update(
+                        [
+                        'status' => '2'
+                        ]
+                    );
+                Pengajuan::where('no_pengajuan', $request->no_peng)
+                    ->update(
+                        [
+                            'status' => '2'
+                        ]
+                    );
+        
+                Log::create(
+                    [
+                        'name' => $user->name,
+                        'email' => $user->email,
+                        'divisi' => $user->divisi,
+                        'deskripsi' => 'Confirm Pengajuan Retur ',
+                        'status' => '2',
+                        'ip' => $request->ip()
+        
+                    ]
+                );
+    } else {
+        DetailPengajuan::where('id_detailPengajuan', $request->is_active)
+            ->update(
+                [
+                'status' => '1'
+                ]
+            );
+
+        Pengajuan::where('no_pengajuan', $request->no_peng)
+            ->update(
+                [
+                    'status' => '1'
+                ]
+            );
+
         Log::create(
             [
                 'name' => $user->name,
                 'email' => $user->email,
                 'divisi' => $user->divisi,
-                'deskripsi' => 'Create Pengajuan Rekomendasi',
+                'deskripsi' => 'Confirm Draft pengajuan retur',
                 'status' => '2',
                 'ip' => $request->ip()
 
             ]
         );
-        return redirect('/brgbaru');
+    }
+        return redirect('marketing/pengajuan/brgbaru');
     }
 
     public function editBaru($id_pengajuan)
@@ -126,13 +149,12 @@ class PengajuanMarketingController extends Controller
         return back()->with('success', "Data telah terhapus");
     }
 
-    public function detailbaru($kode)
+    public function detailbaru($no_pengajuan)
     {
-        $data_detail = DetailPengajuan::all()->where('kode', $kode);
-        return view('marketing/pengajuan/detailbaru', compact('data_detail'));
-
-        $pengajuan = Pengajuan::all()->where('kode', $kode);
-        return view('marketing/pengajuan/detailbaru', compact('pengajuan'));
+        $profil = Profil::all();
+        $data_detail = DetailPengajuan::where('no_pengajuan', $no_pengajuan)->get();
+        $pengajuan_rekom = Pengajuan::where('no_pengajuan', $no_pengajuan)->get();
+        return view('/marketing/pengajuan/detailpengajuanrekom', compact('pengajuan_rekom', 'data_detail', 'profil'));
     }
 
     // -------------RETUR------------------
@@ -180,7 +202,7 @@ class PengajuanMarketingController extends Controller
          );
  
          return redirect('marketing/pengajuan/brgretur');
-     }
+    }
 
     public function editRetur($id_pengajuan)
     {
@@ -335,7 +357,7 @@ class PengajuanMarketingController extends Controller
     //-----------------------------------------pengajuan pembelian---------------------------------------------------------------//
     public function pengpembelian()
     {
-        $pembelian= Pengajuan::all();
+        $pembelian= Pengajuan::all()->where('jenisBarang','','');
         return view('marketing/pengajuan/pembelian', compact('pembelian'));
     }
 
@@ -389,5 +411,71 @@ class PengajuanMarketingController extends Controller
            ]);
 
        return redirect('marketing/pengajuan/pembelian');
+    }
+
+    public function detailpembelian($no_pengajuan)
+    {
+        $profil = Profil::all();
+        $data_detail = DetailPengajuan::where('no_pengajuan', $no_pengajuan)->get();
+        $pengajuan_retur = Pengajuan::where('no_pengajuan', $no_pengajuan)->get();
+        return view('/marketing/pengajuan/detailpengajuanpembelian', compact('pengajuan_retur', 'data_detail', 'profil'));
+    }
+
+    public function prosespembelian(Request $request)
+    {
+        $user = Auth::user();
+        if ($request->proses == 'proses') {
+                DetailPengajuan::where('id_detailPengajuan', $request->is_active)
+                    ->update(
+                        [
+                        'status' => '2'
+                        ]
+                    );
+                Pengajuan::where('no_pengajuan', $request->no_peng)
+                    ->update(
+                        [
+                            'status' => '2'
+                        ]
+                    );
+        
+                Log::create(
+                    [
+                        'name' => $user->name,
+                        'email' => $user->email,
+                        'divisi' => $user->divisi,
+                        'deskripsi' => 'Confirm Pengajuan Retur ',
+                        'status' => '2',
+                        'ip' => $request->ip()
+        
+                    ]
+                );
+    } else {
+        DetailPengajuan::where('id_detailPengajuan', $request->is_active)
+            ->update(
+                [
+                'status' => '1'
+                ]
+            );
+
+        Pengajuan::where('no_pengajuan', $request->no_peng)
+            ->update(
+                [
+                    'status' => '1'
+                ]
+            );
+
+        Log::create(
+            [
+                'name' => $user->name,
+                'email' => $user->email,
+                'divisi' => $user->divisi,
+                'deskripsi' => 'Confirm Draft pengajuan retur',
+                'status' => '2',
+                'ip' => $request->ip()
+
+            ]
+        );
+    }
+        return redirect('marketing/pengajuan/pembelian');
     }
 }

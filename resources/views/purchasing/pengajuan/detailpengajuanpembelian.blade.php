@@ -1,5 +1,5 @@
 @extends('layout.master')
-@section('title', 'Detail Pengajuan Retur')
+@section('title', 'Detail Pengajuan Pembelian')
 @section('content')
 
 <!-- Main Content -->
@@ -47,7 +47,7 @@
                                         <div class="form-group">
                                             <table>
                                                 
-                                                <form action="{{ url('marketing/pengajuan/confirmpengajuan/{id_detailPengajuan') }}" method="POST" enctype="multipart/form-data">
+                                                <form action="{{ url('purchasing/pengajuan/confirmpengajuan/{id_detailPengajuan') }}" method="POST" enctype="multipart/form-data">
                                             </table>
                                         </div>
                                     </div>
@@ -79,7 +79,7 @@
                                             </td>
                                             <td>
                                                 <input type="checkbox" class="checkbox" id="is_active[]" name="is_active[]" value="{{$detail->id_detailPengajuan}}" 
-                                                @if($detail->status == 2) checked=checked @endif />
+                                                @if($detail->status == 4) checked=checked @endif />
                                                 <input type="hidden" id="non[]" name="non[]" value="{{$detail->id_detailPengajuan}}">        
                                             </td>
                                         </tr>

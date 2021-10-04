@@ -1,5 +1,5 @@
 @extends('layout.master')
-@section('title', 'Detail Pengajuan Retur')
+@section('title', 'Detail Pengajuan Pembelian')
 @section('content')
 
 <!-- Main Content -->
@@ -47,7 +47,7 @@
                                         <div class="form-group">
                                             <table>
                                                 
-                                                <form action="{{ url('marketing/pengajuan/confirmpengajuan/{id_detailPengajuan') }}" method="POST" enctype="multipart/form-data">
+                                                <form action="{{ url('marketing/pengajuan/confirmpembelian/{id_detailPengajuan') }}" method="POST" enctype="multipart/form-data">
                                             </table>
                                         </div>
                                     </div>

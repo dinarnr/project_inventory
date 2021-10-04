@@ -1,5 +1,5 @@
 @extends('layout.master')
-@section('title', 'Detail Pengajuan Retur')
+@section('title', 'Detail Pengajuan Rekomendasi')
 @section('content')
 
 <!-- Main Content -->
@@ -47,7 +47,7 @@
                                         <div class="form-group">
                                             <table>
                                                 
-                                                <form action="{{ url('marketing/pengajuan/confirmpengajuan/{id_detailPengajuan') }}" method="POST" enctype="multipart/form-data">
+                                                <form action="{{ url('marketing/pengajuan/confirmrekom/{id_detailPengajuan') }}" method="POST" enctype="multipart/form-data">
                                             </table>
                                         </div>
                                     </div>
@@ -96,7 +96,7 @@
                 </div>
             </div>
             <div class="pull-right hide-from-printer">
-                <!-- <button class="btn btn-default" name="draft" type="submit" value="draft" id="draft">Draft</button> -->
+                <!-- <button class="btn btn-default" name="draft" type="submit" value="draft" id="draft">Tolak</button> -->
                 <button class="btn btn-primary mr-10" name="proses" type="submit"  value="proses" id="proses">Proses</button>
                 <!-- form tutup -->
             </div>
