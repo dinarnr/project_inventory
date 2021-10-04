@@ -64,14 +64,8 @@
                                                     </td>
                                                     <td>{{ $data_retur->tgl_pengajuan}}</td>
                                                     <td>
-                                                        <a href="/pengajuan/detailretur/{{$data_retur->kode}}"> <button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
-                                                        @if ($data_retur->status >= 1)
-                                                        <button class="btn btn-danger btn-icon-anim btn-square" disabled><i class="fa fa-trash"></i></></button>
-                                                        @else
-                                                        <a href="{{ url ('teknisi/pengajuan/retur/ubah') }}/{{ $data_retur->id_pengajuan }}"> <button class="btn btn-success btn-icon-anim btn-square"><i class="fa fa-edit"></i></button></a>
-                                                        <button class="btn btn-danger btn-icon-anim btn-square" data-toggle="modal" data-target="#hapusbaru" action=" {{url('deletebaru', $data_retur->id_pengajuan) }}"><i class="fa fa-trash"></i></></button>
-                                                        @endif
-                                                </tr>
+                                                        <a href="{{ url('teknisi/pengajuan/retur/detail') }}/{{ $data_retur->no_pengajuan }}"> <button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
+                                                        
                                                 @endforeach
                                             </tbody>
                                     </div>

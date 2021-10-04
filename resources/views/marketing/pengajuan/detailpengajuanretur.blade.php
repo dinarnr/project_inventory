@@ -1,5 +1,5 @@
 @extends('layout.master')
-@section('title', 'Detail SO')
+@section('title', 'Detail Pengajuan Retur')
 @section('content')
 
 <!-- Main Content -->
@@ -96,7 +96,7 @@
                 </div>
             </div>
             <div class="pull-right hide-from-printer">
-                <button class="btn btn-default" name="draft" type="submit" value="draft" id="draft">Draft</button>
+                <!-- <button class="btn btn-default" name="draft" type="submit" value="draft" id="draft">Draft</button> -->
                 <button class="btn btn-primary mr-10" name="proses" type="submit"  value="proses" id="proses">Proses</button>
                 <!-- form tutup -->
             </div>

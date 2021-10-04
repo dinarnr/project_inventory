@@ -291,9 +291,6 @@
                     </a>
                     <ul id="pengajuan" class="collapse collapse-level-1">
                         <li>
-                        <a href="/purchasing/pengajuan/brgretur">Barang retur</a>
-                        </li>
-                        <li>
                             <a href="/purchasing/pengajuan/pembelian">Pengajuan Pembelian</a>
                         </li>
                     </ul>

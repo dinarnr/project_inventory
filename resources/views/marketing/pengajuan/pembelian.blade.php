@@ -34,14 +34,14 @@
                             <div class="panel-body">
                                 <div class="table-wrap">
                                     <div class="">
-                                        <table id="datable_1" class="table table-bordered">
+                                    <table id="datable_1" class="table table-bordered">
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
                                                     <th>No Pengajuan</th>
-                                                    <th>Nama Barang</th>
                                                     <th>Tanggal Pengajuan</th>
-                                                    <!-- <th>Jumlah</th> -->
+                                                    <th>Nama Pemohon</th>
+                                                    <th>Status</th>
                                                     <th>Aksi</th>
                                                 </tr>
                                             </thead>
@@ -50,12 +50,24 @@
                                                 @foreach($pembelian as $pembelian)
                                                 <tr>
                                                     <td>{{ $no++ }}</td>
-                                                    <td>{{ $pembelian->no_PO }}</td>
-                                                    <td>{{ $pembelian->namaBarang }}</td>
-                                                    <td>{{ $pembelian->tgl_pengajuan }}</td>
-                                                    <!-- <td>{{ $pembelian->jumlah }}</td> -->
+                                                    <td>{{ $pembelian->no_pengajuan}}</td>
+                                                    <td>{{ date('d-m-Y',strtotime($pembelian->tgl_pengajuan)) }}</td>
+                                                    <td>{{ $pembelian->nama_pemohon }}</td>
                                                     <td>
-                                                        <a href="detailpo"><button class="btn btn-success btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
+                                                            @if($pembelian->status === 1 )
+                                                            Pengajuan ditolak Marketing
+                                                            @elseif ($pembelian->status === 2 )
+                                                            Pengajuan disetujui Marketing
+                                                            @elseif ($pembelian->status === 3 )
+                                                            Pengajuan ditolak Purchasing
+                                                            @elseif ($pembelian->status === 4 )
+                                                            Pengajuan disetujui Purchasing dan segera diproses
+                                                            @else
+                                                            Pengajuan diproses Marketing
+                                                            @endif
+                                                    </td>
+                                                    <td>
+                                                        <a href="{{url('marketing/pengajuan/pembelian/detailpembelian') }}/{{$pembelian->no_pengajuan}} "><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
                                                         
                                                     </td>
                                                 </tr>

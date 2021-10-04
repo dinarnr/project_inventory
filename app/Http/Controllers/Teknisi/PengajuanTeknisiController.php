@@ -272,12 +272,11 @@ class PengajuanTeknisiController extends Controller
         return back()->with('success', "Data telah terhapus");
     }
 
-    public function detailretur($kode)
+    public function detailretur($no_pengajuan)
     {
-        $data_detail = DetailPengajuan::all()->where('kode', $kode);
-        return view('pengajuan/detailbaru', compact('data_detail'));
-
-        $pengajuan = Pengajuan::all()->where('kode', $kode);
-        return view('teknisi/pengajuan/detailretur', compact('pengajuan'));
+        $profil = Profil ::all();
+        $data_detail = DetailPengajuan::where('no_pengajuan', $no_pengajuan)->get();
+        $pengajuan_retur = Pengajuan::where('no_pengajuan', $no_pengajuan)->get();
+        return view('/teknisi/pengajuan/detailretur', compact('pengajuan_retur', 'data_detail', 'profil'));
     }
 }
