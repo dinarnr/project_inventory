@@ -28,7 +28,7 @@
 											<div class="row">
 												<div class="col-xs-6 text-center pl-0 pr-0 data-wrap-left">
 													<span class="txt-light block counter"><span class="counter-anim">914,001</span></span>
-													<span class="weight-500 uppercase-font txt-light block font-13">visits</span>
+													<span class="weight-500 uppercase-font txt-light block font-13">Produk</span>
 												</div>
 												<div class="col-xs-6 text-center  pl-0 pr-0 data-wrap-right">
 													<i class="zmdi zmdi-male-female txt-light data-right-rep-icon"></i>
@@ -49,7 +49,7 @@
 											<div class="row">
 												<div class="col-xs-6 text-center pl-0 pr-0 data-wrap-left">
 													<span class="txt-light block counter"><span class="counter-anim">46.41</span>%</span>
-													<span class="weight-500 uppercase-font txt-light block">bounce rate</span>
+													<span class="weight-500 uppercase-font txt-light block">Supplier</span>
 												</div>
 												<div class="col-xs-6 text-center  pl-0 pr-0 data-wrap-right">
 													<i class="zmdi zmdi-redo txt-light data-right-rep-icon"></i>
@@ -70,7 +70,7 @@
 											<div class="row">
 												<div class="col-xs-6 text-center pl-0 pr-0 data-wrap-left">
 													<span class="txt-light block counter"><span class="counter-anim">4,054,876</span></span>
-													<span class="weight-500 uppercase-font txt-light block">pageviews</span>
+													<span class="weight-500 uppercase-font txt-light block">Transaksi</span>
 												</div>
 												<div class="col-xs-6 text-center  pl-0 pr-0 data-wrap-right">
 													<i class="zmdi zmdi-file txt-light data-right-rep-icon"></i>
@@ -91,7 +91,7 @@
 											<div class="row">
 												<div class="col-xs-6 text-center pl-0 pr-0 data-wrap-left">
 													<span class="txt-light block counter"><span class="counter-anim">46.43</span>%</span>
-													<span class="weight-500 uppercase-font txt-light block">growth rate</span>
+													<span class="weight-500 uppercase-font txt-light block">User</span>
 												</div>
 												<div class="col-xs-6 text-center  pl-0 pr-0 pt-25  data-wrap-right">
 													<div id="sparkline_4" style="width: 100px; overflow: hidden; margin: 0px auto;"></div>

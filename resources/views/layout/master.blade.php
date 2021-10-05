@@ -346,7 +346,7 @@
                             <a href="{{ url('office/barang/stok') }}">Stok</a>
                         </li>
                         <li>
-                            <a href="{{ url('office/barang/transaksimasuk') }}">Transaksi Masuk</a>
+                            <a href="{{ url('office/barang/transaksi') }}">Transaksi Masuk</a>
                         </li>
                     </ul>
                 </li>

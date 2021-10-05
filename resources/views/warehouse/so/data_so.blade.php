@@ -73,8 +73,8 @@
                                                             @else
                                                             Draft
                                                             @endif
-                                                        <td>{{  date('d-m-Y',strtotime($data_po->tgl_pemasangan))}}</td>
                                                         <td>{{  date('d-m-Y',strtotime($data_po->created_at))}}</td>
+                                                        <td></td>
                                                         <td>
                                                             @if($data_po->status == 5 )
                                                             @else

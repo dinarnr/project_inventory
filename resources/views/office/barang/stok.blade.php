@@ -25,32 +25,32 @@
                         <div class="panel-body">
                             <div class="table-wrap">
                                 <div class="table-responsive">
-                                    
-                                    <table id="datable_1" class="table table-bordered display pb-30">
-                                    <div class="col md-4">
-                                        <select id="filter-namabarang" class="form-control">
-                                            <option value="1">All</option>
-                                            <option value="2"></option>
-                                        </select>
-                                    </div>
-                                    <thead>
-                                            <tr>
 
+                                    <table id="datable_1" class="table table-bordered display pb-30">
+                                        <!-- <div class="col md-4">
+                                            <select id="filter-namabarang" class="form-control">
+                                                <option value="1">All</option>
+                                                <option value="2"></option>
+                                            </select>
+                                        </div> -->
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Kode barang</th>
                                                 <th>Nama Barang</th>
                                                 <th>Stok</th>
-                                                <th>Keterangan</th>
                                             </tr>
                                         </thead>
-
                                         <tbody>
-
+                                        <?php $no = 1; ?>
+                                            @foreach ($stok as $stok)
                                             <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-
+                                                <td> {{ $no++}}</td>
+                                                <td> {{$stok->kode_barang}}</td>
+                                                <td> {{$stok->nama_barang}}</td>
+                                                <td> {{$stok->stok}}</td>
                                             </tr>
-
+                                            @endforeach
                                         </tbody>
                                     </table>
 
