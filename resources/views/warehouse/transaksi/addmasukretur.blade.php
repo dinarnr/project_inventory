@@ -83,6 +83,7 @@
 
                                                             <label class="control-label mb-10">Nama Barang</label>
                                                             <select name="nama_barang" id="nama_barang" class="form-control select2"  data-dependent="kode_barang">
+                                                                <option value="">Pilih Nama barang</option>
                                                                 @foreach($barang as $brg)
                                                                 <option value="{{ $brg->nama_barang }}">{{ $brg->nama_barang }} | {{ $brg->kode_barang }} </option>
                                                                 @endforeach
@@ -103,6 +104,7 @@
                                                         <div class="form-group">
                                                             <label class="control-label mb-10">Instansi</label>
                                                             <select name="instansi" id="instansi" class="form-control select2">
+                                                                <option value="">Pilih Nama Instansi</option>
                                                                 @foreach($data_instansi as $instansi)
                                                                 <option value="{{ $instansi->nama_instansi }}">{{ $instansi->nama_instansi }} | {{ $instansi->kode_instansi }}</option>
                                                                 @endforeach
@@ -182,24 +184,6 @@
 @section('scripts')
 <script type="text/javascript">
     function ambildata() {
-        var jumlah = document.forms["myForm"]["nama_barang"].value;
-        var tgl = document.forms["myForm"]["tgl_transaksi"].value;
-        var pengirim = document.forms["myForm"]["pengirim"].value;
-        var penerima = document.forms["myForm"]["penerima"].value;
-		if (jumlah == "") {
-			alert("Nama tidak boleh kosong");
-			return false;
-		}else if(tgl == ""){
-            alert("Tanggal  tidak boleh kosong");
-			return false;
-        }else if(pengirim = ""){
-            alert("Pengirim  tidak boleh kosong");
-			return false;
-        }else if(penerima = ""){
-            alert("Penerima  tidak boleh kosong");
-			return false;
-        }
-
         var no_retur = document.getElementById('no_retur').value;
         var no_PO = document.getElementById('no_PO').value;
         var nama_barang = document.getElementById('nama_barang').value;
@@ -215,9 +199,9 @@
         instansi
         $('#TabelDinamis').append('<tr id="row' + i + '"><td><input type="text" style="outline:none;border:0;" readonly name="no_retur[]" id="no_retur" value="' + no_retur +
             '"></td><td><input type="text" style="outline:none;border:0;" readonly name="no_PO[]" id="no_PO" value="' + no_PO +
-            '"></td><td><input type="text" style="outline:none;border:0;" readonly name="nama_barang[]" id="nama_barang" value="' + nama_barang +
-            '"></td><td style="display:none;"><input type="text" style="outline:none;border:0;" readonly name="kode_barang[]" id="kode_barang" value="' + kode_barang +
-            '"></td><td><input type="text" style="outline:none;border:0;" readonly name="jumlah[]" id="jumlah" value="' + jumlah +
+            '"></td><td><input type="text" style="outline:none;border:0;" readonly name="nama_barang1[]" id="nama_barang1" value="' + nama_barang +
+            '"></td><td style="display:none;"><input type="text" style="outline:none;border:0;" readonly name="kode_barang1[]" id="kode_barang1" value="' + kode_barang +
+            '"></td><td><input type="text" style="outline:none;border:0;" readonly name="jumlah1[]" id="jumlah1" value="' + jumlah +
             '"></td><td><input type="text" style="outline:none;border:0;" readonly name="keterangan[]" id="keterangan" value="' + keterangan +
             '"></td><td><button type="button" id="' + i + '" class="btn btn-danger btn-small remove_row">&times;</button></td></tr>');
     };

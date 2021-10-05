@@ -16,7 +16,7 @@ class PengajuanTable extends Migration
         Schema::create('pengajuan', function (Blueprint $table) {
             $table->increments('id_pengajuan');
             $table->string('kode',50)->nullable();
-            $table->string('noPO')->nullable();
+            $table->integer('noPO')->nullable();
             $table->string('no_pengajuan');
             $table->string('nama_pemohon',50)->nullable();
             $table->string('judul',50)->nullable();

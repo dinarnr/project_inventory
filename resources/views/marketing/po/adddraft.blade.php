@@ -42,13 +42,28 @@
                                     <div class="col-md12">
                                         <div class="form-group">
                                             <label class="control-label mb-10 text-left">Nama barang</label>
-                                            <input type="text" class="form-control" name="nama_barang" id="nama_barang">
+                                            <select name="nama_barang" id="nama_barang" class="form-control" data-dependent="kode_barang">
+												<option value="">Pilih Nama Barang</option>
+                                                @foreach($barang as $brg)
+													<option value="{{ $brg->nama_barang }}">{{ $brg->nama_barang }} | {{ $brg->kode_barang }} </option>
+												@endforeach
+                                            </select>
+                                            <!-- <input type="text" class="form-control" name="nama_barang" id="nama_barang"> -->
                                             <input type="hidden" class="form-control" name="noPO" id="noPO" value="{{$no_PO}}">
                                             @foreach ($data_po as $po)
                                             <input type="hidden" class="form-control" name="noSO" id="noSO" value="{{$po->no_SO}}">
                                             <input type="hidden" class="form-control" name="nama_instansi" id="nama_instansi" value="{{$po->instansi}}">
                                             @endforeach
                                         </div>
+                                        <div class="col-md-4" hidden>
+											<div class="form-group">
+												<label class="control-label mb-10">Kode Barang</label>
+													<select name="kode_barang" id="kode_barang" class="form-control select2" disabled>
+																
+												    </select>
+											</div>
+											{{ csrf_field() }}
+										</div>
                                         <div class="form-group">
                                             <label class="control-label mb-10 text-left" for="example-email">Keterangan<span class="help"> </span></label>
                                             <input type="text" id="keterangan" name="keterangan" class="form-control" placeholder="">
@@ -191,6 +206,7 @@
         var noPO = document.getElementById('noPO').value;
         var noSO = document.getElementById('noSO').value;
         var nama_instansi = document.getElementById('nama_instansi').value;
+        var kode_barang = document.getElementById('kode_barang').value;
         var nama_barang = document.getElementById('nama_barang').value;
         var jumlah = document.getElementById('jumlah').value;
         var rate = document.getElementById('rate').value;
@@ -198,13 +214,14 @@
         var amount = document.getElementById('amount').value;
         var amount1 = document.getElementById('amount').value.replace(/[^,\d]/g, '').toString();
         var keterangan = document.getElementById('keterangan').value;
-        addrow(noPO, nama_barang, jumlah, keterangan, rate, amount, rate1, amount1, nama_instansi, noSO);
+        addrow(noPO, nama_barang, kode_barang, jumlah, keterangan, rate, amount, rate1, amount1, nama_instansi, noSO);
     }
     var i = 0;
 
-    function addrow(noPO, nama_barang, jumlah, keterangan, rate, amount, rate1, amount1, nama_instansi, noSO) {
+    function addrow(noPO, nama_barang, kode_barang, jumlah, keterangan, rate, amount, rate1, amount1, nama_instansi, noSO) {
         i++;
         $('#TabelDinamis').append('<tr id="row' + i + '"><td style="display:none;"><input type="text" style="outline:none;border:0;" readonly name="noPO[]" id="noPO" value="' + noPO +
+            '"><td style="display:none;"><input type="text" style="outline:none;border:0; font-weight: bold;" readonly name="kode_barang[]" id="kode_barang" value="' + kode_barang +
             '"><td><input type="text" style="outline:none;border:0; font-weight: bold;" readonly name="nama_barang[]" id="nama_barang" value="' + nama_barang +
             '"><br><input type="text" style="outline:none;border:0;" name="keterangan[]" id="keterangan" value="    ' + keterangan +
             '"></br ></td><td><input type="text" style="outline:none;border:0;" readonly name="jumlah[]" id="jumlah" value="' + jumlah +
@@ -224,5 +241,30 @@
 
 
     $('#instansi').select2();
+</script>
+<script>
+	$('#nama_barang').change(function(){
+		if($(this).val() != ''){
+			var select = $(this).attr("id");
+			var value = $(this).val();
+			
+			// $('#id_barang').val(value);
+			var dependent = $(this).data('dependent');
+			var _token = $('input[name="_token"]').val();
+			$.ajax({
+				url: "{{ route('pomktcontroller.fetch')}}",
+				method: "POST",
+				data: {
+					select: select,value: value,_token:_token,dependent: dependent
+				},
+				success: function(result) {
+					console.log(result);
+					$('#'+dependent).html(result);
+				},
+		
+			});
+			
+		}
+	});
 </script>
 @endsection

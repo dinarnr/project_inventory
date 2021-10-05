@@ -78,6 +78,7 @@
                                                         <div class="form-group">
                                                             <label class="control-label mb-10">Nama Barang</label>
                                                             <select name="nama_barang" id="nama_barang" class="form-control" data-dependent="kode_barang">
+																<option value="">Pilih Nama Barang</option>
 																@foreach($barang as $brg)
 																	<option value="{{ $brg->nama_barang }}">{{ $brg->nama_barang }} | {{ $brg->kode_barang }} </option>
 																@endforeach
@@ -192,9 +193,9 @@
 													 '"></td><td style=display:none;"><input type="text" style="outline:none;border:0;"  name="jns_barang[]" id="jns_barang" value="' + jns_barang + 
 														// '"></td><td><input type="text" style="outline:none;border:0;" readonly name="no_PO[]" id="no_PO" value="' + no_PO + 
 														// '"></td><td><input type="text" style="outline:none;border:0;" readonly name="tgl_transaksi[]" id="tgl_transaksi" value="' + tgl_transaksi + 
-														'"></td><td><input type="text" style="outline:none;border:0;" readonly name="nama_barang[]" id="nama_barang" value="' + nama_barang + 
-														'"></td><td style=display:none;"><input type="text" style="outline:none;border:0;"  name="kode_barang[]" id="kode_barang" value="' + kode_barang + 
-														'"></td><td><input type="text" style="outline:none;border:0;" readonly name="jumlah[]" id="jumlah" value="' + jumlah + 
+														'"></td><td><input type="text" style="outline:none;border:0;" readonly name="nama_barang1[]" id="nama_barang1" value="' + nama_barang + 
+														'"></td><td style=display:none;"><input type="text" style="outline:none;border:0;"  name="kode_barang1[]" id="kode_barang1" value="' + kode_barang + 
+														'"></td><td><input type="text" style="outline:none;border:0;" readonly name="jumlah1[]" id="jumlah1" value="' + jumlah + 
 														'"></td><td><button type="button" id="' + i + '" class="btn btn-danger btn-small remove_row">&times;</button></td></tr>');
 	};
 	$(document).on('click', '.remove_row', function() {

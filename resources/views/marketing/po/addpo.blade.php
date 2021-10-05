@@ -77,7 +77,7 @@
                                                     @foreach($data_instansi as $data_int)
                                                     <option value="{{ $data_int->nama_instansi}}">{{ $data_int->kode_instansi }} | {{ $data_int->nama_instansi }}</option>
                                                     @endforeach
-                                                </select>
+                                                </select> 
                                             </div>
                                             
                                         <div class="col-md-6" hidden>
