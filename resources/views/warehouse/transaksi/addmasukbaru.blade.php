@@ -94,6 +94,7 @@
 														<div class="form-group">
 															<label class="control-label mb-10">Nama Barang</label>
 															<select name="nama_barang" id="nama_barang" class="form-control select2" data-dependent="kode_barang">
+																<option value="">Pilih Nama Barang</option>
 																@foreach($barang as $brg)
 																<option value="{{ $brg->nama_barang }}">{{ $brg->nama_barang }} | {{ $brg->kode_barang }} </option>
 																@endforeach
@@ -103,7 +104,7 @@
 													<div class="col-md-4" hidden>
 														<div class="form-group">
 															<label class="control-label mb-10">Kode Barang</label>
-															<select name="kode_barang" id="kode_barang" class="form-control select2" disabled>
+															<select name="kode_barang" id="kode_barang" class="form-control select2">
 																
 															</select>
 															<!-- <div id="id_barang"></div> -->
@@ -196,10 +197,10 @@
 	function addrow(no_trans, keterangan, nama_barang, kode_barang, jumlah) {
 		i++;
 		$('#TabelDinamis').append('<tr id="row' + i + '"></td><td><input type="text" style="outline:none;border:0;" readonly name="no_trans[]" id="no_trans" value="' + no_trans +
-			'"></td><td><input type="text" style="outline:none;border:0;" readonly name="nama_barang[]" id="nama_barang" value="' + nama_barang +
-			'"></td><td style=display:none;"><input type="text" style="outline:none;border:0;"  name="kode_barang[]" id="kode_barang" value="' + kode_barang +
-			'"></td><td><input type="text" style="outline:none;border:0;" readonly name="jumlah[]" id="jumlah" value="' + jumlah +
-			'"><td><input type="text" style="outline:none;border:0;" readonly name="keterangan[]" id="keterangan" value="' + keterangan +
+			'"></td><td><input type="text" style="outline:none;border:0;" readonly name="nama_barang1[]" id="nama_barang1" value="' + nama_barang +
+			'"></td><td style=display:none;"><input type="text" style="outline:none;border:0;"  name="kode_barang1[]" id="kode_barang1" value="' + kode_barang +
+			'"></td><td><input type="text" style="outline:none;border:0;" readonly name="jumlah1[]" id="jumlah1" value="' + jumlah +
+			'"><td><input type="text" style="outline:none;border:0;" readonly name="keterangan1[]" id="keterangan1" value="' + keterangan +
 			'"></td><td><button type="button" id="' + i + '" class="btn btn-danger btn-small remove_row">&times;</button></td></tr>');
 	};
 	$(document).on('click', '.remove_row', function() {

@@ -105,7 +105,7 @@ class DataBarangController extends Controller
 
     public function editBarang($id_master)
     {
-
+   
         $brg = Master::find($id_master);
         $kategori = kategori::all();
         $jenis = Jenis::all();

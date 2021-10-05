@@ -21,6 +21,7 @@ class DetailPengajuanTable extends Migration
             $table->string('namaBarang',50);
             $table->integer('jmlBarang');
             $table->integer('harga');
+            $table->integer('status');
             $table->string('jenisBarang',50);
             $table->integer('status')->nullable();
             $table->string('keterangan',50)->nullable();

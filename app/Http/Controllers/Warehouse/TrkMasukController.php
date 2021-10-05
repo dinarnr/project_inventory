@@ -74,10 +74,10 @@ class TrkMasukController extends Controller
             DetailTrkMasuk::create(
                 [
                     'no_transaksi' => $request->no_trans[$i],
-                    'jumlah' => $request->jumlah[$i],
-                    'kode_barang' => $request->kode_barang[$i],
-                    'nama_barang' => $request->nama_barang[$i],
-                    'keterangan' => $request->keterangan[$i],
+                    'jumlah' => $request->jumlah1[$i],
+                    'kode_barang' => $request->kode_barang1[$i],
+                    'nama_barang' => $request->nama_barang1[$i],
+                    'keterangan' => $request->keterangan1[$i],
                 ]
             );
         }
@@ -102,6 +102,16 @@ class TrkMasukController extends Controller
                 'status' => '2',
                 'ip' => $request->ip()
             ]
+        );
+
+        // dd($request->all());
+        Stok::create(
+            [
+                'nama_barang' => $request->nama_barang,
+                'stok' => $request->jumlah,
+                'kode_barang' => $request->kode_barang,
+                'keterangan' => 'Warehouse Transaksi Masuk Baru'
+            ]  
         );
         return redirect('warehouse/transaksi/masuk');
     }
@@ -145,9 +155,9 @@ class TrkMasukController extends Controller
                 [
                     'no_transaksi' => $request->no_retur[$i],
                     'no_PO' => $request->no_PO[$i],
-                    'jumlah' => $request->jumlah[$i],
-                    'kode_barang' => $request->kode_barang[$i],
-                    'nama_barang' => $request->nama_barang[$i],
+                    'jumlah' => $request->jumlah1[$i],
+                    'kode_barang' => $request->kode_barang1[$i],
+                    'nama_barang' => $request->nama_barang1[$i],
                     'keterangan' => $request->keterangan[$i],
                 ]
             );
@@ -174,6 +184,15 @@ class TrkMasukController extends Controller
             ]
         );
 
+        // dd($request->all());
+        Stok::create(
+            [
+                'nama_barang' => $request->nama_barang,
+                'stok' => $request->jumlah,
+                'kode_barang' => $request->kode_barang,
+                'keterangan' => 'Warehouse Transaksi Masuk Retur'
+            ]  
+        );
         return redirect('/warehouse/transaksi/masuk');
     }
     public function editjumlah(Request $request, $id_transaksi )//modal edit jumalah -> baru retur sama saja

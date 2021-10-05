@@ -18,6 +18,7 @@ class PurchaseOrderTable extends Migration
             $table->string('no_PO',50)->nullable();
             $table->string('no_SO',50)->nullable();
             $table->string('instansi',50)->nullable();
+            $table->string('kode_instansi',50)->nullable();
             $table->date('tgl_pemasangan')->nullable();
             $table->integer('status')->nullable();
             $table->string('total')->nullable();

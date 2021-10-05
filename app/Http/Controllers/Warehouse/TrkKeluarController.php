@@ -13,7 +13,7 @@ use App\Models\Instansi;
 use Illuminate\Http\Request;
 use App\Models\TransaksiModel;
 use App\Models\Profil;
-
+use App\Models\Stok;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -89,6 +89,15 @@ class TrkKeluarController extends Controller
                 'ip' => $request->ip()
             ]
         );
+        // dd($request->all());
+        Stok::create(
+            [
+                'nama_barang' => $request->nama_barang,
+                'stok' => $request->jumlah,
+                'kode_barang' => $request->kode_barang,
+                'keterangan' => 'Warehouse Transaksi Keluar Garansi'
+            ]  
+        );
 
         return redirect('warehouse/transaksikeluar');
     }
@@ -140,16 +149,19 @@ class TrkKeluarController extends Controller
             $output .= '<tr id="row"></td>
             <td style="display:none;"><input type="text" style="outline:none;border:0;" name="no_trans" id="no_trans" value="'.$no_trans.'"></td>
             <td><input type="text" style="outline:none;border:0;" readonly name="nama_barang[]" id="nama_barang" value="'.$row->nama_barang.'"></td> 
+            <td style="display:none;"><input type="text" style="outline:none;border:0;" readonly name="nama_barang1" id="nama_barang1" value="'.$row->nama_barang.'"></td> 
             <td style="display:none;"><input type="text" style="outline:none;border:0;" readonly name="kode_barang[]" id="kode_barang" value="'.$row->kode_barang.'"></td> 
+            <td style="display:none;"><input type="text" style="outline:none;border:0;" readonly name="kode_barang1" id="kode_barang1" value="'.$row->kode_barang.'"></td> 
             <td style="display:none;"><input type="text" style="outline:none;border:0;" readonly name="no_SO[]" id="no_SO" value="'.$row->no_SO.'"></td> 
-            <td><input type="text" style="outline:none;border:0;" readonly name="jumlah[]" id="jumlah" value="'.$row->jumlah.'"></td></tr>';
+            <td><input type="text" style="outline:none;border:0;" readonly name="jumlah[]" id="jumlah" value="'.$row->jumlah.'"></td>
+            <td style="display:none;"><input type="text" style="outline:none;border:0;" readonly name="jumlah1" id="jumlah1" value="'.$row->jumlah.'"></td></tr>';;
         }
         echo $output;
     }
 
     public function instansi($no_so)
     {
-        $data = PO::where('no_SO',$no_so)->first();
+        $data = DetailPO::where('no_SO',$no_so)->first();
         return response()->json($data);
     }
 
@@ -170,18 +182,6 @@ class TrkKeluarController extends Controller
 
     public function keluarinstalasi(Request $request)
     {
-        $rules = [
-            'tgl_transaksi' => 'required',
-            'pengirim' => 'required',
-            'penerima' => 'required',
-        ];
-
-        $messages = [
-            'tgl_transaksi.required' => 'Tanggal tidak boleh kosong',
-            'pengirim.required' => 'Pengirim tidak boleh kosong',
-            'penerima.required' => 'Penerima tidak boleh kosong',
-        ];
-        $this->validate($request, $rules, $messages);
         // dd($request->jumlah);
         $jumlah_data = count($request->jumlah);
         for ($i = 0; $i < $jumlah_data; $i++) {
@@ -215,6 +215,15 @@ class TrkKeluarController extends Controller
                 'status' => '2',
                 'ip' => $request->ip()
             ]
+        );
+        // dd($request->all());
+        Stok::create(
+            [
+                'nama_barang' => $request->nama_barang1,
+                'stok' => $request->jumlah1,
+                'kode_barang' => $request->kode_barang1,
+                'keterangan' => 'Warehouse Transaksi Keluar Instalasi'
+            ]  
         );
         return redirect('warehouse/transaksikeluar');
     }
@@ -255,10 +264,10 @@ class TrkKeluarController extends Controller
             DetailTrkKeluar::create(
                 [
                     'no_transaksi' => $request->no_trans[$i],
-                    'jumlah' => $request->jumlah[$i],
+                    'jumlah' => $request->jumlah1[$i],
                     'no_PO' => $request->no_PO[$i],
-                    'kode_barang' => $request->kode_barang[$i],
-                    'nama_barang' => $request->nama_barang[$i],
+                    'kode_barang' => $request->kode_barang1[$i],
+                    'nama_barang' => $request->nama_barang1[$i],
                     'keterangan' => $request->keterangan[$i],
                 ]
             );
@@ -283,6 +292,16 @@ class TrkKeluarController extends Controller
                 'status' => '2',
                 'ip' => $request->ip()
             ]
+        );
+
+        Stok::create(
+            [
+                'nama_barang' => $request->nama_barang,
+                'stok' => $request->jumlah,
+                'kode_barang' => $request->kode_barang,
+                'keterangan' => $request->keterangan,
+                'keterangan' => 'Warehouse Transaksi Keluar Retur'
+            ]  
         );
 
         return redirect('warehouse/transaksikeluar');
