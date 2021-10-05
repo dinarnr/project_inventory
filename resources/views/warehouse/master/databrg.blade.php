@@ -56,7 +56,10 @@
                                                 <td>{{$brg->kode_kategori}}</td>
                                                 <td>{{$brg->nama_barang}}</td>
                                                 <!-- <td>{{$brg->jenis_barang}}</td> -->
-                                                <td>{{$brg->stok}}</td>
+                                                <td>
+                                                    <a href="{{url('warehouse/stok')}}/{{ $brg->kode_barang}}"><button class="btn btn-primary btn-icon-anim btn-square">{{$brg->stok}}</button></a>
+
+                                                </td>
                                                 <td>
                                                     @if($brg->gambar)
                                                     <img src="{{ url('img/logo') }}/{{ $brg->gambar }}" style="width: 150px; height: 150px;">
@@ -72,8 +75,6 @@
                                                 <td>
                                                     <a href="{{ url('warehouse/barang/ubah') }}/{{ $brg->id_master }}"><button class="btn btn-success btn-icon-anim btn-square"><i class="fa fa-edit"></i></button></a>
                                                     <!-- <button class="btn btn-danger btn-icon-anim btn-square" data-toggle="modal" data-target="#hapusbrg{{ $brg->id_master }}" action="( {{url('deletebarang')}}/{{ $brg->id_master }})"><i class="fa fa-trash"></i></button> -->
-                                                    <a href="{{ url('warehouse/stok') }}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-eye"></i></button></a>
-
                                                 </td>
                                             </tr>
                                             @endforeach

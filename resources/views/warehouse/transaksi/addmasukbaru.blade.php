@@ -183,25 +183,6 @@
 @section('scripts')
 <script type="text/javascript">
 	function ambildata() {
-		var tgl = document.forms["myForm"]["tgl_transaksi"].value;
-        var pengirim = document.forms["myForm"]["pengirim"].value;
-        var penerima = document.forms["myForm"]["penerima"].value;
-		var jumlah = document.forms["myForm"]["nama_barang"].value;
-        
-		if (tgl == "") {
-			document.getElementById("text-alert").innerHTML = "Jumlah tidak boleh kosong";
-			return false;
-		}else if(pengirim == ""){
-			document.getElementById("text-alert2").innerHTML = "Tanggal tidak boleh kosong";
-			return false;
-        }else if(penerima = ""){
-			document.getElementById("text-alert3").innerHTML = "Pengirim tidak boleh kosong";
-			return false;
-        }else if(jumlah = ""){
-            document.getElementById("text-alert4").innerHTML = "Penerima tidak boleh kosong";
-			return false;
-        }
-
 		var no_trans = document.getElementById('no_trans').value;
 		var keterangan = document.getElementById('keterangan').value;
 		var nama_barang = document.getElementById('nama_barang').value;

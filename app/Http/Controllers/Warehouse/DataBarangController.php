@@ -9,6 +9,7 @@ use App\Models\Jenis;
 use App\Models\kategori;
 use App\Models\Log;
 use App\Models\Master;
+use App\Models\Stok;
 use Illuminate\Support\Facades\Auth;
 
 class DataBarangController extends Controller
@@ -23,7 +24,8 @@ class DataBarangController extends Controller
     {
         $barang = Master::all();
         $jenis = Jenis::all();
-        return view('warehouse/master/databrg', compact('barang', 'jenis'));
+        $data_stok = Stok::all();
+        return view('warehouse/master/databrg', compact('barang', 'jenis', 'data_stok'));
     }
 
     public function addbarang()
@@ -39,16 +41,32 @@ class DataBarangController extends Controller
         $rules = [
             'nama_barang' => 'required',
         ];
-
+        
         $messages = [
             'nama_barang.required' => '*Nama barang tidak boleh kosong',
         ];
         $this->validate($request, $rules, $messages);
-
+        
         if ($request->gambar) {
             $namaFile = time() . '.' . $request->gambar->extension();
             $request->gambar->move(public_path('img/logo'), $namaFile);
-
+            
+            $kode = strtoupper(substr($request->nama_barang, 0, 3));
+            $check = count(Master::where('kode_barang', 'like', "%$kode%")->get()->toArray());
+            $angka = sprintf("%03d", (int)$check + 1);
+            $kode_barang = $kode . "" . $angka;
+            
+            // dd($request->stok);
+            Master::create([
+                'kode_kategori' => $request->kode,
+                'nama_barang' => $request->nama_barang,
+                'kode_barang' => $kode_barang,
+                'stok' => $request->stok,
+                'gambar' => $namaFile,
+                'status' => $request->status
+            ]);
+        } else {
+            
             $kode = strtoupper(substr($request->nama_barang, 0, 3));
             $check = count(Master::where('kode_barang', 'like', "%$kode%")->get()->toArray());
             $angka = sprintf("%03d", (int)$check + 1);
@@ -59,20 +77,6 @@ class DataBarangController extends Controller
                 'nama_barang' => $request->nama_barang,
                 'kode_barang' => $kode_barang,
                 'stok' => $request->stok,
-                'gambar' => $namaFile,
-                'status' => $request->status
-            ]);
-        } else {
-
-            $kode = strtoupper(substr($request->nama_barang, 0, 3));
-            $check = count(Master::where('kode_barang', 'like', "%$kode%")->get()->toArray());
-            $angka = sprintf("%03d", (int)$check + 1);
-            $kode_barang = $kode . "" . $angka;
-
-            Master::create([
-                'kode_kategori' => $request->kode,
-                'nama_barang' => $request->nama_barang,
-                'kode_barang' => $kode_barang,
                 'status' => $request->status
             ]);
 
@@ -82,10 +86,18 @@ class DataBarangController extends Controller
                     'name' => $user->name,
                     'email' => $user->email,
                     'divisi' => $user->divisi,
-                    'deskripsi' => 'Update Data Barang',
+                    'deskripsi' => 'Input Data Barang',
                     'status' => '2',
                     'ip' => $request->ip()
                 ]
+            );
+            Stok::create(
+                [
+                    'nama_barang' => $request->nama_barang,
+                    'stok' => $request->stok,
+                    'kode_barang' => $kode_barang,
+                    'keterangan' => 'Barang Ditambahkan'
+                ]  
             );
         }
         return redirect('warehouse/barang');
@@ -149,5 +161,7 @@ class DataBarangController extends Controller
                 ]
             );
         }
-        return redirect('warehouse/barang');    }
+        return redirect('warehouse/barang');    
+    }
+    
 }
