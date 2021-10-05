@@ -93,7 +93,7 @@
                                                 <td>{{ $no++ }}</td>
                                                 <td>{{ $instalasi->no_transaksi}}</td>
                                                 <td>{{ $instalasi->jns_barang}}</td>
-                                                <td>{{ $instalasi->tgl_instalasi}}</td>
+                                                <td>{{ date('d-m-Y',strtotime($instalasi->tgl_instalasi))}}</td>
                                                 <td>{{ $instalasi->pengirim}}</td>
                                                 <td>{{ $instalasi->penerima}}</td>
                                                 <td>

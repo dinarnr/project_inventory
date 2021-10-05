@@ -62,7 +62,7 @@
                                                         Pengajuan diproses Marketing
                                                         @endif
                                                     </td>
-                                                    <td>{{ $data_retur->tgl_pengajuan}}</td>
+                                                    <td>{{ date('d-m-Y',strtotime($data_retur->tgl_pengajuan))}}</td>
                                                     <td>
                                                         <a href="{{ url('teknisi/pengajuan/retur/detail') }}/{{ $data_retur->no_pengajuan }}"> <button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
                                                         

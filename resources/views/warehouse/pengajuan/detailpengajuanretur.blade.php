@@ -60,7 +60,7 @@
                                             <th>no</th>
                                             <th>Nama Barang</th>
                                             <th>Jumah</th>
-                                            <th>√</th>
+                                            <th> <input type="checkbox" id='checkall' class="check_all"/></th>
                                         </tr>
                                     </thead>
                                 
