@@ -68,7 +68,7 @@
                                                                 Pengajuan diproses Marketing
                                                                 @endif
                                                             </td>
-                                                            <td>{{ $data_baru->created_at}}</td>
+                                                            <td>{{ date('d-m-Y',strtotime($data_baru->created_at))}}</td>
                                                             <td>
                                                                 <a href="{{ url('marketing/pengajuan/detailrekom') }}/{{ $data_baru->no_pengajuan }}"> <button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
                                                                 

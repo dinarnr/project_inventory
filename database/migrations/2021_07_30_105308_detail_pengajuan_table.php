@@ -23,6 +23,7 @@ class DetailPengajuanTable extends Migration
             $table->integer('harga');
             $table->integer('status');
             $table->string('jenisBarang',50);
+            $table->integer('status')->nullable();
             $table->string('keterangan',50)->nullable();
             $table->timestamps();
         });
