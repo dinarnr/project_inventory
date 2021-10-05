@@ -11,6 +11,7 @@ use App\Models\PO;
 use App\Models\Instansi;
 use App\Models\TransaksiModel;
 use App\Models\Profil;
+use App\Models\Stok;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Haruncpi\LaravelIdGenerator\IdGenerator;

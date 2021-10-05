@@ -193,19 +193,6 @@
 @section('scripts')
 <script type="text/javascript">
 	function ambildata() {
-		var pengirim = document.forms["myForm"]["pengirim"].value;
-		var penerima = document.forms["myForm"]["penerima"].value;
-		var jumlah = document.forms["myForm"]["jumlah"].value;
-		if (pengirim == "") {
-			alert("Pengirim tidak boleh kosong");
-			return false;
-		}else if (penerima == "") {
-			alert("Penerima tidak boleh kosong");
-			return false;
-		}else if (jumlah == "") {
-			alert("Jumlah tidak boleh kosong");
-			return false;
-		}
 		var no_PO = document.getElementById('no_PO').value;
 		var no_trans = document.getElementById('no_trans').value;
 		// var tgl_transaksi = document.getElementById('tgl_transaksi').value;
