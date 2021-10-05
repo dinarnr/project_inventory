@@ -71,30 +71,11 @@ class SoController extends Controller
                 'status' => '2'
                 ]
             );
-        
-        DetailPO::where('id_po','!=', $request->is_active)
-            ->update(
-                [
-                'status' => ''
-                ]
-            );
-
-        DetailPO::where('id_po', $request->non)
-            ->update(
-                [
-                'status' => ''
-                ]
-            );
-
-        // DetailPO::whereIn('id_po', $request->is_active)
-        // ->update(array(
-        //         'status'=> '1'
-        // ));  
 
         PO::where('no_PO', $request->no_PO)
             ->update(
                 [
-                    'status' => '3'
+                    'status' => '2'
                 ]
             );
 
@@ -131,18 +112,7 @@ class SoController extends Controller
         //         'status' => ''
         //         ]
         //     );
-        // }
-        // DetailPO::whereIn('id_po', $request->is_active)
-        // ->update(array(
-        //         'status'=> '1'
-        // ));  
-
-        PO::where('no_PO', $request->no_PO)
-            ->update(
-                [
-                    'status' => '2'
-                ]
-            );
+        // }  
 
         Log::create(
             [

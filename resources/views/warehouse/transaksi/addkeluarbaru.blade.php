@@ -90,7 +90,6 @@
 															<select name="kode_barang" id="kode_barang" class="form-control select2" disabled>
 																
 															</select>
-															<!-- <div id="id_barang"></div> -->
 														</div>
 													{{ csrf_field() }}
 													</div>

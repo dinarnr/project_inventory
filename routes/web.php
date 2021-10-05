@@ -202,6 +202,8 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         // <----------------------DATA PO--------------------------->
         Route::get('po', [POMktController::class, 'index']);
         Route::get('po/tambah', [POMktController::class, 'addpo']);
+        Route::post('po/tambah/fetch', [POMktController::class, 'fetch'])->name ('pomktcontroller.fetch');
+        Route::post('po/tambah/instansi', [POMktController::class, 'instansi'])->name ('pomktcontroller.instansi');
         Route::post('po/simpan', [POMktController::class, 'addpo2']);
         Route::get('po/ubah/{no_PO}', [POMktController::class, 'editpo']); //edit po
         Route::get('po/tambah/{no_PO}', [POMktController::class, 'add']); //tambah data di editpo
