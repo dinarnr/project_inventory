@@ -72,18 +72,31 @@
                                             <div class="form-group">
                                                 <label class="control-label mb-10 text-left" for="example-email">Instansi<span class="help"> </span></label>
                                                 <!-- <input type="text" id="instansi" name="instansi" class="form-control" placeholder=""> -->
-                                                <select name="instansi" id="instansi" class="form-control">
+                                                <select name="instansi" id="instansi" class="form-control" data-dependent="kode_instansi">
+                                                    <option value="">pilih nama instansi</option>
                                                     @foreach($data_instansi as $data_int)
                                                     <option value="{{ $data_int->nama_instansi}}">{{ $data_int->kode_instansi }} | {{ $data_int->nama_instansi }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
+                                            
+                                        <div class="col-md-6" hidden>
+                                            <div class="form-group">
+												<label class="control-label mb-10">Kode Instansi</label>
+													<select name="kode_instansi" id="kode_instansi" class="form-control select2">
+                                                        <!-- <option selected value="dawdawd">awdawd</option> -->
+												    </select>
+											</div>
+												{{ csrf_field() }}
+                                        </div>
+
                                         </div>
                                         <div class="col-md-2 mt-30">
                                             <div class="form-group">
                                                 <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#tambahinstansi">Tambah Instansi</button>
                                             </div>
                                         </div>
+                                        
 
                                     </div>
                                     <hr>
@@ -91,25 +104,32 @@
                                         <h5 class="active text-center">Data Barang</h5>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="control-label mb-10 text-left">Nama barang</label>
-                                                    <select name="nama_barang" id="nama_barang" class="form-control">
+                                                <label class="control-label mb-10">Nama Barang</label>
+                                                <select name="nama_barang" id="nama_barang" class="form-control" data-dependent="kode_barang">
+													<option value="">Pilih Nama Barang</option>
                                                         @foreach($barang as $brg)
-                                                        <option value="{{$brg->nama_barang}}">{{$brg->nama_barang}}</option>
-                                                        @endforeach
-                                                    </select>
+															<option value="{{ $brg->nama_barang }}">{{ $brg->nama_barang }} | {{ $brg->kode_barang }} </option>
+														@endforeach
+                                                </select>
                                             </div>
                                         </div>
-                                        <div class="col-md-12">
+                                        <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label mb-10 text-left" for="example-email">Keterangan<span class="help"> </span></label>
-                                                @foreach($barang as $brg)
-													<input id="kode_barang" name="kode_barang" value="{{$brg->kode_barang}}" hidden>
-												@endforeach
                                                 <input type="text" id="keterangan" name="keterangan" class="form-control" placeholder="">
                                             </div>
                                         </div>
+										<div class="col-md-4" hidden>
+											<div class="form-group">
+												<label class="control-label mb-10">Kode Barang</label>
+													<select name="kode_barang" id="kode_barang" class="form-control select2" disabled>
+																
+												    </select>
+											</div>
+											{{ csrf_field() }}
+										</div>
                                     </div>
 
                                     <div class="row">
@@ -364,5 +384,53 @@
 
 
     $('#instansi').select2();
+</script>
+<script>
+	$('#nama_barang').change(function(){
+		if($(this).val() != ''){
+			var select = $(this).attr("id");
+			var value = $(this).val();
+			
+			// $('#id_barang').val(value);
+			var dependent = $(this).data('dependent');
+			var _token = $('input[name="_token"]').val();
+			$.ajax({
+				url: "{{ route('pomktcontroller.fetch')}}",
+				method: "POST",
+				data: {
+					select: select,value: value,_token:_token,dependent: dependent
+				},
+				success: function(result) {
+					console.log(result);
+					$('#'+dependent).html(result);
+				},
+		
+			});
+			
+		}
+	});
+    $('#instansi').change(function(){
+		if($(this).val() != ''){
+			var select = $(this).attr("id");
+			var value = $(this).val();
+			
+			// $('#id_barang').val(value);
+			var dependent = $(this).data('dependent');
+			var _token = $('input[name="_token"]').val();
+			$.ajax({
+				url: "{{ route('pomktcontroller.instansi')}}",
+				method: "POST",
+				data: {
+					select: select,value: value,_token:_token,dependent: dependent
+				},
+				success: function(result) {
+					console.log(result);
+					$('#'+dependent).html(result);
+				},
+		
+			});
+			
+		}
+	});
 </script>
 @endsection

@@ -12,6 +12,7 @@ use  App\Models\Instansi;
 use App\Models\Master;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
 class POMktController extends Controller
@@ -48,7 +49,7 @@ class POMktController extends Controller
     // ketika memilih proses atau draft
     public function addpo2(Request $request)
     {
-        // dd($request->no_SO);
+        // dd($request->kode_instansi);
        $user = Auth::user();
         if ($request->proses == 'proses') {
         $jumlah_data = count($request->noPO);
@@ -72,7 +73,7 @@ class POMktController extends Controller
             [
                 'no_PO' => $request->no_PO,
                 'no_SO' => $request->no_SO,
-                'instansi' => $request->instansi,
+                'instansi' => $request->kode_instansi,
                 'total' => $request->total1,
                 'ppn' => $request->ppn,
                 'pph' => $request->pph,
@@ -117,6 +118,7 @@ class POMktController extends Controller
                     'no_PO' => $request->no_PO,
                     'no_SO' => $request->no_SO,
                     'instansi' => $request->instansi,
+                    'kode_instansi' => $request->kode_instansi,
                     'total' => $request->total1,
                     'ppn' => $request->ppn,
                     'pph' => $request->pph,
@@ -140,7 +142,7 @@ class POMktController extends Controller
             );
         }
         return redirect('marketing/po');
-    }
+    } 
 
     
     // public function adddraft2(Request $request)
@@ -187,7 +189,7 @@ class POMktController extends Controller
     //         ]
     //     );
     //     return redirect('marketing/po');
-    // }
+    // } function option e ndi
 
     //ketika status draft
     public function editpo($no_PO)
@@ -239,7 +241,7 @@ class POMktController extends Controller
                 [
                     'no_PO' => $request->noPO[$i],
                     'no_SO' => $request->noSO[$i],
-                    'instansi' => $request->nama_instansi[$i],
+                    'instansi' => $request->instansi1[$i],
                     'nama_barang' => $request->nama_barang[$i],
                     'jumlah' => $request->jumlah[$i],
                     'rate' => $request->rate1[$i],
@@ -383,5 +385,36 @@ class POMktController extends Controller
             ]
         );
         return redirect('marketing/po');
+    }
+
+    public function fetch(Request $request){ 
+        // dd($request);
+        $select = $request->get('select');
+        $values = $request->get('value');
+        $dependent = $request->get('dependent');
+
+        //    dd($dependent);
+        $data = DB::table('master_data')->where('nama_barang', $values)->groupBy('kode_barang')->get();
+        
+        foreach ($data as $row) {
+            $output = '<option value="'.$row->kode_barang.'">'.$row->kode_barang.'</option>';
+        }
+        echo $output;
+    }
+
+    public function instansi(Request $request)
+    {
+                // dd($request);
+        $select = $request->get('select');
+        $values = $request->get('value');
+        $dependent = $request->get('dependent');
+
+        //    dd($dependent);
+        $data = DB::table('data_instansi')->where('nama_instansi', $values)->groupBy('kode_instansi')->get();
+        
+        foreach ($data as $row) {
+            $output = '<option selected value="'.$row->kode_instansi.'">'.$row->kode_instansi.'</option>';
+        }
+        echo $output;
     }
 }
