@@ -30,7 +30,7 @@ use App\Http\Controllers\Admin\PoAdminController;
 
 use App\Http\Controllers\Office\ReportController;
 use App\Http\Controllers\Office\StokOfficeController;
-use App\Http\Controllers\Office\TrkMasukOfficeController;
+use App\Http\Controllers\Office\TrkOfficeController;
 use App\Http\Controllers\Office\POOfficeController;
 use App\Http\Controllers\Office\SOOfficeController;
 use App\Http\Controllers\Office\PeminjamanOfficeController;
@@ -271,12 +271,12 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
     });
 
     Route::group(['prefix' => 'administrator/'], function () {
-        Route::get('/user', [UserController::class, 'users']);
-        Route::get('/log', [LogController::class, 'log']);
-        Route::get('/tambah', [UserController::class, 'addadmin']);
-        Route::post('/tambah/simpan', [UserController::class, 'addadmin2']);
-        Route::get('/edit/{id}', [UserController::class, 'editUser']);
-        Route::post('/edit/simpan', [UserController::class, 'updateUSer']);
+        Route::get('user', [UserController::class, 'users']);
+        Route::get('log', [LogController::class, 'log']);
+        Route::get('tambah', [UserController::class, 'addadmin']);
+        Route::post('tambah/simpan', [UserController::class, 'addadmin2']);
+        Route::get('ubah/{id}', [UserController::class, 'editUser']);
+        Route::post('ubah/simpan', [UserController::class, 'updateUser']);
     });
     Route::group(['prefix' => 'purchasing/'], function () {
         //--------------PEMBELIAN----------------
@@ -302,7 +302,7 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
     Route::group(['prefix' => 'office/'], function () {
         Route::get('report/report', [ReportController::class, 'report']);
         Route::get('barang/stok', [StokOfficeController::class, 'stok']);
-        Route::get('barang/transaksimasuk', [TrkMasukOfficeController::class, 'transaksimasuk']);
+        Route::get('barang/transaksi', [TrkOfficeController::class, 'transaksi']);
         Route::get('po/datapo', [POOfficeController::class, 'po']);
         Route::get('so/dataso', [SOOfficeController::class, 'so']);
         Route::get('peminjaman/datapinjam', [PeminjamanOfficeController::class, 'peminjaman']);

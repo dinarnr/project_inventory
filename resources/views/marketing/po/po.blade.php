@@ -71,7 +71,7 @@
                                                             Draft
                                                             @endif
                                                     </td>
-                                                    <td>{{ $data_po->created_at->format('d-m-y H:i:s')}}</td>
+                                                    <td>{{ date('d-m-Y',strtotime($data_po->created_at))}}</td>
                                                     <td>
                                                         <a href="{{url('marketing/po/detail')}}/{{ $data_po->no_PO }}"><button class="btn btn-success btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
                                                         @if (empty($data_po->status))

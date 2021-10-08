@@ -284,31 +284,16 @@
                 <!-- <-------------------------------PURCHASING----------------------------------->
                 @if (auth()->user()->divisi == "purchasing")
                 <li>
-                    <a href="javascript:void(0);" data-toggle="collapse" data-target="#pengajuan">
-                        <div class="pull-left"><i class="zmdi zmdi-collection-text mr-20"></i><span class="right-nav-text">Pengajuan</span></div>
-                        <div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>
+                    <a href="/purchasing/pengajuan/pembelian">
+                        <div class="pull-left"><i class="zmdi zmdi-collection-text mr-20"></i><span class="right-nav-text">Pengajuan Pembelian</span></div>
                         <div class="clearfix"></div>
                     </a>
-                    <ul id="pengajuan" class="collapse collapse-level-1">
-                        <li>
-                            <a href="/purchasing/pengajuan/pembelian">Pengajuan Pembelian</a>
-                        </li>
-                    </ul>
                 </li>
                 <li>
-                    <a href="javascript:void(0);" data-toggle="collapse" data-target="#pembelian">
-                        <div class="pull-left"><i class="zmdi zmdi-shopping-basket mr-20"></i><span class="right-nav-text">Pembelian</span></div>
-                        <div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>
+                    <a href="/purchasing/pembelian/invoice">
+                        <div class="pull-left"><i class="zmdi zmdi-shopping-basket mr-20"></i><span class="right-nav-text">Invoice</span></div>
                         <div class="clearfix"></div>
                     </a>
-                    <ul id="pembelian" class="collapse collapse-level-1">
-                        <li>
-                            <a href="/purchasing/pembelian/purchase">Purchasing</a>
-                        </li>
-                        <li>
-                            <a href="/purchasing/pembelian/invoice">Invoice</a>
-                        </li>
-                    </ul>
                 </li>
                 @endif
 
@@ -346,7 +331,7 @@
                             <a href="{{ url('office/barang/stok') }}">Stok</a>
                         </li>
                         <li>
-                            <a href="{{ url('office/barang/transaksimasuk') }}">Transaksi Masuk</a>
+                            <a href="{{ url('office/barang/transaksi') }}">Transaksi Masuk</a>
                         </li>
                     </ul>
                 </li>
