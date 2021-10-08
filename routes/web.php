@@ -57,6 +57,7 @@ Route::get('dashboard/home', function () {
 })->name('home');
 
 
+Route::get('generate-pdf', [PDFController::class, 'generatePDF']);
 //LOGIN
 Route::get('/', [AuthController::class, 'showFormLogin'])->name('login');
 Route::get('login', [AuthController::class, 'showFormLogin'])->name('login');
