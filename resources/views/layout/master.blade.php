@@ -79,7 +79,7 @@
                     <i class="zmdi zmdi-more"></i>
                 </li>
                 <li>
-                    <a href="dashboard/home">
+                    <a href="{{url('dashboard/home')}}">
                         <div class="pull-left"><i class="fa fa-home mr-20"></i><span class="right-nav-text">Home</span></div>
                         <div class="clearfix"></div>
                     </a>

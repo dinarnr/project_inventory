@@ -32,7 +32,7 @@
                     <div class="panel-wrapper collapse in ">
                         <div class="panel-body">
                             <div class="form-wrap mt-3">
-                                <form action="{{ url('teknisi/peminjaman/simpan') }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ url('teknisi/peminjaman/simpan') }}" method="POST" enctype="multipart/form-data" name="myForm">
                                     @csrf
                                     <div class="row">
                                         @foreach ((array)$no_peminjaman as $no_peminjaman)
@@ -148,6 +148,22 @@
     @section('scripts')
     <script type="text/javascript">
         function ambildata() {
+
+            var tgl = document.forms["myForm"]["tgl_pinjam"].value;
+            var kebutuhan = document.forms["myForm"]["kebutuhan"].value;
+            var jumlah = document.forms["myForm"]["jumlah"].value;
+
+            if (tgl == "") {
+                alert("Tanggal Pinjam tidak boleh kosong");
+                return false;
+            } else if (jumlah == "") {
+                alert("Jumlah tidak boleh kosong");
+                return false;
+            } else if (kebutuhan == "") {
+                alert("Kebutuhan tidak boleh kosong");
+                return false;
+            } 
+
             var no_peminjaman = document.getElementById('no_peminjaman').value;
             var nama_brg = document.getElementById('nama_brg').value;
             var jumlah = document.getElementById('jumlah').value;
