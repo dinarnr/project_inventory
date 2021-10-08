@@ -184,6 +184,28 @@
 @section('scripts')
 <script type="text/javascript">
 	function ambildata() {
+		var pengirim = document.forms["myForm"]["pengirim"].value;
+		var penerima = document.forms["myForm"]["penerima"].value;
+		var jumlah = document.forms["myForm"]["jumlah"].value;
+		var keterangan = document.forms["myForm"]["keterangan"].value;
+		var tanggal = document.forms["myForm"]["tgl_transaksi"].value;
+
+			if (pengirim == "") {
+				alert("Nama pengirim tidak boleh kosong");
+				return false;
+			}else if(penerima == ""){
+				alert("Nama penerima tidak boleh kosong");
+				return false;
+			}else if(jumlah == ""){
+				alert("Jumlah tidak boleh kosong");
+				return false;
+			}else if(keterangan == ""){
+				alert("Keterangan tidak boleh kosong");
+				return false;
+			}else if(tanggal == ""){
+				alert("Tanggal tidak boleh kosong");
+				return false;
+			}
 		var no_trans = document.getElementById('no_trans').value;
 		var keterangan = document.getElementById('keterangan').value;
 		var nama_barang = document.getElementById('nama_barang').value;

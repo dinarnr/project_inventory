@@ -300,7 +300,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('administrator/log') }}">
+                    <a href="{{ url('administrator/log ') }}">
                         <div class="pull-left"><i class="zmdi zmdi-search-in-file mr-20"></i><span class="right-nav-text">Log Sistem</span></div>
                         <div class="clearfix"></div>
                     </a>

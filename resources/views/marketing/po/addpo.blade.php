@@ -34,7 +34,7 @@
                     <div class="panel-wrapper collapse in ">
                         <div class="panel-body">
                             <div class="form-wrap mt-3">
-                                <form action="{{ url('marketing/po/simpan') }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ url('marketing/po/simpan') }}" method="POST" enctype="multipart/form-data" name="myForm">
                                     @csrf
                                     <!-- <div class="form-group">
                                         <label class="control-label mb-10 text-left" for="example-email">Nomor PO Barang</label>
@@ -302,6 +302,32 @@
     };
 
     function ambildata(prefix) {
+        var tanggal_pasang = document.forms["myForm"]["tgl_transaksi"].value;
+		var instansi = document.forms["myForm"]["instansi"].value;
+		var nama_barang = document.forms["myForm"]["nama_barang"].value;
+		var keterangan = document.forms["myForm"]["keterangan"].value;
+        var qty = document.forms["myForm"]["jumlah"].value;
+		var rate = document.forms["myForm"]["rate"].value;
+			if (tanggal_pasang == "") {
+				alert("Tanggal tidak boleh kosong");
+				return false;
+			}else if(instansi == ""){
+				alert("Nama instansi tidak boleh kosong");
+				return false;
+			}else if(nama_barang == ""){
+				alert("Nama barang tidak boleh kosong");
+				return false;
+            }else if(keterangan == ""){
+				alert("Keterangan tidak boleh kosong");
+				return false;
+			}else if(qty == ""){
+				alert("Jumlah tidak boleh kosong");
+				return false;
+			}else if(rate == ""){
+				alert("Rate tidak boleh kosong");
+				return false;
+			}
+
         var noPO = document.getElementById('noPO').value;
         var noSO = document.getElementById('noSO').value;
         var instansi = document.getElementById('instansi').value;
