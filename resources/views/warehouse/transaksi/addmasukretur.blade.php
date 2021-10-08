@@ -48,10 +48,11 @@
                                                         <div class="form-group">
                                                             <label class="control-label mb-10">No PO</label>
                                                             <select name="no_PO" id="no_PO" class="form-control">
-																@foreach($noPO as $noPO)
-																<option value="{{ $noPO->no_PO }}">{{ $noPO->no_PO }}</option>
-																@endforeach
-															</select>
+                                                                <option value="">Pilih No PO</option>
+                                                                @foreach($noPO as $noPO)
+                                                                <option value="{{ $noPO->no_PO }}">{{ $noPO->no_PO }}</option>
+                                                                @endforeach
+                                                            </select>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -68,12 +69,12 @@
                                                             <input type="text" id="penerima" name="penerima" class="form-control">
                                                         </div>
                                                     </div>
-													<div class="col-md-4">
-														<div class="form-group">
-															<label class="control-label mb-10">Tanggal Terima</label>
-															<input type="date" id="tgl_transaksi" name="tgl_transaksi" class="form-control">
-														</div>
-													</div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label class="control-label mb-10">Tanggal Terima</label>
+                                                            <input type="date" id="tgl_transaksi" name="tgl_transaksi" class="form-control">
+                                                        </div>
+                                                    </div>
 
                                                 </div>
                                                 <hr>
@@ -82,7 +83,7 @@
                                                         <div class="form-group">
 
                                                             <label class="control-label mb-10">Nama Barang</label>
-                                                            <select name="nama_barang" id="nama_barang" class="form-control select2"  data-dependent="kode_barang">
+                                                            <select name="nama_barang" id="nama_barang" class="form-control select2" data-dependent="kode_barang">
                                                                 <option value="">Pilih Nama barang</option>
                                                                 @foreach($barang as $brg)
                                                                 <option value="{{ $brg->nama_barang }}">{{ $brg->nama_barang }} | {{ $brg->kode_barang }} </option>
@@ -91,15 +92,15 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4" hidden>
-														<div class="form-group">
-															<label class="control-label mb-10">Kode Barang</label>
-															<select name="kode_barang" id="kode_barang" class="form-control select2" disabled>
-																
-															</select>
-															<!-- <div id="id_barang"></div> -->
-														</div>
-													    {{ csrf_field() }}
-													</div>
+                                                        <div class="form-group">
+                                                            <label class="control-label mb-10">Kode Barang</label>
+                                                            <select name="kode_barang" id="kode_barang" class="form-control select2" disabled>
+
+                                                            </select>
+                                                            <!-- <div id="id_barang"></div> -->
+                                                        </div>
+                                                        {{ csrf_field() }}
+                                                    </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="control-label mb-10">Instansi</label>
@@ -184,6 +185,33 @@
 @section('scripts')
 <script type="text/javascript">
     function ambildata() {
+        var no_PO = document.forms["myForm"]["no_PO"].value;
+        var pengirim = document.forms["myForm"]["pengirim"].value;
+        var penerima = document.forms["myForm"]["penerima"].value;
+        var keterangan = document.forms["myForm"]["keterangan"].value;
+        var tanggal = document.forms["myForm"]["tgl_transaksi"].value;
+        var jumlah = document.forms["myForm"]["jumlah"].value;
+
+        if (no_PO == "") {
+            alert("No  PO tidak boleh kosong");
+            return false;
+        } else if (pengirim == "") {
+            alert("Nama Pengirim tidak boleh kosong");
+            return false;
+        } else if (penerima == "") {
+            alert("Nama penerima tidak boleh kosong");
+            return false;
+        } else if (tanggal == "") {
+            alert("Tanggal tidak boleh kosong");
+            return false;
+        } else if (jumlah == "") {
+            alert("Jumlah tidak boleh kosong");
+            return false;
+        } else if (keterangan == "") {
+            alert("Keterangan tidak boleh kosong");
+            return false;
+        }
+
         var no_retur = document.getElementById('no_retur').value;
         var no_PO = document.getElementById('no_PO').value;
         var nama_barang = document.getElementById('nama_barang').value;
@@ -211,28 +239,31 @@
     });
 </script>
 <script>
-	$('#nama_barang').change(function(){
-		if($(this).val() != ''){
-			var select = $(this).attr("id");
-			var value = $(this).val();
-			
-			// $('#id_barang').val(value);
-			var dependent = $(this).data('dependent');
-			var _token = $('input[name="_token"]').val();
-			$.ajax({
-				url: "{{ route('trkmasukcontroller.fetch')}}",
-				method: "POST",
-				data: {
-					select: select,value: value,_token:_token,dependent: dependent
-				},
-				success: function(result) {
-					console.log(result);
-					$('#'+dependent).html(result);
-				},
-		
-			});
-			
-		}
-	});
+    $('#nama_barang').change(function() {
+        if ($(this).val() != '') {
+            var select = $(this).attr("id");
+            var value = $(this).val();
+
+            // $('#id_barang').val(value);
+            var dependent = $(this).data('dependent');
+            var _token = $('input[name="_token"]').val();
+            $.ajax({
+                url: "{{ route('trkmasukcontroller.fetch')}}",
+                method: "POST",
+                data: {
+                    select: select,
+                    value: value,
+                    _token: _token,
+                    dependent: dependent
+                },
+                success: function(result) {
+                    console.log(result);
+                    $('#' + dependent).html(result);
+                },
+
+            });
+
+        }
+    });
 </script>
 @endsection
