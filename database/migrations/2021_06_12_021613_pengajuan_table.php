@@ -23,7 +23,7 @@ class PengajuanTable extends Migration
             $table->integer('jumlah')->nullable();
             $table->integer('status')->nullable();
             $table->string('jenisBarang',50);
-            $table->string('tgl_pengajuan',50);
+            $table->date('tgl_pengajuan');
             $table->string('keterangan',50)->nullable();
             $table->string('pic_teknisi',50)->nullable();
             $table->string('pic_marketing',50)->nullable();

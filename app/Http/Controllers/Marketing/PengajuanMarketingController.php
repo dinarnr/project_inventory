@@ -434,7 +434,8 @@ class PengajuanMarketingController extends Controller
                 Pengajuan::where('no_pengajuan', $request->no_peng)
                     ->update(
                         [
-                            'status' => '2'
+                            'status' => '2',
+                            'pic_marketing' => $user->name
                         ]
                     );
         
