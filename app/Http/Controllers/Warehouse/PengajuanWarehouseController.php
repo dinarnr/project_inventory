@@ -264,7 +264,7 @@ class PengajuanWarehouseController extends Controller
     public function addpengajuanpembelian(Request $request)
     {
     //    dd( $request->all());
-       $jumlah_data = count($request->no_peng);
+       $jumlah_data = count($request->no_peng); 
        for ($i = 0; $i < $jumlah_data; $i++) {
            DetailPengajuan::create(
                [
@@ -277,11 +277,13 @@ class PengajuanWarehouseController extends Controller
                ]
            );
        }
+        $user = Auth::user();
            Pengajuan::create(
                [
                    'no_pengajuan' => $request->no_pengajuan,
                    'tgl_pengajuan' => $request->tgl_pengajuan,
                    'nama_pemohon' => $request->nama_pemohon,
+                   'pic_warehouse' => $user->name
                ]);
            
            $user = Auth::user();
