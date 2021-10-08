@@ -65,16 +65,20 @@
                                                         <td>{{ $data_po->instansi}}</td>
                                                         <td>
                                                             @if($data_po->status === 1 )
-                                                            Purchase Order diproses Warehouse
+                                                            Purchase Order <strong> DIPROSES </strong>Warehouse
                                                             @elseif ($data_po->status === 2 )
-                                                            Purchase Order disetujui Warehouse 
+                                                            Purchase Order <strong>DISETUJUI</strong> Warehouse 
                                                             @elseif ($data_po->status === 5)
                                                             Purchase Order dibatalkan 
                                                             @else
                                                             Draft
                                                             @endif
                                                         <td>{{  date('d-m-Y',strtotime($data_po->created_at))}}</td>
-                                                        <td></td>
+                                                        <td>
+                                                            @if($data_po->status === 2 )
+                                                                {{ date('d-m-Y',strtotime($data_po->updated_at))}}
+                                                            @endif
+                                                        </td>
                                                         <td>
                                                             @if($data_po->status == 5 )
                                                             @else

@@ -17,7 +17,7 @@ class SoController extends Controller
     //
     public function dataSO()
     {
-                $data_po_wh = PO::all()->where('status','>=', '1');
+        $data_po_wh = PO::all()->where('status','>=', '1');
         $data_po = PO::all();
         return view('warehouse/so/data_so', compact('data_po', 'data_po_wh'));
     }
@@ -28,9 +28,9 @@ class SoController extends Controller
         $data_po = PO::where('no_PO', $no_PO)->get();
         $tanggal = Carbon::now();
         $total = DetailPO::where('no_PO', $no_PO)->sum('amount');
-        $nama_instansi = PO::where('no_PO', $no_PO)->pluck('instansi');
+        $nama_instansi = PO::where('no_PO', $no_PO)->pluck('kode_instansi');
         $user = Auth::user();
-        $instansi = Instansi::where('nama_instansi', $nama_instansi)->get();
+        $instansi = Instansi::where('kode_instansi', $nama_instansi)->get();
         return view('warehouse/so/detailso', compact('data_po', 'data_detail', 'user', 'profil', 'instansi', ));
     }
 
@@ -91,8 +91,13 @@ class SoController extends Controller
             ]
         );
     } else {
+        dd($request->is_active);
         $jumlah_data = count($request->is_active);
+        if ($request->is_active == null){
+            echo('kosong');
+        }
         for ($i = 0; $i < $jumlah_data; $i++) {
+            
         DetailPO::where('id_po', $request->is_active[$i])
             ->update(
                 [

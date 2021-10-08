@@ -190,12 +190,6 @@
                         <div class="clearfix"></div>
                     </a>
                 </li>
-                <li>
-                    <a href=" ">
-                        <div class="pull-left"><i class="zmdi zmdi-settings mr-20"></i><span class="right-nav-text">Setting</span></div>
-                        <div class="clearfix"></div>
-                    </a>
-                </li>
                 @endif
 
                 <!-- <-------------------------------MARKETING----------------------------------->

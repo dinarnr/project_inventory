@@ -344,7 +344,7 @@
             '"><br><input type="text" style="outline:none;border:0;" name="keterangan[]" id="keterangan" value="    ' + keterangan +
             '"></br ></td><td><input type="text" style="outline:none;border:0;" readonly name="jumlah[]" id="jumlah" value="' + jumlah +
             '"></td><td>Rp <input type="text" style="outline:none;border:0;" readonly name="rate[]" id="rate" value="' + rate +
-            '"></td><td style="display:none;">Rp <input type="text" style="outline:none;border:0;" readonly name="rate1[]" id="rate" value="' + rate1 +
+            '"></td><td>Rp <input type="text" style="outline:none;border:0;" readonly name="rate1[]" id="rate" value="' + rate1 +
             '"></td><td>Rp <input type="text" style="outline:none;border:0;" readonly name="amount[]" id="amount' + i + '" value="' + amount +
             '"></td><td style="display:none;">Rp <input type="text" style="outline:none;border:0;" readonly name="amount1[]" id="amount' + i + '" value="' + amount1 +
             '"></td><td><button type="button" id="' + i + '" class="btn btn-danger btn-small remove_row">&times;</button></td></tr>');

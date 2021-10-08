@@ -119,6 +119,7 @@
                                             <td>
                                                 <input type="checkbox" class="checkbox" id="is_active[]" name="is_active[]" value="{{$detail->id_po}}" 
                                                 @if($detail->status == 2) checked=checked @endif />
+                                                <input type="hidden" class="checkbox" id="is_active[]" name="is_active[]" value="{{$detail->id_po}}" />
                                                 <!-- <input type="hidden" id="is_active[]" name="is_active[]" value="">         -->
                                             </td>
                                         </tr>
@@ -136,7 +137,7 @@
                 </div>
             </div>
             <div class="pull-right hide-from-printer">
-                <button class="btn btn-default" name="draft" type="submit" value="draft" id="draft">Draft</button>
+                <button class="btn btn-default" name="draft" type="submit" value="draft" id="draft">Simpan</button>
                 <button class="btn btn-primary mr-10" name="proses" type="submit"  value="proses" id="proses">Proses</button>
                 <!-- form tutup -->
             </div>

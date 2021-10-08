@@ -24,7 +24,7 @@
                     <div class="panel-wrapper collapse in ">
                         <div class="panel-body">
                             <div class="form-wrap mt-3">
-                                <form action="{{ url('teknisi/pengajuan/rekomendasi/simpan') }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ url('teknisi/pengajuan/rekomendasi/simpan') }}" method="POST" enctype="multipart/form-data" name="myForm">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-6">
@@ -123,6 +123,23 @@
 @section('scripts')
     <script type="text/javascript">
         function ambildata() {
+            
+            var nama = document.forms["myForm"]["nama_barang"].value;
+            var jumlah = document.forms["myForm"]["jumlah"].value;
+            var keterangan = document.forms["myForm"]["keterangan"].value;
+
+            if (nama == "") {
+                alert("Nama Barang tidak boleh kosong");
+                return false;
+            } else if (jumlah == "") {
+                alert("Jumlah tidak boleh kosong");
+                return false;
+            } else if (keterangan == "") {
+                alert("Keterangan tidak boleh kosong");
+                return false;
+            } 
+
+
             var no_peng = document.getElementById('no_peng').value;
             var nama_barang = document.getElementById('nama_barang').value;
             var jumlah = document.getElementById('jumlah').value;

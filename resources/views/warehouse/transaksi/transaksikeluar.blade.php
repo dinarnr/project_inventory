@@ -97,7 +97,7 @@
                                                 <td>{{ $instalasi->pengirim}}</td>
                                                 <td>{{ $instalasi->penerima}}</td>
                                                 <td>
-                                                    <a href="{{ url('warehouse/transaksi/detailkeluarinstalasi') }}/{{ $garansi->no_transaksi }}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
+                                                    <a href="{{ url('warehouse/transaksi/detailkeluarinstalasi') }}/{{ $instalasi->no_transaksi }}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
                                                 </td>
                                             </tr>
                                             @endforeach

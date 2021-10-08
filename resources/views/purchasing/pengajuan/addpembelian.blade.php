@@ -20,7 +20,7 @@
 							<div class="row">
 								<div class="col-sm-12 col-xs-12">
 									<div class="form-wrap">
-										<form action="{{ url('purchasing/pengajuan/pembelian/simpan') }}" method="POST" enctype="multipart/form-data">
+										<form action="{{ url('purchasing/pengajuan/pembelian/simpan') }}" method="POST" enctype="multipart/form-data" name="myForm">
 											@csrf
 											<div class="form-body">
 												<div class="row">
@@ -152,6 +152,23 @@
 @section('scripts')
 <script type="text/javascript">
 	function ambildata() {
+
+		var jumlah = document.forms["myForm"]["jumlah"].value;
+        var keterangan = document.forms["myForm"]["keterangan"].value;
+        var tgl = document.forms["myForm"]["tgl_pengajuan"].value;
+
+            if (jumlah == "") {
+                alert("Jumlah tidak boleh kosong");
+                return false;
+            } else if (keterangan == "") {
+                alert("Keterangan tidak boleh kosong");
+                return false;
+            } else if (tgl == "") {
+                alert("Tanggal Pengajuan tidak boleh kosong");
+                return false;
+            } 
+
+
 		var no_peng = document.getElementById('no_peng').value;
 		var keterangan = document.getElementById('keterangan').value;
 		var nama_barang = document.getElementById('nama_barang').value;
