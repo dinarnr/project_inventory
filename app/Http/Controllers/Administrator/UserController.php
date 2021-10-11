@@ -91,8 +91,7 @@ class UserController extends Controller
                 'email'     => $request->edit_email,
                 'password' => bcrypt($request->edit_password)
                 ]);
-            return redirect()->back();
         }
-            
+        return redirect('admin/profile/profile'); 
     }
 }

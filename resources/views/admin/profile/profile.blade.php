@@ -82,9 +82,11 @@
                                 <label class="col-md-3 control-label"></label>
                                 <div class="col-md-8">
                                 <button class="btn btn-success">Simpan</button>
+                                <button class="btn btn-primary">Ubah Password</button>
                                 <span></span>
                                 </div>
                             </div>
+                            
                             </form>
                         
                         </div>
