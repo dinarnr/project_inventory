@@ -59,6 +59,28 @@ class PeminjamanController extends Controller
         return redirect('warehouse/peminjaman');
     }
 
+    public function setuju(Request $request, $no_peminjaman)
+    {
+        // dd($request->non);
+        $user = Auth::user();
+        Peminjaman::where('no_peminjaman', $no_peminjaman)
+            ->update([
+                'status' => 'pinjam',
+            ]);
+        Log::create(
+            [
+                'name' => $user->name,
+                'email' => $user->email,
+                'divisi' => $user->divisi,
+                'deskripsi' => 'Menyetujui peminjaman',
+                'status' => '2',
+                'ip' => $request->ip()
+
+            ]
+        );
+        return redirect('warehouse/peminjaman');
+    }
+
     public function detailpeminjaman($no_peminjaman)
     {
         $data_detail = DetailPeminjaman::where('no_peminjaman', $no_peminjaman)->get();

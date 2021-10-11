@@ -160,6 +160,7 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::post('peminjaman/kembali/{no_peminjaman}', [PeminjamanController::class, 'kembali']);
         Route::post('peminjaman/confirm/{no_peminjaman}', [PeminjamanController::class, 'confirm']);
         Route::get('peminjaman/detail/{no_peminjaman}', [PeminjamanController::class, 'detailpeminjaman']);
+        Route::post('peminjaman/setuju/{no_peminjaman}', [PeminjamanController::class, 'setuju']);
 
         // ---------------------------PENGAJUAN--------------------
         // //----------------------------- RETUR -----------------------------------------------
