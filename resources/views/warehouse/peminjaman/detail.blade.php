@@ -27,7 +27,7 @@
                     <div class="panel-heading">
                         <div class="panel-wrapper collapse in">
                             <div class="panel-body">
-                            <div class="row">
+                                <div class="row">
                                     <div class="col-xs-8">
                                         <div class="form-group">
                                             <div class="">
@@ -37,10 +37,10 @@
                                                 <tr>
                                                     <div class="row">
                                                         @foreach ($profil as $profil)
-                                                    <td class="txt-dark"> Jl Candi Mendut Utara 1 No. 11 <br>
-                                                    Kel. Mojolangu Kec. Lowokwaru Malang - Jawa Timur<br>
-                                                    Phone : {{$profil->telp}}<br> Email : {{$profil->email}}</td>
-                                                    @endforeach
+                                                        <td class="txt-dark"> Jl Candi Mendut Utara 1 No. 11 <br>
+                                                            Kel. Mojolangu Kec. Lowokwaru Malang - Jawa Timur<br>
+                                                            Phone : {{$profil->telp}}<br> Email : {{$profil->email}}</td>
+                                                        @endforeach
                                                     </div>
                                                 </tr>
                                             </table>
@@ -63,26 +63,26 @@
                                                 <div class="text-left">
                                                     <h6 class="txt-dark"><strong>No Peminjaman :</strong></h6>
                                                 </div>
-                                                
+
                                                 <tr>
-                                                <div class="">
-                                                    <td class="txt-dark">
-                                                    {{$peminjaman->no_peminjaman}}
-                                                    </td>
-                                                </div>
-                                            </tr>
+                                                    <div class="">
+                                                        <td class="txt-dark">
+                                                            {{$peminjaman->no_peminjaman}}
+                                                        </td>
+                                                    </div>
+                                                </tr>
                                             </table>
                                             <table>
                                                 <div class="text-left">
                                                     <h6 class="txt-dark"><strong>Nama Peminjaman :</strong></h6>
                                                 </div>
-                                            <tr>
-                                                <div class="">
-                                                    <td class="txt-dark">
-                                                    {{$peminjaman->pic_teknisi}}
-                                                    </td>
-                                                </div>
-                                            </tr>
+                                                <tr>
+                                                    <div class="">
+                                                        <td class="txt-dark">
+                                                            {{$peminjaman->pic_teknisi}}
+                                                        </td>
+                                                    </div>
+                                                </tr>
                                             </table>
 
 
@@ -97,8 +97,8 @@
                                                 <tr>
                                                     <div class="">
                                                         <td class="txt-dark">
-                                                        {{ date('d-m-Y',strtotime($peminjaman->tglPinjam))}}
-                                                      </td>
+                                                            {{ date('d-m-Y',strtotime($peminjaman->tglPinjam))}}
+                                                        </td>
                                                     </div>
                                                 </tr>
                                             </table>
@@ -106,25 +106,25 @@
                                                 <div class="text-left">
                                                     <h6 class="txt-dark"><strong>Kebutuhan :</strong></h6>
                                                 </div>
-                                            <tr>
-                                                <div class="">
-                                                    <td class="txt-dark">
-                                                    {{$peminjaman->kebutuhan}}
-                                                    </td>
-                                                </div>
-                                            </tr>
+                                                <tr>
+                                                    <div class="">
+                                                        <td class="txt-dark">
+                                                            {{$peminjaman->kebutuhan}}
+                                                        </td>
+                                                    </div>
+                                                </tr>
                                             </table>
 
                                         </div>
                                     </div>
-                                @endforeach
+                                    @endforeach
 
-                                    
-                                <br>
 
-                                
-                            </div>
-                            <div class="invoice-bill-table">
+                                    <br>
+
+
+                                </div>
+                                <div class="invoice-bill-table">
                                     <div class="table-responsive">
                                         <table id="myTable1" class="table table display pb-30">
                                             <thead>
@@ -148,23 +148,25 @@
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
+                                <label class="txt-dark"><Strong>*Catatan</Strong></label>
+                            
+                            </div>
                         </div>
                     </div>
                 </div>
+                <!-- /Row -->
             </div>
-            <!-- /Row -->
-        </div>
-        <!-- /Footer -->
-        <div class="pull-right">
+            <!-- /Footer -->
+            <div class="pull-right">
                 <!-- <button class="btn btn-primary mr-10" name="konfirmasi" type="submit"  value="proses" id="proses">Konfirmasi</button> -->
-                @if($peminjaman->status == "di proses warehouse")   
+                @if($peminjaman->status == "di proses warehouse")
                 <button class="btn btn-success btn-icon-anim" data-toggle="modal" data-target="#confirm{{ $peminjaman->no_peminjaman}}" action="( {{url('warehouse/peminjaman/confirm')}}/{{ $peminjaman->no_peminjaman}})"><i class=""></i>Konfirmasi</button>
                 @include('warehouse.peminjaman.confirm')
                 @endif
                 <!-- form tutup -->
             </div>
+        </div>
+        <!-- /Main Content -->
     </div>
-    <!-- /Main Content -->
-</div>
-<!-- /#wrapper -->
-@endsection
+    <!-- /#wrapper -->
+    @endsection

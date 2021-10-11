@@ -61,8 +61,10 @@
                                                         @endif
                                                     </td>
 
-                                                    <td >
-                                                        @if($peminjaman->status == "pinjam")
+                                                    <td>
+                                                        @if($peminjaman->status == "tunggu")
+                                                        <button class="btn btn-default btn-sm btn-rounded">Menunggu persetujuan peminjaman</button>
+                                                        @elseif($peminjaman->status == "pinjam")
                                                         <button class="btn btn-primary btn-sm btn-rounded">Pinjam</button>
                                                         @elseif($peminjaman->status == "di proses warehouse" )
                                                         <button class="btn btn-warning btn-sm btn-rounded">Diproses Warehouse</button>

@@ -54,7 +54,7 @@ class PeminjamanTeknisiController extends Controller
             'kebutuhan'    => $request->kebutuhan,
             'tglPinjam'     => $request->tgl_pinjam,
             // 'tglKembali'    => $request->null,
-            'status'        => 'pinjam'
+            'status'        => 'tunggu'
         ]);
 
         Log::create(

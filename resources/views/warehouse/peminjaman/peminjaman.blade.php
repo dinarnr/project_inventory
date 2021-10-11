@@ -24,7 +24,7 @@
             <div class="col-sm-12">
                 <div class="panel panel-default card-view">
                     <div class="panel-heading">
-                       
+
                         <div class="clearfix"></div>
 
                         <div class="panel-wrapper collapse in">
@@ -60,7 +60,9 @@
                                                     </td>
 
                                                     <td style="text-align:center;">
-                                                        @if($peminjaman->status == "pinjam")
+                                                        @if($peminjaman->status == "tunggu")
+                                                        <button class="btn btn-default btn-sm btn-rounded">Menunggu persetujuan peminjaman</button>
+                                                        @elseif($peminjaman->status == "pinjam")
                                                         <button class="btn btn-primary btn-sm btn-rounded">Pinjam</button>
                                                         @elseif($peminjaman->status == "di proses warehouse" )
                                                         <button class="btn btn-warning btn-sm btn-rounded">Diproses Warehouse</button>
@@ -69,13 +71,16 @@
                                                         @endif
                                                     </td>
                                                     <td>
-                                                    
+
                                                         <a href="{{url('warehouse/peminjaman/detail')}}/{{ $peminjaman->no_peminjaman}}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
-                                                    
+                                                        @if($peminjaman->status == "tunggu" )
+                                                        <button class="btn btn-success btn-icon-anim btn-square" data-toggle="modal" data-target="#setuju{{ $peminjaman->no_peminjaman }}" action="( {{url('teknisi/peminjaman/setuju')}}/{{ $peminjaman->no_peminjaman }})"><i class="fa fa-check"></i></button>
+                                                        @endif
                                                         <!-- <a href="/peminjaman/{{ $peminjaman->no_peminjaman }}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-edit"></i></button></a> -->
                                                         <!-- <button class="btn btn-success btn-icon-anim btn-square" data-toggle="modal" data-target="#confirm{{ $peminjaman->no_peminjaman}}" action="( {{url('warehouse/peminjaman/confirm')}}/{{ $peminjaman->no_peminjaman}})"><i class="fa fa-check"></i></button> -->
-                                                        @include('warehouse.peminjaman.confirm')
+                                                        
                                                     </td>
+                                                    @include('warehouse.peminjaman.setuju')
                                                 </tr>
                                                 @endforeach
                                             </tbody>
