@@ -282,7 +282,7 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
     Route::group(['prefix' => 'purchasing/'], function () {
         //--------------PEMBELIAN----------------
         Route::get('pembelian/invoice', [PembelianPurchasingController::class, 'pembelian']);
-        Route::get('pembelian/invoice/tambah/{id_PO}', [PembelianPurchasingController::class, 'addinvoice']);
+        Route::get('pembelian/invoice/tambah/{no_pengajuan}', [PembelianPurchasingController::class, 'addinvoice']);
         Route::get('pembelian/purchase', [PembelianPurchasingController::class, 'purchase']);
         Route::get('pembelian/invoice/tambah', [PembelianPurchasingController::class, 'addpembelian']);
         Route::post('pembelian/invoice/simpan', [PembelianPurchasingController::class, 'addpembelian2']);
