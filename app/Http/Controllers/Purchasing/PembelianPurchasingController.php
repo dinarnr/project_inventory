@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Purchasing;
 
 use App\Http\Controllers\Controller;
+use App\Models\DetailPengajuan;
 use Illuminate\Http\Request;
 use App\Models\Log;
 use App\Models\Pembelian;
+use App\Models\Pengajuan;
 use App\Models\PO;
+use App\Models\SupplierModel;
 use Illuminate\Support\Facades\Auth;
 
 class PembelianPurchasingController extends Controller
@@ -18,10 +21,13 @@ class PembelianPurchasingController extends Controller
         return view('purchasing/pembelian/invoice', compact('lunas','hutang'));
     }
 
-    public function addinvoice($id_PO)
+    public function addinvoice($no_pengajuan)
     {
-        $data_pembelian = PO::find($id_PO);
-        return view('purchasing/pembelian/addinvoice', compact('data_pembelian'));
+        $data_pembelian = Pengajuan::where('no_pengajuan',$no_pengajuan)->first();
+        $data_detail = DetailPengajuan::all()->where('no_pengajuan',$no_pengajuan);
+        $supplier =  SupplierModel::all();
+        // dd($data_detail);
+        return view('purchasing/pembelian/addinvoice', compact('data_pembelian', 'data_detail', 'supplier'));
     }
 
     public function addpembelian2(Request $request)
