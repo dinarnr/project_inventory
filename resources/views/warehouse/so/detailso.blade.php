@@ -120,7 +120,6 @@
                                                 <input type="checkbox" class="checkbox" id="is_active[]" name="is_active[]" value="{{$detail->id_po}}" 
                                                 @if($detail->status == 2) checked=checked @endif />
                                                 <input type="hidden" class="checkbox" id="is_active[]" name="is_active[]" value="{{$detail->id_po}}" />
-                                                <!-- <input type="hidden" id="is_active[]" name="is_active[]" value="">         -->
                                             </td>
                                         </tr>
                                         @endforeach
