@@ -67,7 +67,7 @@
                                                             @endif
                                                     </td>
                                                     <td>
-                                                        <a href="{{url('purchasing/pengajuan/pembelian/detailpengajuan') }}/{{$pembelian->no_pengajuan}} "><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
+                                                        <a href="{{url('purchasing/pembelian/invoice/tambah') }}/{{$pembelian->no_pengajuan}} "><button class="btn btn-success btn-icon-anim btn-square"><i class="fa fa-plus"></i></button></a>
                                                         
                                                     </td>
                                                 </tr>
