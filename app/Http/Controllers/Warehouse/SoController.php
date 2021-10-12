@@ -60,15 +60,22 @@ class SoController extends Controller
     
     public function confirmpo(Request $request)
     {
-        // dd(DetailPO::where('id_po','!=', $request->is_active)->pluck('id_po')->all());
+        $centang = collect($request->is_active)->duplicates()->toArray();  
+        $uncentang = collect($request->is_active)->diff($centang)->toArray();
         $user = Auth::user();
-        // dd($request->is_active);
         if ($request->proses == 'proses') {
 
-        DetailPO::where('id_po', $request->is_active)
+            DetailPO::whereIn('id_po', $centang)
             ->update(
                 [
                 'status' => '2'
+                ]
+            );
+
+        DetailPO::whereIn('id_po', $uncentang)
+            ->update(
+                [
+                'status' => ''
                 ]
             );
 
@@ -91,33 +98,19 @@ class SoController extends Controller
             ]
         );
     } else {
-        dd($request->is_active);
-        $jumlah_data = count($request->is_active);
-        if ($request->is_active == null){
-            echo('kosong');
-        }
-        for ($i = 0; $i < $jumlah_data; $i++) {
-            
-        DetailPO::where('id_po', $request->is_active[$i])
+        DetailPO::whereIn('id_po', $centang)
             ->update(
                 [
                 'status' => '2'
                 ]
             );
-        }
-        // $null = DetailPO::where('no_PO','=',  $request->no_PO)->whereIn('id_po', $request->is_active)->pluck('id_po');
-        
-        // dd($request->is_active);
-        //     // dd($request->all());
-        // $jumlah_null = count($null);
-        // for ($i = 0; $i < $jumlah_null; $i++) {
-        // DetailPO::where('id_po','=', $null[$i])
-        //     ->update(
-        //         [
-        //         'status' => ''
-        //         ]
-        //     );
-        // }  
+
+        DetailPO::whereIn('id_po', $uncentang)
+            ->update(
+                [
+                'status' => ''
+                ]
+            );
 
         Log::create(
             [
