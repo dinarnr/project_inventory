@@ -36,6 +36,7 @@
                                                 <th>Nama Barang</th>
                                                 <th>Stok</th>
                                                 <th>Keterangan</th>
+                                                <th>Tanggal</th>
                                                 
                                             </tr>
                                         </thead>
@@ -47,6 +48,7 @@
                                                 <td>{{$stok->nama_barang}}</td>
                                                 <td>{{$stok->stok}}</td>
                                                 <td>{{$stok->keterangan}}</td>
+                                                <td>{{date('d-m-Y',strtotime($stok->created_at))}}</td>
                                                 
                                             </tr>
                                           @endforeach
