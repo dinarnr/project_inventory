@@ -47,8 +47,9 @@
                     <div class="form-group">
                         <label for=""><strong>Password</strong></label>
                         <input type="password" name="password" id="myInput" class="form-control" placeholder="Password">
-                        <input type="checkbox" onclick="myFunction()">Show Password
+                    
                     </div>
+                    <input type="checkbox" onclick="myFunction()">Show Password
                 </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary btn-block">Log In</button>

@@ -72,17 +72,10 @@ class PeminjamanTeknisiController extends Controller
         return redirect('teknisi/peminjaman');
     }
 
-
+    //proses mengembalikan barang
     public function kembali(Request $request, $no_peminjaman)
     {
         $user = Auth::user();
-        DetailPeminjaman::where('no_peminjaman', $no_peminjaman)
-            ->update(
-                [
-                    'status' => '3',
-                    'keterangan' => $request->catatan,
-                ]
-            );
 
         Peminjaman::where('no_peminjaman', $request->no_peminjaman)
             ->update(
@@ -92,6 +85,12 @@ class PeminjamanTeknisiController extends Controller
                     'tglKembali' => Carbon::now()
                 ]
             );
+        DetailPeminjaman::where('no_peminjaman', $request->no_peminjaman)
+        ->update(
+            [
+                'status' => '3',
+            ]
+        );
 
         Log::create(
             [

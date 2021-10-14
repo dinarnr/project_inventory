@@ -159,6 +159,7 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::get('peminjaman', [PeminjamanController::class, 'peminjaman']);
         Route::post('peminjaman/kembali/{no_peminjaman}', [PeminjamanController::class, 'kembali']);
         Route::post('peminjaman/confirm/{no_peminjaman}', [PeminjamanController::class, 'confirm']);
+        Route::post('peminjaman/konfirmasi/{id_peminjaman}', [PeminjamanController::class, 'kembali_barang']);
         Route::get('peminjaman/detail/{no_peminjaman}', [PeminjamanController::class, 'detailpeminjaman']);
         Route::post('peminjaman/setuju/{no_peminjaman}', [PeminjamanController::class, 'setuju']);
 

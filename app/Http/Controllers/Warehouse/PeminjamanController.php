@@ -67,8 +67,6 @@ class PeminjamanController extends Controller
         ->update(
             [
                 'status' => '2',
-                
-
             ]
         );  
         Peminjaman::where('no_peminjaman', $request->no_peminjaman)
@@ -90,6 +88,19 @@ class PeminjamanController extends Controller
             ]
         );
         return redirect('warehouse/peminjaman');
+    }
+    public function kembali_barang(Request $request, $id_peminjaman)
+    {
+        // dd($request->non);
+        DetailPeminjaman::where('id_peminjaman', $id_peminjaman)
+        ->update(
+            [
+                'jumlah_kembali' => $request -> jumlah_kembali,
+                'status' => '5',
+            ]
+        );  
+
+        return redirect()->back();
     }
 
     public function detailpeminjaman($no_peminjaman)

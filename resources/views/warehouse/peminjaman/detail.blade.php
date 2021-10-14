@@ -132,7 +132,10 @@
                                                     <th>No</th>
                                                     <th>Nama barang</th>
                                                     <th>Jumlah</th>
-                                                    <th>Keterangan</th>
+                                                    @if($data_detail->jumlah_kembali =! "")
+                                                    <th>Jumlah Kembali</th>
+                                                    @endif
+                                                    <th>Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -142,11 +145,11 @@
                                                     <td>{{ $no++ }}</td>
                                                     <td>{{$detail->nama_barang}}</td>
                                                     <td>{{$detail->jumlah}}</td>
+                                                    <td>{{$detail->jumlah_kembali}}</td>
                                                     <td>
                                                         @if($peminjaman->status == "3")
-                                                        <button class="btn btn-primary btn-icon-anim" data-toggle="modal" data-target="#konfirmasi{{ $peminjaman->no_peminjaman}}" action="( {{url('warehouse/peminjaman/konfirmasi')}}/{{ $peminjaman->no_peminjaman}})"><i class="fa fa-plus"></i></button>
-                                                        @endif
-                                                        
+                                                        <button class="btn btn-primary btn-icon-anim" data-toggle="modal" data-target="#konfirmasi{{ $detail->id_peminjaman}}" action="( {{url('warehouse/peminjaman/konfirmasi')}}/{{ $detail->id_peminjaman}})"><i class="fa fa-plus"></i></button>
+                                                        @endif   
                                                     </td>
                                                     @include('warehouse.peminjaman.konfirmasi')
                                                 </tr>
