@@ -117,7 +117,7 @@
 
                                         </div>
                                     </div>
-                                    @endforeach
+
 
 
                                     <br>
@@ -132,6 +132,7 @@
                                                     <th>No</th>
                                                     <th>Nama barang</th>
                                                     <th>Jumlah</th>
+                                                    <th>Keterangan</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -141,6 +142,13 @@
                                                     <td>{{ $no++ }}</td>
                                                     <td>{{$detail->nama_barang}}</td>
                                                     <td>{{$detail->jumlah}}</td>
+                                                    <td>
+                                                        @if($peminjaman->status == "3")
+                                                        <button class="btn btn-primary btn-icon-anim" data-toggle="modal" data-target="#konfirmasi{{ $peminjaman->no_peminjaman}}" action="( {{url('warehouse/peminjaman/konfirmasi')}}/{{ $peminjaman->no_peminjaman}})"><i class="fa fa-plus"></i></button>
+                                                        @endif
+                                                        
+                                                    </td>
+                                                    @include('warehouse.peminjaman.konfirmasi')
                                                 </tr>
                                                 @endforeach
                                             </tbody>
@@ -148,8 +156,8 @@
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
-                                <label class="txt-dark"><Strong>*Catatan</Strong></label>
-                            
+                                <label class="txt-dark"><Strong>*Catatan : </Strong><br>{{$peminjaman->keterangan}}</label>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -159,7 +167,7 @@
             <!-- /Footer -->
             <div class="pull-right">
                 <!-- <button class="btn btn-primary mr-10" name="konfirmasi" type="submit"  value="proses" id="proses">Konfirmasi</button> -->
-                @if($peminjaman->status == "di proses warehouse")
+                @if($peminjaman->status == "3")
                 <button class="btn btn-success btn-icon-anim" data-toggle="modal" data-target="#confirm{{ $peminjaman->no_peminjaman}}" action="( {{url('warehouse/peminjaman/confirm')}}/{{ $peminjaman->no_peminjaman}})"><i class=""></i>Konfirmasi</button>
                 @include('warehouse.peminjaman.confirm')
                 @endif

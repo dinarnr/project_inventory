@@ -28,7 +28,7 @@ class PeminjamanController extends Controller
         DetailPeminjaman::where('no_peminjaman', $no_peminjaman)
             ->update(
                 [
-                    'status' => 'di kembalikan',
+                    'status' => '4',
                     'konfirmasi' => $request -> konfirmasi,
 
                 ]
@@ -38,7 +38,7 @@ class PeminjamanController extends Controller
         Peminjaman::where('no_peminjaman', $request->no_peminjaman)
             ->update(
                 [
-                    'status' => 'di kembalikan',
+                    'status' => '4',
                     'konfirmasi' => $request -> konfirmasi,
                     'pic_warehouse' => $user->name,
                     'tglKembali' => Carbon::now()
@@ -63,10 +63,21 @@ class PeminjamanController extends Controller
     {
         // dd($request->non);
         $user = Auth::user();
-        Peminjaman::where('no_peminjaman', $no_peminjaman)
-            ->update([
-                'status' => 'pinjam',
-            ]);
+        DetailPeminjaman::where('no_peminjaman', $no_peminjaman)
+        ->update(
+            [
+                'status' => '2',
+                
+
+            ]
+        );  
+        Peminjaman::where('no_peminjaman', $request->no_peminjaman)
+            ->update(
+                [
+                'status' => '2',
+                    
+                ]
+            );
         Log::create(
             [
                 'name' => $user->name,

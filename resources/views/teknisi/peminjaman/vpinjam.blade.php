@@ -62,11 +62,11 @@
                                                     </td>
 
                                                     <td>
-                                                        @if($peminjaman->status == "tunggu")
+                                                        @if($peminjaman->status == "1")
                                                         <button class="btn btn-default btn-sm btn-rounded">Menunggu persetujuan peminjaman</button>
-                                                        @elseif($peminjaman->status == "pinjam")
+                                                        @elseif($peminjaman->status == "2")
                                                         <button class="btn btn-primary btn-sm btn-rounded">Pinjam</button>
-                                                        @elseif($peminjaman->status == "di proses warehouse" )
+                                                        @elseif($peminjaman->status == "3" )
                                                         <button class="btn btn-warning btn-sm btn-rounded">Diproses Warehouse</button>
                                                         @else
                                                         <button class="btn btn-success btn-sm btn-rounded">Dikembalikan</button>
@@ -75,7 +75,7 @@
                                                     <td>
                                                         <a href="{{url('teknisi/peminjaman/detail')}}/{{ $peminjaman->no_peminjaman}}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
                                                         <!-- <a href="/peminjaman/{{ $peminjaman->no_peminjaman }}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-edit"></i></button></a> -->
-                                                        @if($peminjaman->status == "pinjam" )
+                                                        @if($peminjaman->status == "2" )
                                                         <button class="btn btn-success btn-icon-anim btn-square" data-toggle="modal" data-target="#kembali{{ $peminjaman->no_peminjaman }}" action="( {{url('teknisi/peminjaman/kembali')}}/{{ $peminjaman->no_peminjaman }})"><i class="fa fa-undo"></i></button>
                                                         @endif
                                                     </td>

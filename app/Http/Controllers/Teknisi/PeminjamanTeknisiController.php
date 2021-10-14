@@ -42,6 +42,7 @@ class PeminjamanTeknisiController extends Controller
                     'no_peminjaman'  => $request->no_peminjaman[$i],
                     'nama_barang' => $request->nama_brg[$i],
                     'jumlah' => $request->jumlah[$i],
+                    'status'        => '1'
                 ]
             );
         }
@@ -54,7 +55,7 @@ class PeminjamanTeknisiController extends Controller
             'kebutuhan'    => $request->kebutuhan,
             'tglPinjam'     => $request->tgl_pinjam,
             // 'tglKembali'    => $request->null,
-            'status'        => 'tunggu'
+            'status'        => '1'
         ]);
 
         Log::create(
@@ -78,7 +79,7 @@ class PeminjamanTeknisiController extends Controller
         DetailPeminjaman::where('no_peminjaman', $no_peminjaman)
             ->update(
                 [
-                    'status' => 'di proses warehouse',
+                    'status' => '3',
                     'keterangan' => $request->catatan,
                 ]
             );
@@ -86,7 +87,7 @@ class PeminjamanTeknisiController extends Controller
         Peminjaman::where('no_peminjaman', $request->no_peminjaman)
             ->update(
                 [
-                    'status' => 'di proses warehouse',
+                    'status' => '3',
                     'keterangan' => $request->catatan,
                     'tglKembali' => Carbon::now()
                 ]

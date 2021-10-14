@@ -149,20 +149,20 @@
     <script type="text/javascript">
         function ambildata() {
 
-            var tgl = document.forms["myForm"]["tgl_pinjam"].value;
-            var kebutuhan = document.forms["myForm"]["kebutuhan"].value;
-            var jumlah = document.forms["myForm"]["jumlah"].value;
+            // var tgl = document.forms["myForm"]["tgl_pinjam"].value;
+            // var kebutuhan = document.forms["myForm"]["kebutuhan"].value;
+            // var jumlah = document.forms["myForm"]["jumlah"].value;
 
-            if (tgl == "") {
-                alert("Tanggal Pinjam tidak boleh kosong");
-                return false;
-            } else if (jumlah == "") {
-                alert("Jumlah tidak boleh kosong");
-                return false;
-            } else if (kebutuhan == "") {
-                alert("Kebutuhan tidak boleh kosong");
-                return false;
-            } 
+            // if (tgl == "") {
+            //     alert("Tanggal Pinjam tidak boleh kosong");
+            //     return false;
+            // } else if (jumlah == "") {
+            //     alert("Jumlah tidak boleh kosong");
+            //     return false;
+            // } else if (kebutuhan == "") {
+            //     alert("Kebutuhan tidak boleh kosong");
+            //     return false;
+            // } 
 
             var no_peminjaman = document.getElementById('no_peminjaman').value;
             var nama_brg = document.getElementById('nama_brg').value;
