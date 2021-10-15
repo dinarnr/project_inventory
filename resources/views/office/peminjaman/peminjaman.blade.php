@@ -53,9 +53,9 @@
                                                 <td> {{$peminjaman->kebutuhan}}</td>
                                                 <td> {{ date('d-m-Y',strtotime($peminjaman->tglPinjam))}}</td>
                                                 <td> @if (empty($peminjaman->tglKembali))
-                                                @else
-                                                {{ date('d-m-Y',strtotime($peminjaman->tglKembali)) }}
-                                                @endif
+                                                    @else
+                                                    {{ date('d-m-Y',strtotime($peminjaman->tglKembali)) }}
+                                                    @endif
                                                 </td>
                                                 <td>
                                                     @if($peminjaman->status == "pinjam")
@@ -67,7 +67,7 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <a href="#"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
+                                                    <a href="{{url('office/peminjaman/detail')}}/{{ $peminjaman->no_peminjaman}}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
                                                 </td>
                                             </tr>
                                             @endforeach

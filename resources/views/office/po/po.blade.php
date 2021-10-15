@@ -27,25 +27,19 @@
                                 <div class="table-responsive">
 
                                     <table id="datable_1" class="table table-bordered display pb-30">
-                                        <!-- <div class="col md-4">
-                                            <select id="filter-namabarang" class="form-control">
-                                                <option value="1">All</option>
-                                                <option value="2"></option>
-                                            </select>
-                                        </div> -->
                                         <thead>
                                             <tr>
                                                 <th>#</th>
                                                 <th>No PO</th>
                                                 <th>Instansi</th>
-                                                <th>Tgl PO</th>
+                                                <th>Tanggal PO</th>
                                                 <th>Status </th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php $no = 1; ?>
-                                            @foreach ($purchase_order as $po)
+                                            @foreach ($data_po as $po)
                                             <tr>
                                                 <td> {{ $no++}}</td>
                                                 <td> {{$po->no_PO}}</td>
@@ -61,7 +55,7 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <a href="#"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
+                                                <a href="{{url('office/po/detail')}}/{{ $po->no_PO }}"><button class="btn btn-success btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
                                                 </td>
                                             </tr>
                                             @endforeach

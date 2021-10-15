@@ -99,7 +99,6 @@ class PeminjamanController extends Controller
                 'status' => '5',
             ]
         );  
-
         return redirect()->back();
     }
 
