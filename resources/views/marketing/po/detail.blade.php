@@ -184,8 +184,13 @@
 
 <div class="pull-right hide-from-printer">
     <button type="button" class="btn btn-success btn-icon left-icon" onclick="javascript:window.print();">
-        <i class="fa fa-print"></i><span> Print</span>
-    </button>
+    <i class="fa fa-print"></i><span> Print</span></button>
+    
+    <!-- <a href="{{url ('marketing/po/sendemail')}}"><button type="button" class="btn btn-primary btn-icon"><i class="fa  fa-send-o "></i><span>Tes</span></button> </a> -->
+    
+    
+    <button type="button" class="btn btn-primary btn-icon" data-toggle="modal" data-target="#email"> <i class="fa  fa-send-o "></i><span>Email</span></button>
+@include('marketing.po.email')
 </div>
 
 <!-- /Row -->
