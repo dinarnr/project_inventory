@@ -94,8 +94,7 @@
                                             <th>no</th>
                                             <th>Deskripsi</th>
                                             <th>Keterangan</th>
-                                            <th>Qty</th>
-                                            <th> <input type="checkbox" id='checkall' class="check_all"/>&nbsp;Check All</th>
+                                            <th>Jumlah</th>
                                         </tr>
                                     </thead>
                                 
@@ -109,18 +108,11 @@
                                                 <a href="#" id="" style="font-weight:bold" data-type="text" data-pk="1" data-title="Nama barang">{{$detail->nama_barang}}</a><br>&nbsp;&nbsp;- {{$detail->keterangan_barang}}</br>
                                             </td>
                                             <td >
-                                                <a href="#"style="float: left;" class="mr-25" data-toggle="modal" data-target="#addket{{ $detail->id_po }}" action="( {{url('warehouse/so/tambah/keterangan')}}/{{ $detail->id_po}})"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
-                                                {{$detail -> keterangan}}
-                                                
-                                            </td>
+                                                {{$detail -> keterangan}}</td>
                                             <td>
                                                 <a href="#" id="" style="font-weight:bold" data-type="text" data-pk="1" data-title="Jumlah">{{$detail->jumlah}}</a>
                                             </td>
-                                            <td>
-                                                <input type="checkbox" class="checkbox" id="is_active[]" name="is_active[]" value="{{$detail->id_po}}" 
-                                                @if($detail->status == 2) checked=checked @endif />
-                                                <input type="hidden" class="checkbox" id="is_active[]" name="is_active[]" value="{{$detail->id_po}}" />
-                                            </td>
+                                            
                                         </tr>
                                         @endforeach
                                         
@@ -135,10 +127,11 @@
                     </div>
                 </div>
             </div>
+            
             <div class="pull-right hide-from-printer">
-                <button class="btn btn-default" name="draft" type="submit" value="draft" id="draft">Simpan</button>
-                <button class="btn btn-primary mr-10" name="proses" type="submit"  value="proses" id="proses">Proses</button>
-                <!-- form tutup -->
+                <button type="button" class="btn btn-success btn-icon left-icon" onclick="javascript:window.print();">
+                    <i class="fa fa-print"></i><span> Print</span>
+                </button>
             </div>
         </form>
         @include('warehouse.so.addket')
