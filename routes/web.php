@@ -40,6 +40,7 @@ use App\Http\Controllers\Office\TrkKeluarOfficeController;
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Marketing\PDFController;
 use App\Models\Pengajuan;
 use Illuminate\Support\Facades\Route;
 
@@ -222,7 +223,10 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::delete('po/deletepo/{nid_PO}', [POMktController::class, 'deletepo']);
         Route::post('/po/tglpemasangan/{id_PO}', [POMktController::class, 'tglpemasangan']); // edit tanggal pemasangan
 
-        // ----------------PENGAJUAN------------
+        // ----------------EMAIL------------
+        Route::post('po/sendemail', [PDFController::class, 'email']);
+
+
         //  -------------------------RETUR-----------------------------
         Route::get('pengajuan/brgretur', [PengajuanMarketingController::class, 'tabelRetur']);
         Route::post('pengajuan/confirmpengajuan/{id_detailPengajuan}', [PengajuanMarketingController::class, 'proses']);

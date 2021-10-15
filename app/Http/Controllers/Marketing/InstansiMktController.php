@@ -26,7 +26,7 @@ class InstansiMktController extends Controller
     public function addInstansi(Request $request)
     {
         $rules = [
-            'nama_instansi' => 'required',
+            'nama_instansi' => 'required | unique:data_instansi,nama_instansi',
             'email_instansi' => 'required',
             'pic_instansi' => 'required',
             'alamat_instansi' => 'required',
@@ -35,6 +35,7 @@ class InstansiMktController extends Controller
 
         $messages = [
             'nama_instansi.required' => '*Nama instansi tidak boleh kosong',
+            'nama_instansi.unique' => '*Nama instansi tidak boleh sama',
             'email_instansi.required' => '*Email tidak boleh kosong',
             'pic_instansi.required' => '*PIC tidak boleh kosong',
             'alamat_instansi.required' => '*Alamat tidak boleh kosong',
@@ -76,7 +77,7 @@ class InstansiMktController extends Controller
     public function addInstansi2(Request $request)
     {
         $rules = [
-            'nama_instansi' => 'required',
+            'nama_instansi' => 'required |  unique:data_instansi,nama_instansi',
             'email_instansi' => 'required',
             'pic_instansi' => 'required',
             'alamat_instansi' => 'required',
@@ -85,6 +86,7 @@ class InstansiMktController extends Controller
 
         $messages = [
             'nama_instansi.required' => '*Nama instansi tidak boleh kosong',
+            'nama_instansi.unique' => '*Nama instansi tidak boleh sama',
             'email_instansi.required' => '*Email tidak boleh kosong',
             'pic_instansi.required' => '*PIC tidak boleh kosong',
             'alamat_instansi.required' => '*Alamat tidak boleh kosong',
