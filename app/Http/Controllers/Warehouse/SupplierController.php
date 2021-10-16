@@ -52,7 +52,7 @@ class SupplierController extends Controller
 
             ]
         );
-        return redirect('warehouse/supplier');
+        return redirect('warehouse/supplier')->with(['success' => 'Data Berhasil DiUpdate!']);
     }
 
     public function addSupplier(Request $request)
@@ -103,6 +103,6 @@ class SupplierController extends Controller
 
             ]
         );
-        return redirect('warehouse/supplier');
+        return redirect('warehouse/supplier')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 }

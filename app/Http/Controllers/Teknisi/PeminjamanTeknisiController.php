@@ -69,7 +69,7 @@ class PeminjamanTeknisiController extends Controller
 
             ]
         );
-        return redirect('teknisi/peminjaman');
+        return redirect('teknisi/peminjaman')->with(['success' => 'Peminjaman di Proses Warehouse']);
     }
 
     //proses mengembalikan barang

@@ -60,7 +60,7 @@ class KategoriController extends Controller
 
             ]
         );
-        return redirect('warehouse/kategori'); 
+        return redirect('warehouse/kategori')->with(['success' => 'Data Berhasil Ditambahkan!']); 
     }
 
     public function editKategori($id_kategori)
@@ -104,7 +104,7 @@ class KategoriController extends Controller
 
             ]
         );
-        return redirect('warehouse/kategori');
+        return redirect('warehouse/kategori')->with(['success' => 'Data Berhasil DiUpdate!']);
     }
 
     public function deletekategori($id_kategori, Request $request)
