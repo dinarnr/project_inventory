@@ -76,9 +76,10 @@
                                                 @foreach ($data_po as $data_po)
                                                 <tr>
                                                     <div class="">
-                                                        <td class="txt-dark"> Number : <input type="text" id="no_PO" name="no_PO" value="{{$data_po->no_PO}}" style="outline:none;border:0;" readonly> <br>
+                                                        <td class="txt-dark"> No PO : <input type="text" id="no_PO" name="no_PO" value="{{$data_po->no_PO}}" style="outline:none;border:0;" readonly> <br>
+                                                        No SO : {{$data_po->no_SO}} <br>
                                                         Date : {{$data_po->created_at->format('d/m/Y')}} <br>
-                                                        Note : </td>
+                                                         </td>
                                                     </div>
                                                 </tr>
                                                 @endforeach
@@ -95,6 +96,8 @@
                                             <th>Deskripsi</th>
                                             <th>Keterangan</th>
                                             <th>Jumlah</th>
+                                            <th>Rate</th>
+                                            <th>Amount</th>
                                         </tr>
                                     </thead>
                                 
@@ -112,7 +115,8 @@
                                             <td>
                                                 <a href="#" id="" style="font-weight:bold" data-type="text" data-pk="1" data-title="Jumlah">{{$detail->jumlah}}</a>
                                             </td>
-                                            
+                                            <td> <a href="#" id="" style="font-weight:bold" data-type="text" data-pk="1" data-title="Rate">{{$detail->rate}}</a> </td>
+                                            <td> <a href="#" id="" style="font-weight:bold" data-type="text" data-pk="1" data-title="Amount">{{$detail->amount}}</a></td>
                                         </tr>
                                         @endforeach
                                         

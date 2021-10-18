@@ -123,24 +123,13 @@
 																		<table class="table table-bordered align-items-center">
 																			<thead class="thead-light">
 																				<tr>
-																					<!-- <th>No Transaksi</th> -->
-																					<!-- <th>No PO</th> -->
-																					<!-- <th>Tanggal Transaksi</th> -->
 																					<th>Nama barang</th>
 																					<th>Jumlah</th>
-																					<!-- <th>Keterangan</th> -->
 																					<th>Remove</th>
 
 																				</tr>
 																			</thead>
 																			<tbody id="TabelDinamis">
-																				<!-- <tr>
-																					<td><a name="tgl_transaksi[]" id="tgl_transaksi"></a></td>
-																					<td><a name="nama_supplier[]" id="nama_supplier"></a></td>
-																					<td><a name="nama_barang[]" id="nama_barang"></a></td>
-																					<td><a name="jumlah[]" id="jumlah"></a></td>
-																					<td><button type="button" class="btn btn-danger btn-small">&times;</button></td>
-																				</tr> -->
 																			</tbody>
 																		</table>
 
