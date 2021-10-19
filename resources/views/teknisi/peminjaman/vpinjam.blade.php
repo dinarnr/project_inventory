@@ -34,7 +34,7 @@
                     </div>
                     @endif
                         <p>
-                            <a href="{{url('teknisi/peminjaman/tambah')}}" class="btn btn-success"> Tambah Data</a>
+                            <a href="{{url('teknisi/peminjaman/tambah')}}" class="btn btn-primary"> Tambah Data</a>
                         </p>
                         <div class="clearfix"></div>
 

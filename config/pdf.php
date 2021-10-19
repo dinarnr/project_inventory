@@ -2,7 +2,7 @@
 
 return [
 	'mode'                  => 'utf-8',
-	'format'                => 'A4',
+	'format'                => 'A4', 'landscape',
 	'author'                => '',
 	'subject'               => '',
 	'keywords'              => '',
@@ -13,3 +13,4 @@ return [
 	'pdf_a_auto'            => false,
 	'icc_profile_path'      => ''
 ];
+ 

@@ -223,9 +223,9 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::delete('po/deletepo/{nid_PO}', [POMktController::class, 'deletepo']);
         Route::post('/po/tglpemasangan/{id_PO}', [POMktController::class, 'tglpemasangan']); // edit tanggal pemasangan
 
-        // ----------------EMAIL------------
+        // ----------------EMAIL&PDF------------
         Route::post('po/sendemail', [PDFController::class, 'email']);
-
+        Route::get('po/cetak_pdf={id}', [PDFController::class, 'cetak_pdf'])->name('cetak_pdf');
 
         //  -------------------------RETUR-----------------------------
         Route::get('pengajuan/brgretur', [PengajuanMarketingController::class, 'tabelRetur']);

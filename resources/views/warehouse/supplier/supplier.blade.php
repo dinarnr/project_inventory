@@ -34,7 +34,7 @@
                 @endif
                     <div class="panel-heading">
                         <p>
-                            <a href="{{ url('warehouse/supplier/tambah') }}" class="btn btn-success"> Tambah Data</a>
+                            <a href="{{ url('warehouse/supplier/tambah') }}" class="btn btn-primary"> Tambah Data</a>
                         </p>
                        
 

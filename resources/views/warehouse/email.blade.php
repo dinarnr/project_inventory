@@ -6,9 +6,9 @@
 </head>
 
 <body>
-    <p>{{ $details['data'] }}</p>
+    <p>Berikut merupakan pesan anda</p>
 
-    <p>Detail Purchase Order</p>
+
 </body>
 
 </html>

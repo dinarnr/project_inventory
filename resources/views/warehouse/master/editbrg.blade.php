@@ -56,11 +56,7 @@
                                                 <input type="text" value="{{ $brg->kode_barang }}" class="form-control" name="edit_kode_barang" readonly>
                                             </div>
                                             
-                                            <div class="form-group">
-                                                <label class="control-label mb-10 text-left">Stok</label>
-                                                <input type="text" class="form-control" name="edit_stok" value="{{ $brg->stok }}">
-                                                
-                                            </div>
+                                           
                                             <div class="form-group mb-30">
                                                 <label class="control-label mb-10 text-left">File upload</label>
                                                 <input type="file" id="gambar" name="gambar">

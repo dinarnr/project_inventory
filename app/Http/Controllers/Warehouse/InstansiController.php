@@ -79,7 +79,7 @@ class InstansiController extends Controller
 
             ]
         );
-        return redirect('warehouse/instansi');
+        return redirect('warehouse/instansi')->with(['success' => 'Data Berhasil Ditambahkan!']);
         
     }
 
@@ -114,6 +114,6 @@ class InstansiController extends Controller
 
             ]
         );
-        return redirect('warehouse/instansi');
+        return redirect('warehouse/instansi')->with(['success' => 'Data Berhasil Diupdate!']);
     }
 }

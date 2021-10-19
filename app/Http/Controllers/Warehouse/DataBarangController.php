@@ -25,6 +25,12 @@ class DataBarangController extends Controller
         $barang = Master::all();
         $jenis = Jenis::all();
         $data_stok = Stok::all();
+
+        if ($barang->stok = 5) {
+            $alert = "<script>alert(stok hampir habis)</script>";
+        }
+
+
         return view('warehouse/master/databrg', compact('barang', 'jenis', 'data_stok'));
     }
 
@@ -34,28 +40,28 @@ class DataBarangController extends Controller
         $kategori = kategori::all();
         // $jenis = Jenis::all();
         return view('warehouse/master/addbarang', compact('barang', 'kategori'));
-    } 
+    }
 
     public function addbarang2(Request $request)
     {
         $rules = [
             'nama_barang' => 'required',
         ];
-        
+
         $messages = [
             'nama_barang.required' => '*Nama barang tidak boleh kosong',
         ];
         $this->validate($request, $rules, $messages);
-        
+
         if ($request->gambar) {
             $namaFile = time() . '.' . $request->gambar->extension();
             $request->gambar->move(public_path('img/logo'), $namaFile);
-            
+
             $kode = strtoupper(substr($request->nama_barang, 0, 3));
             $check = count(Master::where('kode_barang', 'like', "%$kode%")->get()->toArray());
             $angka = sprintf("%03d", (int)$check + 1);
             $kode_barang = $kode . "" . $angka;
-            
+
             // dd($request->stok);
             Master::create([
                 'kode_kategori' => $request->kode,
@@ -66,7 +72,7 @@ class DataBarangController extends Controller
                 'status' => $request->status
             ]);
         } else {
-            
+
             $kode = strtoupper(substr($request->nama_barang, 0, 3));
             $check = count(Master::where('kode_barang', 'like', "%$kode%")->get()->toArray());
             $angka = sprintf("%03d", (int)$check + 1);
@@ -97,7 +103,7 @@ class DataBarangController extends Controller
                     'stok' => $request->stok,
                     'kode_barang' => $kode_barang,
                     'keterangan' => 'Barang Ditambahkan'
-                ]  
+                ]
             );
         }
         return redirect('warehouse/barang')->with(['success' => 'Data berhasil ditambahkan']);
@@ -105,7 +111,7 @@ class DataBarangController extends Controller
 
     public function editBarang($id_master)
     {
-   
+
         $brg = Master::find($id_master);
         $kategori = kategori::all();
         $jenis = Jenis::all();
@@ -163,5 +169,4 @@ class DataBarangController extends Controller
         }
         return redirect('warehouse/barang')->with(['success' => 'Data berhasil di update']);    
     }
-    
 }
