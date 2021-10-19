@@ -32,7 +32,7 @@
                 @endif    
                         <div class="panel-heading">
                             <div class="pull-left">
-                                <a href="{{ url('warehouse/barang/tambah') }}" class="btn btn-success"> Tambah Data</a>
+                                <a href="{{ url('warehouse/barang/tambah') }}" class="btn btn-primary"> Tambah Data</a>
                             </div>
                             <div class="clearfix"></div>
                         </div>
