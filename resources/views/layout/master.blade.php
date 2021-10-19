@@ -53,8 +53,8 @@
                 <ul class="nav navbar-right top-nav pull-right">
 
                     <li class="dropdown auth-drp">
-                        <a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown">    
-                                <img src="{{ url('img/logo') }}/{{ Auth::user()->gambar }}" alt="user_auth" class="user-auth-img img-circle">
+                        <a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown">
+                            <img src="{{ url('img/logo') }}/{{ Auth::user()->gambar }}" alt="user_auth" class="user-auth-img img-circle">
                             <span class="user-online-status"></span>
                         </a>
                         <ul class="dropdown-menu user-auth-dropdown" data-dropdown-in="flipInX" data-dropdown-out="flipOutX">
@@ -105,7 +105,7 @@
                         </li> -->
                     </ul>
                 </li>
-                
+
                 <li>
                     <a href="javascript:void(0);" data-toggle="collapse" data-target="#ecom_dr">
                         <div class="pull-left"><i class="zmdi zmdi-shopping-basket mr-20"></i><span class="right-nav-text">Transaksi</span></div>
@@ -154,7 +154,7 @@
                         <div class="clearfix"></div>
                     </a>
                     <ul id="pengajuan" class="collapse collapse-level-1">
-                        
+
                         <li>
                             <a href="/warehouse/pengajuan/brgretur">Barang retur</a>
                         </li>
@@ -315,17 +315,25 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{ url('office/barang/stok') }}">
+                        <div class="pull-left"><i class="zmdi zmdi-book mr-20"></i><span class="right-nav-text">Stok</span></div>
+                        <div class="clearfix"></div>
+                    </a>
+                </li>
+                <li>
                     <a href="javascript:void(0);" data-toggle="collapse" data-target="#dashboard_dr">
-                        <div class="pull-left"><i class="zmdi zmdi-landscape mr-20"></i><span class="right-nav-text">Data Barang</span></div>
+                        <div class="pull-left"><i class="zmdi zmdi-landscape mr-20"></i><span class="right-nav-text">Data Transaksi</span></div>
                         <div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>
                         <div class="clearfix"></div>
                     </a>
                     <ul id="dashboard_dr" class="collapse collapse-level-1">
                         <li>
-                            <a href="{{ url('office/barang/stok') }}">Stok</a>
+                            <!-- <ul id="transaksi" class="collapse collapse-level-2"> -->
+                        <li>
+                            <a href="{{ url('office/transaksi/masuk') }}">Transaksi Masuk</a>
                         </li>
                         <li>
-                            <a href="{{ url('office/barang/transaksi') }}">Transaksi Masuk</a>
+                            <a href="{{ url('office/transaksi/keluar') }}">Transaksi Keluar</a>
                         </li>
                     </ul>
                 </li>
@@ -347,13 +355,13 @@
                         <div class="clearfix"></div>
                     </a>
                 </li>
-                
+
                 <li>
                     <a href="{{ url('office/pembelian/datapembelian') }}">
                         <div class="pull-left"><i class="zmdi zmdi-shopping-basket mr-20"></i><span class="right-nav-text">Data Pembelian</span></div>
                         <div class="clearfix"></div>
                     </a>
-                </li>  
+                </li>
 
                 @endif
 

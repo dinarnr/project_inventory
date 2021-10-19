@@ -26,6 +26,13 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="panel panel-default card-view">
+                @if ($message = Session::get('success'))
+                    <div class="alert alert-success">
+                    {{ session()->get('success') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </div>
+                @endif
                     <div class="panel-heading">
                         <p>
                             <a href="{{ url('warehouse/kategori/tambah') }}" class="btn btn-success">Tambah baru

@@ -74,10 +74,11 @@
                                 <label class="col-lg-3 control-label">Password</label>
                                 <div class="col-lg-8">
                                 <input class="form-control" name="edit_password" type="password" id="myInput" value="">
+                                <input class="form-control" name="edit_password" type="hidden" id="myInput" value="{{ Auth::user()->password}}" >
                                 <input type="checkbox" onclick="myFunction()">Show Password
                                 </div>
                             </div>
-
+                            
                             <div class="form-group">
                                 <label class="col-md-3 control-label"></label>
                                 <div class="col-md-8">

@@ -52,13 +52,13 @@ class SupplierController extends Controller
 
             ]
         );
-        return redirect('warehouse/supplier');
+        return redirect('warehouse/supplier')->with(['success' => 'Data Berhasil DiUpdate!']);
     }
 
     public function addSupplier(Request $request)
     {
         $rules = [
-            'nama_supplier' => 'required',
+            'nama_supplier' => 'required | unique:data_supplier,nama_supplier',
             'email_supplier' => 'required',
             'pic_supplier' => 'required',
             'alamat_supplier' => 'required',
@@ -67,6 +67,7 @@ class SupplierController extends Controller
 
         $messages = [
             'nama_supplier.required' => '*Nama supplier tidak boleh kosong',
+            'nama_supplier.unique'  => '*Nama sudah terdaftar',
             'email_supplier.required' => '*Email tidak boleh kosong',
             'pic_supplier.required' => '*PIC tidak boleh kosong',
             'alamat_supplier.required' => '*Alamat tidak boleh kosong',
@@ -102,6 +103,6 @@ class SupplierController extends Controller
 
             ]
         );
-        return redirect('warehouse/supplier');
+        return redirect('warehouse/supplier')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 }

@@ -24,8 +24,15 @@
             <div class="col-sm-12">
                 <div class="panel panel-default card-view">
                     <div class="panel-heading">
+                    @if ($message = Session::get('success'))
+                    <div class="alert alert-success">
+                    {{ session()->get('success') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </div>
+                    @endif
                         <div class="pull-left">
-                            <a href="{{url ('marketing/po/tambah')}}"> <button class="btn btn-success btn-icon-anim"> Tambah Data</button> </a>
+                            <a href="{{url ('marketing/po/tambah')}}"> <button class="btn btn-primary btn-icon-anim"> Tambah Data</button> </a>
                         </div>
 
                         <div class="clearfix"></div>

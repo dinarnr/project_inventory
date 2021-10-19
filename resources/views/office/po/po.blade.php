@@ -18,34 +18,50 @@
             <!-- /Breadcrumb -->
         </div>
         <!-- Row -->
+
         <div class="row">
             <div class="col-sm-12">
                 <div class="panel panel-default card-view">
+                    <h5 class="txt-dark"> <strong> Filter </strong></h5>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label mb-10">Start date</label>
+                                <input type="date" id="start_date" name="start_date" value="" class="form-control" placeholder="">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label mb-10">End date</label>
+                                <input type="date" id="end_date" name="end_date" value="garansi" class="form-control" placeholder="">
+                            </div>
+                        </div>
+                        <div class="col-md-4 mt-30">
+                            <div class="form-group">
+                                <button type="button" onclick="" class="btn btn-primary ">Cek</button>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="panel-wrapper collapse in">
                         <div class="panel-body">
                             <div class="table-wrap">
                                 <div class="table-responsive">
 
                                     <table id="datable_1" class="table table-bordered display pb-30">
-                                        <!-- <div class="col md-4">
-                                            <select id="filter-namabarang" class="form-control">
-                                                <option value="1">All</option>
-                                                <option value="2"></option>
-                                            </select>
-                                        </div> -->
                                         <thead>
                                             <tr>
                                                 <th>#</th>
                                                 <th>No PO</th>
                                                 <th>Instansi</th>
-                                                <th>Tgl PO</th>
+                                                <th>Tanggal PO</th>
                                                 <th>Status </th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php $no = 1; ?>
-                                            @foreach ($purchase_order as $po)
+                                            @foreach ($data_po as $po)
                                             <tr>
                                                 <td> {{ $no++}}</td>
                                                 <td> {{$po->no_PO}}</td>
@@ -61,7 +77,7 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <a href="#"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
+                                                    <a href="{{url('office/po/detail')}}/{{ $po->no_PO }}"><button class="btn btn-success btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
                                                 </td>
                                             </tr>
                                             @endforeach

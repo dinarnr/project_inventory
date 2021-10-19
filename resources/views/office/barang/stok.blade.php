@@ -27,12 +27,6 @@
                                 <div class="table-responsive">
 
                                     <table id="datable_1" class="table table-bordered display pb-30">
-                                        <!-- <div class="col md-4">
-                                            <select id="filter-namabarang" class="form-control">
-                                                <option value="1">All</option>
-                                                <option value="2"></option>
-                                            </select>
-                                        </div> -->
                                         <thead>
                                             <tr>
                                                 <th>#</th>

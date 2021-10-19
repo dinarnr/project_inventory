@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Administrator;
 use App\Models\Log;
 use App\Models\User;
+use Illuminate\Contracts\Session\Session;
 
 class UserController extends Controller
 {
@@ -92,6 +93,6 @@ class UserController extends Controller
                 'password' => bcrypt($request->edit_password)
                 ]);
         }
-        return redirect('admin/profile/profile'); 
+        return redirect('admin/profile/profile')->with(['success' => 'Data Berhasil Disimpan!']); 
     }
 }

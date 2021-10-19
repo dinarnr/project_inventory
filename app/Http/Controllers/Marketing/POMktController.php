@@ -143,9 +143,8 @@ class POMktController extends Controller
                 ]
             );
         }
-        return redirect('marketing/po');
-    }
-
+        return redirect('marketing/po')->with(['success' => 'Data berhasil ditambahkan']);
+    } 
 
     // public function adddraft2(Request $request)
     // {

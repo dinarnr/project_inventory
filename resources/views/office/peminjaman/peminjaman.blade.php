@@ -21,6 +21,27 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="panel panel-default card-view">
+                <h5 class="txt-dark"> <strong> Filter </strong></h5>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label mb-10">Start date</label>
+                                <input type="date" id="start_date" name="start_date" value="" class="form-control" placeholder="">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label mb-10">End date</label>
+                                <input type="date" id="end_date" name="end_date" value="garansi" class="form-control" placeholder="">
+                            </div>
+                        </div>
+                        <div class="col-md-4 mt-30">
+                            <div class="form-group">
+                                <button type="button" onclick="" class="btn btn-primary ">Cek</button>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <div class="panel-wrapper collapse in">
                         <div class="panel-body">
                             <div class="table-wrap">
@@ -53,9 +74,9 @@
                                                 <td> {{$peminjaman->kebutuhan}}</td>
                                                 <td> {{ date('d-m-Y',strtotime($peminjaman->tglPinjam))}}</td>
                                                 <td> @if (empty($peminjaman->tglKembali))
-                                                @else
-                                                {{ date('d-m-Y',strtotime($peminjaman->tglKembali)) }}
-                                                @endif
+                                                    @else
+                                                    {{ date('d-m-Y',strtotime($peminjaman->tglKembali)) }}
+                                                    @endif
                                                 </td>
                                                 <td>
                                                     @if($peminjaman->status == "pinjam")
@@ -67,7 +88,7 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <a href="#"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
+                                                    <a href="{{url('office/peminjaman/detail')}}/{{ $peminjaman->no_peminjaman}}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
                                                 </td>
                                             </tr>
                                             @endforeach
