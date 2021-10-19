@@ -70,7 +70,7 @@ class InstansiMktController extends Controller
             'ip'=> $request->ip()
             ]
         );
-        return redirect('marketing/instansi');
+        return redirect('marketing/instansi')->with(['success' => 'Data berhasil ditambahkan']);
     }
 
     //(modal)
@@ -157,6 +157,6 @@ class InstansiMktController extends Controller
 
             ]
         );
-        return redirect('marketing/instansi');
+        return redirect('marketing/instansi')->with(['success' => 'Data berhasil diupdate']);
     }
 }

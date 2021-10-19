@@ -28,18 +28,11 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="panel panel-default card-view ">
-                    <!-- <div class="panel-heading">
-                                <div class="clearfix"></div>
-                            </div> -->
                     <div class="panel-wrapper collapse in ">
                         <div class="panel-body">
                             <div class="form-wrap mt-3">
                                 <form action="{{ url('marketing/po/simpan') }}" method="POST" enctype="multipart/form-data" name="myForm">
                                     @csrf
-                                    <!-- <div class="form-group">
-                                        <label class="control-label mb-10 text-left" for="example-email">Nomor PO Barang</label>
-                                        <input type="text" id="noPO" name="noPO" class="form-control" readonly>
-                                    </div> -->
                                     <div class="row">
                                         @foreach ((array)$noSO as $noSO)
                                         <div class="col-md-6">
@@ -136,17 +129,14 @@
                                         <div class="col-md-4">
                                             <label class="control-label mb-10">Quantity</label>
                                             <input type="text" id="jumlah" name="jumlah" class="form-control a2" value="">
-                                            <!-- <span class="help-block"> This is inline help </span>  -->
                                         </div>
                                         <div class="col-md-4">
                                             <label class="control-label mb-10">Rate</label>
                                             <input type="text" id="rate" name="rate" class="form-control b2" value="">
-                                            <!-- <span class="help-block"> This is inline help </span>  -->
                                         </div>
                                         <div class="col-md-4">
                                             <label class="control-label mb-10">Amount</label>
                                             <input type="text" id="amount" name="amount" class="form-control" value="" readonly>
-                                            <!-- <span class="help-block"> This is inline help </span>  -->
                                         </div>
                                     </div>
                                     <div class="form-group mt-20" style="text-align:right;">

@@ -162,11 +162,11 @@
                                 <td>Balance Due</td>
                                 <td>{{number_format($total + (($data_po->ppn/100)*$total) + (($data_po->pph/100)*$total))}}</td>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <td colspan="4"></td>
                                 <td><button class="btn btn-primary btn-icon-anim " data-toggle="modal" data-target="#editppnpph" action=""><i class="">Edit</i></button></td>
                                 @include('marketing.po.edit3')
-                            </tr>
+                            </tr> -->
                             </tbody>
                             </table>
                             <div class="row">

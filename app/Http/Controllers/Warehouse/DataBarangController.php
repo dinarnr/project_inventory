@@ -100,7 +100,7 @@ class DataBarangController extends Controller
                 ]  
             );
         }
-        return redirect('warehouse/barang')->with(['success' => 'Data Berhasil Ditambahkan!']);
+        return redirect('warehouse/barang')->with(['success' => 'Data berhasil ditambahkan']);
     }
 
     public function editBarang($id_master)
@@ -161,7 +161,7 @@ class DataBarangController extends Controller
                 ]
             );
         }
-        return redirect('warehouse/barang')->with(['success' => 'Data Berhasil DiUpdate!']);    
+        return redirect('warehouse/barang')->with(['success' => 'Data berhasil di update']);    
     }
     
 }

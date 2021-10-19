@@ -62,7 +62,7 @@
                                                 <td>{{ $no++ }}</td>
                                                 <td>{{ $garansi->no_transaksi}}</td>
                                                 <td>{{ $garansi->jns_barang }}</td>
-                                                <td>{{ $garansi->tgl_transaksi }}</td>
+                                                <td>{{ date('d-m-Y',strtotime($garansi->tgl_transaksi)) }}</td>
                                                 <td>
                                                     <a href="{{ url('office/transaksi/detailkeluargaransi') }}/{{ $garansi->no_transaksi }}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
                                                 </td>
