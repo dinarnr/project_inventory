@@ -13,10 +13,12 @@ class PeminjamanOfficeController extends Controller
     //
     public function peminjaman()
     {
+        $data_detail = Peminjaman::all();
         $peminjaman = Peminjaman::all();
-        return view('office/peminjaman/peminjaman', compact('peminjaman'));
+        return view('office/peminjaman/peminjaman', compact('peminjaman', 'data_detail'));
     }
 
+    
     public function detailpeminjaman($no_peminjaman)
     {
         $data_detail = DetailPeminjaman::where('no_peminjaman', $no_peminjaman)->get();

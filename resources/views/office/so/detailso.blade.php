@@ -96,8 +96,8 @@
                                             <th>Deskripsi</th>
                                             <th>Keterangan</th>
                                             <th>Jumlah</th>
-                                            <th>Rate</th>
-                                            <th>Amount</th>
+                                            <th>Rate (Rp)</th>
+                                            <th>Amount (Rp)</th>
                                         </tr>
                                     </thead>
                                 

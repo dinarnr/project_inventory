@@ -21,7 +21,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="panel panel-default card-view">
-                <h5 class="txt-dark"> <strong> Filter </strong></h5>
+                    <h5 class="txt-dark"> <strong> Filter </strong></h5>
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
@@ -41,19 +41,13 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="panel-wrapper collapse in">
                         <div class="panel-body">
                             <div class="table-wrap">
                                 <div class="table-responsive">
 
                                     <table id="datable_1" class="table table-bordered display pb-30">
-                                        <!-- <div class="col md-4">
-                                            <select id="filter-namabarang" class="form-control">
-                                                <option value="1">All</option>
-                                                <option value="2"></option>
-                                            </select>
-                                        </div> -->
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -80,11 +74,11 @@
                                                 </td>
                                                 <td>
                                                     @if($peminjaman->status == "pinjam")
-                                                    <button class="btn btn-primary btn-sm btn-rounded">Pinjam</button>
+                                                    <span class="label label-primary"> Pinjam </span>
                                                     @elseif($peminjaman->status == "di proses warehouse" )
-                                                    <button class="btn btn-warning btn-sm btn-rounded">Diproses Warehouse</button>
+                                                    <span class="label label-warning"> Diproses Warehouse </span>
                                                     @else
-                                                    <button class="btn btn-success btn-sm btn-rounded">Dikembalikan</button>
+                                                    <span class="label label-success"> Dikembalikan </span>
                                                     @endif
                                                 </td>
                                                 <td>

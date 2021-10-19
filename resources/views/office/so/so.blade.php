@@ -51,13 +51,17 @@
                                                         <td>{{ $data_po->instansi}}</td>
                                                         <td>
                                                             @if($data_po->status === 1 )
-                                                            Purchase Order <strong> DIPROSES </strong>Warehouse
+                                                            <span class="label label-warning">	Diproses Warehouse </span>
+                                                            <!-- Purchase Order <strong> DIPROSES </strong>Warehouse -->
                                                             @elseif ($data_po->status === 2 )
-                                                            Purchase Order <strong>DISETUJUI</strong> Warehouse 
+                                                            <span class="label label-success">	Disetujui Warehouse </span>
+                                                            <!-- Purchase Order <strong>DISETUJUI</strong> Warehouse  -->
                                                             @elseif ($data_po->status === 5)
-                                                            Purchase Order dibatalkan 
+                                                            <span class="label label-danger"> PO dibatalkan </span>
+                                                            <!-- Purchase Order dibatalkan  -->
                                                             @else
-                                                            Draft
+                                                            <span class="label label-default">Draft </span>
+                                                            <!-- Draft -->
                                                             @endif
                                                         <td>{{  date('d-m-Y',strtotime($data_po->created_at))}}</td>
                                                         <td>
