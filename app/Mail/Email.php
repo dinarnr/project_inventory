@@ -31,7 +31,7 @@ class Email extends Mailable
                 ]
             )
             ->attach(public_path('pdf/nama.pdf'), [
-                'as' => 'Isi Hatiku.pdf', 
+                'as' => 'NS-Detail PO.pdf',
                 'mime' => 'application/pdf'
             ]);
     }

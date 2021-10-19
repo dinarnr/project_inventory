@@ -83,7 +83,7 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::get('barang/ubah/{id_master}', [DataBarangController::class, 'editBarang']);
         Route::put('barang/ubah/simpan', [DataBarangController::class, 'updateBarang']);
         // <---------------------DATA STOK _--------------------------->
-        Route::get('stok', [StokController::class, 'data_stok']);   
+        Route::get('stok', [StokController::class, 'data_stok']);
         Route::get('stok/{kode_barang}', [StokController::class, 'detailstok']);
 
         // <----------------------DATA KATEGORI--------------------------->
@@ -98,12 +98,12 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::get('transaksi/masuk', [TrkMasukController::class, 'transaksi']);
         Route::get('transaksi/masukbaru/tambah', [TrkMasukController::class, 'addmasukbaru']);
         Route::post('transaksi/masukbaru/simpan', [TrkMasukController::class, 'addmasukbaru2']);
-        Route::post('transaksi/masukbaru/tambah/fetch', [TrkMasukController::class, 'fetch'])->name ('trkmasukcontroller.fetch');
+        Route::post('transaksi/masukbaru/tambah/fetch', [TrkMasukController::class, 'fetch'])->name('trkmasukcontroller.fetch');
         // Route::get('transaksi/masukbaru/tambah/kode_barang/{nama_barang}', [TrkMasukontroller::class, 'kode_barang'])->name ('trkmasukcontroller.kode_barang');
         Route::get('transaksi/masukretur/tambah', [TrkMasukController::class, 'addmasukretur']);
         Route::post('transaksi/masukretur/simpan', [TrkMasukController::class, 'addmasukretur2']);
-        Route::post('transaksi/masukretur/tambah/fetch', [TrkMasukController::class, 'fetch'])->name ('trkmasukcontroller.fetch');
-        
+        Route::post('transaksi/masukretur/tambah/fetch', [TrkMasukController::class, 'fetch'])->name('trkmasukcontroller.fetch');
+
         Route::get('transaksi/detailmasukbaru/{no_transaksi}', [TrkMasukController::class, 'detailmasuk']);
 
         Route::post('transaksi/edit/jumlah/{id_transaksi}', [TrkMasukController::class, 'editjumlah']); //modal edit jumlah
@@ -121,8 +121,8 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::get('transaksi/keluarretur/tambah', [TrkKeluarController::class, 'addkeluarretur']);
         Route::post('transaksi/keluarretur/simpan', [TrkKeluarController::class, 'addkeluarretur2']);
         Route::get('transaksi/detailkeluarretur/{no_transaksi}', [TrkKeluarController::class, 'detailretur']);
-        Route::post('transaksi/keluarretur/tambah/kode', [TrkKeluarController::class, 'kode'])->name ('trkkeluarcontroller.kode');
-    
+        Route::post('transaksi/keluarretur/tambah/kode', [TrkKeluarController::class, 'kode'])->name('trkkeluarcontroller.kode');
+
         Route::get('transaksi/keluarinstalasi/tambah', [TrkKeluarController::class, 'transaksiinstalasi']);
         Route::post('transaksi/keluarinstalasi/tambah/fetch', [TrkKeluarController::class, 'fetch'])->name('trkkeluarcontroller.fetch');
         Route::get('transaksi/keluarinstalasi/tambah/instansi/{no_so}', [TrkKeluarController::class, 'instansi'])->name('trkkeluarcontroller.instansi');
@@ -206,8 +206,8 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         // <----------------------DATA PO--------------------------->
         Route::get('po', [POMktController::class, 'index']);
         Route::get('po/tambah', [POMktController::class, 'addpo']);
-        Route::post('po/tambah/fetch', [POMktController::class, 'fetch'])->name ('pomktcontroller.fetch');
-        Route::post('po/tambah/instansi', [POMktController::class, 'instansi'])->name ('pomktcontroller.instansi');
+        Route::post('po/tambah/fetch', [POMktController::class, 'fetch'])->name('pomktcontroller.fetch');
+        Route::post('po/tambah/instansi', [POMktController::class, 'instansi'])->name('pomktcontroller.instansi');
         Route::post('po/simpan', [POMktController::class, 'addpo2']);
         Route::get('po/ubah/{no_PO}', [POMktController::class, 'editpo']); //edit po
         Route::get('po/tambah/{no_PO}', [POMktController::class, 'add']); //tambah data di editpo
@@ -221,9 +221,9 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::delete('po/deletepo/{nid_PO}', [POMktController::class, 'deletepo']);
         Route::post('/po/tglpemasangan/{id_PO}', [POMktController::class, 'tglpemasangan']); // edit tanggal pemasangan
 
-        // ----------------EMAIL------------
+        // ----------------EMAIL&PDF------------
         Route::post('po/sendemail', [PDFController::class, 'email']);
-
+        Route::get('po/cetak_pdf={id}', [PDFController::class, 'cetak_pdf'])->name('cetak_pdf');
 
         //  -------------------------RETUR-----------------------------
         Route::get('pengajuan/brgretur', [PengajuanMarketingController::class, 'tabelRetur']);
@@ -244,7 +244,6 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::get('pengajuan/pembelian/tambah', [PengajuanMarketingController::class, 'addpembelian']);
         Route::post('pengajuan/pembelian/simpan', [PengajuanMarketingController::class, 'addpembelian2']);
         Route::post('pengajuan/confirmpembelian/{id_detailPengajuan}', [PengajuanMarketingController::class, 'prosespembelian']);
-        
     });
 
     Route::group(['prefix' => 'teknisi/'], function () {

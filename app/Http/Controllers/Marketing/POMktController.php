@@ -10,6 +10,7 @@ use App\Models\PO;
 use App\Models\Profil;
 use  App\Models\Instansi;
 use App\Models\Master;
+use Barryvdh\DomPDF\PDF;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -20,7 +21,7 @@ class POMktController extends Controller
     //
     public function index()
     {
-        $data_po_wh = PO::all()->where('status','>=', '1');
+        $data_po_wh = PO::all()->where('status', '>=', '1');
         $data_po = PO::all();
         return view('marketing/po/po', compact('data_po', 'data_po_wh'));
     }
@@ -35,68 +36,68 @@ class POMktController extends Controller
         $data_instansi = Instansi::all();
         $barang = Master::where([['status', 'aktif']])->get();
 
-        
+
         $kode = strtoupper(substr("SO-", 0, 3));
         $check = count(PO::where('no_SO', 'like', "%$kode%")->get()->toArray());
         $angka = sprintf("%03d", (int)$check + 1);
         $noSO = $kode . "" . $angka;
 
         // $noPO = IdGenerator::generate(['table' => 'purchase_order', 'length' => 8, 'prefix' => date('ym')]);
-      
+
         return view('marketing/po/addpo', compact('noPO', 'noSO', 'data_instansi', 'barang'));
     }
 
     // ketika memilih proses atau draft
     public function addpo2(Request $request)
     {
-        // dd($request->kode_instansi);
-       $user = Auth::user();
+        // dd($request);
+        $user = Auth::user();
         if ($request->proses == 'proses') {
-        $jumlah_data = count($request->noPO);
-        for ($i = 0; $i < $jumlah_data; $i++) {
-            DetailPO::create(
+            $jumlah_data = count($request->noPO);
+            for ($i = 0; $i < $jumlah_data; $i++) {
+                DetailPO::create(
+                    [
+                        'no_PO' => $request->noPO[$i],
+                        'no_SO' => $request->noSO[$i],
+                        'instansi' => $request->instansi1[$i],
+                        'nama_barang' => $request->nama_barang[$i],
+                        'kode_barang' => $request->kode_barang[$i],
+                        'jumlah' => $request->jumlah[$i],
+                        'rate' => $request->rate1[$i],
+                        'amount' => $request->amount1[$i],
+                        'keterangan_barang' => $request->keterangan[$i],
+                    ]
+                );
+            }
+
+            PO::create(
                 [
-                    'no_PO' => $request->noPO[$i],
-                    'no_SO' => $request->noSO[$i],
-                    'instansi' => $request->instansi1[$i],
-                    'nama_barang' => $request->nama_barang[$i],
-                    'kode_barang' => $request->kode_barang[$i],
-                    'jumlah' => $request->jumlah[$i],
-                    'rate' => $request->rate1[$i],
-                    'amount' => $request->amount1[$i],
-                    'keterangan_barang' => $request->keterangan[$i],
+                    'no_PO' => $request->no_PO,
+                    'no_SO' => $request->no_SO,
+                    'instansi' => $request->instansi,
+                    'kode_instansi' => $request->kode_instansi,
+                    'total' => $request->total1,
+                    'ppn' => $request->ppn,
+                    'pph' => $request->pph,
+                    'balance' => $request->balance1,
+                    'tgl_pemasangan' => $request->tgl_transaksi,
+                    'pic_marketing' => $user->name,
+                    'status' => '1'
                 ]
             );
-        }
 
-        PO::create(
-            [
-                'no_PO' => $request->no_PO,
-                'no_SO' => $request->no_SO,
-                'instansi' => $request->instansi,
-                'kode_instansi' => $request->kode_instansi,
-                'total' => $request->total1,
-                'ppn' => $request->ppn,
-                'pph' => $request->pph,
-                'balance' => $request->balance1,
-                'tgl_pemasangan' => $request->tgl_transaksi,
-                'pic_marketing' => $user->name,
-                'status' => '1'
-            ]
-        );
+            $user = Auth::user();
+            Log::create(
+                [
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'divisi' => $user->divisi,
+                    'deskripsi' => 'Create PO',
+                    'status' => '2',
+                    'ip' => $request->ip()
 
-        $user = Auth::user();
-        Log::create(
-            [
-                'name' => $user->name,
-                'email' => $user->email,
-                'divisi' => $user->divisi,
-                'deskripsi' => 'Create PO',
-                'status' => '2',
-                'ip' => $request->ip()
-
-            ]
-        );
+                ]
+            );
         } else {
             $jumlah_data = count($request->noPO);
             for ($i = 0; $i < $jumlah_data; $i++) {
@@ -114,7 +115,7 @@ class POMktController extends Controller
                 );
             }
 
-            PO::create( 
+            PO::create(
                 [
                     'no_PO' => $request->no_PO,
                     'no_SO' => $request->no_SO,
@@ -143,9 +144,9 @@ class POMktController extends Controller
             );
         }
         return redirect('marketing/po');
-    } 
+    }
 
-    
+
     // public function adddraft2(Request $request)
     // {
     //     $user = Auth::user();
@@ -202,7 +203,7 @@ class POMktController extends Controller
         $total = DetailPO::where('no_PO', $no_PO)->sum('amount');
         $nama_instansi = PO::where('no_PO', $no_PO)->pluck('kode_instansi');
         $instansi = Instansi::where('kode_instansi', $nama_instansi)->get();
-        return view('marketing/po/editpo', compact('data_po', 'data_detail', 'tanggal','total', 'instansi','profil'));
+        return view('marketing/po/editpo', compact('data_po', 'data_detail', 'tanggal', 'total', 'instansi', 'profil'));
     }
 
     public function detailpo($no_PO)
@@ -216,7 +217,7 @@ class POMktController extends Controller
         $user = Auth::user();
         $instansi = Instansi::where('kode_instansi', $nama_instansi)->get();
         // dd($instansi);
-        return view('marketing/po/detail', compact('data_po', 'data_detail', 'user', 'tanggal', 'total', 'instansi','profil'));
+        return view('marketing/po/detail', compact('no_PO', 'data_po', 'data_detail', 'user', 'tanggal', 'total', 'instansi', 'profil', 'no_PO'));
     }
 
     //di edit draft bisa tambah data
@@ -230,7 +231,7 @@ class POMktController extends Controller
         $nama_instansi = PO::where('no_PO', $no_PO)->pluck('instansi');
         $no_SO = PO::where('no_PO', $no_PO)->pluck('no_SO');
         $instansi = Instansi::where('nama_instansi', $nama_instansi)->get();
-        return view('marketing/po/adddraft', compact('barang','no_PO', 'data_detail', 'data_po', 'tanggal', 'total', 'nama_instansi', 'instansi','no_SO'));
+        return view('marketing/po/adddraft', compact('barang', 'no_PO', 'data_detail', 'data_po', 'tanggal', 'total', 'nama_instansi', 'instansi', 'no_SO'));
     }
 
     //di edit draft bisa tambah data
@@ -268,8 +269,8 @@ class POMktController extends Controller
         );
         return redirect()->back();
     }
-//         return redirect('marketing/editpo');
-//     }
+    //         return redirect('marketing/editpo');
+    //     }
 
     #simpan/proses draft
     public function draft($no_PO, Request $request)
@@ -391,7 +392,8 @@ class POMktController extends Controller
         return redirect('marketing/po');
     }
 
-    public function fetch(Request $request){ 
+    public function fetch(Request $request)
+    {
         // dd($request);
         $select = $request->get('select');
         $values = $request->get('value');
@@ -399,25 +401,25 @@ class POMktController extends Controller
 
         //    dd($dependent);
         $data = DB::table('master_data')->where('nama_barang', $values)->groupBy('kode_barang')->get();
-        
+
         foreach ($data as $row) {
-            $output = '<option value="'.$row->kode_barang.'">'.$row->kode_barang.'</option>';
+            $output = '<option value="' . $row->kode_barang . '">' . $row->kode_barang . '</option>';
         }
         echo $output;
     }
 
     public function instansi(Request $request)
     {
-                // dd($request);
+        // dd($request);
         $select = $request->get('select');
         $values = $request->get('value');
         $dependent = $request->get('dependent');
 
         //    dd($dependent);
         $data = DB::table('data_instansi')->where('nama_instansi', $values)->groupBy('kode_instansi')->get();
-        
+
         foreach ($data as $row) {
-            $output = '<option selected value="'.$row->kode_instansi.'">'.$row->kode_instansi.'</option>';
+            $output = '<option selected value="' . $row->kode_instansi . '">' . $row->kode_instansi . '</option>';
         }
         echo $output;
     }
