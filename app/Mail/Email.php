@@ -23,7 +23,7 @@ class Email extends Mailable
 
     public function build()
     {
-        return $this->subject('Isi')
+        return $this->subject('Detail PO')
             ->view('email')
             ->with(
                 [

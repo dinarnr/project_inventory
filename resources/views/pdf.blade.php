@@ -106,7 +106,7 @@
                                                         <div id="" data-title="Jumlah">{{$details->jumlah}}</a></div>
                                                     </td>
                                                     <td>
-                                                        <div id=""  data-title="Rate">{{$details->rate}}</a></div>
+                                                        <div id=""  data-title="Rate"> Rp. {{ number_format($details->rate, 2, ',', '.') }}</a></div>
                                                     </td>
                                                     <td> <div id=""  data-title="Amount">
                                                             Rp. {{ number_format($details->amount, 2, ',', '.') }}</div>

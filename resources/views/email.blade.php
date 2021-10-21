@@ -2,11 +2,11 @@
 <html>
 
 <head>
-    <title>Coba</title>
+    <title>Email</title>
 </head>
 
 <body>
-    <p>Berikut merupakan pesan anda</p>
+    <p></p>
 
 
 </body>
