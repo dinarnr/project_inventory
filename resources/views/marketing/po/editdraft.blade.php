@@ -56,7 +56,6 @@
             separator = sisa ? '.' : '';
             rupiah += separator + ribuan.join('.');
         }
-        
         rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
         return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
     };
@@ -73,7 +72,6 @@
             separator = sisa ? '.' : '';
             rupiah += separator + ribuan.join('.');
         }
-
         return rupiah;
     }
     var tanpa_rupiah = document.getElementById('edit_rate');
@@ -89,7 +87,6 @@
             amount = amount.join('.').split('').reverse().join('');
             $("#edit_amount").val(amount);
             $("#edit_amount1").val(amount.replace(/[^,\d]/g, '').toString());
-
         });
     });
 </script>

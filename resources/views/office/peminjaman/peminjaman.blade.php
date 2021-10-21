@@ -26,18 +26,18 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="control-label mb-10">Start date</label>
-                                <input type="date" id="start_date" name="start_date" value="" class="form-control" placeholder="">
+                                <input type="date" id="from" name="from" value="" class="form-control" value="{{date('d-m-Y')}}">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="control-label mb-10">End date</label>
-                                <input type="date" id="end_date" name="end_date" value="garansi" class="form-control" placeholder="">
+                                <input type="date" id="end" name="end" value="{{date('d-m-Y')}}" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-4 mt-30">
                             <div class="form-group">
-                                <button type="button" onclick="" class="btn btn-primary ">Cek</button>
+                                <input type="submit" onclick="" class="btn btn-primary" value="Cek">
                             </div>
                         </div>
                     </div>

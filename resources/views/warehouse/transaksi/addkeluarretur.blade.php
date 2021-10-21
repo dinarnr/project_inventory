@@ -159,13 +159,6 @@
 																				</tr>
 																			</thead>
 																			<tbody id="TabelDinamis">
-																				<!-- <tr>
-																					<td><a name="tgl_transaksi[]" id="tgl_transaksi"></a></td>
-																					<td><a name="nama_supplier[]" id="nama_supplier"></a></td>
-																					<td><a name="nama_barang[]" id="nama_barang"></a></td>
-																					<td><a name="jumlah[]" id="jumlah"></a></td>
-																					<td><button type="button" class="btn btn-danger btn-small">&times;</button></td>
-																				</tr> -->
 																			</tbody>
 																		</table>
 
