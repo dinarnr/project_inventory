@@ -24,7 +24,6 @@
                 <div class="panel panel-default card-view">
                     <h5 class="txt-dark"> <strong> Filter </strong></h5>
                     <form action="{{ url('office/po/datapo2') }}" method="GET">
-                        {{csrf_field()}}
                         <!-- <input type="date" name="start" class="form-control" value="{{date('d-m-Y')}}">&nbsp;
                         <input type="date" name="to" class="form-control" value="{{date('d-m-Y')}}">&nbsp;
                         <input type="submit" value="Cek"> -->
@@ -38,7 +37,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="control-label mb-10">End date</label>
-                                    <input type="date" id="to" name="to" value="{{date('d-m-Y')}}" class="form-control">
+                                    <input type="date" id="end" name="end" value="{{date('d-m-Y')}}" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-4 mt-30">
