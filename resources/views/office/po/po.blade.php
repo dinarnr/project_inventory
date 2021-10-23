@@ -29,6 +29,7 @@
                                 <div class="form-group">
                                     <select name="filter_status" id="filter_status" class="form-control" required>
                                         <option value="">Select Status</option>
+                                        <option value="all">All</option>
                                         <option value="1">Diproses warehouse</option>
                                         <option value="2">Disetujui warehouse</option>
                                         <option value="5">Dibatalkan</option>

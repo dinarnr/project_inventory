@@ -27,7 +27,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="control-label mb-10">Start date</label>
-                                    <input type="date" id="start" name="start" value="" class="form-control" value="{{date('d-m-Y')}}">
+                                    <input type="date" id="start" name="start" class="form-control" value="{{date('d-m-Y')}}">
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -38,7 +38,7 @@
                             </div>
                             <div class="col-md-4 mt-30">
                                 <div class="form-group">
-                                    <input type="submit" onclick="" class="btn btn-primary" value="Cek">
+                                    <button type="submit" class="btn btn-primary"> Cek </button>
                                 </div>
                             </div>
                         </div>

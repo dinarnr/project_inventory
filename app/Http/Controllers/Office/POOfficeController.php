@@ -24,7 +24,11 @@ class POOfficeController extends Controller
     public function searchBystatus(Request $request)
     {
         $search = $request->filter_status;
-        $data_po = PO::where('status', 'LIKE', "%" . $search . "%")->get();
+        if($search != "all") {
+            $data_po = PO::where('status', 'LIKE', "%" . $search . "%")->get();
+        } else {
+            $data_po = PO::all();
+        }
         return view('office/po/po', compact('data_po'));
     }
 

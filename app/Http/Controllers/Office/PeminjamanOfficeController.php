@@ -20,7 +20,8 @@ class PeminjamanOfficeController extends Controller
 
     public function searchBydate(Request $request)
     {
-        $peminjaman = Peminjaman::where('created_at', '>=', $request->start)->where('created_at', '<=', $request->end)->get();
+        $peminjaman = Peminjaman::where('tglPinjam', '>=', $request->start)->where('tglPinjam', '<=', $request->end)->get();
+        // dd($request->peminjaman);
         return view('office/peminjaman/peminjaman', compact('peminjaman'));
     }
     

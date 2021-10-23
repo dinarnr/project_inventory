@@ -27,9 +27,11 @@
                                 <div class="form-group">
                                     <select name="filter_status" id="filter_status" class="form-control" required>
                                         <option value="">Select Status</option>
+                                        <option value="all">All</option>
                                         <option value="1">Diproses warehouse</option>
                                         <option value="2">Disetujui warehouse</option>
                                         <option value="5">Dibatalkan</option>
+                                        <!-- <option value="">Draft</option> -->
                                     </select>
                                 </div>
                             </div>
@@ -63,7 +65,7 @@
                                             </thead>
                                             <tbody>
                                                 <?php $no = 1; ?>
-                                                @foreach ($data_po_wh as $data_po)
+                                                @foreach ($data_po as $data_po)
                                                 <tr>
                                                     <td>{{ $no++ }}</td>
                                                     <td>{{ $data_po->no_PO}}</td>
@@ -78,6 +80,10 @@
                                                         <!-- Purchase Order <strong>DISETUJUI</strong> Warehouse  -->
                                                         @elseif ($data_po->status === 5)
                                                         <span class="label label-danger"> Dibatalkan </span>
+                                                        <br>
+                                                        <div class="tulisan">
+                                                            Alasan : {{$data_po->alasan}}
+                                                        </div>
                                                         <!-- Purchase Order dibatalkan  -->
                                                         @else
                                                         <span class="label label-default">Draft </span>

@@ -144,7 +144,7 @@ class POMktController extends Controller
             );
         }
         return redirect('marketing/po')->with(['success' => 'Data berhasil ditambahkan']);
-    } 
+    }
 
     // public function adddraft2(Request $request)
     // {
@@ -267,7 +267,8 @@ class POMktController extends Controller
                 'ip' => $request->ip()
             ]
         );
-        return view('marketing/po/po', compact('data_po'));
+        // return view('marketing/po/po', compact('data_po'));
+        return redirect("marketing/po/ubah/" . $request->noPO[0] . "");
         // return redirect()->back();
     }
 
@@ -320,7 +321,13 @@ class POMktController extends Controller
         return redirect('marketing/po');
     }
 
-    public function editisidraft(Request $request, $id_po)
+    public function editdraft($id_po)
+    {
+        $data_detail = DetailPO::all()->where('id_po',$id_po);
+        return view('marketing/po/editdraft', compact('data_detail'));
+    }
+
+    public function editdraft2(Request $request, $id_po)
     {
         DetailPO::where('id_po', $id_po)
             ->update([
