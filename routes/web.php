@@ -312,12 +312,12 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::get('transaksi/masuk', [TrkMasukOfficeController::class, 'transaksimasuk']);
         Route::get('transaksi/keluar', [TrkKeluarOfficeController::class, 'transaksikeluar']);
         Route::get('po/datapo', [POOfficeController::class, 'po']);
+        Route::get('po/datapo2', [POOfficeController::class, 'searchBydate']);
         Route::get('so/dataso', [SOOfficeController::class, 'so']);
         Route::get('peminjaman/datapinjam', [PeminjamanOfficeController::class, 'peminjaman']);
         Route::get('pembelian/datapembelian', [PembelianOfficeController::class, 'pembelian']);
         Route::get('po/detail/{no_PO}', [POOfficeController::class, 'detailpo']);
         Route::get('so/detail/{no_SO}', [SOOfficeController::class, 'detailso']);
         Route::get('peminjaman/detail/{no_peminjaman}', [PeminjamanOfficeController::class, 'detailpeminjaman']);
-
     });
 });

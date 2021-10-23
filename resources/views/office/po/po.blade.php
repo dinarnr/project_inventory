@@ -23,26 +23,31 @@
             <div class="col-sm-12">
                 <div class="panel panel-default card-view">
                     <h5 class="txt-dark"> <strong> Filter </strong></h5>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="control-label mb-10">Start date</label>
-                                <input type="date" id="start_date" name="start_date" value="" class="form-control" placeholder="">
+                    <form action="{{ url('office/po/datapo2') }}" method="GET">
+                        {{csrf_field()}}
+                        <!-- <input type="date" name="start" class="form-control" value="{{date('d-m-Y')}}">&nbsp;
+                        <input type="date" name="to" class="form-control" value="{{date('d-m-Y')}}">&nbsp;
+                        <input type="submit" value="Cek"> -->
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label mb-10">Start date</label>
+                                    <input type="date" id="start" name="start" value="" class="form-control" value="{{date('d-m-Y')}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label mb-10">End date</label>
+                                    <input type="date" id="to" name="to" value="{{date('d-m-Y')}}" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-4 mt-30">
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">Cek</button>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="control-label mb-10">End date</label>
-                                <input type="date" id="end_date" name="end_date" value="garansi" class="form-control" placeholder="">
-                            </div>
-                        </div>
-                        <div class="col-md-4 mt-30">
-                            <div class="form-group">
-                                <button type="button" onclick="" class="btn btn-primary ">Cek</button>
-                            </div>
-                        </div>
-                    </div>
-
+                    </form>
                     <div class="panel-wrapper collapse in">
                         <div class="panel-body">
                             <div class="table-wrap">
@@ -69,15 +74,18 @@
                                                 <td> {{ date('d-m-Y',strtotime($po->created_at))}}</td>
                                                 <td>
                                                     @if($po->status === 1 )
-                                                    Purchase Order diproses Warehouse
+                                                    <span class="label label-warning"> Diproses Warehouse </span>
+                                                    <!-- Purchase Order diproses Warehouse -->
                                                     @elseif ($po->status === 2 )
-                                                    Purchase Order disetujui Warehouse
+                                                    <span class="label label-success"> Disetujui Warehouse </span>
+                                                    <!-- Purchase Order disetujui Warehouse -->
                                                     @else ($po->status === 5)
-                                                    Purchase Order dibatalkan
+                                                    <span class="label label-danger"> Dibatalkan </span>
+                                                    <!-- Purchase Order dibatalkan -->
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <a href="{{url('office/po/detail')}}/{{ $po->no_PO }}"><button class="btn btn-success btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
+                                                    <a href="{{url('office/po/detail')}}/{{ $po->no_PO }}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
                                                 </td>
                                             </tr>
                                             @endforeach

@@ -95,7 +95,7 @@
                                             <?php $no = 1; ?>
                                             @foreach ($data_detail as $details)
                                                 <tr>
-                                                    <td style="align-text:center">{{ $no++ }}</td>
+                                                    <td>{{ $no++ }}</td>
                                                     <td>
                                                         <div id="" data-title="Nama barang"> <span><b>{{ $details->nama_barang }}</b></span>
                                                             <br>&nbsp;&nbsp;- {{ $details->keterangan_barang }}</div>
