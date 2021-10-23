@@ -21,9 +21,10 @@ class POOfficeController extends Controller
         return view('office/po/po', compact('data_po'));
     }
 
-    public function searchBydate(Request $request)
+    public function searchBystatus(Request $request)
     {
-        $data_po = PO::where('created_at', '>=', $request->start)->where('created_at', '<=', $request->end)->get();
+        $search = $request->filter_status;
+        $data_po = PO::where('status', 'LIKE', "%" . $search . "%")->get();
         return view('office/po/po', compact('data_po'));
     }
 

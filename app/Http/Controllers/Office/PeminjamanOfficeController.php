@@ -18,6 +18,11 @@ class PeminjamanOfficeController extends Controller
         return view('office/peminjaman/peminjaman', compact('peminjaman', 'data_detail'));
     }
 
+    public function searchBydate(Request $request)
+    {
+        $peminjaman = Peminjaman::where('created_at', '>=', $request->start)->where('created_at', '<=', $request->end)->get();
+        return view('office/peminjaman/peminjaman', compact('peminjaman'));
+    }
     
     public function detailpeminjaman($no_peminjaman)
     {

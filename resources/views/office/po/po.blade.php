@@ -24,23 +24,18 @@
                 <div class="panel panel-default card-view">
                     <h5 class="txt-dark"> <strong> Filter </strong></h5>
                     <form action="{{ url('office/po/datapo2') }}" method="GET">
-                        <!-- <input type="date" name="start" class="form-control" value="{{date('d-m-Y')}}">&nbsp;
-                        <input type="date" name="to" class="form-control" value="{{date('d-m-Y')}}">&nbsp;
-                        <input type="submit" value="Cek"> -->
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label class="control-label mb-10">Start date</label>
-                                    <input type="date" id="start" name="start" value="" class="form-control" value="{{date('d-m-Y')}}">
+                                    <select name="filter_status" id="filter_status" class="form-control" required>
+                                        <option value="">Select Status</option>
+                                        <option value="1">Diproses warehouse</option>
+                                        <option value="2">Disetujui warehouse</option>
+                                        <option value="5">Dibatalkan</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="form-group">
-                                    <label class="control-label mb-10">End date</label>
-                                    <input type="date" id="end" name="end" value="{{date('d-m-Y')}}" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-md-4 mt-30">
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary">Cek</button>
                                 </div>
@@ -74,13 +69,10 @@
                                                 <td>
                                                     @if($po->status === 1 )
                                                     <span class="label label-warning"> Diproses Warehouse </span>
-                                                    <!-- Purchase Order diproses Warehouse -->
                                                     @elseif ($po->status === 2 )
                                                     <span class="label label-success"> Disetujui Warehouse </span>
-                                                    <!-- Purchase Order disetujui Warehouse -->
                                                     @else ($po->status === 5)
                                                     <span class="label label-danger"> Dibatalkan </span>
-                                                    <!-- Purchase Order dibatalkan -->
                                                     @endif
                                                 </td>
                                                 <td>
@@ -97,6 +89,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- </div> -->
             </div>
         </div>
     </div>
@@ -104,4 +97,5 @@
 <!-- /Main Content -->
 </div>
 <!-- /#wrapper -->
+
 @endsection

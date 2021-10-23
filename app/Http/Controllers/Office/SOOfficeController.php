@@ -21,6 +21,13 @@ class SOOfficeController extends Controller
         return view('office/so/so', compact('data_po', 'data_po_wh'));
     }
 
+    public function searchBystatus(Request $request)
+    {
+        $search = $request->filter_status;
+        $data_po = PO::where('status', 'LIKE', "%" . $search . "%")->get();
+        return view('office/po/po', compact('data_po'));
+    }
+
     public function detailso($no_PO)
     {  
         $data_detail = DetailPO::where('no_PO', $no_PO)->get();

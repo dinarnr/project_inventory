@@ -237,6 +237,7 @@ class POMktController extends Controller
     public function add2(Request $request)
     {
         $user = Auth::user();
+        $data_po = PO::all();
         // dd($request->noSO);
         $jumlah_data = count($request->noPO);
         for ($i = 0; $i < $jumlah_data; $i++) {
@@ -266,10 +267,9 @@ class POMktController extends Controller
                 'ip' => $request->ip()
             ]
         );
-        return redirect()->back();
+        return view('marketing/po/po', compact('data_po'));
+        // return redirect()->back();
     }
-    //         return redirect('marketing/editpo');
-    //     }
 
     #simpan/proses draft
     public function draft($no_PO, Request $request)
@@ -303,7 +303,7 @@ class POMktController extends Controller
         $user = Auth::user();
         PO::where('id_PO', $id_PO)
             ->update([
-                'status' => '7',
+                'status' => '5',
                 'alasan' => $request->alasan,
             ]);
         Log::create(
