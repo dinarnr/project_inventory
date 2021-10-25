@@ -323,7 +323,7 @@ class POMktController extends Controller
 
     public function editdraft($id_po)
     {
-        $data_detail = DetailPO::all()->where('id_po',$id_po);
+        $data_detail = DetailPO::where('id_po',$id_po)->get();
         return view('marketing/po/editdraft', compact('data_detail'));
     }
 
@@ -334,8 +334,8 @@ class POMktController extends Controller
                 'nama_barang' => $request->edit_nama,
                 'keterangan_barang' => $request->edit_keterangan,
                 'jumlah' => $request->edit_jumlah,
-                'rate' => $request->edit_rate,
-                'amount' => $request->edit_amount
+                'rate' => (preg_replace('/[^0-9]/','',$request->edit_rate)),
+                'amount' => (preg_replace('/[^0-9]/','',$request->edit_amount))
             ]);
 
         $user = Auth::user();
@@ -350,7 +350,7 @@ class POMktController extends Controller
 
             ]
         );
-        return redirect()->back();
+        return redirect("marketing/po/ubah/" . $request->noPO . "");
     }
 
     public function deletepo($id_po, Request $request)

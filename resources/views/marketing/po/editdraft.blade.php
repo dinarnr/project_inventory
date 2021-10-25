@@ -1,7 +1,8 @@
 @extends('layout.master')
 @section('title', 'Data Barang')
 @section('content')
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">
+</script>
 <!-- Main Content -->
 <div class="page-wrapper">
     <div class="container-fluid">
@@ -30,12 +31,11 @@
                     <div class="panel-wrapper collapse in ">
                         <div class="panel-body">
                             <div class="form-wrap mt-3">
-                                <form action="{{ url('marketing/po/ubah/draft/simpan') }}" method="post" role="form" autocomplete="off" enctype="multipart/form-data">
-                                    {{ csrf_field() }}
-                                    {{ method_field('PUT') }}
-                                    <div class="form-group">
-                                        @foreach($data_detail as $data_detail)
-                                        <input type="hidden" value="{{ $data_detail->no_PO}}" class="form-control" name="edit_id">
+                                @foreach($data_detail as $data_detail)
+                                <form action="{{ url('marketing/po/ubah/draft/simpan') }}/{{$data_detail->id_po}} " method="post" role="form" autocomplete="off" enctype="multipart/form-data">
+                                {{ csrf_field() }}
+                                <div class="form-group">
+                                        <input type="hidden" value="{{ $data_detail->no_PO}}" class="form-control" name="noPO" id="noPO">
                                         <label class="control-label mb-10 text-left">Nama barang <span class="help"> </span></label>
                                         <input type="text" value="{{ $data_detail->nama_barang}}" class="form-control" name="edit_nama">
                                         <!-- @if ($errors->has('nama_barang'))
@@ -48,7 +48,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label mb-10 text-left">Quantity</label>
-                                        <input type="text" value="{{ $data_detail->jumlah}}" class="form-control a1" name="edit_jumlah">
+                                        <input type="text" value="{{ $data_detail->jumlah}}" class="form-control a1" name="edit_jumlah" id='edit_jumlah'>
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label mb-10 text-left">Rate</label>
@@ -110,14 +110,14 @@
         tanpa_rupiah.value = formatRupiah(this.value);
     });
     $(document).ready(function() {
-        $(".a1, .b1, .c1, .d1").on("keydown keyup", function(event) {
+        $(".a1, .b1, .c1").on("keydown keyup", function(event) {
             var jumlah = $("#edit_jumlah").val();
             var rate = $("#edit_rate").val().split('.').join('');
             var reverse = (jumlah * rate).toString().split('').reverse().join('');
             amount = reverse.match(/\d{1,3}/g);
             amount = amount.join('.').split('').reverse().join('');
             $("#edit_amount").val(amount);
-            $("#edit_amount1").val(amount.replace(/[^,\d]/g, '').toString());
+            // $("#edit_amount1").val(amount.replace(/[^,\d]/g, '').toString());
         });
     });
 </script>

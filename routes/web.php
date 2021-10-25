@@ -218,7 +218,7 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::post('po/batal/{id_PO}', [POMktController::class, 'batal']);
         // Route::post('po/simpan/draft', [POMktController::class, 'adddraft2']);
         Route::get('po/ubahdraft/{id_po}', [POMktController::class, 'editdraft']); //edit po
-        Route::post('po/ubah/draft/simpan', [POMktController::class, 'editdraft2']); // edit keterangan di draft
+        Route::post('po/ubah/draft/simpan/{id_po}', [POMktController::class, 'editdraft2']); // edit keterangan di draft
         Route::get('po/detail/{no_PO}', [POMktController::class, 'detailpo']);
         Route::delete('po/deletepo/{id_po}', [POMktController::class, 'deletepo']);
         Route::delete('po/deletepo/{nid_PO}', [POMktController::class, 'deletepo']);

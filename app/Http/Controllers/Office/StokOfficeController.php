@@ -10,8 +10,8 @@ class StokOfficeController extends Controller
 {
     public function stok()
     {
-        $stok = Master::all();
-        return view('office/barang/stok', compact('stok'));
+        $data_stok = Master::all();
+        return view('office/barang/stok', compact('data_stok'));
     }
 
 
