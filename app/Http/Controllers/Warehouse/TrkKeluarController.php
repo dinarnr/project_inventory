@@ -55,18 +55,18 @@ class TrkKeluarController extends Controller
         $no_trans =  $kode.  "-"  .$now->year . $now->month . $angka;
         return view('warehouse/transaksi/addkeluarbaru', compact('no_trans', 'noPO','brg','data_instansi', 'barang', 'transaksi_keluar','bar'));
     }
-
+    
     public function keluargaransi(Request $request)
     {   
-        // dd($request->no_PO);
+        // dd($request);
         $jumlah_data = count($request->no_trans);
         for ($i = 0; $i < $jumlah_data; $i++) {
             DetailTrkKeluar::create(
                 [
                     'no_transaksi' => $request->no_trans[$i],
-                    'jumlah' => $request->jumlah[$i],
-                    'kode_barang' => $request->kode_barang[$i],
-                    'nama_barang' => $request->nama_barang[$i],            
+                    'jumlah' => $request->jumlah1[$i],
+                    'kode_barang' => $request->kode_barang1[$i],
+                    'nama_barang' => $request->nama_barang1[$i],            
                     'jns_barang' => $request->jns_barang[$i],
                 ]
             );
