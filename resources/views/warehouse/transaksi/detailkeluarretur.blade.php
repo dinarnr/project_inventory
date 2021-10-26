@@ -29,8 +29,8 @@
                     <div class="panel-heading">
                         <div class="panel-wrapper collapse in">
                             <div class="panel-body">
-                                
-                            <div class="row">
+
+                                <div class="row">
                                     <div class="col-xs-8">
                                         <div class="form-group">
                                             <div class="">
@@ -40,10 +40,10 @@
                                                 <tr>
                                                     <div class="row">
                                                         @foreach ($profil as $profil)
-                                                <td class="txt-dark"> Jl Candi Mendut Utara 1 No. 11 <br>
-                                                    Kel. Mojolangu Kec. Lowokwaru Malang - Jawa Timur<br>
-                                                    Phone : {{$profil->telp}}<br> Email : {{$profil->email}}</td>
-                                                    @endforeach
+                                                        <td class="txt-dark"> Jl Candi Mendut Utara 1 No. 11 <br>
+                                                            Kel. Mojolangu Kec. Lowokwaru Malang - Jawa Timur<br>
+                                                            Phone : {{$profil->telp}}<br> Email : {{$profil->email}}</td>
+                                                        @endforeach
                                                     </div>
                                                 </tr>
                                             </table>
@@ -57,7 +57,7 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                <hr>
                                 <div class="row">
                                     <div class="col-xs-8">
                                         <div class="form-group">
@@ -65,12 +65,12 @@
                                                 <div class="text-left">
                                                     <h6 class="txt-dark"><strong>No Transaksi</strong></h6>
                                                 </div>
-                                        <tr>
-                                            <div class="">
-                                                <td class="txt-dark">
-                                                </td>
-                                            </div>
-                                        </tr>
+                                                <tr>
+                                                    <div class="">
+                                                        <td class="txt-dark">
+                                                        </td>
+                                                    </div>
+                                                </tr>
                                             </table>
 
                                         </div>
@@ -83,7 +83,7 @@
                                                 </div>
                                                 <tr>
                                                     <div class="">
-                                                        <td class="txt-dark">  </td>
+                                                        <td class="txt-dark"> </td>
                                                     </div>
                                                 </tr>
                                             </table>

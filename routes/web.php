@@ -311,6 +311,8 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::get('report/report', [ReportController::class, 'report']);
         Route::get('barang/stok', [StokOfficeController::class, 'stok']);
         Route::get('transaksi/masuk', [TrkMasukOfficeController::class, 'transaksimasuk']);
+        Route::get('transaksi/detailmasukbaru/{no_transaksi}', [TrkMasukOfficeController::class, 'detailmasuk']);
+        Route::get('transaksi/detailmasukretur/{no_transaksi}', [TrkMasukOfficeController::class, 'detailmasukretur']);
         Route::get('transaksi/keluar', [TrkKeluarOfficeController::class, 'transaksikeluar']);
         Route::get('po/datapo', [POOfficeController::class, 'po']);
         Route::get('po/datapo2', [POOfficeController::class, 'searchBystatus']);
