@@ -30,7 +30,7 @@
                         <div class="panel-wrapper collapse in">
                             <div class="panel-body">
 
-                            <div class="row">
+                                <div class="row">
                                     <div class="col-xs-8">
                                         <div class="form-group">
                                             <div class="">
@@ -57,23 +57,27 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                <hr>
+                                
                                 <div class="row">
                                     <div class="col-xs-8">
+                                    @foreach ($transaksi_garansi as $trk_garansi)
                                         <div class="form-group">
                                             <table>
                                                 <div class="text-left">
                                                     <h6 class="txt-dark"><strong>No Transaksi</strong></h6>
                                                 </div>
-                                        <tr>
-                                            <div class="">
-                                                <td class="txt-dark">
-                                                </td>
-                                            </div>
-                                        </tr>
+                                                <tr>
+                                                    <div class="">
+                                                        <td class="txt-dark">
+                                                            {{ $trk_garansi->no_transaksi }}
+                                                        </td>
+                                                    </div>
+                                                </tr>
                                             </table>
 
                                         </div>
+                                        @endforeach
                                     </div>
                                     <div class="col-xs-4">
                                         <div class="form-group">
@@ -83,13 +87,16 @@
                                                 </div>
                                                 <tr>
                                                     <div class="">
-                                                        <td class="txt-dark">  </td>
+                                                        <td class="txt-dark">
+                                                            {{date('d M Y',strtotime ($trk_garansi->tgl_transaksi)) }}  
+                                                        </td>
                                                     </div>
                                                 </tr>
                                             </table>
                                         </div>
                                     </div>
                                 </div>
+                                
                                 
                                 <!-- <div class="seprator-block"></div> -->
 
@@ -118,6 +125,7 @@
                                     <!--  -->
                                     <div class="clearfix"></div>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>

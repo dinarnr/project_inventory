@@ -106,7 +106,7 @@ class TrkKeluarController extends Controller
     {
         $profil = Profil::all();
         $detail_keluar = DetailTrkKeluar::where('no_transaksi', $no_transaksi)->get();
-        $transaksi_garansi = DetailTrkKeluar::where('no_transaksi', $no_transaksi)->get();
+        $transaksi_garansi = TransaksiKeluar::where('no_transaksi', $no_transaksi)->get();
         return view('warehouse/transaksi/detailkeluargaransi', compact('detail_keluar', 'transaksi_garansi', 'profil'));
     }
 
@@ -232,7 +232,7 @@ class TrkKeluarController extends Controller
     {
         $profil = Profil::all();
         $detail_keluar = DetailTrkKeluar::where('no_transaksi', $no_transaksi)->get();
-        $transaksi_instalasi = DetailTrkKeluar::where('no_transaksi', $no_transaksi)->get();
+        $transaksi_instalasi = TransaksiKeluar::where('no_transaksi', $no_transaksi)->get();
         return view('warehouse/transaksi/detailkeluarinstalasi', compact('detail_keluar', 'transaksi_instalasi', 'profil'));
     }
 
@@ -311,8 +311,8 @@ class TrkKeluarController extends Controller
     {
         $profil = Profil::all();
         $detail_keluar = DetailTrkKeluar::where('no_transaksi', $no_transaksi)->get();
-        $transaksi_instalasi = DetailTrkKeluar::where('no_transaksi', $no_transaksi)->get();
-        return view('warehouse/transaksi/detailkeluarretur', compact('detail_keluar', 'transaksi_instalasi', 'profil'));
+        $transaksi_retur = TransaksiKeluar::where('no_transaksi', $no_transaksi)->get();
+        return view('warehouse/transaksi/detailkeluarretur', compact('detail_keluar', 'transaksi_retur', 'profil'));
     }
 }
 
