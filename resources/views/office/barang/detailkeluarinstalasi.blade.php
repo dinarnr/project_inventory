@@ -1,5 +1,5 @@
 @extends('layout.master')
-@section('title', 'Transaksi Masuk Baru')
+@section('title', 'Transaksi Keluar Instalasi')
 @section('content')
 <style type="text/css">
     @media print {
@@ -15,13 +15,13 @@
         <!-- Title -->
         <div class="row heading-bg">
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                <h5 class="txt-dark">Detail Masuk Baru</h5>
+                <h5 class="txt-dark">Detail Keluar Instalasi</h5>
             </div>
             <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                 <ol class="breadcrumb">
                     <li><a href="index.html">Transaksi</a></li>
-                    <li><a href="#"><span>Transaksi Masuk Baru</span></a></li>
-                    <li class="active"><span>Detail Masuk Baru</span></li>
+                    <li><a href="#"><span>Transaksi Keluar Instalasi</span></a></li>
+                    <li class="active"><span>Detail Keluar Instalasi</span></li>
                 </ol>
             </div>
         </div>
@@ -85,11 +85,11 @@
                                         <div class="form-group">
                                             <table>
                                                 <div class="text-left">
-                                                    <h6 class="txt-dark"><strong>Tanggal Transaksi</strong></h6>
+                                                    <h6 class="txt-dark"><strong>Tanggal Instalasi</strong></h6>
                                                 </div>
                                                 <tr>
                                                     <div class="">
-                                                        <td class="txt-dark"> {{ date('d M Y',strtotime($trk_masuk->tgl_transaksi)) }} </td>
+                                                        <td class="txt-dark"> {{ date('d M Y',strtotime($trk_masuk->tgl_instalasi)) }} </td>
                                                     </div>
                                                 </tr>
                                             </table>

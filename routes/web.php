@@ -307,12 +307,16 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::get('pengajuan/pembelian', [PengajuanAdminController::class, 'pengpembelian']);
     });
 
-    Route::group(['prefix' => 'office/'], function () {
+    Route::group(['prefix' => 'office/'], function () { 
         Route::get('report/report', [ReportController::class, 'report']);
         Route::get('barang/stok', [StokOfficeController::class, 'stok']);
         Route::get('transaksi/masuk', [TrkMasukOfficeController::class, 'transaksimasuk']);
-        Route::get('transaksi/detailmasukbaru/{no_transaksi}', [TrkMasukOfficeController::class, 'detailmasuk']);
+        Route::get('trk/detailmasukbaru/{no_transaksi}', [TrkMasukOfficeController::class, 'detailmasuk']);
         Route::get('transaksi/detailmasukretur/{no_transaksi}', [TrkMasukOfficeController::class, 'detailmasukretur']);
+        Route::get('transaksi/detailkeluargaransi/{no_transaksi}', [TrkKeluarOfficeController::class, 'detailkeluargaransi']);
+        Route::get('transaksi/detailkeluarinstalasi/{no_transaksi}', [TrkKeluarOfficeController::class, 'detailkeluarinstalasi']);
+        Route::get('transaksi/detailkeluarretur/{no_transaksi}', [TrkKeluarOfficeController::class, 'detailkeluarretur']);
+
         Route::get('transaksi/keluar', [TrkKeluarOfficeController::class, 'transaksikeluar']);
         Route::get('po/datapo', [POOfficeController::class, 'po']);
         Route::get('po/datapo2', [POOfficeController::class, 'searchBystatus']);

@@ -1,5 +1,5 @@
 @extends('layout.master')
-@section('title', 'Transaksi Masuk Baru')
+@section('title', 'Transaksi Keluar Retur')
 @section('content')
 <style type="text/css">
     @media print {
@@ -15,13 +15,13 @@
         <!-- Title -->
         <div class="row heading-bg">
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                <h5 class="txt-dark">Detail Masuk Baru</h5>
+                <h5 class="txt-dark">Detail Keluar Retur</h5>
             </div>
             <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                 <ol class="breadcrumb">
                     <li><a href="index.html">Transaksi</a></li>
-                    <li><a href="#"><span>Transaksi Masuk Baru</span></a></li>
-                    <li class="active"><span>Detail Masuk Baru</span></li>
+                    <li><a href="#"><span>Transaksi Keluar Retur</span></a></li>
+                    <li class="active"><span>Detail Keluar Retur</span></li>
                 </ol>
             </div>
         </div>

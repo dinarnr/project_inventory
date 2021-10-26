@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class TrkMasukOfficeController extends Controller
 {
     //
-    public function transaksimasuk()
+    public function transaksimasuk() 
     {
         $transaksi_masuk = TransaksiModel::all()->where('instansi', '', '');
         $transaksi_retur = TransaksiModel::all()->where('nama_supplier', '', '');

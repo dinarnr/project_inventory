@@ -69,7 +69,7 @@
                                                 <td>
                                                     <a href="{{ url('warehouse/transaksi/detailmasukbaru')}}/{{$transaksi_masuk->no_transaksi}} "><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
                                                 </td>
-                                            </tr>
+                                            </tr> 
                                             @endforeach
                                         </tbody>
                                     </table>

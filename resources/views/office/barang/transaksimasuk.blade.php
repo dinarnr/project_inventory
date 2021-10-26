@@ -67,10 +67,10 @@
                                                 <td>{{ $transaksi_masuk->pengirim }}</td>
                                                 <td>{{ $transaksi_masuk->penerima }}</td>
                                                 <td>
-                                                    <a href="{{ url('office/transaksi/detailmasukbaru')}}/{{$transaksi_masuk->no_transaksi}} "><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
+                                                    <a href="{{ url('office/trk/detailmasukbaru')}}/{{$transaksi_masuk->no_transaksi}} "><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
                                                 </td>
                                             </tr>
-                                            @endforeach
+                                            @endforeach 
                                         </tbody>
                                     </table>
                                 </div>
