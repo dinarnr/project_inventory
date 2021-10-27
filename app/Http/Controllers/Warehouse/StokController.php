@@ -15,7 +15,7 @@ class StokController extends Controller
         $data_stok = Stok::where('kode_barang', $kode_barang)->get();
         $master_stok = Master::where('kode_barang', $kode_barang)->get();
 
-
+// dd($master_stok);
         return view('warehouse/master/data_stok', compact('data_stok', 'master_stok'));
 
     }

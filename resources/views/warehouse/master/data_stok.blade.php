@@ -40,18 +40,19 @@
                                             <th>Stok Akhir</th>
                                         </tr>
                                     </thead>
+                                    @foreach($data_stok as $stok)
                                     <tbody>
                                         <?php $no = 1; ?>
-                                        @foreach($data_stok as $stok)
                                         <tr>
                                             <td>{{ $no++}}</td>
                                             <td>{{$stok->nama_barang}}</td>
                                             <td>{{$stok->stok}}</td>
                                             <td>{{$stok->keterangan}}</td>
                                             <td>{{date('d-m-Y',strtotime($stok->created_at))}}</td>
-                                            @foreach($master_stok as $master_stok)
-                                            <td>{{$master_stok->stok}}</td>
+                                            @foreach($master_stok as $master)
+                                            <td>{{$master->stok}}</td>
                                             @endforeach
+                                            
                                         </tr>
                                         @endforeach
                                     </tbody>
