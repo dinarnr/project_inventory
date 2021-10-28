@@ -90,14 +90,19 @@ class TrkKeluarController extends Controller
             ]
         );
         // dd($request->all());
-        Stok::create(
-            [
-                'nama_barang' => $request->nama_barang,
-                'stok' => $request->jumlah,
-                'kode_barang' => $request->kode_barang,
-                'keterangan' => 'Warehouse Transaksi Keluar Garansi'
-            ]  
-        );
+        $new_stok = Master::whereIn('kode_barang',$request->kode_barang1)->pluck('stok');
+        $jumlah_stok = count($new_stok);
+        for ($i = 0; $i < $jumlah_stok; $i++) {
+            Stok::create(
+                [
+                    'nama_barang' => $request->nama_barang1[$i],
+                    'stok' => $request->jumlah1[$i],
+                    'stok_akhir' => $new_stok[$i],
+                    'kode_barang' => $request->kode_barang1[$i],
+                    'keterangan' => 'Warehouse Transaksi Keluar Garansi'
+                ]  
+            );
+        }
 
         return redirect('warehouse/transaksikeluar');
     }
@@ -217,14 +222,19 @@ class TrkKeluarController extends Controller
             ]
         );
         // dd($request->all());
-        Stok::create(
-            [
-                'nama_barang' => $request->nama_barang1,
-                'stok' => $request->jumlah1,
-                'kode_barang' => $request->kode_barang1,
-                'keterangan' => 'Warehouse Transaksi Keluar Instalasi'
-            ]  
-        );
+        $new_stok = Master::whereIn('kode_barang',$request->kode_barang)->pluck('stok');
+        $jumlah_stok = count($new_stok);
+        for ($i = 0; $i < $jumlah_stok; $i++) {
+            Stok::create(
+                [
+                    'nama_barang' => $request->nama_barang[$i],
+                    'stok' => $request->jumlah[$i],
+                    'stok_akhir' => $new_stok[$i],
+                    'kode_barang' => $request->kode_barang[$i],
+                    'keterangan' => 'Warehouse Transaksi Keluar Instalasi'
+                ]  
+            );
+        }
         return redirect('warehouse/transaksikeluar');
     }
 
@@ -294,15 +304,19 @@ class TrkKeluarController extends Controller
             ]
         );
 
-        Stok::create(
-            [
-                'nama_barang' => $request->nama_barang,
-                'stok' => $request->jumlah,
-                'kode_barang' => $request->kode_barang,
-                'keterangan' => $request->keterangan,
-                'keterangan' => 'Warehouse Transaksi Keluar Retur'
-            ]  
-        );
+        $new_stok = Master::whereIn('kode_barang',$request->kode_barang1)->pluck('stok');
+        $jumlah_stok = count($new_stok);
+        for ($i = 0; $i < $jumlah_stok; $i++) {
+            Stok::create(
+                [
+                    'nama_barang' => $request->nama_barang1[$i],
+                    'stok' => $request->jumlah1[$i],
+                    'stok_akhir' => $new_stok[$i],
+                    'kode_barang' => $request->kode_barang1[$i],
+                    'keterangan' => 'Warehouse Transaksi Keluar Retur'
+                ]  
+            );
+        }
 
         return redirect('warehouse/transaksikeluar');
     }

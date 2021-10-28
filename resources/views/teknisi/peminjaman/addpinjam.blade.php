@@ -61,14 +61,22 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="control-label mb-10 text-left">Nama barang</label>
-                                                <select name="nama_brg" id="nama_brg" class="form-control select2">
+                                                <label class="control-label mb-10">Nama Barang</label>
+                                                <select name="nama_barang" id="nama_barang" class="form-control select2" data-dependent="kode_barang">
+                                                    <option value="">Pilih Nama Barang</option>
                                                     @foreach($barang as $brg)
-                                                    <option value="{{ $brg->nama_barang}}">{{ $brg->kode_barang }} | {{ $brg->nama_barang }}</option>
+                                                    <option value="{{ $brg->nama_barang }}">{{ $brg->nama_barang }} | {{ $brg->kode_barang }} </option>
                                                     @endforeach
                                                 </select>
-                                                <!-- <label class="control-label mb-10 text-left">Nama barang</label>
-                                                <input type="text" class="form-control" name="nama_barang" id="nama_barang"> -->
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6" hidden>
+                                            <div class="form-group">
+                                                <label class="control-label mb-10">Kode Barang</label>
+                                                <select name="kode_barang" id="kode_barang" class="form-control select2">
+
+                                                </select>
                                             </div>
                                         </div>
 
@@ -149,32 +157,38 @@
     <script type="text/javascript">
         function ambildata() {
 
-            // var tgl = document.forms["myForm"]["tgl_pinjam"].value;
-            // var kebutuhan = document.forms["myForm"]["kebutuhan"].value;
-            // var jumlah = document.forms["myForm"]["jumlah"].value;
+            var tgl = document.getElementById("tgl_pinjam").value;
+            var kebutuhan = document.getElementById("kebutuhan").value;
+            var jumlah = document.getElementById("jumlah").value;
+            var nama_barang = document.getElementById("nama_barang").value;
 
-            // if (tgl == "") {
-            //     alert("Tanggal Pinjam tidak boleh kosong");
-            //     return false;
-            // } else if (jumlah == "") {
-            //     alert("Jumlah tidak boleh kosong");
-            //     return false;
-            // } else if (kebutuhan == "") {
-            //     alert("Kebutuhan tidak boleh kosong");
-            //     return false;
-            // } 
+            if (tgl == "") {
+                alert("Tanggal Pinjam tidak boleh kosong");
+                return false;
+            } else if (jumlah == "") {
+                alert("Jumlah tidak boleh kosong");
+                return false;
+            } else if (kebutuhan == "") {
+                alert("Kebutuhan tidak boleh kosong");
+                return false;
+            } else if (nama_barang == "") {
+                alert("nama barang tidak boleh kosong");
+                return false;
+            } 
 
             var no_peminjaman = document.getElementById('no_peminjaman').value;
-            var nama_brg = document.getElementById('nama_brg').value;
+            var nama_brg = document.getElementById('nama_barang').value;
+            var kode_barang = document.getElementById('kode_barang').value;
             var jumlah = document.getElementById('jumlah').value;
-            addrow(no_peminjaman, nama_brg, jumlah);
+            addrow(no_peminjaman, nama_brg,kode_barang, jumlah);
         }
         var i = 0;
 
-        function addrow(no_peminjaman, nama_brg, jumlah) {
+        function addrow(no_peminjaman, nama_brg, kode_barang,jumlah) {
             i++;
             $('#TabelDinamis').append('<tr id="row' + i + '"><td><input type="text" style="outline:none;border:0;" readonly value="' + i +
-                '"><td><input type="text" style="outline:none;border:0;" readonly name="nama_brg[]" id="nama_brg" value="' + nama_brg +
+                '"><td><input type="text" style="outline:none;border:0;" readonly name="nama_barang[]" id="nama_barang" value="' + nama_brg +
+                '"></td><td style="display:none;"><input type="text" style="outline:none;border:0;" readonly name="kode_barang[]" id="kode_barang" value="' + kode_barang +
                 '"></td><td><input type="text" style="outline:none;border:0;" name="jumlah[]" id="jumlah" value="' + jumlah +
                 '"></td><td style="display:none;"><input type="text" style="outline:none;border:0;" name="no_peminjaman[]" id="no_peminjaman" value="' + no_peminjaman +
                 '"></td><td><button type="button" id="' + i + '" class="btn btn-danger btn-small remove_row">&times;</button></td></tr>');
@@ -185,5 +199,30 @@
         });
 
         $('#nama_brg').select2();
+    </script>
+    <script>
+        $('#nama_barang').change(function(){
+            if($(this).val() != ''){
+                var select = $(this).attr("id");
+                var value = $(this).val();
+                
+                // $('#id_barang').val(value);
+                var dependent = $(this).data('dependent');
+                var _token = $('input[name="_token"]').val();
+                $.ajax({
+                    url: "{{ route('peminjamanteknisicontroller.fetch')}}",
+                    method: "POST",
+                    data: {
+                        select: select,value: value,_token:_token,dependent: dependent
+                    },
+                    success: function(result) {
+                        console.log(result);
+                        $('#'+dependent).html(result);
+                    },
+            
+                });
+                
+            }
+        });
     </script>
     @endsection

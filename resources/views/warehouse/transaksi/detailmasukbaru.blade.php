@@ -93,7 +93,7 @@
                                                 </div>
                                                 <tr>
                                                     <div class="">
-                                                        <td class="txt-dark">{{ date('d-m-Y',strtotime($trk_masuk->tgl_transaksi)) }} </td>
+                                                        <td class="txt-dark">{{ date('d M Y',strtotime($trk_masuk->tgl_transaksi)) }} </td>
                                                     </div>
                                                 </tr>
                                             </table>

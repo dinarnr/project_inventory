@@ -185,32 +185,32 @@
 @section('scripts')
 <script type="text/javascript">
     function ambildata() {
-        var no_PO = document.forms["myForm"]["no_PO"].value;
-        var pengirim = document.forms["myForm"]["pengirim"].value;
-        var penerima = document.forms["myForm"]["penerima"].value;
-        var keterangan = document.forms["myForm"]["keterangan"].value;
-        var tanggal = document.forms["myForm"]["tgl_transaksi"].value;
-        var jumlah = document.forms["myForm"]["jumlah"].value;
+        // var no_PO = document.getElementById("no_PO").value;
+        // var pengirim = document.getElementById("pengirim").value;
+        // var penerima = document.getElementById("penerima").value;
+        // var keterangan = document.getElementById("keterangan").value;
+        // var tanggal = document.getElementById("tanggal").value;
+        // var jumlah = document.getElementById("jumlah").value;
 
-        if (no_PO == "") {
-            alert("No  PO tidak boleh kosong");
-            return false;
-        } else if (pengirim == "") {
-            alert("Nama Pengirim tidak boleh kosong");
-            return false;
-        } else if (penerima == "") {
-            alert("Nama penerima tidak boleh kosong");
-            return false;
-        } else if (tanggal == "") {
-            alert("Tanggal tidak boleh kosong");
-            return false;
-        } else if (jumlah == "") {
-            alert("Jumlah tidak boleh kosong");
-            return false;
-        } else if (keterangan == "") {
-            alert("Keterangan tidak boleh kosong");
-            return false;
-        }
+        // if (no_PO == "") {
+        //     alert("No  PO tidak boleh kosong");
+        //     return false;
+        // } else if (pengirim == "") {
+        //     alert("Nama Pengirim tidak boleh kosong");
+        //     return false;
+        // } else if (penerima == "") {
+        //     alert("Nama penerima tidak boleh kosong");
+        //     return false;
+        // } else if (tanggal == "") {
+        //     alert("Tanggal tidak boleh kosong");
+        //     return false;
+        // } else if (jumlah == "") {
+        //     alert("Jumlah tidak boleh kosong");
+        //     return false;
+        // } else if (keterangan == "") {
+        //     alert("Keterangan tidak boleh kosong");
+        //     return false;
+        // }
 
         var no_retur = document.getElementById('no_retur').value;
         var no_PO = document.getElementById('no_PO').value;

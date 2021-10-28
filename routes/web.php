@@ -259,6 +259,7 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::post('peminjaman/kembali/{no_peminjaman}', [PeminjamanTeknisiController::class, 'kembali']);
         Route::post('peminjaman/detailkembali/{id_peminjaman}', [PeminjamanTeknisiController::class, 'detailkembali']);
         Route::get('peminjaman/detail/{no_peminjaman}', [PeminjamanTeknisiController::class, 'detailpeminjaman']);
+        Route::post('peminjaman/tambah/fetch', [PeminjamanTeknisiController::class, 'fetch'])->name('peminjamanteknisicontroller.fetch');
 
         // <----------------------DATA PENGAJUAN--------------------------->
         Route::get('pengajuan/brgrekom', [PengajuanTeknisiController::class, 'tabelRekom']);

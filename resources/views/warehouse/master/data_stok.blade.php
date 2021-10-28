@@ -49,9 +49,7 @@
                                             <td>{{$stok->stok}}</td>
                                             <td>{{$stok->keterangan}}</td>
                                             <td>{{date('d-m-Y',strtotime($stok->created_at))}}</td>
-                                            @foreach($master_stok as $master)
-                                            <td>{{$master->stok}}</td>
-                                            @endforeach
+                                            <td>{{$stok->stok_akhir}}</td>
                                             
                                         </tr>
                                         @endforeach
