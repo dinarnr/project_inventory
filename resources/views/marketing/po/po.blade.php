@@ -60,7 +60,7 @@
                                                     <td>{{ $data_po->no_PO}}</td>
                                                     <td>{{ $data_po->instansi}}</td>
                                                     <td>
-                                                        {{ $data_po->tgl_pemasangan}}
+                                                        {{ {{ date('d-m-Y',strtotime($data_po->tgl_pemasangan))}}
                                                         <button class="btn btn-danger btn-icon-anim btn-square" style="float: right;" data-toggle="modal" data-target="#tglpemasangan{{ $data_po->id_PO }}" action="( {{url('marketing/po/tglpemasangan')}}/{{ $data_po->id_PO }})"><i class="fa fa-edit"></i></button>
                                                         @include('marketing.po.tglpemasangan')
                                                     </td>
