@@ -169,8 +169,8 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                        </form>
                                     </div>
-                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -185,23 +185,25 @@
 @section('scripts')
 <script type="text/javascript">
     function ambildata() {
-        var no_PO = document.forms["myForm"]["no_PO"].value;
-        var pengirim = document.forms["myForm"]["pengirim"].value;
-        var penerima = document.forms["myForm"]["penerima"].value;
-        var keterangan = document.forms["myForm"]["keterangan"].value;
-        var tanggal = document.forms["myForm"]["tgl_transaksi"].value;
-        var jumlah = document.forms["myForm"]["jumlah"].value;
+        var no_PO = document.getElementById("no_PO").value;
+        var pengirim = document.getElementById("pengirim").value;
+        var penerima = document.getElementById("penerima").value;
+        var keterangan = document.getElementById("keterangan").value;
+        var tanggal = document.getElementById("tgl_transaksi").value;
+        var jumlah = document.getElementById("jumlah").value;
 
         if (no_PO == "") {
-            alert("No  PO tidak boleh kosong");
+            alert("No PO tidak boleh kosong");
             return false;
-        } else if (pengirim == "") {
+        }else if (pengirim == "") {
             alert("Nama Pengirim tidak boleh kosong");
             return false;
-        } else if (penerima == "") {
+        } 
+        else if (penerima == "") {
             alert("Nama penerima tidak boleh kosong");
             return false;
-        } else if (tanggal == "") {
+        }
+         else if (tanggal == "") {
             alert("Tanggal tidak boleh kosong");
             return false;
         } else if (jumlah == "") {
@@ -237,6 +239,9 @@
         var row_id = $(this).attr("id");
         $('#row' + row_id + '').remove();
     });
+    $('#nama_barang').select2();
+	$('#no_PO').select2();
+	$('#instansi').select2();
 </script>
 <script>
     $('#nama_barang').change(function() {

@@ -50,6 +50,7 @@
 															<label class="control-label mb-10">Supplier</label>
 															<select name="nama_supplier" id="nama_supplier" class="form-control">
 																@foreach($supplier as $sup)
+																<option value="">Pilih Supplier</option>
 																<option value="{{ $sup->nama_supplier }}">{{ $sup->nama_supplier }} | {{ $sup->kode_supplier }} </option>
 																@endforeach
 															</select>
@@ -181,7 +182,7 @@
 </div>
 </div>
 @endsection
-@section('scripts')
+@section('scripts') 
 <script type="text/javascript">
 	function ambildata() {
 		var pengirim = document.forms["myForm"]["pengirim"].value;

@@ -96,4 +96,6 @@ class PembelianWarehouseController extends Controller
         );
         return back()->with('success', "data telah dilunasi");
     }
+
+    
 }

@@ -59,7 +59,7 @@
                         </a>
                         <ul class="dropdown-menu user-auth-dropdown" data-dropdown-in="flipInX" data-dropdown-out="flipOutX">
                             <li>
-                                <a href="{{ url('/admin/profile/profile') }}"><i class="zmdi zmdi-account"></i><span>Profile</span></a>
+                                <a href="{{ url('/admin/profile/profile') }}"><i class="zmdi zmdi-account"></i><span>Akun</span></a>
                             </li>
                             <li>
                                 <a href="{{ route('logout') }}"><i class="zmdi zmdi-power"></i><span>Log Out</span></a>
@@ -190,6 +190,18 @@
                         <div class="clearfix"></div>
                     </a>
                 </li>
+                <li>
+                    <a href="javascript:void(0);" data-toggle="collapse" data-target="#profil">
+                        <div class="pull-left"><i class="fa fa-gear mr-20"></i><span class="right-nav-text">Pengaturan</span></div>
+                        <div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>
+                        <div class="clearfix"></div>
+                    </a>
+                    <ul id="profil" class="collapse collapse-level-1">
+                        <li>
+                            <a href="/warehouse/pengaturan/profil">Profil</a>
+                        </li>
+                    </ul>
+                </li>
                 @endif
 
                 <!-- <-------------------------------MARKETING----------------------------------->
@@ -272,7 +284,7 @@
                         <div class="pull-left"><i class="zmdi zmdi-shopping-cart mr-20"></i><span class="right-nav-text">Puchase Order</span></div>
                         <div class="clearfix"></div>
                     </a>
-                </li>
+                </li> 
                 @endif
 
                 <!-- <-------------------------------PURCHASING----------------------------------->
@@ -379,7 +391,7 @@
 
     </div>
     <!-- /#wrapper -->
-
+ 
     <!-- Select2 JavaScript -->
     <script src="{{asset('template')}}/vendors/bower_components/select2/dist/js/select2.full.min.js"></script>
     <!-- jQuery -->

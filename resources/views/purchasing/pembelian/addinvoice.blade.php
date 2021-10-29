@@ -10,14 +10,14 @@
         <div class="row heading-bg">
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
                 <h5 class="txt-dark">Tambah Invoive</h5>
-            </div>
+            </div> 
         </div>
         <!-- Row -->
         <div class="row">
             <div class="col-sm-12">
                 <div class="panel panel-default card-view">
                     <div class="panel-heading">
-                        <form action="{{ url('addpembelian2') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ url('purchasing/pembelian/invoice/simpan') }}" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
                                 <div class="row">
                                     <div class="col-xs-6">
@@ -29,7 +29,7 @@
                                                 <tr>
                                                 <div class="">
                                                     <td class="txt-dark">
-                                                    {{$data_pembelian->no_pengajuan}}
+                                                        <input type="text" id="no_pengajuan" name="no_pengajuan" value="{{$data_pembelian->no_pengajuan}}" style="outline:none;border:0;" readonly>
                                                     </td>
                                                 </div>
                                             </tr>
@@ -41,7 +41,7 @@
                                             <tr>
                                                 <div class="">
                                                     <td class="txt-dark">
-                                                    {{$data_pembelian->nama_pemohon}}
+                                                        <input type="text" id="nama_pemohon" name="nama_pemohon"  value=" {{$data_pembelian->nama_pemohon}}" style="outline:none;border:0;" readonly>
                                                     </td>
                                                 </div>
                                             </tr>
@@ -57,7 +57,7 @@
                                                 <tr>
                                                     <div class="">
                                                         <td class="txt-dark">
-                                                        {{$data_pembelian->tgl_pengajuan}}
+                                                       <input type="text" id="tgl_pengajuan" name="tgl_pengajuan" value="{{$data_pembelian->tgl_pengajuan}}" style="outline:none;border:0;" readonly> 
                                                     </td>
                                                     </div>
                                                 </tr>
@@ -83,13 +83,14 @@
                             </thead>
                             <tbody>
                             <?php $no = 1; ?>
-                            @foreach ($data_detail as $data_detail)
+                            @foreach ($data_detail as $data_detail) 
                                 <tr>
                                     <td>{{$no++}}</td>
-                                    <td>{{ $data_detail->namaBarang}}</td>
-                                    <td>{{ $data_detail->jmlBarang}}</td>
-                                    <td>{{ $data_detail->harga}}</td>
-                                    <td>{{ $data_detail->keterangan}}</td>
+                                    <td style="display:none"><input type="text" style="outline:none;border:0;" readonly name="no_peng[]" id="no_peng" value="{{ $data_detail->no_pengajuan}}"></td>
+                                    <td><input type="text" style="outline:none;border:0;" readonly name="nama_barang[]" id="nama_barang" value="{{ $data_detail->namaBarang}}"></td>
+                                    <td><input type="text" style="outline:none;border:0;" readonly name="jml_barang[]" id="jml_barang" value="{{ $data_detail->jmlBarang}}"></td>
+                                    <td><input type="text" style="outline:none;border:0;" readonly name="harga[]" id="harga" value="{{ $data_detail->harga}}"></td>
+                                    <td><input type="text" style="outline:none;border:0;" readonly name="keterangan[]" id="keterangan" value="{{ $data_detail->keterangan}}"></td>
 
                                 </tr>
                             @endforeach
@@ -115,7 +116,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="control-label mb-10 text-left">Total Harga</label>
-                                    <input type="number" id="harga_jual" name="harga_jual" class="form-control a2" value="">
+                                    <input type="text" id="harga_jual" name="harga_jual" class="form-control a2" value="">
                                     @if ($errors->has('harga_jual'))
                                         <div class="tulisan">{{$errors->first('harga_jual')}}</div>
                                         @endif
@@ -145,7 +146,7 @@
                             <div class="col-md-4">
                                 <div class="form-group" id="total2" name="total" style="display: none;" >
                                     <label class="control-label mb-10 text-left">Total Bayar</label>
-                                    <input type="number" id="harga_beli" name="harga_beli" class="form-control b2" value="">
+                                    <input type="text" id="harga_beli" name="harga_beli" class="form-control b2" value="">
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -245,6 +246,55 @@
         return rupiah;
     }
     </script>
+
+    <script type="text/javascript">
+    
+        var tanpa_rupiah1 = document.getElementById('harga_beli');
+        tanpa_rupiah1.addEventListener('keyup', function(e) {
+        tanpa_rupiah1.value = formatRupiah(this.value);
+        });
+    
+        /* Dengan Rupiah */
+        //  var dengan_rupiah = document.getElementById('rate');
+        //  dengan_rupiah.addEventListener('keyup', function(e)
+        //  {
+        // dengan_rupiah.value = formatRupiah(this.value, 'Rp. ');
+        //  });
+    
+        /* Fungsi */
+        function formatRupiah(angka, prefix) {
+            var number_string = angka.replace(/[^,\d]/g, '').toString(),
+                split = number_string.split(','),
+                sisa = split[0].length % 3,
+                rupiah = split[0].substr(0, sisa),
+                ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+    
+            if (ribuan) {
+                separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
+            }
+    
+            rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+            return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+        };
+    
+        var i = 0;
+        var total = 0;
+    
+        function pecah(bilangan) {
+            var number_string = bilangan.toString(),
+                sisa = number_string.length % 3,
+                rupiah = number_string.substr(0, sisa),
+                ribuan = number_string.substr(sisa).match(/\d{3}/g);
+    
+            if (ribuan) {
+                separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
+            }
+    
+            return rupiah;
+        }
+        </script>
 
 
 

@@ -22,8 +22,8 @@ class PurchaseOrderTable extends Migration
             $table->date('tgl_pemasangan')->nullable();
             $table->integer('status')->nullable();
             $table->string('total')->nullable();
-            $table->string('ppn')->nullable();
-            $table->string('pph')->nullable();
+            $table->string('ppn')->nullable()->default(0);
+            $table->string('pph')->nullable()->default(0);
             $table->string('balance')->nullable();
             $table->string('alasan')->nullable();
             $table->string('pic_marketing',50)->nullable();

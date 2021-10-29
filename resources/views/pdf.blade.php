@@ -47,7 +47,7 @@
                                     </div>
                                     <hr>
 
-                                    <table
+                                    <table 
                                         style='width:550px; font-size:8pt; font-family:calibri; border-collapse: collapse;'
                                         border='0'>
                                         <td width='70%' align='left' style='padding-right:80px; vertical-align:top'>

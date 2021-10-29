@@ -1,5 +1,5 @@
 @extends('layout.master')
-@section('title', 'Detail Keluar Garansi')
+@section('title', 'Detail Keluar Garansi') 
 @section('content')
 
 <!-- Main Content -->
@@ -104,7 +104,7 @@
                                                     <th>Jumlah</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody> 
                                                 <?php $no = 1; ?>
                                                 @foreach ($detail_keluar as $garansi)
                                                 <tr>

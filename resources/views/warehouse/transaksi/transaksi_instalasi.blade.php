@@ -40,7 +40,7 @@
 														<div class="form-group">
 															<label class="control-label mb-10">No Transaksi</label>
 															<input type="hidden" id="no_transaksi" name="no_transaksi" value="{{ $no_trans }}" class="form-control" placeholder="" readonly>
-															<input type="text" id="no_trans" name="no_trans" value="{{ $no_trans }}" class="form-control" placeholder="" readonly>
+															<input type="hidden" id="no_trans" name="no_trans" value="{{ $no_trans }}" class="form-control" placeholder="" readonly>
 														</div>
 													</div>
 													<div class="col-md-6">
@@ -161,7 +161,7 @@
 </div>
 @endsection
 @section('scripts')
-<script type="text/javascript">
+<script type="text/javascript"> 
 	function ambildata() {
 		var no_trans = document.getElementById('no_trans').value;
 		// var jns_barang = document.getElementById('jns_barang').value;
@@ -188,8 +188,8 @@
 			'"></td><td><input type="text" style="outline:none;border:0;" readonly name="pengirim[]" id="pengirim" value="' + pengirim +
 			// '"></td><td><input type="text" style="outline:none;border:0;" readonly name="instansi[]" id="instansi" value="' + instansi + 
 			'"></td><td><input type="text" style="outline:none;border:0;" readonly name="penerima[]" id="penerima" value="' + penerima +
-			'"></td><td><input type="text" style="outline:none;border:0;" readonly name="nama_barang[]" id="nama_barang" value="' + nama_barang +
-			'"></td><td><input type="text" style="outline:none;border:0;" readonly name="jumlah[]" id="jumlah" value="' + jumlah +
+			'"></td><td><input type="text" style="outline:none;border:0;" readonly name="nama_barang1[]" id="nama_barang" value="' + nama_barang +
+			'"></td><td><input type="text" style="outline:none;border:0;" readonly name="jumlah1[]" id="jumlah" value="' + jumlah +
 			'"></td><td><button type="button" id="' + i + '" class="btn btn-danger btn-small remove_row">&times;</button></td></tr>');
 	};
 	$(document).on('click', '.remove_row', function() {

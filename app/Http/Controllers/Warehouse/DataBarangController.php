@@ -139,7 +139,6 @@ class DataBarangController extends Controller
                     'nama_barang' => $request->edit_nama_barang,
                     'kode_barang' => $request->edit_kode_barang,
                     'kode_kategori' => $request->edit_kode_kategori,
-                    'stok' => $request->edit_stok,
                     'gambar' => $namaFile,
                     'status' => $request->edit_status
                 ]);
@@ -151,7 +150,6 @@ class DataBarangController extends Controller
                     'nama_barang' => $request->edit_nama_barang,
                     'kode_barang' => $request->edit_kode_barang,
                     'kode_kategori' => $request->edit_kode_kategori,
-                    'stok' => $request->edit_stok,
                     'status' => $request->edit_status
                 ]);
 

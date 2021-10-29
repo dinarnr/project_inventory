@@ -58,15 +58,15 @@ class TrkKeluarController extends Controller
 
     public function keluargaransi(Request $request)
     {   
-        // dd($request->no_PO);
+        // dd($request);
         $jumlah_data = count($request->no_trans);
         for ($i = 0; $i < $jumlah_data; $i++) {
             DetailTrkKeluar::create(
                 [
                     'no_transaksi' => $request->no_trans[$i],
-                    'jumlah' => $request->jumlah[$i],
-                    'kode_barang' => $request->kode_barang[$i],
-                    'nama_barang' => $request->nama_barang[$i],            
+                    'jumlah' => $request->jumlah1[$i],
+                    'kode_barang' => $request->kode_barang1[$i],
+                    'nama_barang' => $request->nama_barang1[$i],            
                     'jns_barang' => $request->jns_barang[$i],
                 ]
             );
@@ -123,7 +123,7 @@ class TrkKeluarController extends Controller
         $kode = strtoupper(substr("TRK", 0, 3));
         $check = count(TransaksiKeluar::where('no_transaksi', 'like', "%$thnBln%")->get()->toArray());
         $angka = sprintf("%03d", (int)$check + 1);
-        $no_trans =  $kode.  "-"  .$now->year . $now->month . $angka;
+        $no_trans=  $kode.  "-"  .$now->year . $now->month . $angka;
         // dd($data_detail);
         return view('warehouse/transaksi/transaksi_instalasi', compact('data_so', 'SO', 'brg', 'instansi', 'no_trans')); 
 
@@ -147,7 +147,7 @@ class TrkKeluarController extends Controller
         $output = '<tr id="row"></tr>';
         foreach ($data as $row) {
             $output .= '<tr id="row"></td>
-            <td style="display:none;"><input type="text" style="outline:none;border:0;" name="no_trans" id="no_trans" value="'.$no_trans.'"></td>
+            <td style="display:none;" ><input type="text" style="outline:none;border:0;" name="no_trans[]" id="no_trans" value="'.$no_trans.'"></td>
             <td><input type="text" style="outline:none;border:0;" readonly name="nama_barang[]" id="nama_barang" value="'.$row->nama_barang.'"></td> 
             <td style="display:none;"><input type="text" style="outline:none;border:0;" readonly name="nama_barang1" id="nama_barang1" value="'.$row->nama_barang.'"></td> 
             <td style="display:none;"><input type="text" style="outline:none;border:0;" readonly name="kode_barang[]" id="kode_barang" value="'.$row->kode_barang.'"></td> 
@@ -182,7 +182,17 @@ class TrkKeluarController extends Controller
 
     public function keluarinstalasi(Request $request)
     {
-        // dd($request->jumlah);
+        // dd($request->no_trans); 
+        $rules = [
+            'pengirim' => 'required',
+            'penerima' => 'required',
+        ];
+
+        $messages = [
+            'pengirim.required' => '*Nama pengirim tidak boleh kosong',
+            'penerima.required' => '*Nama penerima tidak boleh kosong',
+        ];
+        $this->validate($request, $rules, $messages);
         $jumlah_data = count($request->jumlah);
         for ($i = 0; $i < $jumlah_data; $i++) {
             DetailTrkKeluar::create(
@@ -190,8 +200,8 @@ class TrkKeluarController extends Controller
                     'no_transaksi' => $request->no_trans[$i],
                     'jumlah' => $request->jumlah[$i],
                     'kode_barang' => $request->kode_barang[$i],
-                    'nama_barang' => $request->nama_barang[$i],
-                ]
+                    'nama_barang' => $request->no_trans[$i],
+                ]   
             );
         }
         TransaksiKeluar::create(
@@ -220,7 +230,7 @@ class TrkKeluarController extends Controller
         Stok::create(
             [
                 'nama_barang' => $request->nama_barang1,
-                'stok' => $request->jumlah1,
+                'stok' => $request->jumlah1, 
                 'kode_barang' => $request->kode_barang1,
                 'keterangan' => 'Warehouse Transaksi Keluar Instalasi'
             ]  

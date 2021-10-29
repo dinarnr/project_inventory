@@ -41,6 +41,7 @@ use App\Http\Controllers\Office\TrkKeluarOfficeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Marketing\PDFController;
+use App\Http\Controllers\Warehouse\PengaturanController;
 use App\Models\Pengajuan;
 use Illuminate\Support\Facades\Route;
 
@@ -194,6 +195,10 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::get('pembelian/invoice/tambah', [PembelianWarehouseController::class, 'addpembelian']);
         Route::post('pembelian/invoice/simpan', [PembelianWarehouseController::class, 'addpembelian2']);
         //  Route::post('lunas/{id_pembelian}', 'App\Http\Controllers\PembelianController@lunas');
+
+        // <----------------------PENGATURAN--------------------------->
+        Route::get('pengaturan/profil', [PengaturanController::class, 'profil']);
+
     });
 
     Route::group(['prefix' => 'marketing/'], function () {
@@ -292,6 +297,12 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::get('pembelian/purchase', [PembelianPurchasingController::class, 'purchase']);
         Route::get('pembelian/invoice/tambah', [PembelianPurchasingController::class, 'addpembelian']);
         Route::post('pembelian/invoice/simpan', [PembelianPurchasingController::class, 'addpembelian2']);
+        Route::get('/invoice/lunas/detail/{no_pengajuan}', [PembelianPurchasingController::class, 'detaillunas']);
+        Route::get('/invoice/hutang/{no_pengajuan}', [PembelianPurchasingController::class, 'hutang']);
+        Route::post('pembelian/hutang/simpan/{no_pengajuan}', [PembelianPurchasingController::class, 'bayar']);
+
+
+
         // ----------------PENGAJUAN------------
         Route::get('pengajuan/brgrekom', [PengajuanPurchasingController::class, 'tabelRekom']);
         Route::get('pengajuan/pembelian', [PengajuanPurchasingController::class, 'pengpembelian']);

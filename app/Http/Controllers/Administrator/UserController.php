@@ -73,7 +73,8 @@ class UserController extends Controller
 
     public function updateProfil (Request $request)
     {
-        if ($request->gambar) {
+        // dd($request);
+        if ($request->gambar and $request->edit_password){
             $namaFile = time() . '.' . $request->gambar->extension();
             $request->gambar->move(public_path('img/logo'), $namaFile);
 
@@ -81,17 +82,28 @@ class UserController extends Controller
             ->update([
                 'name'      => $request->edit_nama,
                 'email'     => $request->edit_email,
-                'password'  => bcrypt($request->edit_password),
-                'gambar'    => $namaFile
+                'gambar'    => $namaFile,
+                'password' => bcrypt($request->edit_password)
         ]);
-        } else {
+        } else if ($request->gambar) {
+            $namaFile = time() . '.' . $request->gambar->extension();
+            $request->gambar->move(public_path('img/logo'), $namaFile);
+
+            User::where('id', $request->edit_id)
+            ->update([
+                'name'      => $request->edit_nama,
+                'email'     => $request->edit_email,
+                'gambar'    => $namaFile,
+                'password'  => $request->password
+        ]);
+        }else {
 
             User::where('id', $request->edit_id)               
              ->update([
                 'name'      => $request->edit_nama,
                 'email'     => $request->edit_email,
                 'password' => bcrypt($request->edit_password)
-                ]);
+            ]);
         }
         return redirect('admin/profile/profile')->with(['success' => 'Data Berhasil Disimpan!']); 
     }
