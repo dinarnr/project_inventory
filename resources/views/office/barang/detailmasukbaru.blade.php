@@ -64,7 +64,7 @@
                                 </div>
                                 <hr>
                                 <div class="row">
-                                    <div class="col-xs-8">
+                                    <div class="col-xs-4">
                                         <div class="form-group">
                                             <table>
                                                 <div class="text-left">
@@ -78,11 +78,6 @@
                                                     </div>
                                                 </tr>
                                             </table>
-
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-4">
-                                        <div class="form-group">
                                             <table>
                                                 <div class="text-left">
                                                     <h6 class="txt-dark"><strong>Tanggal Transaksi</strong></h6>
@@ -93,6 +88,49 @@
                                                     </div>
                                                 </tr>
                                             </table>
+                                            
+
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <table>
+                                                <div class="text-left">
+                                                    <h6 class="txt-dark"><strong>Supplier</strong></h6>
+                                                </div>
+                                                <tr>
+                                                    <div class="">
+                                                        <td class="txt-dark"> {{ $trk_masuk->nama_supplier }} </td>
+                                                    </div>
+                                                </tr>
+                                            </table>
+                                            <table>
+                                                <div class="text-left">
+                                                    <h6 class="txt-dark"><strong>Penerima</strong></h6>
+                                                </div>
+                                                <tr>
+                                                    <div class="">
+                                                        <td class="txt-dark"> {{ $trk_masuk->penerima }} </td>
+                                                    </div>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <table>
+                                                <div class="text-left">
+                                                    <h6 class="txt-dark"><strong>Pengirim </strong></h6>
+                                                </div>
+                                                <tr>
+                                                    <div class="">
+                                                        <td class="txt-dark">
+                                                            {{$trk_masuk->pengirim}}
+                                                        </td>
+                                                    </div>
+                                                </tr>
+                                            </table>
+                                            
                                         </div>
                                     </div>
                                 </div>

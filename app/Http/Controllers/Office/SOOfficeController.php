@@ -42,6 +42,6 @@ class SOOfficeController extends Controller
         $nama_instansi = PO::where('no_PO', $no_PO)->pluck('kode_instansi');
         $user = Auth::user();
         $instansi = Instansi::where('kode_instansi', $nama_instansi)->get();
-        return view('office/so/detailso', compact('data_po', 'data_detail', 'user', 'profil', 'instansi', ));
+        return view('office/so/detailso', compact('data_po', 'data_detail', 'user', 'profil', 'instansi','tanggal' ));
     }
 }
