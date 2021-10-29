@@ -24,21 +24,21 @@ class TrkKeluarOfficeController extends Controller
     {
         $profil= Profil::all();
         $data_detail = DetailTrkKeluar::where('no_transaksi', $no_transaksi)->get();
-        $transaksi_masuk = TransaksiKeluar::where('no_transaksi', $no_transaksi)->get();
-        return view('office/barang/detailkeluargaransi', compact('transaksi_masuk', 'data_detail', 'profil'));
+        $transaksi_garansi = TransaksiKeluar::where('no_transaksi', $no_transaksi)->get();
+        return view('office/barang/detailkeluargaransi', compact('transaksi_garansi', 'data_detail', 'profil'));
     }
     public function detailkeluarinstalasi($no_transaksi)
     {
         $profil= Profil::all();
         $data_detail = DetailTrkKeluar::where('no_transaksi', $no_transaksi)->get();
-        $transaksi_masuk = TransaksiKeluar::where('no_transaksi', $no_transaksi)->get();
-        return view('office/barang/detailkeluarinstalasi', compact('transaksi_masuk', 'data_detail', 'profil'));
+        $transaksi_instalasi = TransaksiKeluar::where('no_transaksi', $no_transaksi)->get();
+        return view('office/barang/detailkeluarinstalasi', compact('transaksi_instalasi', 'data_detail', 'profil'));
     }
     public function detailkeluarretur($no_transaksi)
     {
         $profil= Profil::all();
         $data_detail = DetailTrkKeluar::where('no_transaksi', $no_transaksi)->get();
-        $transaksi_masuk = TransaksiKeluar::where('no_transaksi', $no_transaksi)->get();
-        return view('office/barang/detailkeluarretur', compact('transaksi_masuk', 'data_detail', 'profil'));
+        $transaksi_retur = TransaksiKeluar::where('no_transaksi', $no_transaksi)->get();
+        return view('office/barang/detailkeluarretur', compact('transaksi_retur', 'data_detail', 'profil'));
     }
 }

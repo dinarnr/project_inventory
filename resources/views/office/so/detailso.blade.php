@@ -78,7 +78,7 @@
                                                     <div class="">
                                                         <td class="txt-dark"> No PO : <input type="text" id="no_PO" name="no_PO" value="{{$data_po->no_PO}}" style="outline:none;border:0;" readonly> <br>
                                                         No SO : {{$data_po->no_SO}} <br>
-                                                        Date : {{$data_po->created_at->format('d/m/Y')}} <br>
+                                                        Date : {{$data_po->created_at->format('d M Y')}} <br>
                                                          </td>
                                                     </div>
                                                 </tr>
@@ -96,8 +96,7 @@
                                             <th>Deskripsi</th>
                                             <th>Keterangan</th>
                                             <th>Jumlah</th>
-                                            <th>Rate (Rp)</th>
-                                            <th>Amount (Rp)</th>
+                                            
                                         </tr>
                                     </thead>
                                 
@@ -115,18 +114,32 @@
                                             <td>
                                                 <a href="#" id="" style="font-weight:bold" data-type="text" data-pk="1" data-title="Jumlah">{{$detail->jumlah}}</a>
                                             </td>
-                                            <td> <a href="#" id="" style="font-weight:bold" data-type="text" data-pk="1" data-title="Rate">{{$detail->rate}}</a> </td>
-                                            <td> <a href="#" id="" style="font-weight:bold" data-type="text" data-pk="1" data-title="Amount">{{$detail->amount}}</a></td>
                                         </tr>
                                         @endforeach
                                         
                                     </div>
                                 </tbody>
                             </table>
+
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-8">
+                    </div>
+                    <div class="col-xs-3">
+                        <div class="form-group">
+                            <table>
+                                <div class="text-center">
+                                    <h6 class="txt-dark">Malang, {{ $tanggal->format('d M Y')}} </h6>
+                                </div><br><br><br><br><br>
+                                <div class="text-center">
+                                    <h6 class="txt-dark">{{ Auth::user()->name }}</h6>
+                                </div>
+                                <hr>
+                                <div class=" text-center">
+                                        <h6 class="txt-dark">Warehouse</h6>
+                                </div>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -148,52 +161,4 @@
     </div>
     <!-- /#wrapper -->
 
-    <script
-    src="https://code.jquery.com/jquery-3.4.1.js"
-    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-    crossorigin="anonymous">
-    </script>
-
-
-    <script type='text/javascript'>
-    $(document).ready(function(){
-   // Check or Uncheck All checkboxes
-    $("#checkall").change(function(){
-        var checked = $(this).is(':checked');
-        if(checked){
-        $(".checkbox").each(function(){
-            $(this).prop("checked",true);
-        });
-        }else{
-        $(".checkbox").each(function(){
-            $(this).prop("checked",false);
-        });
-        }
-    });
-    
-    // Changing state of CheckAll checkbox 
-    $(".checkbox").click(function(){
-    
-        if($(".checkbox").length == $(".checkbox:checked").length) {
-        $("#checkall").prop("checked", true);
-        } else {
-        $("#checkall").prop("checked", false);
-        }
-
-    });
-    });
-
-    function update() {
-        var $checks = $('.checkbox');
-
-        arrunchecked = $('.checkbox').map(function() {
-            if(!this.checked)
-            return this.value;
-        }).get();
-
-        var non = document.getElementsByClassName("non[]").checked = false// Uncheck
-        $("#non").val(arrunchecked);
-    }
-
-    </script>
     @endsection

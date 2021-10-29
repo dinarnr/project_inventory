@@ -167,14 +167,14 @@
                                                     </div>
 
                                                     <hr>
-                                            <div class=" text-center mt-2">
-                                                    <h6 class="txt-dark">{{ Auth::user()->divisi }}</h6>
-                                            </div>
+                                                    <div class=" text-center mt-2">
+                                                            <h6 class="txt-dark">{{ Auth::user()->divisi }}</h6>
+                                                    </div>
 
-                                            </table>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                             </div>
                         </div>
                     </div>

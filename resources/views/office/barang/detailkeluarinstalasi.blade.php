@@ -54,7 +54,7 @@
                                             </table>
                                         </div>
                                     </div>
-                                    @foreach ($transaksi_masuk as $trk_masuk)
+                                    @foreach ($transaksi_instalasi as $trk_masuk)
                                     <div class="col-xs-4">
                                         <div class="form-group mt-20 ">
 
@@ -78,11 +78,6 @@
                                                     </div>
                                                 </tr>
                                             </table>
-
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-4">
-                                        <div class="form-group">
                                             <table>
                                                 <div class="text-left">
                                                     <h6 class="txt-dark"><strong>Tanggal Instalasi</strong></h6>
@@ -90,6 +85,51 @@
                                                 <tr>
                                                     <div class="">
                                                         <td class="txt-dark"> {{ date('d M Y',strtotime($trk_masuk->tgl_instalasi)) }} </td>
+                                                    </div>
+                                                </tr>
+                                            </table>
+                                            <table>
+                                                <div class="text-left">
+                                                    <h6 class="txt-dark"><strong>Instansi</strong></h6>
+                                                </div>
+                                                <tr>
+                                                    <div class="">
+                                                        <td class="txt-dark"> {{ $trk_masuk->instansi }} </td>
+                                                    </div>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <table>
+                                                <div class="text-left">
+                                                    <h6 class="txt-dark"><strong>Pengirim</strong></h6>
+                                                </div>
+                                                <tr>
+                                                    <div class="">
+                                                        <td class="txt-dark"> {{ $trk_masuk->pengirim }} </td>
+                                                    </div>
+                                                </tr>
+                                            </table>
+                                            <table>
+                                                <div class="text-left">
+                                                    <h6 class="txt-dark"><strong>Penerima</strong></h6>
+                                                </div>
+                                                <tr>
+                                                    <div class="">
+                                                        <td class="txt-dark"> {{ $trk_masuk->penerima }} </td>
+                                                    </div>
+                                                </tr>
+                                            </table>
+                                            <table>
+                                                <div class="text-left">
+                                                    <h6 class="txt-dark"><strong>Penanggung Jawab</strong></h6>
+                                                </div>
+                                                <tr>
+                                                    <div class="">
+                                                        <td class="txt-dark"> {{ $trk_masuk->pic_warehouse }} </td>
                                                     </div>
                                                 </tr>
                                             </table>

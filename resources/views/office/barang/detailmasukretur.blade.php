@@ -64,7 +64,7 @@
                                 </div>
                                 <hr>
                                 <div class="row">
-                                    <div class="col-xs-8">
+                                    <div class="col-xs-4">
                                         <div class="form-group">
                                             <table>
                                                 <div class="text-left">
@@ -78,7 +78,19 @@
                                                     </div>
                                                 </tr>
                                             </table>
-
+                                            <table>
+                                                <div class="text-left">
+                                                    <h6 class="txt-dark"><strong>Instansi</strong></h6>
+                                                </div>
+                                                <tr>
+                                                    <div class="">
+                                                        <td class="txt-dark">
+                                                            {{$trk_retur->instansi}}
+                                                        </td>
+                                                    </div>
+                                                </tr>
+                                            </table>
+                                            
                                         </div>
                                     </div>
                                     <div class="col-xs-4">
@@ -89,7 +101,31 @@
                                                 </div>
                                                 <tr>
                                                     <div class="">
-                                                        <td class="txt-dark"> {{ date('d-m-Y',strtotime($trk_retur->tgl_transaksi)) }} </td>
+                                                        <td class="txt-dark"> {{ date('d M Y',strtotime($trk_retur->tgl_transaksi)) }} </td>
+                                                    </div>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <table>
+                                                <div class="text-left">
+                                                    <h6 class="txt-dark"><strong>Pengirim</strong></h6>
+                                                </div>
+                                                <tr>
+                                                    <div class="">
+                                                        <td class="txt-dark"> {{ $trk_retur->pengirim }} </td>
+                                                    </div>
+                                                </tr>
+                                            </table>
+                                            <table>
+                                                <div class="text-left">
+                                                    <h6 class="txt-dark"><strong>Penerima</strong></h6>
+                                                </div>
+                                                <tr>
+                                                    <div class="">
+                                                        <td class="txt-dark"> {{ $trk_retur->penerima }} </td>
                                                     </div>
                                                 </tr>
                                             </table>
