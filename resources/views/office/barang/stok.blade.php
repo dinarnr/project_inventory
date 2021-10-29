@@ -1,5 +1,5 @@
 @extends('layout.master')
-@section('title', 'Stok')
+@section('title', 'Data stok')
 @section('content')
 
 <!-- Main Content -->
@@ -8,54 +8,59 @@
         <!-- Title -->
         <div class="row heading-bg">
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                <h4 class="txt-dark">Stok Barang</h4>
+                <h5 class="txt-dark">Data Stok Barang</h5><br>
+                <!-- <a href="/transaksi" class="btn btn-primary btn-icon-anim"><i class="fa fa succes"></i> MASUK</a>
+                <a href="/transaksikeluar" class="btn btn-primary btn-icon-anim"><i class="fa fa succes"></i> KELUAR</a> -->
             </div>
-            <!-- Breadcrumb -->
-            <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                <ol class="breadcrumb">
-                </ol>
-            </div>
-            <!-- /Breadcrumb -->
+
+
+
         </div>
         <!-- Row -->
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="panel panel-default card-view">
-                    <div class="panel-wrapper collapse in">
-                        <div class="panel-body">
-                            <div class="table-wrap">
-                                <div class="table-responsive">
-
-                                    <table id="datable_1" class="table table-bordered display pb-30">
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Kode barang</th>
-                                                <th>Nama Barang</th>
-                                                <th>Stok</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
+        <div class="col-lg-12 col-md-12 mt-10">
+            <div class="panel panel-default card-view">
+                <div class="panel-heading">
+                    <div class="pull-left">
+                        <h6 class="panel-title txt-dark">Stok Barang</h6>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="panel-wrapper collapse in">
+                    <div class="panel-body">
+                        <div class="table-wrap">
+                            <div class="">
+                                <table id="datable_1" class="table table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Nama Barang</th>
+                                            <th>Keterangan</th>
+                                            <th>Tanggal</th>
+                                            <th>Stok</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
                                         <?php $no = 1; ?>
-                                            @foreach ($stok as $stok)
-                                            <tr>
-                                                <td> {{ $no++}}</td>
-                                                <td> {{$stok->kode_barang}}</td>
-                                                <td> {{$stok->nama_barang}}</td>
-                                                <td> {{$stok->stok}}</td>
-                                            </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-
-                                </div>
+                                        @foreach($data_stok as $data_stok)
+                                        <tr>
+                                            <td>{{ $no++}}</td>
+                                            <td>{{$data_stok->nama_barang}}</td>
+                                            <td>{{$data_stok->keterangan}}</td>
+                                            <td>{{date('d-m-Y',strtotime($data_stok->created_at))}}</td>
+                                            <td>{{$data_stok->stok}}</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
                             </div>
-
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
+
+        <!-- /Row -->
     </div>
 </div>
 <!-- /Main Content -->

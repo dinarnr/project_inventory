@@ -102,7 +102,7 @@
                                             </tr>
                                             @endforeach
                                             
-                                        </tbody>
+                                        </tbody> 
                                     </table>
                                 </div>
 								
@@ -131,7 +131,7 @@
                                                 <td>{{ $transaksi_retur->penerima}}</td>
                                                 <td>{{ $transaksi_retur->created_at }}</td>
                                                 <td>
-                                                    <a href="{{ url('office/transaksi/detailkeluarretur') }}/{{ $garansi->no_transaksi }}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
+                                                    <a href="{{ url('office/transaksi/detailkeluarretur') }}/{{ $transaksi_retur->no_transaksi }}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
                                                 </td>
                                             </tr>
                                             @endforeach

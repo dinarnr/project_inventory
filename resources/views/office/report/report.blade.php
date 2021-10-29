@@ -151,10 +151,8 @@
 														@elseif ($data_po->status === 2 )
 														<span class="label label-success">Purchase Order disetujui Warehouse </span>
 														@elseif ($data_po->status === 5)
-														<span class="label label-danger">Purchase Order dibatalkan <br><br> </span>
-														<div class="tulisan">
-															Alasan : {{$data_po->alasan}}
-														</div>
+														<span class="label label-danger">Purchase Order dibatalkan </span>
+														
 														@else
 														<span class="label label-default">Draft </span>
 														@endif

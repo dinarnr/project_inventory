@@ -144,7 +144,7 @@ class POMktController extends Controller
             );
         }
         return redirect('marketing/po')->with(['success' => 'Data berhasil ditambahkan']);
-    } 
+    }
 
     // public function adddraft2(Request $request)
     // {
@@ -237,6 +237,7 @@ class POMktController extends Controller
     public function add2(Request $request)
     {
         $user = Auth::user();
+        $data_po = PO::all();
         // dd($request->noSO);
         $jumlah_data = count($request->noPO);
         for ($i = 0; $i < $jumlah_data; $i++) {
@@ -266,10 +267,10 @@ class POMktController extends Controller
                 'ip' => $request->ip()
             ]
         );
-        return redirect()->back();
+        // return view('marketing/po/po', compact('data_po'));
+        return redirect("marketing/po/ubah/" . $request->noPO[0] . "");
+        // return redirect()->back();
     }
-    //         return redirect('marketing/editpo');
-    //     }
 
     #simpan/proses draft
     public function draft($no_PO, Request $request)
@@ -303,7 +304,7 @@ class POMktController extends Controller
         $user = Auth::user();
         PO::where('id_PO', $id_PO)
             ->update([
-                'status' => '7',
+                'status' => '5',
                 'alasan' => $request->alasan,
             ]);
         Log::create(
@@ -320,15 +321,21 @@ class POMktController extends Controller
         return redirect('marketing/po');
     }
 
-    public function editisidraft(Request $request, $id_po)
+    public function editdraft($id_po)
+    {
+        $data_detail = DetailPO::where('id_po',$id_po)->get();
+        return view('marketing/po/editdraft', compact('data_detail'));
+    }
+
+    public function editdraft2(Request $request, $id_po)
     {
         DetailPO::where('id_po', $id_po)
             ->update([
                 'nama_barang' => $request->edit_nama,
                 'keterangan_barang' => $request->edit_keterangan,
                 'jumlah' => $request->edit_jumlah,
-                'rate' => $request->edit_rate,
-                'amount' => $request->edit_amount
+                'rate' => (preg_replace('/[^0-9]/','',$request->edit_rate)),
+                'amount' => (preg_replace('/[^0-9]/','',$request->edit_amount))
             ]);
 
         $user = Auth::user();
@@ -343,7 +350,7 @@ class POMktController extends Controller
 
             ]
         );
-        return redirect()->back();
+        return redirect("marketing/po/ubah/" . $request->noPO . "");
     }
 
     public function deletepo($id_po, Request $request)

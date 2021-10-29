@@ -222,7 +222,8 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::post('po/proses/draft/{no_PO}', [POMktController::class, 'draft']);
         Route::post('po/batal/{id_PO}', [POMktController::class, 'batal']);
         // Route::post('po/simpan/draft', [POMktController::class, 'adddraft2']);
-        Route::post('po/ubah/draft/{id_po}', [POMktController::class, 'editisidraft']); // edit keterangan di draft
+        Route::get('po/ubahdraft/{id_po}', [POMktController::class, 'editdraft']); //edit po
+        Route::post('po/ubah/draft/simpan/{id_po}', [POMktController::class, 'editdraft2']); // edit keterangan di draft
         Route::get('po/detail/{no_PO}', [POMktController::class, 'detailpo']);
         Route::delete('po/deletepo/{id_po}', [POMktController::class, 'deletepo']);
         Route::delete('po/deletepo/{nid_PO}', [POMktController::class, 'deletepo']);
@@ -263,6 +264,7 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::post('peminjaman/kembali/{no_peminjaman}', [PeminjamanTeknisiController::class, 'kembali']);
         Route::post('peminjaman/detailkembali/{id_peminjaman}', [PeminjamanTeknisiController::class, 'detailkembali']);
         Route::get('peminjaman/detail/{no_peminjaman}', [PeminjamanTeknisiController::class, 'detailpeminjaman']);
+        Route::post('peminjaman/tambah/fetch', [PeminjamanTeknisiController::class, 'fetch'])->name('peminjamanteknisicontroller.fetch');
 
         // <----------------------DATA PENGAJUAN--------------------------->
         Route::get('pengajuan/brgrekom', [PengajuanTeknisiController::class, 'tabelRekom']);
@@ -317,15 +319,24 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::get('pengajuan/pembelian', [PengajuanAdminController::class, 'pengpembelian']);
     });
 
-    Route::group(['prefix' => 'office/'], function () {
+    Route::group(['prefix' => 'office/'], function () { 
         Route::get('report/report', [ReportController::class, 'report']);
         Route::get('barang/stok', [StokOfficeController::class, 'stok']);
         Route::get('transaksi/masuk', [TrkMasukOfficeController::class, 'transaksimasuk']);
+        Route::get('trk/detailmasukbaru/{no_transaksi}', [TrkMasukOfficeController::class, 'detailmasuk']);
+        Route::get('transaksi/detailmasukretur/{no_transaksi}', [TrkMasukOfficeController::class, 'detailmasukretur']);
+        Route::get('transaksi/detailkeluargaransi/{no_transaksi}', [TrkKeluarOfficeController::class, 'detailkeluargaransi']);
+        Route::get('transaksi/detailkeluarinstalasi/{no_transaksi}', [TrkKeluarOfficeController::class, 'detailkeluarinstalasi']);
+        Route::get('transaksi/detailkeluarretur/{no_transaksi}', [TrkKeluarOfficeController::class, 'detailkeluarretur']);
+
         Route::get('transaksi/keluar', [TrkKeluarOfficeController::class, 'transaksikeluar']);
         Route::get('po/datapo', [POOfficeController::class, 'po']);
-        Route::get('po/datapo2', [POOfficeController::class, 'searchBydate']);
+        Route::get('po/datapo2', [POOfficeController::class, 'searchBystatus']);
+        // Route::resource('customsearch', 'CustomSearchController');
         Route::get('so/dataso', [SOOfficeController::class, 'so']);
+        Route::get('so/dataso2', [SOOfficeController::class, 'searchBystatus']);
         Route::get('peminjaman/datapinjam', [PeminjamanOfficeController::class, 'peminjaman']);
+        Route::get('peminjaman/datapinjam2', [PeminjamanOfficeController::class, 'searchBydate']);
         Route::get('pembelian/datapembelian', [PembelianOfficeController::class, 'pembelian']);
         Route::get('po/detail/{no_PO}', [POOfficeController::class, 'detailpo']);
         Route::get('so/detail/{no_SO}', [SOOfficeController::class, 'detailso']);

@@ -1,6 +1,13 @@
 @extends('layout.master')
-@section('title', 'Detail Keluar Garansi')
+@section('title', 'Transaksi Keluar Instalasi')
 @section('content')
+<style type="text/css">
+    @media print {
+        .hide-from-printer {
+            display: none;
+        }
+    }
+</style>
 
 <!-- Main Content -->
 <div class="page-wrapper">
@@ -8,17 +15,15 @@
         <!-- Title -->
         <div class="row heading-bg">
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                <h5 class="txt-dark">Detail Keluar Retur</h5>
+                <h5 class="txt-dark">Detail Keluar Instalasi</h5>
             </div>
-            <!-- Breadcrumb -->
             <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                 <ol class="breadcrumb">
                     <li><a href="index.html">Transaksi</a></li>
-                    <li><a href="#"><span>Transaksi Keluar Retur</span></a></li>
-                    <li class="active"><span>Detail Keluar Retur</span></li>
+                    <li><a href="#"><span>Transaksi Keluar Instalasi</span></a></li>
+                    <li class="active"><span>Detail Keluar Instalasi</span></li>
                 </ol>
             </div>
-            <!-- /Breadcrumb -->
         </div>
         <!-- /Title -->
 
@@ -49,7 +54,7 @@
                                             </table>
                                         </div>
                                     </div>
-
+                                    @foreach ($transaksi_masuk as $trk_masuk)
                                     <div class="col-xs-4">
                                         <div class="form-group mt-20 ">
 
@@ -60,35 +65,31 @@
                                 <hr>
                                 <div class="row">
                                     <div class="col-xs-8">
-                                    @foreach ($transaksi_retur as $trk_garansi)
                                         <div class="form-group">
                                             <table>
                                                 <div class="text-left">
-                                                    <h6 class="txt-dark"><strong>No Transaksi</strong></h6>
+                                                    <h6 class="txt-dark"><strong>No Transaksi: </strong></h6>
                                                 </div>
                                                 <tr>
                                                     <div class="">
                                                         <td class="txt-dark">
-                                                            {{ $trk_garansi->no_transaksi }}
+                                                            {{$trk_masuk->no_transaksi}}
                                                         </td>
                                                     </div>
                                                 </tr>
                                             </table>
 
                                         </div>
-                                        @endforeach
                                     </div>
                                     <div class="col-xs-4">
                                         <div class="form-group">
                                             <table>
                                                 <div class="text-left">
-                                                    <h6 class="txt-dark"><strong>Tanggal Transaksi</strong></h6>
+                                                    <h6 class="txt-dark"><strong>Tanggal Instalasi</strong></h6>
                                                 </div>
                                                 <tr>
                                                     <div class="">
-                                                        <td class="txt-dark">
-                                                            {{ date('d M Y',strtotime ($trk_garansi->tgl_transaksi)) }}  
-                                                        </td>
+                                                        <td class="txt-dark"> {{ date('d M Y',strtotime($trk_masuk->tgl_instalasi)) }} </td>
                                                     </div>
                                                 </tr>
                                             </table>
@@ -105,15 +106,17 @@
                                                     <th>No</th>
                                                     <th>Nama barang</th>
                                                     <th>Jumlah</th>
+                                                    <th>Keterangan</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php $no = 1; ?>
-                                                @foreach ($detail_keluar as $garansi)
+                                                @foreach ($data_detail as $data_detail)
                                                 <tr>
                                                     <td>{{ $no++ }}</td>
-                                                    <td>{{ $garansi->nama_barang}}</td>
-                                                    <td>{{ $garansi->jumlah}}</td>
+                                                    <td>{{ $data_detail->nama_barang}}</td>
+                                                    <td>{{ $data_detail->jumlah}} </td>
+                                                    <td>{{ $data_detail->keterangan}}</td>
                                                 </tr>
                                                 @endforeach
                                             </tbody>
@@ -122,6 +125,7 @@
                                     <!--  -->
                                     <div class="clearfix"></div>
                                 </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -130,6 +134,11 @@
             <!-- /Row -->
         </div>
         <!-- /Footer -->
+    </div>
+    <div class="pull-right hide-from-printer">
+        <button type="button" class="btn btn-success btn-icon left-icon" onclick="javascript:window.print();">
+            <i class="fa fa-print"></i><span> Print</span>
+        </button>
     </div>
     <!-- /Main Content -->
 </div>

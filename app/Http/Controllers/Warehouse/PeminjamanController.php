@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\DetailPeminjaman;
 use App\Models\Log;
+use App\Models\Master;
 use App\Models\Peminjaman;
 use App\Models\Profil;
+use App\Models\Stok;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,7 +19,8 @@ class PeminjamanController extends Controller
     public function peminjaman()
     {
         $peminjaman = Peminjaman::all();
-        return view('warehouse/peminjaman/peminjaman', compact('peminjaman'));
+        // $pinjam = DetailPeminjaman::where('no_peminjaman', $no_peminjaman)->get();
+        return view('warehouse/peminjaman/peminjaman', compact('peminjaman',));
     }
 
    
@@ -87,6 +90,19 @@ class PeminjamanController extends Controller
 
             ]
         );
+        $new_stok = Master::whereIn('kode_barang',$request->kode_barang)->pluck('stok');
+        $jumlah_stok = count($new_stok);
+        for ($i = 0; $i < $jumlah_stok; $i++) {
+            Stok::create(
+                [
+                    'nama_barang' => $request->nama_barang[$i],
+                    'stok' => $request->jumlah[$i],
+                    'stok_akhir' => $new_stok[$i],
+                    'kode_barang' => $request->kode_barang[$i],
+                    'keterangan' => 'Teknisi Pinjam Barang'
+                ]  
+            );
+        }
         return redirect('warehouse/peminjaman');
     }
     public function kembali_barang(Request $request, $id_peminjaman)

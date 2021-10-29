@@ -1,6 +1,13 @@
 @extends('layout.master')
-@section('title', 'Detail Masuk Baru')
+@section('title', 'Transaksi Masuk Baru')
 @section('content')
+<style type="text/css">
+    @media print {
+        .hide-from-printer {
+            display: none;
+        }
+    }
+</style>
 
 <!-- Main Content -->
 <div class="page-wrapper">
@@ -10,7 +17,6 @@
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
                 <h5 class="txt-dark">Detail Masuk Baru</h5>
             </div>
-            <!-- Breadcrumb -->
             <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                 <ol class="breadcrumb">
                     <li><a href="index.html">Transaksi</a></li>
@@ -18,7 +24,6 @@
                     <li class="active"><span>Detail Masuk Baru</span></li>
                 </ol>
             </div>
-            <!-- /Breadcrumb -->
         </div>
         <!-- /Title -->
 
@@ -29,8 +34,8 @@
                     <div class="panel-heading">
                         <div class="panel-wrapper collapse in">
                             <div class="panel-body">
-                                
-                            <div class="row">
+
+                                <div class="row">
                                     <div class="col-xs-8">
                                         <div class="form-group">
                                             <div class="">
@@ -40,16 +45,16 @@
                                                 <tr>
                                                     <div class="row">
                                                         @foreach ($profil as $profil)
-                                                <td class="txt-dark"> Jl Candi Mendut Utara 1 No. 11 <br>
-                                                    Kel. Mojolangu Kec. Lowokwaru Malang - Jawa Timur<br>
-                                                    Phone : {{$profil->telp}}<br> Email : {{$profil->email}}</td>
-                                                    @endforeach
+                                                        <td class="txt-dark"> Jl Candi Mendut Utara 1 No. 11 <br>
+                                                            Kel. Mojolangu Kec. Lowokwaru Malang - Jawa Timur<br>
+                                                            Phone : {{$profil->telp}}<br> Email : {{$profil->email}}</td>
+                                                        @endforeach
                                                     </div>
                                                 </tr>
                                             </table>
                                         </div>
                                     </div>
-
+                                    @foreach ($transaksi_masuk as $trk_masuk)
                                     <div class="col-xs-4">
                                         <div class="form-group mt-20 ">
 
@@ -57,20 +62,21 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                <hr>
                                 <div class="row">
                                     <div class="col-xs-8">
                                         <div class="form-group">
                                             <table>
                                                 <div class="text-left">
-                                                    <h6 class="txt-dark"><strong>No Transaksi</strong></h6>
+                                                    <h6 class="txt-dark"><strong>No Transaksi: </strong></h6>
                                                 </div>
-                                        <tr>
-                                            <div class="">
-                                                <td class="txt-dark">
-                                                </td>
-                                            </div>
-                                        </tr>
+                                                <tr>
+                                                    <div class="">
+                                                        <td class="txt-dark">
+                                                            {{$trk_masuk->no_transaksi}}
+                                                        </td>
+                                                    </div>
+                                                </tr>
                                             </table>
 
                                         </div>
@@ -83,7 +89,7 @@
                                                 </div>
                                                 <tr>
                                                     <div class="">
-                                                        <td class="txt-dark">  </td>
+                                                        <td class="txt-dark"> {{ date('d M Y',strtotime($trk_masuk->tgl_transaksi)) }} </td>
                                                     </div>
                                                 </tr>
                                             </table>
@@ -119,6 +125,7 @@
                                     <!--  -->
                                     <div class="clearfix"></div>
                                 </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -128,11 +135,11 @@
         </div>
         <!-- /Footer -->
     </div>
-    <div class="pull-right">
-    <button type="button" class="btn btn-success btn-icon left-icon" target="blank">
-        <i class="fa fa-print"></i><span>Print</span>
-    </button>
-</div>
+    <div class="pull-right hide-from-printer">
+        <button type="button" class="btn btn-success btn-icon left-icon" onclick="javascript:window.print();">
+            <i class="fa fa-print"></i><span> Print</span>
+        </button>
+    </div>
     <!-- /Main Content -->
 </div>
 <!-- /#wrapper -->

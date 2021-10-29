@@ -22,26 +22,27 @@
             <div class="col-sm-12">
                 <div class="panel panel-default card-view">
                     <h5 class="txt-dark"> <strong> Filter </strong></h5>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="control-label mb-10">Start date</label>
-                                <input type="date" id="from" name="from" value="" class="form-control" value="{{date('d-m-Y')}}">
+                    <form action="{{ url('office/peminjaman/datapinjam2') }}" method="GET">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label mb-10">Start date</label>
+                                    <input type="date" id="start" name="start" class="form-control" value="{{date('d-m-Y')}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label mb-10">End date</label>
+                                    <input type="date" id="end" name="end" value="{{date('d-m-Y')}}" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-4 mt-30">
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary"> Cek </button>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="control-label mb-10">End date</label>
-                                <input type="date" id="end" name="end" value="{{date('d-m-Y')}}" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-md-4 mt-30">
-                            <div class="form-group">
-                                <input type="submit" onclick="" class="btn btn-primary" value="Cek">
-                            </div>
-                        </div>
-                    </div>
-
+                    </form>
                     <div class="panel-wrapper collapse in">
                         <div class="panel-body">
                             <div class="table-wrap">
@@ -73,13 +74,15 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    @if($peminjaman->status == "pinjam")
-                                                    <span class="label label-primary"> Pinjam </span>
-                                                    @elseif($peminjaman->status == "di proses warehouse" )
-                                                    <span class="label label-warning"> Diproses Warehouse </span>
-                                                    @else
-                                                    <span class="label label-success"> Dikembalikan </span>
-                                                    @endif
+                                                @if($peminjaman->status == "1")
+                                                <span class="label label-default"> Menunggu persetujuan peminjaman </span>
+                                                        @elseif($peminjaman->status == "2")
+                                                        <span class="label label-primary"> Pinjam </span>
+                                                        @elseif($peminjaman->status == "3" )
+                                                        <span class="label label-warning"> Diproses warehouse </span>
+                                                        @else
+                                                        <span class="label label-success"> Dikembalikan </span>
+                                                        @endif
                                                 </td>
                                                 <td>
                                                     <a href="{{url('office/peminjaman/detail')}}/{{ $peminjaman->no_peminjaman}}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>

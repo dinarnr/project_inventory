@@ -1,49 +1,81 @@
+@extends('layout.master')
+@section('title', 'Data Barang')
+@section('content')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">
 </script>
-<div class="modal fade" id="editdraft{{ $detail->id_po }}" role="dialog" aria-labelledby="exampleModalLabel1">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h5 class="modal-title" id="exampleModalLabel1">Edit</h5>
+<!-- Main Content -->
+<div class="page-wrapper">
+    <div class="container-fluid">
+        <!-- Title -->
+        <div class="row heading-bg">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                <h5 class="txt-dark">edit draft</h5>
             </div>
-            <form action="{{ url('marketing/po/ubah/draft') }}/{{ $detail->id_po }}" class="modal-body" method="post">
-                {{ csrf_field() }}
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label class="control-label mb-10 text-left" for="example-email">Nama Barang <span class="help"> </span></label>
-                        <input type="text" value="{{ $detail->nama_barang }}" name="edit_nama" class="form-control" placeholder="">
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label mb-10 text-left" for="example-email">Keterangan Barang<span class="help"> </span></label>
-                        <input type="text" value="{{$detail->keterangan_barang}}" name="edit_keterangan" class="form-control" placeholder="">
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label mb-10 text-left" for="example-email">Quantity <span class="help"> </span></label>
-                        <input type="text" value="{{$detail->jumlah}}" name="edit_jumlah" id="edit_jumlah" class="form-control a1" placeholder="">
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label mb-10 text-left" for="example-email">Rate <span class="help"> </span></label>
-                        <input type="text" value="{{number_format($detail->rate), 2}}" name="edit_rate" id="edit_rate" class="form-control b1" placeholder="">
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label mb-10 text-left" for="example-email">Amount <span class="help"> </span></label>
-                        <input type="text"  name="edit_amount" id="edit_amount" value="{{number_format($detail->amount), 2}}" class="form-control c1" placeholder="" readonly>
-                        <input type="hidden"  name="edit_amount1" id="edit_amount1" class="form-control d1" placeholder="" readonly>
+            <!-- Breadcrumb -->
+            <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                <ol class="breadcrumb">
+                    <li><a href="index.html">purchase order</a></li>
+                    <li><a href="#"><span>edit draft</span></a></li>
+                </ol>
+            </div>
+            <!-- /Breadcrumb -->
+        </div>
+        <!-- /Title -->
+
+        <!-- Row -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-default card-view ">
+
+
+                    <div class="panel-wrapper collapse in ">
+                        <div class="panel-body">
+                            <div class="form-wrap mt-3">
+                                @foreach($data_detail as $data_detail)
+                                <form action="{{ url('marketing/po/ubah/draft/simpan') }}/{{$data_detail->id_po}} " method="post" role="form" autocomplete="off" enctype="multipart/form-data">
+                                {{ csrf_field() }}
+                                <div class="form-group">
+                                        <input type="hidden" value="{{ $data_detail->no_PO}}" class="form-control" name="noPO" id="noPO">
+                                        <label class="control-label mb-10 text-left">Nama barang <span class="help"> </span></label>
+                                        <input type="text" value="{{ $data_detail->nama_barang}}" class="form-control" name="edit_nama">
+                                        <!-- @if ($errors->has('nama_barang'))
+                                                <div class="alert alert-danger">{{$errors->first('nama_barang')}}</div>
+                                                @endif -->
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label mb-10 text-left">Keterangan</label>
+                                        <input type="text" value="{{ $data_detail->keterangan_barang}}" class="form-control" name="edit_keterangan">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label mb-10 text-left">Quantity</label>
+                                        <input type="text" value="{{ $data_detail->jumlah}}" class="form-control a1" name="edit_jumlah" id='edit_jumlah'>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label mb-10 text-left">Rate</label>
+                                        <input type="text" value="{{ number_format($data_detail->rate), 2}}" class="form-control b1" name="edit_rate" id='edit_rate'>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label mb-10 text-left">Amount</label>
+                                        <input type="text" value="{{ number_format($data_detail->amount), 2}}" class="form-control c1" name="edit_amount" id='edit_amount' readonly>
+                                    </div>
+                                    <div class="form-group" style="text-align:right;">
+                                        <button class="btn btn-success">Simpan</button>
+                                    </div>
+                                    @endforeach
+                                </form>
+                            </div>
+                            <!-- </form>
+                                    </form> -->
+                        </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary">Ya</button>
-                </div>
-
-                
-                
-            </form>
-
+            </div>
         </div>
     </div>
+    <!-- /Row -->
+    <!-- /Main Content -->
 </div>
+<!-- /#wrapper -->
 <script>
     function formatRupiah(angka, prefix) {
         var number_string = angka.replace(/[^,\d]/g, '').toString(),
@@ -51,7 +83,6 @@
             sisa = split[0].length % 3,
             rupiah = split[0].substr(0, sisa),
             ribuan = split[0].substr(sisa).match(/\d{3}/gi);
-
             if (ribuan) {
             separator = sisa ? '.' : '';
             rupiah += separator + ribuan.join('.');
@@ -79,14 +110,15 @@
         tanpa_rupiah.value = formatRupiah(this.value);
     });
     $(document).ready(function() {
-        $(".a1, .b1, .c1, .d1").on("keydown keyup", function(event) {
+        $(".a1, .b1, .c1").on("keydown keyup", function(event) {
             var jumlah = $("#edit_jumlah").val();
             var rate = $("#edit_rate").val().split('.').join('');
             var reverse = (jumlah * rate).toString().split('').reverse().join('');
             amount = reverse.match(/\d{1,3}/g);
             amount = amount.join('.').split('').reverse().join('');
             $("#edit_amount").val(amount);
-            $("#edit_amount1").val(amount.replace(/[^,\d]/g, '').toString());
+            // $("#edit_amount1").val(amount.replace(/[^,\d]/g, '').toString());
         });
     });
 </script>
+@endsection

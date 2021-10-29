@@ -18,6 +18,12 @@ class PeminjamanOfficeController extends Controller
         return view('office/peminjaman/peminjaman', compact('peminjaman', 'data_detail'));
     }
 
+    public function searchBydate(Request $request)
+    {
+        $peminjaman = Peminjaman::where('tglPinjam', '>=', $request->start)->where('tglPinjam', '<=', $request->end)->get();
+        // dd($request->peminjaman);
+        return view('office/peminjaman/peminjaman', compact('peminjaman'));
+    }
     
     public function detailpeminjaman($no_peminjaman)
     {

@@ -24,13 +24,13 @@
             <div class="col-sm-12">
                 <div class="panel panel-default card-view">
                     <div class="panel-heading">
-                    @if ($message = Session::get('success'))
-                    <div class="alert alert-success">
-                    {{ session()->get('success') }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </div>
-                    @endif
+                        @if ($message = Session::get('success'))
+                        <div class="alert alert-success">
+                            {{ session()->get('success') }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                        </div>
+                        @endif
                         <div class="pull-left">
                             <a href="{{url ('marketing/po/tambah')}}"> <button class="btn btn-primary btn-icon-anim"> Tambah Data</button> </a>
                         </div>
@@ -59,24 +59,25 @@
                                                     <td>{{ $no++ }}</td>
                                                     <td>{{ $data_po->no_PO}}</td>
                                                     <td>{{ $data_po->instansi}}</td>
-                                                    <td> 
-                                                        {{ $data_po->tgl_pemasangan}}
+                                                    <td>
+                                                        {{ {{ date('d-m-Y',strtotime($data_po->tgl_pemasangan))}}
                                                         <button class="btn btn-danger btn-icon-anim btn-square" style="float: right;" data-toggle="modal" data-target="#tglpemasangan{{ $data_po->id_PO }}" action="( {{url('marketing/po/tglpemasangan')}}/{{ $data_po->id_PO }})"><i class="fa fa-edit"></i></button>
                                                         @include('marketing.po.tglpemasangan')
                                                     </td>
                                                     <td>
-                                                            @if($data_po->status === 1 )
-                                                            Purchase Order diproses Warehouse
-                                                            @elseif ($data_po->status === 2 )
-                                                            Purchase Order disetujui Warehouse 
-                                                            @elseif ($data_po->status === 5)
-                                                            Purchase Order dibatalkan <br><br>
-                                                            <div class="tulisan">
-                                                                Alasan : {{$data_po->alasan}}
-                                                            </div>
-                                                            @else
-                                                            Draft
-                                                            @endif
+                                                        @if($data_po->status === 1 )
+                                                        <span class="label label-warning"> Purchase Order diproses Warehouse</span>
+                                                        @elseif ($data_po->status === 2 )
+                                                        <span class="label label-success"> Purchase Order disetujui Warehouse</span>
+                                                        @elseif ($data_po->status === 5)
+                                                        <span class="label label-danger"> Purchase Order dibatalkan</span>
+                                                       <br>
+                                                        <div class="tulisan">
+                                                            Alasan : {{$data_po->alasan}}
+                                                        </div>
+                                                        @else
+                                                        <span class="label label-default"> Draft</span>
+                                                        @endif
                                                     </td>
                                                     <td>{{ date('d-m-Y',strtotime($data_po->created_at))}}</td>
                                                     <td>
@@ -84,7 +85,7 @@
                                                         @if (empty($data_po->status))
                                                         <a href="{{url('marketing/po/ubah')}}/{{ $data_po->no_PO }}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-edit"></i></button></a>
                                                         @endif
-                                                        @if ($data_po->status == 5 || $data_po->status >= 2 ) 
+                                                        @if ($data_po->status == 5 || $data_po->status >= 2 )
                                                         @else
                                                         <button class="btn btn-danger btn-icon-anim btn-square" data-toggle="modal" data-target="#batal{{ $data_po->id_PO }}" action="( {{url('marketing/po/batal')}}/{{ $data_po->id_PO }})"><i class="fa fa-times"></i></button>
                                                         @endif

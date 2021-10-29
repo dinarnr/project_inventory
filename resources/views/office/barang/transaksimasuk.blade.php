@@ -23,28 +23,28 @@
         </div>
         <!-- Row -->
         <div class="col-lg-12 col-md-12 mt-10">
-			<div class="panel panel-default card-view">
-				<div class="panel-heading">
-					<div class="pull-left">
-						<h6 class="panel-title txt-dark">Barang Masuk</h6>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-				<div class="panel-wrapper collapse in">
-					<div class="panel-body">
-						<div  class="tab-struct custom-tab-1 ">
-							<ul role="tablist" class="nav nav-tabs" id="myTabs_7">
-								<li class="active" role="presentation"><a aria-expanded="true"  data-toggle="tab" role="tab" id="home_tab_7" href="#masuk_baru">Baru</a></li>
-								<li role="presentation" class=""><a  data-toggle="tab" id="profile_tab_7" role="tab" href="#masuk_retur" aria-expanded="false">Retur</a></li>
-								
-							</ul>
+            <div class="panel panel-default card-view">
+                <div class="panel-heading">
+                    <div class="pull-left">
+                        <h6 class="panel-title txt-dark">Barang Masuk</h6>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="panel-wrapper collapse in">
+                    <div class="panel-body">
+                        <div class="tab-struct custom-tab-1 ">
+                            <ul role="tablist" class="nav nav-tabs" id="myTabs_7">
+                                <li class="active" role="presentation"><a aria-expanded="true" data-toggle="tab" role="tab" id="home_tab_7" href="#masuk_baru">Baru</a></li>
+                                <li role="presentation" class=""><a data-toggle="tab" id="profile_tab_7" role="tab" href="#masuk_retur" aria-expanded="false">Retur</a></li>
+
+                            </ul>
 
 
-                            
+
                             <!-- BARU -->
-							<div class="tab-content" id="myTabContent_7">
-								<div  id="masuk_baru" class="tab-pane fade active in" role="tabpanel">
-								<table id="datable_1" class="table table-bordered display  pb-30">
+                            <div class="tab-content" id="myTabContent_7">
+                                <div id="masuk_baru" class="tab-pane fade active in" role="tabpanel">
+                                    <table id="datable_1" class="table table-bordered display  pb-30">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -63,30 +63,29 @@
                                                 <td>{{ $no++ }}</td>
                                                 <td>{{ $transaksi_masuk->no_transaksi}}</td>
                                                 <td>{{ $transaksi_masuk->nama_supplier }}</td>
-                                                <td>{{ $transaksi_masuk->tgl_transaksi }}</td>
+                                                <td>{{ date('d-m-Y',strtotime($transaksi_masuk->tgl_transaksi)) }}</td>
                                                 <td>{{ $transaksi_masuk->pengirim }}</td>
                                                 <td>{{ $transaksi_masuk->penerima }}</td>
                                                 <td>
-                                                    <a href="{{ url('office/transaksi/detailmasukbaru')}}/{{$transaksi_masuk->no_transaksi}} "><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
+                                                    <a href="{{ url('office/trk/detailmasukbaru')}}/{{$transaksi_masuk->no_transaksi}} "><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
                                                 </td>
                                             </tr>
-                                            @endforeach
+                                            @endforeach 
                                         </tbody>
                                     </table>
                                 </div>
-								
+
                                 <!-- BARANG RETUR -->
-                                <div  id="masuk_retur" class="tab-pane fade" role="tabpanel">
-                                <table id="datable_3" class="table table-bordered display  pb-30">
+                                <div id="masuk_retur" class="tab-pane fade" role="tabpanel">
+                                    <table id="datable_3" class="table table-bordered display  pb-30">
                                         <thead>
                                             <tr>
-                                            <th>#</th>
+                                                <th>#</th>
                                                 <th>No transaksi</th>
                                                 <th>Instansi</th>
                                                 <th>Tanggal Terima</th>
                                                 <th>Pengirim Ekspedisi</th>
                                                 <th>Penerima</th>
-                                                <th>Created at</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -97,10 +96,9 @@
                                                 <td>{{ $no++ }}</td>
                                                 <td>{{ $transaksi_retur->no_transaksi}}</td>
                                                 <td>{{ $transaksi_retur->instansi}}</td>
-                                                <td>{{ $transaksi_retur->tgl_transaksi}}</td>
+                                                <td>{{ date('d-m-Y',strtotime($transaksi_retur->tgl_transaksi)) }}</td>
                                                 <td>{{ $transaksi_retur->pengirim }}</td>
                                                 <td>{{ $transaksi_retur->penerima }}</td>
-                                                <td>{{ $transaksi_retur->created_at }}</td>
                                                 <td>
                                                     <a href="{{ url('office/transaksi/detailmasukretur') }}/{{ $transaksi_retur->no_transaksi }}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
                                                 </td>
@@ -108,15 +106,15 @@
                                             @endforeach
                                         </tbody>
                                     </table>
-								</div>
-								
-							</div>
-						</div>
-					</div>
-				</div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-		</div>
-        
+        </div>
+
         <!-- /Row -->
     </div>
 </div>

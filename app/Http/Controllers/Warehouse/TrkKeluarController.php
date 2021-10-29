@@ -55,7 +55,7 @@ class TrkKeluarController extends Controller
         $no_trans =  $kode.  "-"  .$now->year . $now->month . $angka;
         return view('warehouse/transaksi/addkeluarbaru', compact('no_trans', 'noPO','brg','data_instansi', 'barang', 'transaksi_keluar','bar'));
     }
-
+    
     public function keluargaransi(Request $request)
     {   
         // dd($request);
@@ -90,14 +90,19 @@ class TrkKeluarController extends Controller
             ]
         );
         // dd($request->all());
-        Stok::create(
-            [
-                'nama_barang' => $request->nama_barang,
-                'stok' => $request->jumlah,
-                'kode_barang' => $request->kode_barang,
-                'keterangan' => 'Warehouse Transaksi Keluar Garansi'
-            ]  
-        );
+        $new_stok = Master::whereIn('kode_barang',$request->kode_barang1)->pluck('stok');
+        $jumlah_stok = count($new_stok);
+        for ($i = 0; $i < $jumlah_stok; $i++) {
+            Stok::create(
+                [
+                    'nama_barang' => $request->nama_barang1[$i],
+                    'stok' => $request->jumlah1[$i],
+                    'stok_akhir' => $new_stok[$i],
+                    'kode_barang' => $request->kode_barang1[$i],
+                    'keterangan' => 'Warehouse Transaksi Keluar Garansi'
+                ]  
+            );
+        }
 
         return redirect('warehouse/transaksikeluar');
     }
@@ -106,7 +111,7 @@ class TrkKeluarController extends Controller
     {
         $profil = Profil::all();
         $detail_keluar = DetailTrkKeluar::where('no_transaksi', $no_transaksi)->get();
-        $transaksi_garansi = DetailTrkKeluar::where('no_transaksi', $no_transaksi)->get();
+        $transaksi_garansi = TransaksiKeluar::where('no_transaksi', $no_transaksi)->get();
         return view('warehouse/transaksi/detailkeluargaransi', compact('detail_keluar', 'transaksi_garansi', 'profil'));
     }
 
@@ -147,7 +152,11 @@ class TrkKeluarController extends Controller
         $output = '<tr id="row"></tr>';
         foreach ($data as $row) {
             $output .= '<tr id="row"></td>
+<<<<<<< HEAD
             <td style="display:none;" ><input type="text" style="outline:none;border:0;" name="no_trans[]" id="no_trans" value="'.$no_trans.'"></td>
+=======
+            <td style="display:none;"><input type="text" style="outline:none;border:0;" name="no_trans[]" id="no_trans" value="'.$no_trans.'"></td>
+>>>>>>> 234867453e0b2e3eafc841ddd4f41d02e5d30cfa
             <td><input type="text" style="outline:none;border:0;" readonly name="nama_barang[]" id="nama_barang" value="'.$row->nama_barang.'"></td> 
             <td style="display:none;"><input type="text" style="outline:none;border:0;" readonly name="nama_barang1" id="nama_barang1" value="'.$row->nama_barang.'"></td> 
             <td style="display:none;"><input type="text" style="outline:none;border:0;" readonly name="kode_barang[]" id="kode_barang" value="'.$row->kode_barang.'"></td> 
@@ -227,14 +236,19 @@ class TrkKeluarController extends Controller
             ]
         );
         // dd($request->all());
-        Stok::create(
-            [
-                'nama_barang' => $request->nama_barang1,
-                'stok' => $request->jumlah1, 
-                'kode_barang' => $request->kode_barang1,
-                'keterangan' => 'Warehouse Transaksi Keluar Instalasi'
-            ]  
-        );
+        $new_stok = Master::whereIn('kode_barang',$request->kode_barang)->pluck('stok');
+        $jumlah_stok = count($new_stok);
+        for ($i = 0; $i < $jumlah_stok; $i++) {
+            Stok::create(
+                [
+                    'nama_barang' => $request->nama_barang[$i],
+                    'stok' => $request->jumlah[$i],
+                    'stok_akhir' => $new_stok[$i],
+                    'kode_barang' => $request->kode_barang[$i],
+                    'keterangan' => 'Warehouse Transaksi Keluar Instalasi'
+                ]  
+            );
+        }
         return redirect('warehouse/transaksikeluar');
     }
 
@@ -242,7 +256,7 @@ class TrkKeluarController extends Controller
     {
         $profil = Profil::all();
         $detail_keluar = DetailTrkKeluar::where('no_transaksi', $no_transaksi)->get();
-        $transaksi_instalasi = DetailTrkKeluar::where('no_transaksi', $no_transaksi)->get();
+        $transaksi_instalasi = TransaksiKeluar::where('no_transaksi', $no_transaksi)->get();
         return view('warehouse/transaksi/detailkeluarinstalasi', compact('detail_keluar', 'transaksi_instalasi', 'profil'));
     }
 
@@ -304,15 +318,19 @@ class TrkKeluarController extends Controller
             ]
         );
 
-        Stok::create(
-            [
-                'nama_barang' => $request->nama_barang,
-                'stok' => $request->jumlah,
-                'kode_barang' => $request->kode_barang,
-                'keterangan' => $request->keterangan,
-                'keterangan' => 'Warehouse Transaksi Keluar Retur'
-            ]  
-        );
+        $new_stok = Master::whereIn('kode_barang',$request->kode_barang1)->pluck('stok');
+        $jumlah_stok = count($new_stok);
+        for ($i = 0; $i < $jumlah_stok; $i++) {
+            Stok::create(
+                [
+                    'nama_barang' => $request->nama_barang1[$i],
+                    'stok' => $request->jumlah1[$i],
+                    'stok_akhir' => $new_stok[$i],
+                    'kode_barang' => $request->kode_barang1[$i],
+                    'keterangan' => 'Warehouse Transaksi Keluar Retur'
+                ]  
+            );
+        }
 
         return redirect('warehouse/transaksikeluar');
     }
@@ -321,8 +339,8 @@ class TrkKeluarController extends Controller
     {
         $profil = Profil::all();
         $detail_keluar = DetailTrkKeluar::where('no_transaksi', $no_transaksi)->get();
-        $transaksi_instalasi = DetailTrkKeluar::where('no_transaksi', $no_transaksi)->get();
-        return view('warehouse/transaksi/detailkeluarretur', compact('detail_keluar', 'transaksi_instalasi', 'profil'));
+        $transaksi_retur = TransaksiKeluar::where('no_transaksi', $no_transaksi)->get();
+        return view('warehouse/transaksi/detailkeluarretur', compact('detail_keluar', 'transaksi_retur', 'profil'));
     }
 }
 

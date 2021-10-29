@@ -59,17 +59,17 @@ class TrkMasukController extends Controller
         }
         echo $output;
     }
-
+    
     // public function kode_barang($nama_brg)
     // {
-    //     $data = Master::where('nama_barang',$nama_brg)->first();
-    //     return response()->json($data);
-    // }
-
-    public function addmasukbaru2(Request $request)
-    {
-        $user = Auth::user();
-        $jumlah_data = count($request->no_trans);
+        //     $data = Master::where('nama_barang',$nama_brg)->first();
+        //     return response()->json($data);
+        // }
+        
+        public function addmasukbaru2(Request $request)
+        {
+            $user = Auth::user();
+            $jumlah_data = count($request->no_trans);
         for ($i = 0; $i < $jumlah_data; $i++) {
             DetailTrkMasuk::create(
                 [
@@ -78,41 +78,46 @@ class TrkMasukController extends Controller
                     'kode_barang' => $request->kode_barang1[$i],
                     'nama_barang' => $request->nama_barang1[$i],
                     'keterangan' => $request->keterangan1[$i],
-                ]
+                    ]
+                );
+            }
+            TransaksiModel::create(
+                [
+                    'no_transaksi' => $request->no_transaksi,
+                    'nama_supplier' => $request->nama_supplier,
+                    'tgl_transaksi' => $request->tgl_transaksi,
+                    'pengirim' => $request->pengirim,
+                    'penerima' => $request->penerima,
+                    'pic_warehouse' => $user->name,
+                    ]
+                );
+                
+                $user = Auth::user();
+                Log::create(
+                    [
+                        'name' => $user->name,
+                        'email' => $user->email,
+                        'divisi' => $user->divisi,
+                        'deskripsi' => 'Create Masuk Baru',
+                        'status' => '2',
+                        'ip' => $request->ip()
+                        ]
+                    );
+                    
+                    // dd($request->all());
+        $new_stok = Master::whereIn('kode_barang',$request->kode_barang1)->pluck('stok');
+        $jumlah_stok = count($new_stok);
+        for ($i = 0; $i < $jumlah_stok; $i++) {
+            Stok::create(
+                [
+                    'nama_barang' => $request->nama_barang1[$i],
+                    'stok' => $request->jumlah1[$i],
+                    'stok_akhir' => $new_stok[$i],
+                    'kode_barang' => $request->kode_barang1[$i],
+                    'keterangan' => 'Warehouse Transaksi Masuk Baru'
+                ]  
             );
         }
-        TransaksiModel::create(
-            [
-                'no_transaksi' => $request->no_transaksi,
-                'nama_supplier' => $request->nama_supplier,
-                'tgl_transaksi' => $request->tgl_transaksi,
-                'pengirim' => $request->pengirim,
-                'penerima' => $request->penerima,
-                'pic_warehouse' => $user->name,
-            ]
-        );
-
-        $user = Auth::user();
-        Log::create(
-            [
-                'name' => $user->name,
-                'email' => $user->email,
-                'divisi' => $user->divisi,
-                'deskripsi' => 'Create Masuk Baru',
-                'status' => '2',
-                'ip' => $request->ip()
-            ]
-        );
-
-        // dd($request->all());
-        Stok::create(
-            [
-                'nama_barang' => $request->nama_barang,
-                'stok' => $request->jumlah,
-                'kode_barang' => $request->kode_barang,
-                'keterangan' => 'Warehouse Transaksi Masuk Baru'
-            ]  
-        );
         return redirect('warehouse/transaksi/masuk');
     }
 
@@ -185,14 +190,19 @@ class TrkMasukController extends Controller
         );
 
         // dd($request->all());
-        Stok::create(
-            [
-                'nama_barang' => $request->nama_barang,
-                'stok' => $request->jumlah,
-                'kode_barang' => $request->kode_barang,
-                'keterangan' => 'Warehouse Transaksi Masuk Retur'
-            ]  
-        );
+        $new_stok = Master::whereIn('kode_barang',$request->kode_barang1)->pluck('stok');
+        $jumlah_stok = count($new_stok);
+        for ($i = 0; $i < $jumlah_stok; $i++) {
+            Stok::create(
+                [
+                    'nama_barang' => $request->nama_barang1[$i],
+                    'stok' => $request->jumlah1[$i],
+                    'stok_akhir' => $new_stok[$i],
+                    'kode_barang' => $request->kode_barang1[$i],
+                    'keterangan' => 'Warehouse Transaksi Masuk Retur'
+                ]  
+            );
+        }
         return redirect('/warehouse/transaksi/masuk');
     }
     public function editjumlah(Request $request, $id_transaksi )//modal edit jumalah -> baru retur sama saja

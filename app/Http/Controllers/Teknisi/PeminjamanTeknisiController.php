@@ -9,9 +9,10 @@ use App\Models\Log;
 use App\Models\Master;
 use App\Models\Peminjaman;
 use App\Models\Profil;
+use App\Models\Stok;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\DB;
 
 class PeminjamanTeknisiController extends Controller
 {
@@ -34,19 +35,21 @@ class PeminjamanTeknisiController extends Controller
 
     public function addpinjam2(Request $request)
     {
+        // dd($kode_barang);
         $user = Auth::user();
-        $jumlah_data = count($request->no_peminjaman);
+        $jumlah_data = count($request->no_peminjaman); 
         for ($i = 0; $i < $jumlah_data; $i++) {
             DetailPeminjaman::create(
                 [
                     'no_peminjaman'  => $request->no_peminjaman[$i],
-                    'nama_barang' => $request->nama_brg[$i],
+                    'nama_barang' => $request->nama_barang[$i],
                     'jumlah' => $request->jumlah[$i],
+                    'kode_barang' => $request->kode_barang[$i],
                     'status'        => '1'
                 ]
             );
         }
-        $jumlah_barang = count($request->nama_brg);
+        $jumlah_barang = count($request->nama_barang);
 
         Peminjaman::create([
             'pic_teknisi'          => $user->name,
@@ -69,7 +72,22 @@ class PeminjamanTeknisiController extends Controller
 
             ]
         );
+
         return redirect('teknisi/peminjaman')->with(['success' => 'Data berhasil ditambahkan']);
+    }
+    public function fetch(Request $request){ 
+        // dd($request);
+        $select = $request->get('select');
+        $values = $request->get('value');
+        $dependent = $request->get('dependent');
+
+        //    dd($dependent);
+        $data = DB::table('master_data')->where('nama_barang', $values)->groupBy('kode_barang')->get();
+        
+        foreach ($data as $row) {
+            $output = '<option value="'.$row->kode_barang.'">'.$row->kode_barang.'</option>';
+        }
+        echo $output;
     }
 
     //proses mengembalikan barang

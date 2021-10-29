@@ -85,7 +85,8 @@ class DataBarangController extends Controller
                 'stok' => $request->stok,
                 'status' => $request->status
             ]);
-
+            
+        }
             $user = Auth::user();
             Log::create(
                 [
@@ -101,11 +102,11 @@ class DataBarangController extends Controller
                 [
                     'nama_barang' => $request->nama_barang,
                     'stok' => $request->stok,
+                    'stok_akhir' => $request->stok,
                     'kode_barang' => $kode_barang,
                     'keterangan' => 'Barang Ditambahkan'
                 ]
             );
-        }
         return redirect('warehouse/barang')->with(['success' => 'Data berhasil ditambahkan']);
     }
 

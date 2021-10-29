@@ -133,9 +133,8 @@
                                             <td id="total">{{number_format($detail->amount), 2}}</td>
                                             <td>
                                                 <button class="btn btn-danger btn-icon-anim btn-square" data-toggle="modal" data-target="#hapus{{ $detail->id_po }}" action="( {{url('deletepo')}}/{{ $detail->id_po}})"><i class="fa fa-trash"></i></button>
-                                                <button class="btn btn-primary btn-icon-anim btn-square" data-toggle="modal" data-target="#editdraft{{ $detail->id_po }}" action="( {{url('marketing/po/simpan/draft')}}/{{ $detail->id_po}})"><i class="fa fa-pencil"></i></button>
+                                                <a href="{{url('marketing/po/ubahdraft')}}/{{ $detail->id_po }}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-edit"></i></button></a>
                                                 @include ('marketing.po.hapus')
-                                                @include ('marketing.po.editdraft')
                                             </td>
                                         </tr>
                                         @endforeach
