@@ -85,6 +85,7 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::post('barang/simpan', [DataBarangController::class, 'addbarang2']);
         Route::get('barang/ubah/{id_master}', [DataBarangController::class, 'editBarang']);
         Route::put('barang/ubah/simpan', [DataBarangController::class, 'updateBarang']);
+        
         // <---------------------DATA STOK _--------------------------->
         Route::get('stok', [StokController::class, 'data_stok']);
         Route::get('stok/{kode_barang}', [StokController::class, 'detailstok']);

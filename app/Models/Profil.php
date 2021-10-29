@@ -10,5 +10,5 @@ class Profil extends Model
     use HasFactory;
     protected $table = "profil";
     protected $primaryKey = "id";
-    protected $fillable = ['id','telp','email'];
+    protected $fillable = ['id','telp','email','alamat'];
 }
