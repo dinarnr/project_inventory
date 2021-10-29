@@ -64,7 +64,7 @@
                                 <hr>
                                 @foreach ($peminjaman as $peminjaman)
                                 <div class="row">
-                                    <div class="col-xs-6">
+                                    <div class="col-xs-4">
                                         <div class="form-group">
                                             <table>
                                                 <div class="text-left">
@@ -104,7 +104,7 @@
                                                 <tr>
                                                     <div class="">
                                                         <td class="txt-dark">
-                                                            {{ date('d-m-Y',strtotime($peminjaman->tglPinjam))}}
+                                                            {{ date('d M Y',strtotime($peminjaman->tglPinjam))}}
                                                         </td>
                                                     </div>
                                                 </tr>
@@ -121,13 +121,37 @@
                                                     </div>
                                                 </tr>
                                             </table>
-
                                         </div>
                                     </div>
 
-
-
-                                    <br>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <table>
+                                                <div class="text-left">
+                                                    <h6 class="txt-dark"><strong>Tanggal Kembali :</strong></h6>
+                                                </div>
+                                                <tr>
+                                                    <div class="">
+                                                        <td class="txt-dark">
+                                                            {{ date('d M Y',strtotime($peminjaman->tglKembali))}}
+                                                        </td>
+                                                    </div>
+                                                </tr>
+                                            </table>
+                                            <table>
+                                                <div class="text-left">
+                                                    <h6 class="txt-dark"><strong>Yang Menyetujui</strong></h6>
+                                                </div>
+                                                <tr>
+                                                    <div class="">
+                                                        <td class="txt-dark">
+                                                            {{$peminjaman->pic_warehouse}}
+                                                        </td>
+                                                    </div>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
 
 
                                 </div>

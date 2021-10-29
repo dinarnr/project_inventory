@@ -137,7 +137,7 @@
                                 </div>
                                 <hr>
                                 <div class=" text-center">
-                                        <h6 class="txt-dark">{{ Auth::user()->divisi }}</h6>
+                                        <h6 class="txt-dark">Warehouse</h6>
                                 </div>
                             </table>
                         </div>
