@@ -2,10 +2,8 @@
 @section('title', 'Data Instansi')
 @section('content')
 
-<!-- Main Content -->
 <div class="page-wrapper">
     <div class="container-fluid">
-        <!-- Title -->
         <div class="row heading-bg">
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
                 <h5 class="txt-dark">Tambah Data Instansi</h5>
@@ -18,7 +16,6 @@
                     <div class="panel-heading">
                         <form action="{{ url('marketing/instansi/simpan') }}" method="post" enctype="multipart/form-data">
                             @csrf
-
                             <div class="form-group">
                                 <label class="control-label mb-10 text-left" for="example-email">Nama <span class="help"> </span></label>
                                 <input type="text" id="nama_instansi" name="nama_instansi" class="form-control" placeholder="">
@@ -63,7 +60,5 @@
                 </div>
             </div>
         </div>
-        <!-- /Main Content -->
     </div>
-    <!-- /#wrapper -->
     @endsection

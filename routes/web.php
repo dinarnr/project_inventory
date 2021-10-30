@@ -199,6 +199,7 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
 
         // <----------------------PENGATURAN--------------------------->
         Route::get('pengaturan/profil', [PengaturanController::class, 'profil']);
+        Route::post('pengaturan/profil/simpan', [PengaturanController::class, 'updateProfil']);
 
     });
 

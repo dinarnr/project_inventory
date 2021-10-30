@@ -9,8 +9,6 @@
         <div class="row heading-bg">
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
                 <h5 class="txt-dark">Data Stok Barang</h5><br>
-                <!-- <a href="/transaksi" class="btn btn-primary btn-icon-anim"><i class="fa fa succes"></i> MASUK</a>
-                <a href="/transaksikeluar" class="btn btn-primary btn-icon-anim"><i class="fa fa succes"></i> KELUAR</a> -->
             </div>
 
 

@@ -13,8 +13,6 @@
             <!-- Breadcrumb -->
             <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                 <ol class="breadcrumb">
-                    <!-- <li><a href="inventory"></a></li> -->
-                    <!-- <li class="active"><span>Data Pembelian</span></li> -->
                 </ol>
             </div>
             <!-- /Breadcrumb -->
@@ -24,9 +22,6 @@
             <div class="col-sm-12">
                 <div class="panel panel-default card-view">
                     <div class="panel-heading">
-                        <!-- <div class="pull-left">
-                            <a href="{{ url('marketing/pengajuan/pembelian/tambah') }}" class="btn btn-success">Tambah Data</a>
-                        </div> -->
 
                         <div class="clearfix"></div>
 

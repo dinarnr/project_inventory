@@ -2,7 +2,6 @@
 @section('title', 'Home')
 @section('content')
 
-<!-- Main Content -->
 <div class="page-wrapper">
     <div class="container-fluid pt-25">
         <div class="alert alert-success alert-dismissable">
@@ -13,12 +12,12 @@
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-10">
                 <div class="panel panel-default card-view panel-refresh">
-                <div class="panel-heading">
-						<div class="pull-left">
-							<h6 class="panel-title txt-dark">Data Barang</h6>
-						</div>
-						<div class="clearfix"></div>
-					</div>
+                    <div class="panel-heading">
+                        <div class="pull-left">
+                            <h6 class="panel-title txt-dark">Data Barang</h6>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
 
                     <div id="piechart"></div>
                     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -48,12 +47,12 @@
                                 'width': 550,
                                 'height': 400
                             };
-                                // Optional; add a title and set the width and height of the chart
-                                var options = {
-                                    'title': '',
-                                    'width': 550,
-                                    'height': 400
-                                };
+                            // Optional; add a title and set the width and height of the chart
+                            var options = {
+                                'title': '',
+                                'width': 550,
+                                'height': 400
+                            };
 
                             // Display the chart inside the <div> element with id="piechart"
                             var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -61,32 +60,29 @@
                         }
                     </script>
                 </div>
-                
+
             </div>
             <div class="col-lg-6">
-				<div class="panel panel-default card-view">
-					<div class="panel-heading">
-						<div class="pull-left">
-							<h6 class="panel-title txt-dark">Data Pengajuan</h6>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="panel-wrapper collapse in">
-						<div class="panel-body">
-							<div id="morris_bar_chart" class="morris-chart"></div>
-						</div>
-					</div>
-				</div>
-			</div>
+                <div class="panel panel-default card-view">
+                    <div class="panel-heading">
+                        <div class="pull-left">
+                            <h6 class="panel-title txt-dark">Data Pengajuan</h6>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="panel-wrapper collapse in">
+                        <div class="panel-body">
+                            <div id="morris_bar_chart" class="morris-chart"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="row">
-            
-		</div>
+        </div>
     </div>
     <!-- /Row -->
 </div>
 </div>
-<!-- /Main Content -->
 </div>
-<!-- /#wrapper -->
 @endsection

@@ -48,12 +48,6 @@
 															<input type="text" id="nama_pemohon" name="nama_pemohon" class="form-control">
 														</div>
 													</div>
-													<!-- <div class="col-md-6">
-														<div class="form-group">
-															<label class="control-label mb-10">Penerima</label>
-															<input type="text" id="penerima" name="penerima" class="form-control">
-														</div>
-													</div> -->
 												</div>
 												<hr>
 												<div class="row">

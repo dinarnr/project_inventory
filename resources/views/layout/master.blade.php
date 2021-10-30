@@ -100,9 +100,6 @@
                         <li>
                             <a href="{{ url('warehouse/kategori') }}">Data kategori</a>
                         </li>
-                        <!-- <li>
-                            <a href="{{ url('warehouse/stok') }}">Data stok</a>
-                        </li> -->
                     </ul>
                 </li>
 

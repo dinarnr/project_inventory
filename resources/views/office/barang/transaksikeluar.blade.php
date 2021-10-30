@@ -50,8 +50,6 @@
                                                 <th>No transaksi</th>
                                                 <th>Jenis Barang</th>
                                                 <th>Tanggal Transaksi</th>
-                                                <!-- <th>Pengirim</th>
-                                                <th>Penerima</th> -->
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>

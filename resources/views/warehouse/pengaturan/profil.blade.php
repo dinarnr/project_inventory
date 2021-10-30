@@ -25,7 +25,15 @@
         <!-- Row -->
         <div class="row">
             <div class="col-sm-12">
+            @if ($message = Session::get('success'))
+                    <div class="alert alert-success">
+                        {{ session()->get('success') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                    </div>
+                    @endif
                 <div class="panel panel-default card-view ">
+                    
                     <div class="panel-wrapper collapse in ">
                         <div class="panel-body">
                             <div class="form-wrap mt-3">
@@ -40,7 +48,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label mb-10 text-left" for="example-email">Alamat <span class="help"> </span></label>
-                                            <textarea type="text" name="edit_alamat" id="alamat" class="form-control" placeholder=""> {{$profil->alamat}} </textarea>
+                                            <textarea type="text" name="edit_alamat" id="edit_alamat" class="form-control" placeholder=""> {{$profil->alamat}} </textarea>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label mb-10 text-left" for="example-email">No HP <span class="help"> </span></label>

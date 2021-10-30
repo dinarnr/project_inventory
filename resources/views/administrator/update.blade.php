@@ -2,19 +2,13 @@
 @section('title', 'Edit User')
 @section('content')
 
-<!-- Main Content -->
 <div class="page-wrapper">
     <div class="container-fluid">
-
-        <!-- Title -->
         <div class="row heading-bg">
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
                 <h5 class="txt-dark">Edit User</h5>
             </div>
-            
         </div>
-        <!-- /Title -->
-
         <!-- Row -->
         <div class="row">
             <div class="col-sm-12">
@@ -33,7 +27,7 @@
                                         <label class="control-label mb-10 text-left">Email</label>
                                         <input name="edit_email" type="text" class="form-control" value="{{ $users->email }}">
                                     </div>
-                                    
+
                                     <div class="form-group mt-30 mb-30">
                                         <label class="control-label mb-10 text-left">Level Hak Akses</label>
                                         <select name="edit_divisi" value="{{ $users->divisi }}" class="form-control">
@@ -65,8 +59,5 @@
             </div>
         </div>
     </div>
-    <!-- /Row -->
-    <!-- /Main Content -->
 </div>
-<!-- /#wrapper -->
 @endsection
