@@ -12,5 +12,8 @@ $(document).ready(function() {
 	$('#datable_6').DataTable({
 		"iDisplayLength": 3
 	});
+	$('#datable_7').DataTable({
+		"iDisplayLength": 3
+	});
     $('#datable_2').DataTable({ "lengthChange": false});
 } );

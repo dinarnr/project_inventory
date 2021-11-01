@@ -6,6 +6,7 @@ use App\Models\Administrator;
 use App\Models\Home;
 use App\Models\Instansi;
 use App\Models\Master;
+use App\Models\Peminjaman;
 use App\Models\PO;
 use App\Models\SupplierModel;
 use App\Models\User;
@@ -26,7 +27,8 @@ class HomeController extends Controller
         $instansi = Instansi::count();
         $master_data = Master::count();
         $user = User::count();
-        return view('dashboard/home', compact(['nama_barang', 'stok','users','data_po','master_data', 'supplier', 'instansi', 'user']));
+        $peminjaman = Peminjaman::all();
+        return view('dashboard/home', compact(['nama_barang', 'stok','users','data_po','master_data', 'supplier', 'instansi', 'user', 'peminjaman']));
     }
     public function profil()
     {
