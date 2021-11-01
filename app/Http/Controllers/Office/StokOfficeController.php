@@ -13,9 +13,13 @@ class StokOfficeController extends Controller
     {
         // $data_stok = Master::all();
         $data_stok = Master::all();
-        
         return view('office/barang/stok', compact('data_stok'));
     }
 
-
+    public function history_stok($kode_barang)
+    {
+        $data_stok = Stok::where('kode_barang', $kode_barang)->get();
+        $master_stok = Master::where('kode_barang', $kode_barang)->get();
+        return view('office/barang/history_stok', compact('data_stok', 'master_stok'));
+    }
 }

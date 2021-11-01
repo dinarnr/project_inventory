@@ -1,5 +1,5 @@
 @extends('layout.master')
-@section('title', 'Data stok')
+@section('title', 'History stok')
 @section('content')
 
 <div class="page-wrapper">
