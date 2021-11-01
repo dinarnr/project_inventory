@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Administrator;
 use App\Models\Home;
+use App\Models\Instansi;
 use App\Models\Master;
+use App\Models\PO;
+use App\Models\SupplierModel;
+use App\Models\User;
 use GrahamCampbell\ResultType\Result;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -17,7 +21,12 @@ class HomeController extends Controller
         $nama_barang = Master::pluck('nama_barang');
         $users = Administrator::all();
         $stok = Master::pluck('stok');
-        return view('dashboard/home', compact(['nama_barang', 'stok','users']));
+        $data_po = PO::all();
+        $supplier = SupplierModel::count();
+        $instansi = Instansi::count();
+        $master_data = Master::count();
+        $user = User::count();
+        return view('dashboard/home', compact(['nama_barang', 'stok','users','data_po','master_data', 'supplier', 'instansi', 'user']));
     }
     public function profil()
     {

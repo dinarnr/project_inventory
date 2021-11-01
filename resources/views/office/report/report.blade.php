@@ -164,6 +164,50 @@
 								</div>
 							</div>
 						</div>
+					<div class="panel-wrapper collapse in">
+						<div class="panel-body row pa-0">
+							<div class="table-wrap">
+								<div class="table-responsive">
+									<table class="table table-hover mb-0">
+										<thead>
+											<tr>
+												<th>#</th>
+												<th>No PO</th>
+												<th>No SO</th>
+												<th>Instansi</th>
+												<th>Tanggal PO</th>
+												<th>Status</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php $no = 1; ?>
+											@foreach ($data_po as $data_po)
+											<tr>
+												<td>{{ $no++ }}</td>
+												<td>{{$data_po->no_PO}}</span></td>
+												<td>{{$data_po->no_SO}}</td>
+												<td>{{$data_po->instansi}}</td>
+												<td>{{ date('d-m-Y',strtotime($data_po->tgl_pemasangan))}}</td>
+												<td>
+													
+														@if($data_po->status === 1 )
+														<span class="label label-primary">	Purchase Order diproses Warehouse </span>
+														@elseif ($data_po->status === 2 )
+														<span class="label label-success">Purchase Order disetujui Warehouse </span>
+														@elseif ($data_po->status === 5)
+														<span class="label label-danger">Purchase Order dibatalkan </span>
+														
+														@else
+														<span class="label label-default">Draft </span>
+														@endif
+												</td>
+											</tr>
+											@endforeach
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
