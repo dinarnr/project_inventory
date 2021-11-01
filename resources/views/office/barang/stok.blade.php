@@ -30,22 +30,29 @@
                                 <table id="datable_1" class="table table table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
-                                            <th>Nama Barang</th>
-                                            <th>Keterangan</th>
-                                            <th>Tanggal</th>
-                                            <th>Stok</th>
+                                            <th style="text-align:center;">#</th>
+                                            <th style="text-align:center;">Nama Barang</th>
+                                            <th style="text-align:center;">Stok</th>
+                                            <th style="text-align:center;">Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php $no = 1; ?>
                                         @foreach($data_stok as $data_stok)
                                         <tr>
-                                            <td>{{ $no++}}</td>
-                                            <td>{{$data_stok->nama_barang}}</td>
-                                            <td>{{$data_stok->keterangan}}</td>
-                                            <td>{{date('d-m-Y',strtotime($data_stok->created_at))}}</td>
-                                            <td>{{$data_stok->stok}}</td>
+                                            <td style="text-align:center;">{{ $no++}}</td>
+                                            <td style="text-align:center;">{{$data_stok->nama_barang}}</td>
+                                            <td style="text-align:center;">
+                                                <a href="{{ url('office/historystok') }}/{{ $data_stok->kode_barang }}"><button class="btn btn-primary btn-icon-anim btn-square">{{ $data_stok->stok }}</button></a>
+                                            </td>
+                                            <td style="text-align:center;">
+                                                @if ($data_stok->status == 'aktif')
+                                                <button class="btn btn-success btn-sm  btn-rounded">Aktif</button>
+                                                @else
+                                                <button class="btn btn-danger btn-sm  btn-rounded">Non
+                                                    Aktif</button>
+                                                @endif
+                                            </td>
                                         </tr>
                                         @endforeach
                                     </tbody>
