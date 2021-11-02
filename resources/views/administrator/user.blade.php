@@ -54,7 +54,7 @@
                                                 <td>{{ $users->lastLogin }}</td>
                                                 <td>{{ $users->lastIP }}</td>
                                                 <td>
-                                                    @if($users->status == '1')
+                                                    @if($users->status == '2')
                                                     <button class="btn btn-success btn-sm  btn-rounded" data-toggle="modal" data-target="#exampleModal">Aktif</button>
                                                     @else
                                                     <button class="btn btn-danger btn-sm  btn-rounded" data-toggle="modal" data-target="#exampleModal">Non Aktif</button>

@@ -288,8 +288,9 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::get('log', [LogController::class, 'log']);
         Route::get('tambah', [UserController::class, 'addadmin']);
         Route::post('tambah/simpan', [UserController::class, 'addadmin2']);
-        Route::get('ubah/{id}', [UserController::class, 'editUser']);
-        Route::post('ubah/simpan', [UserController::class, 'updateUser']);
+        Route::get('edit/{id}', [UserController::class, 'editUser']);
+        Route::post('edit/simpan', [UserController::class, 'updateUser']);
+        Route::post('resetpassword', [UserController::class, 'resetPassword']);
     });
     Route::group(['prefix' => 'purchasing/'], function () {
         //--------------PEMBELIAN----------------
