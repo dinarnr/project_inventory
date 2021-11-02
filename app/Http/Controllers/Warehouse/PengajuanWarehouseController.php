@@ -288,7 +288,7 @@ class PengajuanWarehouseController extends Controller
                [
                    'no_pengajuan' => $request->no_peng[$i],
                    'jmlBarang' => $request->jumlah[$i],
-                   'harga' => $request->harga[$i],
+                   'harga' => (preg_replace('/[^0-9]/','',$request->harga[$i])),
                    'kode_barang' => $request->kode_barang[$i],
                    'namaBarang' => $request->nama_barang[$i],
                    'keterangan' => $request->keterangan[$i],

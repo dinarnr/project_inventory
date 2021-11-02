@@ -28,28 +28,36 @@
                                         <input name="edit_email" type="text" class="form-control" value="{{ $users->email }}">
                                     </div>
 
+
+
+                                    
                                     <div class="form-group mt-30 mb-30">
                                         <label class="control-label mb-10 text-left">Level Hak Akses</label>
                                         <select name="edit_divisi" value="{{ $users->divisi }}" class="form-control">
-                                            <option>Warehouse</option>
-                                            <option>Admin</option>
-                                            <option>Teknisi</option>
-                                            <option>Marketing</option>
-                                            <option>Office</option>
-                                            <option>Purchasing</option>
+                                            <option value="{{ $users->divisi }}">{{ $users->divisi }}</option>
+                                            <option value="warehouse">Warehouse</option>
+                                            <option value="administrator">Administrator</option>
+                                            <option value="teknisi">Teknisi</option>
+                                            <option value="marketing">Marketing</option>
+                                            <option value="office">Office</option>
+                                            <option value="purchasing">Purchasing</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label mb-10 text-left">Status</label>
                                         <select name="edit_status" value="{{ $users->status }}" class="form-control select2">
-                                            <option value="Aktif">Aktif</option>
-                                            <option value="Non Aktif">Non Aktif</option>
+                                            <option value="2">Aktif</option>
+                                            <option value="1">Non Aktif</option>
                                         </select>
                                     </div>
                                     <div class="form-group" style="text-align:right;">
                                         <button class="btn btn-primary">Simpan</button>
                                         </button>
+                                        <a class="btn btn-danger" data-toggle="modal" data-target="#resetpassword{{ $users->id}}">Reset Password</button>
+                                        </a>
+                                            @include('administrator.resetpassword')
                                     </div>
+                                    
                                 </form>
 
                             </div>

@@ -130,7 +130,7 @@
                                                 <tr>
                                                     <td>{{ $no++ }}</td>
                                                     <td>{{ $detail->namaBarang}}</td>
-                                                    <td>{{ $detail->harga}}</td>
+                                                    <td>{{ number_format($detail->harga, 2, ',', '.')}}</td>
                                                     <td>{{ $detail->jmlBarang}}</td>
                                                     <td>{{ $detail->keterangan}}</td>
                                                 </tr>

@@ -107,4 +107,13 @@ class UserController extends Controller
         }
         return redirect('admin/profile/profile')->with(['success' => 'Data Berhasil Disimpan!']); 
     }
+    public function resetPassword(Request $request)
+    {
+        User::where('id', $request->edit_id)
+        ->update([
+            
+            'password' =>   '123456'
+        ]);
+    return redirect('administrator/user');
+    }
 }
