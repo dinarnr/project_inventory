@@ -250,7 +250,7 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::get('pengajuan/pembelian/detailpembelian/{no_pengajuan}', [PengajuanMarketingController::class, 'detailpembelian']);
         Route::get('pengajuan/pembelian/tambah', [PengajuanMarketingController::class, 'addpembelian']);
         Route::post('pengajuan/pembelian/simpan', [PengajuanMarketingController::class, 'addpembelian2']);
-        Route::post('pengajuan/confirmpembelian/{id_detailPengajuan}', [PengajuanMarketingController::class, 'prosespembelian']);
+        Route::post('pengajuan/confirmpembelian/{no_pengajuan}', [PengajuanMarketingController::class, 'prosespembelian']);
         Route::post('pengajuan/edit/{id_detailPengajuan}', [PengajuanMarketingController::class, 'edit_jumlah']);
 
         // Route::post('pengajuan/pembelian/editable', [PengajuanMarketingController::class, 'editable'])->name('pengajuanmarketingcontroller.editable');

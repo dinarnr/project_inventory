@@ -5,8 +5,8 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h5 class="modal-title" id="exampleModalLabel1">Edit Jumlah</h5>
             </div>
-            <form action="{{url('marketing/pengajuan/edit')}}/{{ $detail->id_detailPengajuan }} " method="POST">
-                {{ csrf_field() }}
+            <form action="{{url('marketing/pengajuan/edit')}}/{{ $detail->id_detailPengajuan }} " method="POST" enctype="multipart/form-data">
+                @csrf
                 <div class="modal-body">
                     <div class="form-group">
                         <label class="control-label">ID</label>

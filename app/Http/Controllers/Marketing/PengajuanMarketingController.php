@@ -200,7 +200,7 @@ class PengajuanMarketingController extends Controller
         Pengajuan::where('no_pengajuan', $request->no_peng)
              ->create(
                  [
-                     'pic_marketing' =>  $user->name
+                     'pic_marketing' =>  $user->name,
                  ]
              );
  
@@ -432,12 +432,14 @@ class PengajuanMarketingController extends Controller
     {
         $profil = Profil::all();
         $data_detail = DetailPengajuan::where('no_pengajuan', $no_pengajuan)->get();
-        $pengajuan_retur = Pengajuan::where('no_pengajuan', $no_pengajuan)->get();
+        $pengajuan_retur = Pengajuan::all()->where('no_pengajuan', $no_pengajuan);
+        // dd($pengajuan_retur);
         return view('/marketing/pengajuan/detailpengajuanpembelian', compact('pengajuan_retur', 'data_detail', 'profil'));
     }
 
-    public function prosespembelian(Request $request)
+    public function prosespembelian(Request $request, $no_pengajuan)
     {
+        // dd($no_pengajuan);
         $user = Auth::user();
         $centang = collect($request->is_active)->duplicates()->toArray();  
         $uncentang = collect($request->is_active)->diff($centang)->toArray();
@@ -454,13 +456,14 @@ class PengajuanMarketingController extends Controller
                         'status' => ''
                         ]
                     );
-                Pengajuan::where('no_pengajuan', $request->no_peng)
+                Pengajuan::where('no_pengajuan', $no_pengajuan)
                     ->update(
                         [
                             'status' => '2',
                             'pic_marketing' => $user->name
                         ]
                     );
+                
         
                 Log::create(
                     [
