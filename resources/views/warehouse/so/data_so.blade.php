@@ -53,20 +53,16 @@
                                                     <td>
                                                         @if($data_po->status === 1 )
                                                         <span class="label label-warning"> Diproses warehouse</span>
-                                                        <!-- Purchase Order <strong> DIPROSES </strong>Warehouse -->
                                                         @elseif ($data_po->status === 2 )
                                                         <span class="label label-success"> Disetujui warehouse</span>
-                                                        <!-- Purchase Order <strong>DISETUJUI</strong> Warehouse  -->
                                                         @elseif ($data_po->status === 5)
                                                         <span class="label label-danger"> Dibatalkan</span>
                                                         <br>
                                                         <div class="tulisan">
                                                             Alasan : {{$data_po->alasan}}
                                                         </div>
-                                                        <!-- Purchase Order dibatalkan  -->
                                                         @else
                                                         <span class="label label-default"> Draft</span>
-                                                        <!-- Draft -->
                                                         @endif
                                                     <td>{{ date('d-m-Y',strtotime($data_po->created_at))}}</td>
                                                     <td>
@@ -79,8 +75,6 @@
                                                         @else
                                                         <a href="{{ url('warehouse/so/detail') }}/{{ $data_po->no_PO }}"><button class="btn btn-success btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
                                                         @endif
-                                                        <!-- <a href="{{ url('warehouse/so/draft') }}/{{ $data_po->no_PO }}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-book"></i></button></a> -->
-
                                                     </td>
                                                 </tr>
                                                 @endforeach

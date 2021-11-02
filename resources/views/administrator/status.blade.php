@@ -6,7 +6,6 @@
                 <h5 class="modal-title" id="exampleModalLabel1">Status</h5>
             </div>
             <div class="modal-body">
-                <!-- <h6 class="mb-15">Apakah anda yakin mengubah status pengguna ini?</h6> -->
                 <div class="radio radio-info">
                     <input type="radio" name="radio" id="radio1" value="option1" checked="">
                     <label for="radio1">

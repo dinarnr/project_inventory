@@ -16,17 +16,17 @@
                                 <div class="row">
                                     <div class="col-xs-8">
                                         <div class="form-group">
+                                            @foreach ($profil as $profil)
                                             <div class="">
-                                                <h4 text-style="left" class="txt-dark">Nakula Sadewa, CV</h4>
+                                                <h4 text-style="left" class="txt-dark">{{$profil->nama}}</h4>
                                             </div>
                                             <table>
                                                 <tr>
                                                     <div class="row">
-                                                        @foreach ($profil as $profil)
-                                                <td class="txt-dark"> Jl Candi Mendut Utara 1 No. 11 <br>
-                                                    Kel. Mojolangu Kec. Lowokwaru Malang - Jawa Timur<br>
-                                                    Phone : {{$profil->telp}}<br> Email : {{$profil->email}}</td>
-                                                    @endforeach
+
+                                                        <td class="txt-dark"> {{$profil->alamat}} <br>
+                                                            Phone : {{$profil->telp}}<br> Email : {{$profil->email}}</td>
+                                                        @endforeach
                                                     </div>
                                                 </tr>
                                             </table>
@@ -46,7 +46,7 @@
                                     <div class="col-xs-4">
                                         <div class="form-group">
                                             <table>
-                                                
+
                                                 <form action="{{ url('warehouse/pengajuan/comfirmretur/{id_detailPengajuan') }}" method="POST" enctype="multipart/form-data">
                                             </table>
                                         </div>
@@ -60,15 +60,15 @@
                                             <th>no</th>
                                             <th>Nama Barang</th>
                                             <th>Jumah</th>
-                                            <th> <input type="checkbox" id='checkall' class="check_all"/></th>
+                                            <th> <input type="checkbox" id='checkall' class="check_all" /></th>
                                         </tr>
                                     </thead>
-                                
+
                                     <tbody>
                                         <?php $no = 1; ?>
                                         @csrf
                                         @foreach ($data_detail as $detail)
-                                        <input type="hidden"  id="no_peng" name="no_peng" value="{{$detail->no_pengajuan}}" />
+                                        <input type="hidden" id="no_peng" name="no_peng" value="{{$detail->no_pengajuan}}" />
                                         <tr>
                                             <td>{{ $no++ }}</td>
                                             <td>
@@ -84,65 +84,62 @@
                                             </td>
                                         </tr>
                                         @endforeach
-                                    </div>
-                                </tbody>
+                            </div>
+                            </tbody>
                             </table>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-8">
+                    <div class="row">
+                        <div class="col-xs-8">
                         </div>
                     </div>
                 </div>
             </div>
             <div class="pull-right hide-from-printer">
                 <button class="btn btn-danger" name="draft" type="submit" value="draft" id="draft">Tolak</button>
-                <button class="btn btn-primary mr-10" name="proses" type="submit"  value="proses" id="proses">Setuju</button>
+                <button class="btn btn-primary mr-10" name="proses" type="submit" value="proses" id="proses">Setuju</button>
                 <!-- form tutup -->
             </div>
-        </form>
-        
+            </form>
+
         </div>
-        
-        
+
+
         <!-- /Row -->
         <!-- /Main Content -->
     </div>
     <!-- /#wrapper -->
 
-    <script
-    src="https://code.jquery.com/jquery-3.4.1.js"
-    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-    crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous">
     </script>
 
 
     <script type='text/javascript'>
-    $(document).ready(function(){
-   // Check or Uncheck All checkboxes
-    $("#checkall").change(function(){
-        var checked = $(this).is(':checked');
-        if(checked){
-        $(".checkbox").each(function(){
-            $(this).prop("checked",true);
+        $(document).ready(function() {
+            // Check or Uncheck All checkboxes
+            $("#checkall").change(function() {
+                var checked = $(this).is(':checked');
+                if (checked) {
+                    $(".checkbox").each(function() {
+                        $(this).prop("checked", true);
+                    });
+                } else {
+                    $(".checkbox").each(function() {
+                        $(this).prop("checked", false);
+                    });
+                }
+            });
+
+            // Changing state of CheckAll checkbox 
+            $(".checkbox").click(function() {
+
+                if ($(".checkbox").length == $(".checkbox:checked").length) {
+                    $("#checkall").prop("checked", true);
+                } else {
+                    $("#checkall").prop("checked", false);
+                }
+
+            });
         });
-        }else{
-        $(".checkbox").each(function(){
-            $(this).prop("checked",false);
-        });
-        }
-    });
-    
-    // Changing state of CheckAll checkbox 
-    $(".checkbox").click(function(){
-    
-        if($(".checkbox").length == $(".checkbox:checked").length) {
-        $("#checkall").prop("checked", true);
-        } else {
-        $("#checkall").prop("checked", false);
-        }
- 
-    });
-    });
     </script>
-@endsection
+    @endsection

@@ -2,22 +2,17 @@
 @section('title', 'Data Administrator')
 @section('content')
 
-<!-- Main Content -->
 <div class="page-wrapper">
     <div class="container-fluid">
-        <!-- Title -->
         <div class="row heading-bg">
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
                 <h5 class="txt-dark">Data Administrator</h5>
             </div>
-            <!-- Breadcrumb -->
             <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                 <ol class="breadcrumb">
-                    <!-- <li><a href="inventory">Warehouse</a></li> -->
                     <li class="active"><span>Data Administrator</span></li>
                 </ol>
             </div>
-            <!-- /Breadcrumb -->
         </div>
         <!-- Row -->
         <div class="row">
@@ -25,10 +20,10 @@
                 <div class="panel panel-default card-view">
                     <div class="panel-heading">
                         <p>
-                          <a href="{{ url('administrator/tambah') }}" class="btn btn-success">Tambah baru</a>
-                        </p>    
+                            <a href="{{ url('administrator/tambah') }}" class="btn btn-success">Tambah baru</a>
+                        </p>
                         <div class="clearfix"></div>
-                        
+
                     </div>
                     <div class="panel-wrapper collapse in">
                         <div class="panel-body">
@@ -47,10 +42,10 @@
                                                 <th colspan="3">Aksi</th>
                                             </tr>
                                         </thead>
-                                        
+
                                         <tbody>
-                                        <?php $no = 1; ?>
-                                        @foreach($users as $users)
+                                            <?php $no = 1; ?>
+                                            @foreach($users as $users)
                                             <tr>
                                                 <td>{{ $no++ }}</td>
                                                 <td>{{ $users->name }}</td>
@@ -59,8 +54,6 @@
                                                 <td>{{ $users->lastLogin }}</td>
                                                 <td>{{ $users->lastIP }}</td>
                                                 <td>
-                                                    <!-- <button class="btn btn-success btn-icon-anim btn-square"><i class="fa fa-edit"></i></button> -->
-                                                    <!-- <button class="btn btn-success btn-icon-anim" data-toggle="modal" data-target="#exampleModal"> Aktif</button> -->
                                                     @if($users->status == '1')
                                                     <button class="btn btn-success btn-sm  btn-rounded" data-toggle="modal" data-target="#exampleModal">Aktif</button>
                                                     @else
@@ -69,27 +62,13 @@
                                                     @include('administrator.status')
                                                 </td>
                                                 <td>
-                                                    <!-- <button class="btn btn-success btn-icon-anim btn-square"><i class="fa fa-info"></i></button> -->
                                                     <a href="{{ url('administrator/edit') }}/{{ $users->id}}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-pencil"></i></button></a>
-
-                                                    <!-- <button class="btn btn-primary btn-icon-anim btn-square" ><i class=" fa fa-pencil"></i></button> -->
-                                                   
-                                                    <!-- <button class="btn btn-danger btn-icon-anim btn-square" data-toggle="modal" data-target="#hapus"><i class=" fa fa-trash"></i></button> -->
-                                                    
-                                                    
-
-                                                    <!-- <div class="btn btn-round btn-danger btn-sm btn-icon"><i class="fa fa-trash"></i></div> -->
                                                 </td>
-
                                                 @include('administrator.hapus')
                                             </tr>
-                                        @endforeach 
+                                            @endforeach
                                         </tbody>
                                     </table>
-
-                                    
-
-
                                 </div>
                             </div>
                         </div>
@@ -100,7 +79,5 @@
         <!-- /Row -->
     </div>
 </div>
-<!-- /Main Content -->
 </div>
-<!-- /#wrapper -->
 @endsection

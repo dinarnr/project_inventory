@@ -100,9 +100,6 @@
                         <li>
                             <a href="{{ url('warehouse/kategori') }}">Data kategori</a>
                         </li>
-                        <!-- <li>
-                            <a href="{{ url('warehouse/stok') }}">Data stok</a>
-                        </li> -->
                     </ul>
                 </li>
 
@@ -320,12 +317,12 @@
                 @endif
                 <!-- <-------------------------------OFFICE----------------------------------->
                 @if (auth()->user()->divisi == "office")
-                <li>
+                <!-- <li>
                     <a href="{{ url('office/report/report') }}">
                         <div class="pull-left"><i class="zmdi zmdi-book mr-20"></i><span class="right-nav-text">Report</span></div>
                         <div class="clearfix"></div>
                     </a>
-                </li>
+                </li> -->
                 <li>
                     <a href="{{ url('office/barang/stok') }}">
                         <div class="pull-left"><i class="zmdi zmdi-book mr-20"></i><span class="right-nav-text">Stok</span></div>

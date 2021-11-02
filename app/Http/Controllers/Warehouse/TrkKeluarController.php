@@ -59,6 +59,7 @@ class TrkKeluarController extends Controller
     public function keluargaransi(Request $request)
     {   
         // dd($request);
+        $user = Auth::user();
         $jumlah_data = count($request->no_trans);
         for ($i = 0; $i < $jumlah_data; $i++) {
             DetailTrkKeluar::create(
@@ -72,10 +73,12 @@ class TrkKeluarController extends Controller
             );
         }
         TransaksiKeluar::create(
-            [       'no_PO' => $request->no_PO,
-                    'no_transaksi' => $request->no_transaksi,
-                    'tgl_transaksi' => $request->tgl_transaksi,
-                    'jns_barang' => $request->jenis_barang,
+            [       
+                'pic_warehouse' => $user->name,
+                'no_PO'         => $request->no_PO,
+                'no_transaksi'  => $request->no_transaksi,
+                'tgl_transaksi' => $request->tgl_transaksi,
+                'jns_barang'    => $request->jenis_barang,
             ]
         );
         $user = Auth::user();
@@ -152,11 +155,7 @@ class TrkKeluarController extends Controller
         $output = '<tr id="row"></tr>';
         foreach ($data as $row) {
             $output .= '<tr id="row"></td>
-<<<<<<< HEAD
-            <td style="display:none;" ><input type="text" style="outline:none;border:0;" name="no_trans[]" id="no_trans" value="'.$no_trans.'"></td>
-=======
             <td style="display:none;"><input type="text" style="outline:none;border:0;" name="no_trans[]" id="no_trans" value="'.$no_trans.'"></td>
->>>>>>> 234867453e0b2e3eafc841ddd4f41d02e5d30cfa
             <td><input type="text" style="outline:none;border:0;" readonly name="nama_barang[]" id="nama_barang" value="'.$row->nama_barang.'"></td> 
             <td style="display:none;"><input type="text" style="outline:none;border:0;" readonly name="nama_barang1" id="nama_barang1" value="'.$row->nama_barang.'"></td> 
             <td style="display:none;"><input type="text" style="outline:none;border:0;" readonly name="kode_barang[]" id="kode_barang" value="'.$row->kode_barang.'"></td> 
@@ -202,6 +201,7 @@ class TrkKeluarController extends Controller
             'penerima.required' => '*Nama penerima tidak boleh kosong',
         ];
         $this->validate($request, $rules, $messages);
+        $user = Auth::user();
         $jumlah_data = count($request->jumlah);
         for ($i = 0; $i < $jumlah_data; $i++) {
             DetailTrkKeluar::create(
@@ -215,6 +215,7 @@ class TrkKeluarController extends Controller
         }
         TransaksiKeluar::create(
             [
+                    'pic_warehouse' => $user->name,
                     'no_transaksi' => $request->no_transaksi,
                     'tgl_instalasi' => $request->tgl_instalasi,
                     'no_SO' => $request->no_SO,
@@ -283,6 +284,7 @@ class TrkKeluarController extends Controller
     public function addkeluarretur2(Request $request)
     {
         // dd($request->no_trans);
+        $user = Auth::user();
         $jumlah_data = count($request->no_trans);
         for ($i = 0; $i < $jumlah_data; $i++) {
             DetailTrkKeluar::create(
@@ -298,6 +300,7 @@ class TrkKeluarController extends Controller
         }
         TransaksiKeluar::create(
             [
+                'pic_warehouse' => $user->name,
                 'no_transaksi' => $request->no_transaksi,
                 'tgl_transaksi' => $request->tgl_transaksi,
                 'nama_supplier' => $request->nama_supplier,

@@ -85,6 +85,7 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::post('barang/simpan', [DataBarangController::class, 'addbarang2']);
         Route::get('barang/ubah/{id_master}', [DataBarangController::class, 'editBarang']);
         Route::put('barang/ubah/simpan', [DataBarangController::class, 'updateBarang']);
+        
         // <---------------------DATA STOK _--------------------------->
         Route::get('stok', [StokController::class, 'data_stok']);
         Route::get('stok/{kode_barang}', [StokController::class, 'detailstok']);
@@ -156,8 +157,6 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::post('so/draft/{id_PO}', [SOController::class, 'draft']);
 
         Route::get('so/draft/{no_PO}', [SOController::class, 'draftso']);
-        // Route::get('so/keluarinstalasi/tambah/{no_PO}', [SOController::class, 'transaksiinstalasi']);
-        // Route::post('/addinstalasi/fetch', 'SOController@fetch')->name ('socontroller.fetch');
 
         // <----------------------DATA PEMINJAMAN--------------------------->
         Route::get('peminjaman', [PeminjamanController::class, 'peminjaman']);
@@ -194,10 +193,11 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::get('pembelian/purchase', [PembelianWarehouseController::class, 'purchase']);
         Route::get('pembelian/invoice/tambah', [PembelianWarehouseController::class, 'addpembelian']);
         Route::post('pembelian/invoice/simpan', [PembelianWarehouseController::class, 'addpembelian2']);
-        //  Route::post('lunas/{id_pembelian}', 'App\Http\Controllers\PembelianController@lunas');
 
         // <----------------------PENGATURAN--------------------------->
         Route::get('pengaturan/profil', [PengaturanController::class, 'profil']);
+        Route::post('pengaturan/profil/simpan', [PengaturanController::class, 'updateProfil']);
+
     });
 
     Route::group(['prefix' => 'marketing/'], function () {
@@ -324,6 +324,7 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
     Route::group(['prefix' => 'office/'], function () {
         Route::get('report/report', [ReportController::class, 'report']);
         Route::get('barang/stok', [StokOfficeController::class, 'stok']);
+        Route::get('historystok/{kode_barang}', [StokOfficeController::class, 'history_stok']);
         Route::get('transaksi/masuk', [TrkMasukOfficeController::class, 'transaksimasuk']);
         Route::get('trk/detailmasukbaru/{no_transaksi}', [TrkMasukOfficeController::class, 'detailmasuk']);
         Route::get('transaksi/detailmasukretur/{no_transaksi}', [TrkMasukOfficeController::class, 'detailmasukretur']);
@@ -334,7 +335,6 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::get('transaksi/keluar', [TrkKeluarOfficeController::class, 'transaksikeluar']);
         Route::get('po/datapo', [POOfficeController::class, 'po']);
         Route::get('po/datapo2', [POOfficeController::class, 'searchBystatus']);
-        // Route::resource('customsearch', 'CustomSearchController');
         Route::get('so/dataso', [SOOfficeController::class, 'so']);
         Route::get('so/dataso2', [SOOfficeController::class, 'searchBystatus']);
         Route::get('peminjaman/datapinjam', [PeminjamanOfficeController::class, 'peminjaman']);

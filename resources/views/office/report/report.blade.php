@@ -121,6 +121,8 @@
 						<div class="clearfix"></div>
 					</div>
 					<div class="panel-wrapper collapse in">
+						
+					<div class="panel-wrapper collapse in">
 						<div class="panel-body row pa-0">
 							<div class="table-wrap">
 								<div class="table-responsive">

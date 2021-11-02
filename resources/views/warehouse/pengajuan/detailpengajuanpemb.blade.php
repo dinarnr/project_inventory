@@ -27,20 +27,20 @@
                     <div class="panel-heading">
                         <div class="panel-wrapper collapse in">
                             <div class="panel-body">
-                            <div class="row">
+                                <div class="row">
                                     <div class="col-xs-8">
                                         <div class="form-group">
+                                            @foreach ($profil as $profil)
                                             <div class="">
-                                                <h4 text-style="left" class="txt-dark">Nakula Sadewa, CV</h4>
+                                                <h4 text-style="left" class="txt-dark">{{$profil->nama}}</h4>
                                             </div>
                                             <table>
                                                 <tr>
                                                     <div class="row">
-                                                        @foreach ($profil as $profil)
-                                                    <td class="txt-dark"> Jl Candi Mendut Utara 1 No. 11 <br>
-                                                    Kel. Mojolangu Kec. Lowokwaru Malang - Jawa Timur<br>
-                                                    Phone : {{$profil->telp}}<br> Email : {{$profil->email}}</td>
-                                                    @endforeach
+
+                                                        <td class="txt-dark"> {{$profil->alamat}} <br>
+                                                            Phone : {{$profil->telp}}<br> Email : {{$profil->email}}</td>
+                                                        @endforeach
                                                     </div>
                                                 </tr>
                                             </table>
@@ -63,26 +63,26 @@
                                                 <div class="text-left">
                                                     <h6 class="txt-dark"><strong>No Pengajuan :</strong></h6>
                                                 </div>
-                                                
+
                                                 <tr>
-                                                <div class="">
-                                                    <td class="txt-dark">
-                                                    {{$pengajuan->no_pengajuan}}
-                                                    </td>
-                                                </div>
-                                            </tr>
+                                                    <div class="">
+                                                        <td class="txt-dark">
+                                                            {{$pengajuan->no_pengajuan}}
+                                                        </td>
+                                                    </div>
+                                                </tr>
                                             </table>
                                             <table>
                                                 <div class="text-left">
                                                     <h6 class="txt-dark"><strong>Nama Pemohon :</strong></h6>
                                                 </div>
-                                            <tr>
-                                                <div class="">
-                                                    <td class="txt-dark">
-                                                    {{$pengajuan->nama_pemohon}}
-                                                    </td>
-                                                </div>
-                                            </tr>
+                                                <tr>
+                                                    <div class="">
+                                                        <td class="txt-dark">
+                                                            {{$pengajuan->nama_pemohon}}
+                                                        </td>
+                                                    </div>
+                                                </tr>
                                             </table>
 
 
@@ -97,22 +97,22 @@
                                                 <tr>
                                                     <div class="">
                                                         <td class="txt-dark">
-                                                        {{ date('d-m-Y',strtotime($pengajuan->tgl_pengajuan))}}
-                                                      </td>
+                                                            {{ date('d-m-Y',strtotime($pengajuan->tgl_pengajuan))}}
+                                                        </td>
                                                     </div>
                                                 </tr>
                                             </table>
 
                                         </div>
                                     </div>
-                                @endforeach
+                                    @endforeach
 
-                                    
-                                <br>
 
-                                
-                            </div>
-                            <div class="invoice-bill-table">
+                                    <br>
+
+
+                                </div>
+                                <div class="invoice-bill-table">
                                     <div class="table-responsive">
                                         <table id="myTable1" class="table table display pb-30">
                                             <thead>
@@ -140,20 +140,20 @@
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <!-- /Row -->
             </div>
-            <!-- /Row -->
-        </div>
-        <!-- /Footer -->
-        <div class="pull-right">
+            <!-- /Footer -->
+            <div class="pull-right">
                 <!-- <button class="btn btn-primary mr-10" name="konfirmasi" type="submit"  value="proses" id="proses">Konfirmasi</button> -->
-                
+
                 <!-- form tutup -->
             </div>
+        </div>
+        <!-- /Main Content -->
     </div>
-    <!-- /Main Content -->
-</div>
-<!-- /#wrapper -->
-@endsection
+    <!-- /#wrapper -->
+    @endsection

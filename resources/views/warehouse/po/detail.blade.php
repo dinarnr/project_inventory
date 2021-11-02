@@ -22,16 +22,18 @@
                             <div class="col-md-12">
                                 <div class="row">
                                     <div class="col-xs-8">
-                                        <div class="form-group">
+                                    <div class="form-group">
+                                            @foreach ($profil as $profil)
                                             <div class="">
-                                                <h4 text-style="left" class="txt-dark">Nakula Sadewa, CV</h4>
+                                                <h4 text-style="left" class="txt-dark">{{$profil->nama}}</h4>
                                             </div>
                                             <table>
                                                 <tr>
                                                     <div class="row">
-                                                        <td class="txt-dark"> Jl Candi Mendut Utara 1 No. 11 <br>
-                                                            Kel. Mojolangu Kec. Lowokwaru Malang - Jawa Timur<br>
-                                                            Phone : <br> Email : </td>
+
+                                                        <td class="txt-dark"> {{$profil->alamat}} <br>
+                                                            Phone : {{$profil->telp}}<br> Email : {{$profil->email}}</td>
+                                                        @endforeach
                                                     </div>
                                                 </tr>
                                             </table>
