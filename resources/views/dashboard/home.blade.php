@@ -134,7 +134,7 @@
 												<td>{{$data_po->instansi}}</td>
 												<td>{{ date('d M Y',strtotime($data_po->tgl_pemasangan))}}</td>
 												<td>
-													<span class="label label-primary"> Purchase Order diproses Warehouse </span>
+													<span class="label label-warning"> Purchase Order diproses Warehouse </span>
 												</td>
 											</tr>
 											@endif
@@ -248,6 +248,62 @@
 													<span class="label label-warning">Diproses Warehouse</span>
 													@endif
 												</td>
+											</tr>
+											@endif
+											@endforeach
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		@endif
+
+		@if (auth()->user()->divisi == "marketing")
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default card-view">
+					<div class="panel-heading">
+						<div class="pull-left">
+							<h6 class="panel-title txt-dark"><strong> Data PO </strong></h6>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="panel-wrapper collapse in">
+						<div class="panel-body row pa-0">
+							<div class="table-wrap">
+								<div class="table-responsive">
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>No</th>
+												<th>No PO</th>
+												<th>Instansi</th>
+												<th>Tanggal Pemasangan</th>
+												<th>Status</th>
+												<th>Tanggal Pembuatan PO</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php $no = 1; ?>
+											@foreach ($data_po as $data_po)
+											@if($data_po->status == "1")
+											<tr>
+												<td>{{ $no++ }}</td>
+												<td>{{ $data_po->no_PO}}</td>
+												<td>{{ $data_po->instansi}}</td>
+												<td>
+													{{ date('d M Y',strtotime($data_po->tgl_pemasangan))}}
+												</td>
+												<td>
+													@if($data_po->status === 1 )
+													<span class="label label-warning"> Purchase Order diproses Warehouse</span>
+													@endif
+												</td>
+												<td>{{ date('d M Y',strtotime($data_po->created_at))}}</td>
 											</tr>
 											@endif
 											@endforeach
