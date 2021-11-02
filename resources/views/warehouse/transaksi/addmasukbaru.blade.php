@@ -112,7 +112,7 @@
 														</div>
 													{{ csrf_field() }}
 													</div>
-
+ 
 													<div class="col-md-4">
 														<div class="form-group">
 															<label class="control-label mb-10">Jumlah</label>

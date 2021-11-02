@@ -213,7 +213,7 @@
 
             <button type="button" class="btn btn-primary btn-icon" data-toggle="modal" data-target="#email"> <i
                     class="fa  fa-send-o "></i><span>Email</span></button>
-            @include('marketing.po.email')
+            @include('marketing.po.email') 
         </div>
 
         <!-- /Row -->

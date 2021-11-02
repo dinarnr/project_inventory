@@ -26,40 +26,30 @@ class PembelianPurchasingController extends Controller
     public function addinvoice($no_pengajuan)
     {
         $data_pembelian = Pengajuan::where('no_pengajuan',$no_pengajuan)->first();
-        $data_detail = DetailPengajuan::all()->where('no_pengajuan',$no_pengajuan);
+        $data_detail = DetailPengajuan::where('no_pengajuan',$no_pengajuan)->get();
+        $coba= DetailPengajuan::where('no_pengajuan',$no_pengajuan)->get();
         $supplier =  SupplierModel::all();
         // dd($data_detail);
-        return view('purchasing/pembelian/addinvoice', compact('data_pembelian', 'data_detail', 'supplier'));
+        return view('purchasing/pembelian/addinvoice', compact('coba','data_pembelian', 'data_detail', 'supplier'));
     }
 
     public function addpembelian2(Request $request)
     {
-        $rules = [
-            'supplier' => 'required',
-            'harga_jual' => 'required',
-            'tgl_beli' => 'required',
-
-        ];
-
-        $messages = [
-            'supplier.required' => '*Supplier barang tidak boleh kosong',
-            'harga_jual.required' => '*Harga barang tidak boleh kosong',
-            'tgl_beli.required' => '*Tanggal Beli barang tidak boleh kosong',
-        ];
-        $this->validate($request, $rules, $messages);
+        $user = Auth::user();
         // dd(preg_replace('/[^0-9]/','',$request->harga_jual));
         Pembelian::create([
             'no_pengajuan' => $request->no_pengajuan,
             'nama_pemohon' => $request->nama_pemohon,
             'tgl_pengajuan' => $request->tgl_pengajuan,
-            'tglBeli' => $request->tgl_beli,
-            'harga' => preg_replace('/[^0-9]/','',$request->harga_jual),
-            'supplier' => $request->supplier,
-            'totalBayar' =>preg_replace('/[^0-9]/','',$request->harga_beli),
-            'status' => $request->jenisTransaksi,
-            'sisaBayar' => preg_replace('/[^0-9]/','',$request->amount)
+            'pic_teknisi' => $request->pic_teknisi,
+            'pic_marketing' => $request->pic_marketing,
+            'pic_warehouse' => $request->pic_warehouse,
+            'pic_admin' => $request->pic_admin,
+            'pic_purchasing' => $user->name,
+            'alasan' => $request->alasan,
+
         ]);
-        PO::where('id_PO', $request->id_PO)
+        Pengajuan::where('no_pengajuan', $request->no_pengajuan)
                 ->update([
                     'status' => '5'
                 ]);
@@ -68,12 +58,17 @@ class PembelianPurchasingController extends Controller
             DetailPembelian::create([
                 'no_pengajuan' => $request->no_peng[$i],
                 'namaBarang'=> $request->nama_barang[$i],
-                'harga' => $request->harga[$i],
-                'jmlBarang' => $request->jml_barang[$i],
-                'keterangan' => $request->keterangan[$i],
+                'harga' => preg_replace('/[^0-9]/','',$request->harga[$i]),
+                'jmlBarang' => $request->jumlah[$i],
+                'totalBeli' => preg_replace('/[^0-9]/','',$request->totalBeli[$i]),
+                'jenisTransaksi' => $request->jenisTransaksi[$i],
+                'info' => $request->info[$i],
+                'harga_beli' => preg_replace('/[^0-9]/','',$request->harga_beli[$i]),
+                'amount' => preg_replace('/[^0-9]/','',$request->amount[$i]),
+                'supplier' => $request->supplier[$i],
+
             ]);
         }
-        $user = Auth::user();
         Log::create(
             [
             'name' => $user->name,

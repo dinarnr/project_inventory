@@ -18,12 +18,12 @@ class PembelianTable extends Migration
             $table->string('no_pengajuan',50);
             $table->string('nama_pemohon',50)->nullable();
             $table->date('tgl_pengajuan');
-            $table->date('tglBeli')->nullable();
-            $table->string('harga',50)->nullable();
-            $table->string('supplier')->nullable();
-            $table->string('sisaBayar',50)->nullable();
-            $table->string('totalBayar',50)->nullable();
-            $table->string('status',50)->nullable();
+            $table->string('pic_teknisi',50)->nullable();
+            $table->string('pic_marketing',50)->nullable();
+            $table->string('pic_warehouse',50)->nullable();
+            $table->string('pic_admin',50)->nullable();
+            $table->string('pic_purchasing',50)->nullable();
+            $table->string('alasan',50)->nullable();
             $table->timestamps();
         });
     }

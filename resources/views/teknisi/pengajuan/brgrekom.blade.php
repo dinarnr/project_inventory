@@ -35,8 +35,8 @@
                                                 <tr>
                                                     <th>No</th>
                                                     <th>Keterangan</th>
-                                                    <th>Status</th>
                                                     <th>Tanggal pengajuan</th>
+                                                    <th>PIC Teknisi</th>
                                                     <th>Aksi</th>
                                                 </tr>
                                             </thead>
@@ -46,18 +46,8 @@
                                                 <tr>
                                                     <td>{{ $no++ }}</td>
                                                     <td>{{ $data_baru->keterangan}}</td>
-                                                    <td>@if($data_baru->status === 1 )
-                                                        Pengajuan ditolak Marketing
-                                                        @elseif ($data_baru->status === 2 )
-                                                        Pengajuan disetujui Marketing
-                                                        @elseif ($data_baru->status === 3 )
-                                                        Pengajuan ditolak Warehouse
-                                                        @elseif ($data_baru->status === 4 )
-                                                        Pengajuan disetujui Warehouse dan segera dikirim
-                                                        @else
-                                                        Pengajuan diproses Marketing
-                                                        @endif</td>
                                                     <td>{{ date('d-m-Y',strtotime($data_baru->created_at))}}</td>
+                                                    <td>{{$data_baru->pic_teknisi}} </td>
                                                     <td>
                                                         <a href="{{ url('teknisi/pengajuan/rekomendasi/detail') }}/{{ $data_baru->no_pengajuan }}"> <button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
                                                     </td>

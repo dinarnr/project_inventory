@@ -79,8 +79,10 @@ class PengajuanPurchasingController extends Controller
     {
         $profil = Profil::all();
         $data_detail = DetailPengajuan::where('no_pengajuan', $no_pengajuan)->get();
+        $coba = DetailPengajuan::where('no_pengajuan', $no_pengajuan)->get();
+        // dd($coba);
         $pengajuan_retur = Pengajuan::where('no_pengajuan', $no_pengajuan)->get();
-        return view('/purchasing/pengajuan/detailpengajuanpembelian', compact('pengajuan_retur', 'data_detail', 'profil'));
+        return view('/purchasing/pengajuan/detailpengajuanpembelian', compact('pengajuan_retur', 'data_detail', 'profil', 'coba'));
     }
 
     public function prosespengajuan(Request $request)

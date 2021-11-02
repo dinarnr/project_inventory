@@ -14,6 +14,7 @@ use App\Models\Profil;
 use DetailPengajuanTable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PengajuanMarketingController extends Controller
 {
@@ -174,18 +175,32 @@ class PengajuanMarketingController extends Controller
 
     public function proses(Request $request)
     {
-        //  dd($request->no_peng);
-         $user = Auth::user();
-         DetailPengajuan::where('id_detailPengajuan', $request->is_active)
+        $centang = collect($request->is_active)->duplicates()->toArray();  
+        $uncentang = collect($request->is_active)->diff($centang)->toArray();
+        $user = Auth::user();
+        // dd($user);
+        DetailPengajuan::whereIn('id_detailPengajuan', $centang)
              ->update(
                  [
-                 'status' => '2'
+                 'status' => '2',
                  ]
              );
-         Pengajuan::where('no_pengajuan', $request->no_peng)
+        DetailPengajuan::whereIn('id_detailPengajuan', $uncentang)
+             ->update(
+                 [
+                 'status' => '0' 
+                 ]
+             );
+        Pengajuan::where('no_pengajuan', $request->no_peng)
              ->update(
                  [
                      'status' => '2'
+                 ]
+             );
+        Pengajuan::where('no_pengajuan', $request->no_peng)
+             ->create(
+                 [
+                     'pic_marketing' =>  $user->name
                  ]
              );
  
@@ -355,7 +370,7 @@ class PengajuanMarketingController extends Controller
     }
 
     //-----------------------------------------pengajuan pembelian---------------------------------------------------------------//
-    public function pengpembelian()
+    public function pengpembelian() 
     {
         $pembelian= Pengajuan::all()->where('jenisBarang','','');
         return view('marketing/pengajuan/pembelian', compact('pembelian'));
@@ -413,7 +428,7 @@ class PengajuanMarketingController extends Controller
        return redirect('marketing/pengajuan/pembelian');
     }
 
-    public function detailpembelian($no_pengajuan)
+    public function detailpembelian($no_pengajuan) 
     {
         $profil = Profil::all();
         $data_detail = DetailPengajuan::where('no_pengajuan', $no_pengajuan)->get();
@@ -424,11 +439,19 @@ class PengajuanMarketingController extends Controller
     public function prosespembelian(Request $request)
     {
         $user = Auth::user();
-        if ($request->proses == 'proses') {
-                DetailPengajuan::where('id_detailPengajuan', $request->is_active)
+        $centang = collect($request->is_active)->duplicates()->toArray();  
+        $uncentang = collect($request->is_active)->diff($centang)->toArray();
+
+                DetailPengajuan::whereIn('id_detailPengajuan', $centang)
                     ->update(
                         [
                         'status' => '2'
+                        ]
+                    );
+                DetailPengajuan::whereIn('id_detailPengajuan', $uncentang)
+                    ->update(
+                        [
+                        'status' => ''
                         ]
                     );
                 Pengajuan::where('no_pengajuan', $request->no_peng)
@@ -444,39 +467,23 @@ class PengajuanMarketingController extends Controller
                         'name' => $user->name,
                         'email' => $user->email,
                         'divisi' => $user->divisi,
-                        'deskripsi' => 'Confirm Pengajuan Retur ',
+                        'deskripsi' => 'Confirm Pengajuan Retur ',  
                         'status' => '2',
                         'ip' => $request->ip()
         
                     ]
                 );
-    } else {
-        DetailPengajuan::where('id_detailPengajuan', $request->is_active)
-            ->update(
-                [
-                'status' => '1'
-                ]
-            );
 
-        Pengajuan::where('no_pengajuan', $request->no_peng)
-            ->update(
-                [
-                    'status' => '1'
-                ]
-            );
-
-        Log::create(
-            [
-                'name' => $user->name,
-                'email' => $user->email,
-                'divisi' => $user->divisi,
-                'deskripsi' => 'Confirm Draft pengajuan retur',
-                'status' => '2',
-                'ip' => $request->ip()
-
-            ]
-        );
-    }
         return redirect('marketing/pengajuan/pembelian');
+    }
+
+    public function edit_jumlah(Request $request, $id_detailPengajuan)
+    {
+        DetailPengajuan::where('id_detailPengajuan', $id_detailPengajuan)
+            ->update([
+                'jmlBarang' => $request->edit_jumlah
+            ]);
+
+        return back();
     }
 }

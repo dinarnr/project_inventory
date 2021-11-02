@@ -401,6 +401,11 @@
     <!-- Data table JavaScript -->
     <script src="{{asset('template')}}/vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
     <script src="{{asset('template')}}/dist/js/dataTables-data.js"></script>
+     <!-- Data table JavaScript -->
+	{{-- <script src="{{asset('template')}}/vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+	<script src="{{asset('template')}}/vendors/bower_components/editable-table/mindmup-editabletable.js"></script>
+	<script src="{{asset('template')}}/vendors/bower_components/editable-table/numeric-input-example.js"></script>
+	<script src="{{asset('template')}}/dist/js/editable-table-data.js"></script> --}}
     <!-- Slimscroll JavaScript -->
     <script src="{{asset('template')}}/dist/js/jquery.slimscroll.js"></script>
     <!-- simpleWeather JavaScript -->

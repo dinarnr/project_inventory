@@ -54,46 +54,48 @@
                                         </div>
                                     </div>
                                     <div class="row">
-													<div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label class="control-label mb-10">Nama Barang</label>
-                                                            <select name="nama_barang" id="nama_barang" class="form-control" data-dependent="kode_barang">
-																@foreach($barang as $brg)
-																	<option value="{{ $brg->nama_barang }}">{{ $brg->nama_barang }} | {{ $brg->kode_barang }} </option>
-																@endforeach
-                                                            </select>
-                                                        </div>
-                                                    </div>
-													<div class="col-md-4" hidden>
-														<div class="form-group">
-															<label class="control-label mb-10">Kode Barang</label>
-															<select name="kode_barang" id="kode_barang" class="form-control select2" disabled>
-																
-															</select>
-															<!-- <div id="id_barang"></div> -->
-														</div>
-													{{ csrf_field() }}
-													</div>
-                                        <div class="col-md-6">
+										<div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label mb-10">Nama Barang</label>
+                                                <select name="nama_barang" id="nama_barang" class="form-control" data-dependent="kode_barang">
+                                                    <option value="">Pilih Nama Barang</option>
+                                                    @foreach($barang as $brg)
+                                                        <option value="{{ $brg->nama_barang }}">{{ $brg->nama_barang }} | {{ $brg->kode_barang }} </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4" hidden>
+                                            <div class="form-group">
+                                                <label class="control-label mb-10">Kode Barang</label>
+                                                <select name="kode_barang" id="kode_barang" class="form-control select2" disabled>
+                                                    
+                                                </select>
+                                                <!-- <div id="id_barang"></div> -->
+                                            </div>
+                                        {{ csrf_field() }}
+                                        </div>	
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <label class="control-label mb-10">Jumlah</label>
                                                 <input type="number" id="jumlah" name="jumlah" class="form-control">
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6 "> 
-                                            <div class="form-group">
-                                                <label class="control-label mb-10 text-left" for="example-email">Keterangan<span class="help"> </span></label>
-                                                <input type="text" id="keterangan" name="keterangan" class="form-control" placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 "> 
+                                        <div class="col-md-4 "> 
                                             <div class="form-group">
                                                 <label class="control-label mb-10 text-left" for="example-email">Tanggal Pengajuan</label>
                                                 <input type="date" id="tgl_pengajuan" name="tgl_pengajuan" class="form-control" placeholder="">
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4"> 
+                                            <div class="form-group">
+                                                <label class="control-label mb-10 text-left" for="example-email">Keterangan Pengajuan<span class="help"> </span></label>
+                                                <input type="text" id="keterangan" name="keterangan" class="form-control" placeholder="">
+                                            </div>
+                                        </div>
+                                        
                                     </div>
 
                                     <div class="form-group" style="text-align:right;">
@@ -148,9 +150,9 @@
     <script type="text/javascript">
         function ambildata() {
 
-            var jumlah = document.forms["myForm"]["jumlah"].value;
-            var keterangan = document.forms["myForm"]["keterangan"].value;
-            var tgl = document.forms["myForm"]["tgl_pengajuan"].value;
+            var jumlah = document.getElementById('jumlah').value;
+            var keterangan = document.getElementById('keterangan').value;
+            var tgl = document.getElementById('tgl_pengajuan').value;
 
             if (jumlah == "") {
                 alert("Jumlah tidak boleh kosong");

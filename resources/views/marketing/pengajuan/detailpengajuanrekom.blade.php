@@ -43,11 +43,37 @@
                                 <hr>
 
                                 <div class="row">
+                                    <div class="col-xs-8">
+                                        <div class="form-group">
+                                            <table>
+                                                @foreach ($pengajuan_rekom as $detail)
+                                                    <div class="text-left">
+                                                        <h6 class="txt-dark"><strong>NO PENGAJUAN : </strong></h6>
+                                                            <div class="">
+                                                                <div class="txt-dark"> {{ $detail->no_pengajuan }}</div>
+                                                            </div>
+                                                    </div>
+                                                    <div class="text-left">
+                                                        <h6 class="txt-dark"><strong>PIC TEKNISI: </strong></h6>
+                                                            <div class="">
+                                                                <div class="txt-dark"> {{ $detail->pic_teknisi }}</div>
+                                                            </div>
+                                                    </div>
+                                                @endforeach
+                                            </table>
+                                        </div>
+                                    </div>
                                     <div class="col-xs-4">
                                         <div class="form-group">
                                             <table>
-                                                
-                                                <form action="{{ url('marketing/pengajuan/confirmrekom/{id_detailPengajuan') }}" method="POST" enctype="multipart/form-data">
+                                                @foreach ($pengajuan_rekom as $detail)
+                                                    <div class="text-left">
+                                                        <h6 class="txt-dark"><strong>TANGGAL PENGAJUAN : </strong></h6>
+                                                            <div class="">
+                                                                <div class="txt-dark"> {{ $detail->created_at }}</div>
+                                                            </div>
+                                                    </div>
+                                                @endforeach
                                             </table>
                                         </div>
                                     </div>
@@ -59,8 +85,7 @@
                                         <tr>
                                             <th>no</th>
                                             <th>Nama Barang</th>
-                                            <th>Jumah</th>
-                                            <th> <input type="checkbox" id='checkall' class="check_all"/></th>
+                                            <th>Jumlah</th>
                                         </tr>
                                     </thead>
                                 
@@ -77,11 +102,6 @@
                                             <td>
                                                 <a href="#" id="" style="font-weight:bold" data-type="text" data-pk="1" data-title="Jumlah">{{$detail->jmlBarang}}</a>
                                             </td>
-                                            <td>
-                                                <input type="checkbox" class="checkbox" id="is_active[]" name="is_active[]" value="{{$detail->id_detailPengajuan}}" 
-                                                @if($detail->status == 2) checked=checked @endif />
-                                                <input type="hidden" id="non[]" name="non[]" value="{{$detail->id_detailPengajuan}}">        
-                                            </td>
                                         </tr>
                                         @endforeach
                                     </div>
@@ -91,15 +111,22 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-8">
-                        </div>
+                        <table>
+                            @foreach ($pengajuan_rekom as $detail)
+                                <div class="text-left">
+                                    <h6 class="txt-dark"><strong>Keterangan : </strong></h6>
+                                        <div class="">
+                                            <div class="txt-dark"> {{ $detail->keterangan }}</div>
+                                        </div>
+                                </div>
+                            @endforeach
+                        </table>
                     </div>
                 </div>
             </div>
-            <div class="pull-right hide-from-printer">
-                <!-- <button class="btn btn-default" name="draft" type="submit" value="draft" id="draft">Tolak</button> -->
+            {{-- <div class="pull-right hide-from-printer">
                 <button class="btn btn-primary mr-10" name="proses" type="submit"  value="proses" id="proses">Proses</button>
-                <!-- form tutup -->
-            </div>
+            </div> --}}
         </form>
         
         </div>

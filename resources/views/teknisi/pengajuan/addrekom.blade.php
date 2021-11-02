@@ -27,7 +27,7 @@
                                 <form action="{{ url('teknisi/pengajuan/rekomendasi/simpan') }}" method="POST" enctype="multipart/form-data" name="myForm">
                                     @csrf
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
 											@foreach ((Array) $no_peng as $no_pengajuan)
 											<div class="form-group">
 												<label class="control-label mb-10">No Pengajuan</label>
@@ -36,10 +36,16 @@
 											</div>
 											@endforeach
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <label class="control-label mb-10">Nama Barang</label>
                                                 <input name="nama_barang" id="nama_barang" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label mb-10">Jumlah</label>
+                                                <input type="number" id="jumlah" name="jumlah" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-6" hidden>
@@ -50,15 +56,9 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-4 "> 
                                             <div class="form-group">
-                                                <label class="control-label mb-10">Jumlah</label>
-                                                <input type="number" id="jumlah" name="jumlah" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 "> 
-                                            <div class="form-group">
-                                                <label class="control-label mb-10 text-left" for="example-email">Keterangan<span class="help"> </span></label>
+                                                <label class="control-label mb-10 text-left" for="example-email">Keterangan Pengajuan<span class="help"> </span></label>
                                                 <input type="text" id="keterangan" name="keterangan" class="form-control" placeholder="">
                                             </div>
                                         </div>
@@ -124,9 +124,9 @@
     <script type="text/javascript">
         function ambildata() {
             
-            var nama = document.forms["myForm"]["nama_barang"].value;
-            var jumlah = document.forms["myForm"]["jumlah"].value;
-            var keterangan = document.forms["myForm"]["keterangan"].value;
+            var nama = document.getElementById("nama_barang").value;
+            var jumlah = document.getElementById("jumlah").value;
+            var keterangan = document.getElementById("keterangan").value;
 
             if (nama == "") {
                 alert("Nama Barang tidak boleh kosong");

@@ -17,9 +17,15 @@ class CreateDetailPembelianTable extends Migration
             $table->increments('id_pembelian');
             $table->string('no_pengajuan',50);
             $table->string('namaBarang',50);
-            $table->string('harga',50);
-            $table->string('jmlBarang',50);
-            $table->string('keterangan',50);
+            $table->integer('harga');
+            $table->integer('jmlBarang');
+            $table->integer('totalBeli');
+            $table->string('jenisTransaksi',50);
+            $table->string('info',50)->nullable();
+            $table->integer('harga_beli')->nullable();
+            $table->integer('amount');
+            $table->string('supplier',50);
+
             $table->timestamps();
         });
     }

@@ -15,11 +15,11 @@ $(function(){
     '<button type="button" class="btn btn-white editable-cancel btn-sm waves-effect"><i class="fa fa-times"></i></button>';
     
     //editables 
-    $('#username').editable({
+    $('#julahEdit').editable({
      type: 'text',
      pk: 1,
-     name: 'username',
-     title: 'Enter username'
+     name: 'jumlah',
+
    });
 
    $('#username2').editable({

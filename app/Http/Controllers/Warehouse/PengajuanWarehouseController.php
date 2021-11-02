@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Warehouse;
 use App\Http\Controllers\Controller;
 use App\Models\DetailPengajuan;
 use App\Models\Log;
-use App\Models\Master;
+use App\Models\Master; 
 use App\Models\Pembelian;
 use App\Models\Pengajuan;
 use App\Models\PO;
@@ -33,8 +33,16 @@ class PengajuanWarehouseController extends Controller
     public function comfirmretur(Request $request)
     {
         $user = Auth::user();
+        $centang = collect($request->is_active)->duplicates()->toArray();  
+        $uncentang = collect($request->is_active)->diff($centang)->toArray();
         if ($request->proses == 'proses') {
-                DetailPengajuan::where('id_detailPengajuan', $request->is_active)
+                DetailPengajuan::whereIn('id_detailPengajuan', $centang)
+                    ->update(
+                        [
+                        'status' => '4'
+                        ]
+                    );
+                DetailPengajuan::whereIn('id_detailPengajuan', $uncentang)
                     ->update(
                         [
                         'status' => '4'
@@ -59,7 +67,14 @@ class PengajuanWarehouseController extends Controller
                     ]
                 );
     } else {
-        DetailPengajuan::where('id_detailPengajuan', $request->is_active)
+        DetailPengajuan::whereIn('id_detailPengajuan', $centang)
+            ->update(
+                [
+                'status' => '3'
+                ]
+            );
+        
+        DetailPengajuan::whereIn('id_detailPengajuan', $uncentang)
             ->update(
                 [
                 'status' => '3'
@@ -146,7 +161,10 @@ class PengajuanWarehouseController extends Controller
     public function detailpengajuanretur($no_pengajuan)
     {
         $profil = Profil ::all();
-        $data_detail = DetailPengajuan::where('no_pengajuan', $no_pengajuan)->get();
+        $data_detail = DetailPengajuan::where([
+            ['no_pengajuan', $no_pengajuan],
+            ['status','==','2']
+            ])->get();
         $pengajuan_retur = Pengajuan::where('no_pengajuan', $no_pengajuan)->get();
         return view('/warehouse/pengajuan/detailpengajuanretur', compact('pengajuan_retur', 'data_detail', 'profil'));
     }

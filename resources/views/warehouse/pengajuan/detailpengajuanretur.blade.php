@@ -80,7 +80,7 @@
                                             <td>
                                                 <input type="checkbox" class="checkbox" id="is_active[]" name="is_active[]" value="{{$detail->id_detailPengajuan}}" 
                                                 @if($detail->status == 3) checked=checked @endif />
-                                                <input type="hidden" id="non[]" name="non[]" value="{{$detail->id_detailPengajuan}}">        
+                                                <input type="hidden" id="is_active[]" name="is_active[]" value="{{$detail->id_detailPengajuan}}">        
                                             </td>
                                         </tr>
                                         @endforeach

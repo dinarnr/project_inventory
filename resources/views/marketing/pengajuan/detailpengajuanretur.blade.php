@@ -5,7 +5,7 @@
 <!-- Main Content -->
 <div class="page-wrapper">
     <div class="container-fluid">
-        <div class="row">
+        <div class="row"> 
             <div class="col-md-12">
                 <div class="panel panel-default card-view">
                     <div class="panel-heading">
@@ -43,14 +43,42 @@
                                 <hr>
 
                                 <div class="row">
-                                    <div class="col-xs-4">
+                                    <div class="col-xs-8">
                                         <div class="form-group">
                                             <table>
-                                                
+                                                    @foreach ($pengajuan_retur as $detail)
+                                                        <div class="text-left">
+                                                            <h6 class="txt-dark"><strong>NO PENGAJUAN : </strong></h6>
+                                                                <div class="">
+                                                                    <div class="txt-dark"> {{ $detail->no_pengajuan }}</div>
+                                                                </div>
+                                                        </div>
+                                                        <div class="text-left">
+                                                            <h6 class="txt-dark"><strong>PIC TEKNISI: </strong></h6>
+                                                                <div class="">
+                                                                    <div class="txt-dark"> {{ $detail->pic_teknisi }}</div>
+                                                                </div>
+                                                        </div>
+                                                    @endforeach
                                                 <form action="{{ url('marketing/pengajuan/confirmpengajuan/{id_detailPengajuan') }}" method="POST" enctype="multipart/form-data">
                                             </table>
                                         </div>
                                     </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <table>
+                                                @foreach ($pengajuan_retur as $detail)
+                                                    <div class="text-left">
+                                                        <h6 class="txt-dark"><strong>TANGGAL PENGAJUAN : </strong></h6>
+                                                            <div class="">
+                                                                <div class="txt-dark"> {{ $detail->created_at }}</div>
+                                                            </div>
+                                                    </div>
+                                                @endforeach
+                                            </table>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -80,7 +108,7 @@
                                             <td>
                                                 <input type="checkbox" class="checkbox" id="is_active[]" name="is_active[]" value="{{$detail->id_detailPengajuan}}" 
                                                 @if($detail->status == 2) checked=checked @endif />
-                                                <input type="hidden" id="non[]" name="non[]" value="{{$detail->id_detailPengajuan}}">        
+                                                <input type="hidden" id="is_active[]" name="is_active[]" value="{{$detail->id_detailPengajuan}}">        
                                             </td>
                                         </tr>
                                         @endforeach

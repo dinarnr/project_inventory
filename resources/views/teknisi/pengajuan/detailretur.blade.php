@@ -43,14 +43,35 @@
                                 <hr>
 
                                 <div class="row">
-                                    <div class="col-xs-4">
+                                    <div class="col-xs-8">
                                         <div class="form-group">
                                             <table>
-                                                
-                                                <form action="{{ url('warehouse/pengajuan/comfirmretur/{id_detailPengajuan') }}" method="POST" enctype="multipart/form-data">
+                                                @foreach ($pengajuan_retur as $detail)
+                                                    <div class="text-left">
+                                                        <h6 class="txt-dark"><strong>NO PENGAJUAN : </strong></h6>
+                                                            <div class="">
+                                                                <div class="txt-dark"> {{ $detail->no_pengajuan }}</div>
+                                                            </div>
+                                                    </div>
+                                                @endforeach
                                             </table>
                                         </div>
                                     </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <table>
+                                                @foreach ($pengajuan_retur as $detail)
+                                                    <div class="text-left">
+                                                        <h6 class="txt-dark"><strong>TANGGAL PENGAJUAN : </strong></h6>
+                                                        <div class="">
+                                                            <div class="txt-dark"> {{ $detail->created_at }}</div>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -59,7 +80,7 @@
                                         <tr>
                                             <th>no</th>
                                             <th>Nama Barang</th>
-                                            <th>Jumah</th>
+                                            <th>Jumlah</th>
                                         </tr>
                                     </thead>
                                 
@@ -85,6 +106,17 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-8">
+                        <div class="form-group">
+                            <table>
+                                @foreach ($pengajuan_retur as $detail)
+                                    <div class="text-left">
+                                        <h6 class="txt-dark"><strong>Keterangan : </strong></h6>
+                                            <div class="">
+                                                <div class="txt-dark"> {{ $detail->keterangan }}</div>
+                                            </div>
+                                    </div>
+                                @endforeach
+                            </table>
                         </div>
                     </div>
                 </div>

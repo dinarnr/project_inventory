@@ -35,7 +35,7 @@
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
-                                                    <th>NO PO</th>
+                                                    <th>No Pengajuan</th>
                                                     <th>Keterangan</th>
                                                     <th>Status</th>
                                                     <th>Tanggal pengajuan</th>
@@ -47,8 +47,8 @@
                                                 @foreach ($data_retur as $data_retur)
                                                 <tr>
                                                     <td>{{ $no++ }}</td>
-                                                    <td>{{ $data_retur->noPO }}</td>
-                                                    <td>{{ $data_retur->keterangan}}</td>
+                                                    <td>{{ $data_retur->no_pengajuan }}</td>
+                                                    <td>{{$data_retur->keterangan}} </td>
                                                     <td>
                                                         @if($data_retur->status === 1 )
                                                         Pengajuan ditolak Marketing
@@ -76,4 +76,6 @@
                 </div>
             </div>
         </div>
-        @endsection
+    </div>
+</div>
+@endsection
