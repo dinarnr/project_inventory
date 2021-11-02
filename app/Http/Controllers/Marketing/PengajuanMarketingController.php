@@ -432,9 +432,10 @@ class PengajuanMarketingController extends Controller
     {
         $profil = Profil::all();
         $data_detail = DetailPengajuan::where('no_pengajuan', $no_pengajuan)->get();
-        $pengajuan_retur = Pengajuan::all()->where('no_pengajuan', $no_pengajuan);
-        // dd($pengajuan_retur);
-        return view('/marketing/pengajuan/detailpengajuanpembelian', compact('pengajuan_retur', 'data_detail', 'profil'));
+        $pengajuan = Pengajuan::all()->where('no_pengajuan', $no_pengajuan);
+        $no_peng = $no_pengajuan;
+        // dd($no_peng);
+        return view('/marketing/pengajuan/detailpengajuanpembelian', compact('pengajuan', 'data_detail', 'profil','no_peng'));
     }
 
     public function prosespembelian(Request $request, $no_pengajuan)
@@ -443,6 +444,7 @@ class PengajuanMarketingController extends Controller
         $user = Auth::user();
         $centang = collect($request->is_active)->duplicates()->toArray();  
         $uncentang = collect($request->is_active)->diff($centang)->toArray();
+        // dd($centang);
 
                 DetailPengajuan::whereIn('id_detailPengajuan', $centang)
                     ->update(
@@ -459,7 +461,7 @@ class PengajuanMarketingController extends Controller
                 Pengajuan::where('no_pengajuan', $no_pengajuan)
                     ->update(
                         [
-                            'status' => '2',
+                            'status' => '4',
                             'pic_marketing' => $user->name
                         ]
                     );

@@ -6,7 +6,6 @@
 <div class="page-wrapper">
     <div class="container-fluid">
         <div class="row">
-            <form action="{{ url('marketing/pengajuan/confirmpembelian/{id_detailPengajuan}') }}" method="POST" enctype="multipart/form-data">
                 <div class="col-md-12">
                     <div class="panel panel-default card-view">
                         <div class="panel-heading">
@@ -18,6 +17,8 @@
                                                 <div class="">
                                                     <h4 text-style="left" class="txt-dark">Nakula Sadewa, CV</h4>
                                                 </div>
+                                                <form action="{{ url('marketing/pengajuan/confirmpembelian/')}}/{{ $no_peng }}" method="POST" enctype="multipart/form-data">
+
                                                 <table>
                                                     <tr>
                                                         <div class="row">
@@ -51,6 +52,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="col-md-12">
                                     <table id="myTable1" class="table table display pb-30">
                                         <thead>
@@ -78,14 +80,17 @@
                                                 <td>
                                                     <input type="checkbox" class="checkbox" id="is_active[]" name="is_active[]" value="{{$detail->id_detailPengajuan}}" 
                                                     @if($detail->status == 2) checked=checked @endif />
-                                                    <input type="hidden" id="non[]" name="non[]" value="{{$detail->id_detailPengajuan}}">        
+                                                    <input type="hidden" id="is_active[]" name="is_active[]" value="{{$detail->id_detailPengajuan}}">        
                                                 </td>
-                                                @include('marketing.pengajuan.editjumlah')
+                                                
+                                               
                                             </tr>
                                             @endforeach
+                                           
                                         </div>
                                     </tbody>
                                 </table>
+                                
                             </div>
                         </div>
                     </div>
@@ -94,7 +99,10 @@
                     <!-- <button class="btn btn-default" name="draft" type="submit" value="draft" id="draft">Draft</button> -->
                     <button class="btn btn-primary mr-10" name="proses" type="submit"  value="proses" id="proses">Proses</button>
                 </div>
+                
             </form>
+            @include('marketing.pengajuan.editjumlah')
+           
         </div>
     </div>
 </div>

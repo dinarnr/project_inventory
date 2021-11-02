@@ -1,3 +1,5 @@
+@foreach ($data_detail as $detail)
+
 <div class="modal fade" id="editjumlah{{ $detail->id_detailPengajuan}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -29,3 +31,4 @@
         </div>
     </div>
 </div>
+@endforeach
