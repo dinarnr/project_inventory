@@ -43,24 +43,22 @@
                                 <hr>
 
                                 <div class="row">
-
+                                    @foreach ($data_po as $data_po)
                                     <div class="col-xs-8">
                                         <div class="form-group">
                                             <table>
                                                 <div class="text-left">
-                                                    <h6 class="txt-dark"><strong>TO</strong></h6>
+                                                    <h6 class="txt-dark"><strong>FROM</strong></h6>
                                                 </div>
-                                                @foreach ($instansi as $instansi)
+                                                
                                                 <tr>
                                                     <div class="">
-                                                        <td class="txt-dark"> {{$instansi->nama_instansi}} <br>
-                                                            {{$instansi->alamat_instansi}} <br>
-                                                            {{$instansi->telp_instansi}} <br>
-                                                            {{$instansi->email_instansi}} <br>
+                                                        <td class="txt-dark"> 
+                                                            {{ $data_po->pic_marketing }}
                                                         </td>
                                                     </div>
                                                 </tr>
-                                                @endforeach
+                                                
                                             </table>
 
                                         </div>
@@ -69,23 +67,20 @@
                                         <div class="form-group">
                                             <table>
                                                 <div class="text-left">
-                                                    <h6 class="txt-dark"><strong>PENAWARAN</strong></h6>
-                                                </div>
-
-                                                <form action="{{ url('warehouse/so/confirmpo/{id_po') }}" method="POST" enctype="multipart/form-data">
-                                                    @foreach ($data_po as $data_po)
+                                                    <h6 class="txt-dark"><strong>TO</strong></h6>
+                                                </div>                                                   
                                                     <tr>
                                                         <div class="">
-                                                            <td class="txt-dark"> No PO : <input type="text" id="no_PO" name="no_PO" value="{{$data_po->no_PO}}" style="outline:none;border:0;" readonly> <br>
-                                                                No SO : {{$data_po->no_SO}} <br>
-                                                                Date : {{$data_po->created_at->format('d M Y')}} <br>
+                                                            <td class="txt-dark"> 
+                                                                {{ $data_po->pic_warehouse }}
                                                             </td>
-                                                        </div>
+                                                        </div>  
                                                     </tr>
-                                                    @endforeach
+                                                    
                                             </table>
                                         </div>
                                     </div>
+                                    
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -134,7 +129,7 @@
                                         <h6 class="txt-dark">Malang, {{ $tanggal->format('d M Y')}} </h6>
                                     </div><br><br><br><br><br>
                                     <div class="text-center">
-                                        <h6 class="txt-dark">{{ Auth::user()->name }}</h6>
+                                        <h6 class="txt-dark">{{ $data_po->pic_warehouse }}</h6>
                                     </div>
                                     <hr>
                                     <div class=" text-center">
@@ -145,14 +140,13 @@
                         </div>
                     </div>
                 </div>
-
+                @endforeach
                 <div class="pull-right hide-from-printer">
                     <button type="button" class="btn btn-success btn-icon left-icon" onclick="javascript:window.print();">
                         <i class="fa fa-print"></i><span> Print</span>
                     </button>
                 </div>
-                </form>
-                @include('warehouse.so.addket')
+                
 
             </div>
 

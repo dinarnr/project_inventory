@@ -82,7 +82,8 @@ class SoController extends Controller
         PO::where('no_PO', $request->no_PO)
             ->update(
                 [
-                    'status' => '2'
+                    'status' => '2',
+                    'pic_warehouse' => $user->name
                 ]
             );
 
