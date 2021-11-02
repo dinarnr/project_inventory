@@ -198,6 +198,10 @@
 
         <!-- <a href="{{ url('marketing/po/sendemail') }}"><button type="button" class="btn btn-primary btn-icon"><i class="fa  fa-send-o "></i><span>Tes</span></button> </a> -->
 
+            <button type="button" class="btn btn-primary btn-icon" data-toggle="modal" data-target="#email"> <i
+                    class="fa  fa-send-o "></i><span>Email</span></button>
+            @include('marketing.po.email') 
+        </div>
 
         <button type="button" class="btn btn-primary btn-icon" data-toggle="modal" data-target="#email"> <i class="fa  fa-send-o "></i><span>Email</span></button>
         @include('marketing.po.email')

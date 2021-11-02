@@ -78,8 +78,9 @@
                                                 <a href="#" id="" style="font-weight:bold" data-type="text" data-pk="1" data-title="Jumlah">{{$detail->jmlBarang}}</a>
                                             </td>
                                             <td>
-                                                <input type="checkbox" class="checkbox" id="is_active[]" name="is_active[]" value="{{$detail->id_detailPengajuan}}" @if($detail->status == 3) checked=checked @endif />
-                                                <input type="hidden" id="non[]" name="non[]" value="{{$detail->id_detailPengajuan}}">
+                                                <input type="checkbox" class="checkbox" id="is_active[]" name="is_active[]" value="{{$detail->id_detailPengajuan}}" 
+                                                @if($detail->status == 3) checked=checked @endif />
+                                                <input type="hidden" id="is_active[]" name="is_active[]" value="{{$detail->id_detailPengajuan}}">        
                                             </td>
                                         </tr>
                                         @endforeach

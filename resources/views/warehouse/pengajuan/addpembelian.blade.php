@@ -152,12 +152,12 @@
 @section('scripts')
 <script type="text/javascript">
 	function ambildata() {
-        var tanggal = document.forms["myForm"]["tgl_pengajuan"].value;
-        var nama_pemohon = document.forms["myForm"]["nama_pemohon"].value;
-        var nama_barang = document.forms["myForm"]["nama_barang"].value;
-        var jumlah = document.forms["myForm"]["jumlah"].value;
-        var harga = document.forms["myForm"]["harga"].value;
-        var keterangan = document.forms["myForm"]["keterangan"].value;
+        var tanggal = document.getElementById("tgl_pengajuan").value;
+        var nama_pemohon = document.getElementById("nama_pemohon").value;
+        var nama_barang = document.getElementById("nama_barang").value;
+        var jumlah = document.getElementById("jumlah").value;
+        var harga = document.getElementById("harga").value;
+        var keterangan = document.getElementById("keterangan").value;
 
         if (tanggal == "") {
             alert("Tanggal tidak boleh kosong");

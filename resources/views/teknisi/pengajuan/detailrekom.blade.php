@@ -43,11 +43,31 @@
                                 <hr>
 
                                 <div class="row">
+                                    <div class="col-xs-8">
+                                        <div class="form-group">
+                                            <table>
+                                                @foreach ($pengajuan_rekom as $detail)
+                                                    <div class="text-left">
+                                                        <h6 class="txt-dark"><strong>NO PENGAJUAN : </strong></h6>
+                                                            <div class="">
+                                                                <div class="txt-dark"> {{ $detail->no_pengajuan }}</div>
+                                                            </div>
+                                                    </div>
+                                                @endforeach
+                                            </table>
+                                        </div>
+                                    </div>
                                     <div class="col-xs-4">
                                         <div class="form-group">
                                             <table>
-                                                
-                                                <form action="{{ url('warehouse/pengajuan/comfirmretur/{id_detailPengajuan') }}" method="POST" enctype="multipart/form-data">
+                                                @foreach ($pengajuan_rekom as $detail)
+                                                    <div class="text-left">
+                                                        <h6 class="txt-dark"><strong>TANGGAL PENGAJUAN : </strong></h6>
+                                                        <div class="">
+                                                            <div class="txt-dark"> {{ $detail->created_at }}</div>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
                                             </table>
                                         </div>
                                     </div>
@@ -59,7 +79,7 @@
                                         <tr>
                                             <th>no</th>
                                             <th>Nama Barang</th>
-                                            <th>Jumah</th>
+                                            <th>Jumlah</th>
                                         </tr>
                                     </thead>
                                 
@@ -85,25 +105,24 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-8">
+                        <div class="form-group">
+                            <table>
+                                @foreach ($pengajuan_rekom as $detail)
+                                    <div class="text-left">
+                                        <h6 class="txt-dark"><strong>Keterangan : </strong></h6>
+                                            <div class="">
+                                                <div class="txt-dark"> {{ $detail->keterangan }}</div>
+                                            </div>
+                                    </div>
+                                @endforeach
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- <div class="pull-right hide-from-printer">
-                <button class="btn btn-danger" name="draft" type="submit" value="draft" id="draft">Tolak</button>
-                <button class="btn btn-primary mr-10" name="proses" type="submit"  value="proses" id="proses">Setuju</button>
-                <!-- form tutup -->
-            </div> -->
         </form>
-        
-        </div>
-        
-        
-        <!-- /Row -->
-        <!-- /Main Content -->
     </div>
-    <!-- /#wrapper -->
-
+</div>
     <script
     src="https://code.jquery.com/jquery-3.4.1.js"
     integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="

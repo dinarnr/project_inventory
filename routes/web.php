@@ -251,6 +251,9 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::get('pengajuan/pembelian/tambah', [PengajuanMarketingController::class, 'addpembelian']);
         Route::post('pengajuan/pembelian/simpan', [PengajuanMarketingController::class, 'addpembelian2']);
         Route::post('pengajuan/confirmpembelian/{id_detailPengajuan}', [PengajuanMarketingController::class, 'prosespembelian']);
+        Route::post('pengajuan/edit/{id_detailPengajuan}', [PengajuanMarketingController::class, 'edit_jumlah']);
+
+        // Route::post('pengajuan/pembelian/editable', [PengajuanMarketingController::class, 'editable'])->name('pengajuanmarketingcontroller.editable');
     });
 
     Route::group(['prefix' => 'teknisi/'], function () {
@@ -319,7 +322,7 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::get('pengajuan/pembelian', [PengajuanAdminController::class, 'pengpembelian']);
     });
 
-    Route::group(['prefix' => 'office/'], function () { 
+    Route::group(['prefix' => 'office/'], function () {
         Route::get('report/report', [ReportController::class, 'report']);
         Route::get('barang/stok', [StokOfficeController::class, 'stok']);
         Route::get('historystok/{kode_barang}', [StokOfficeController::class, 'history_stok']);

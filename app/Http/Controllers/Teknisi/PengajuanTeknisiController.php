@@ -136,7 +136,7 @@ class PengajuanTeknisiController extends Controller
 
     public function detailrekom($no_pengajuan)
     {
-        $profil = Profil::all();
+        $profil = Profil::all(); 
         $data_detail = DetailPengajuan::where('no_pengajuan', $no_pengajuan)->get();
         $pengajuan_rekom = Pengajuan::where('no_pengajuan', $no_pengajuan)->get();
         return view('/teknisi/pengajuan/detailrekom', compact('pengajuan_rekom', 'data_detail', 'profil'));
@@ -177,7 +177,6 @@ class PengajuanTeknisiController extends Controller
         }
         echo $output;
     }
-
 
     public function addretur2(Request $request)
     {

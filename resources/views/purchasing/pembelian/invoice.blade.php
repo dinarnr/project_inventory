@@ -8,18 +8,18 @@
      
         <div class="col-lg-12 col-md-12 mt-40">
             <div class="panel panel-default card-view">
-                <div class="panel-heading">
+                {{-- <div class="panel-heading">
                     <div class="pull-left">
                         <h6 class="panel-title txt-dark">Invoice</h6>
                     </div>
                     <div class="clearfix"></div>
-                </div>
+                </div> --}}
                 <div class="panel-wrapper collapse in">
                     <div class="panel-body">
                         <div class="tab-struct custom-tab-1 ">
                             <ul role="tablist" class="nav nav-tabs" id="myTabs_7">
-                                <li class="active" role="presentation"><a aria-expanded="true" data-toggle="tab" role="tab" id="home_tab_7" href="#admin">Lunas</a></li>
-                                <li role="presentation" class=""><a data-toggle="tab" id="profile_tab_7" role="tab" href="#admin2" aria-expanded="false">Hutang</a></li>
+                                <li class="active" role="presentation"><a aria-expanded="true" data-toggle="tab" role="tab" id="home_tab_7" href="#admin">Invoice</a></li>
+                                <li role="presentation" class=""><a data-toggle="tab" id="profile_tab_7" role="tab" href="#admin2" aria-expanded="false">Angsuran</a></li>
 
                             </ul>
                             <!-- BARANG -->
@@ -30,10 +30,7 @@
                                             <tr>
                                                 <th>N0 Pengajuan </th>
                                                 <th>Nama Pemohon</th>
-                                                <th>Jenis Transaksi</th>
                                                 <th>Total Harga</th>
-                                                <th>Supplier</th>
-                                                <th>Tanggal Beli</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -42,10 +39,10 @@
                                             <tr>
                                                 <td>{{ $lunas->no_pengajuan}}</td>
                                                 <td>{{ $lunas->nama_pemohon}}</td>
-                                                <td>{{ $lunas->status}}</td>
+                                                {{-- <td>{{ $lunas->status}}</td> --}}
                                                 <td>Rp {{number_format ($lunas->harga, 0, ',', '.')}}</td>
-                                                <td>{{ $lunas->supplier}}</td>
-                                                <td>{{ $lunas->tglBeli}}</td>
+                                                {{-- <td>{{ $lunas->supplier}}</td> --}}
+                                                {{-- <td>{{ $lunas->tglBeli}}</td> --}}
                                                 <td>
                                                     <a href="{{url('purchasing/invoice/lunas/detail')}}/{{ $lunas->no_pengajuan }}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
                                                 </td>

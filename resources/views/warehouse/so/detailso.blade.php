@@ -128,8 +128,9 @@
                             </table>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-xs-8">
+                </div>
+                <div class="row"> 
+                    <div class="col-xs-8">
                         </div>
                     </div>
                 </div>
