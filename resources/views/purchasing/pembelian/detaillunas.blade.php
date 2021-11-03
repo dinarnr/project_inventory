@@ -100,16 +100,17 @@
                                     <table id="" class="table display pb-30">
                                         <thead class="table-dark">
                                             <tr>
-                                                <th>#</th>
+                                                <th>No</th>
                                                 <th>Nama barang</th>
                                                 <th>Harga</th>
                                                 <th>Jumlah</th>
-                                                <th>Keterangan</th>
+                                                <th>Pembayaran</th>
+                                                <th>Info</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php $no = 1; ?>
-                                            @foreach ($data_detail as $detail)
+                                            @foreach ($lunas as $detail)
                                                 <tr>
                                                     <td>{{ $no++ }}</td>
                                                     <td>
@@ -118,7 +119,8 @@
                                                             data-title="Nama barang">{{ $detail->namaBarang }}</a>
                                                     </td>
                                                     <td>
-                                                        {{ $detail->harga }}
+                                                        <a href="#" id="" style="font-weight:bold" data-type="text"
+                                                            data-pk="1" data-title="Jumlah">{{ $detail->harga }}</a>
                                                     </td>
                                                     <td>
                                                         <a href="#" id="" style="font-weight:bold" data-type="text"
@@ -126,9 +128,9 @@
                                                     </td>
                                                     <td>
                                                         <a href="#" id="" style="font-weight:bold" data-type="text"
-                                                            data-pk="1" data-title="Rate">{{ $detail->keterangan }}</a>
+                                                            data-pk="1" data-title="Jumlah">{{ $detail->jenisTransaksi }}</a>
                                                     </td>
-
+                                                    <td> {{$detail->info}} </td>
                                                 </tr>
                                             @endforeach
                                         

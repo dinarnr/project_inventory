@@ -9,7 +9,7 @@
         <!-- Title -->
         <div class="row heading-bg">
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                <h5 class="txt-dark">Tambah Invoive</h5>
+                <h5 class="txt-dark">Invoice Belum Selesai</h5>
             </div> 
         </div>
         <!-- Row -->
@@ -58,10 +58,6 @@
                                                     <div class="">
                                                         <td class="txt-dark">
                                                        <input type="text" id="tgl_pengajuan" name="tgl_pengajuan" value="{{$data_pembelian->tgl_pengajuan}}" style="outline:none;border:0;" readonly> 
-                                                       <input type="hidden" id="pic_teknisi" name="pic_teknisi" value="{{$data_pembelian->pic_teknisi}}" style="outline:none;border:0;" readonly> 
-                                                       <input type="hidden" id="pic_markeing" name="pic_markeing" value="{{$data_pembelian->pic_markeing}}" style="outline:none;border:0;" readonly> 
-                                                       <input type="hidden" id="pic_warehouse" name="pic_warehouse" value="{{$data_pembelian->pic_warehouse}}" style="outline:none;border:0;" readonly> 
-                                                       <input type="hidden" id="pic_admin" name="pic_admin" value="{{$data_pembelian->pic_admin}}" style="outline:none;border:0;" readonly> 
                                                     </td>
                                                     </div>
                                                 </tr>
@@ -80,9 +76,10 @@
                                     <th>No</th>
                                     <th>Nama barang</th>
                                     <th>Jumlah</th>
-                                    <th>Estimasi Harga</th>
-                                    <th>Keterangan</th>
-                                    
+                                    <th>Harga</th>
+                                    <th>Jenis Transaksi</th>
+                                    <th>Supplier</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -93,8 +90,15 @@
                                     <td style="display:none"><input type="text" style="outline:none;border:0;" readonly name="no_peng1[]" id="no_peng1" value="{{ $data_detail->no_pengajuan}}"></td>
                                     <td><input type="text" style="outline:none;border:0;" readonly name="nama_barang1[]" id="nama_barang1" value="{{ $data_detail->namaBarang}}"></td>
                                     <td><input type="text" style="outline:none;border:0;" readonly name="jml_barang1[]" id="jml_barang" value="{{ $data_detail->jmlBarang}}"></td>
-                                    <td><input type="text" style="outline:none;border:0;" readonly name="hargaEstimasi[]" id="hargaEstimasi" value="{{ $data_detail->harga}}"></td>
-                                    <td><input type="text" style="outline:none;border:0;" readonly name="keterangan1[]" id="keterangan" value="{{ $data_detail->keterangan}}"></td>
+                                    <td><input type="text" style="outline:none;border:0;" readonly name="harga[]" id="harga" value="{{ $data_detail->harga}}"></td>
+                                    <td>
+                                        @if ($data_detail->jenisTransaksi=== 'transfer')
+                                        <input type="text" style="outline:none;border:0;" readonly name="jenisTransaksi[]" id="jenisTransaksi" value="{{ $data_detail->jenisTransaksi}} ({{ $data_detail->info }})">
+                                        @else
+                                        <input type="text" style="outline:none;border:0;" readonly name="jenisTransaksi[]" id="jenisTransaksi" value="{{ $data_detail->jenisTransaksi}}">
+                                        @endif
+                                    </td>
+                                    <td><input type="text" style="outline:none;border:0;" readonly name="supplier[]" id="supplier" value="{{ $data_detail->supplier}}"></td>
 
                                 </tr>
                             @endforeach
@@ -211,15 +215,15 @@
                                                 </table>
                                                 <div class="col-md-8">
                                                     <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="radio" name="radioButton" id="inlineRadio1" value="selesai" checked>
+                                                        <input class="form-check-input" type="radio" name="radioButton" id="inlineRadio1" value="selesai1">
                                                         <label class="form-check-label" for="inlineRadio1">Selesai</label>
-                                                        <input class="form-check-input" type="radio" name="radioButton" id="inlineRadio2" value="belumSelesai">
+                                                        <input class="form-check-input" type="radio" name="radioButton" id="inlineRadio2" value="belumSelesai" checked>
                                                         <label class="form-check-label" for="inlineRadio2">Belum Selesai</label>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <div class="form-group" id="alasan1" name="alasan1" style="display: none;">
+                                                        <div class="form-group" id="alasan1" name="alasan1">
                                                             <label class="control-label mb-10 text-left">Alasan</label>
-                                                            <input type="text"  class="form-control"  id="alasan" name="alasan"  >
+                                                            <input type="text"  class="form-control"  id="alasan" name="alasan"  value="{{ $alasan->alasan }}">
                                                         </div>
                                                     </div>
                                                 </div>

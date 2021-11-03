@@ -30,7 +30,8 @@
                                             <tr>
                                                 <th>N0 Pengajuan </th>
                                                 <th>Nama Pemohon</th>
-                                                <th>Total Harga</th>
+                                                <th>Tanggal Pengajuan</th>
+                                                <th>PIC Marketing</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -39,9 +40,8 @@
                                             <tr>
                                                 <td>{{ $lunas->no_pengajuan}}</td>
                                                 <td>{{ $lunas->nama_pemohon}}</td>
-                                                {{-- <td>{{ $lunas->status}}</td> --}}
-                                                <td>Rp {{number_format ($lunas->harga, 0, ',', '.')}}</td>
-                                                {{-- <td>{{ $lunas->supplier}}</td> --}}
+                                                <td>{{ $lunas->tgl_pengajuan}}</td>
+                                                <td>{{ $lunas->pic_marketing}}</td>
                                                 {{-- <td>{{ $lunas->tglBeli}}</td> --}}
                                                 <td>
                                                     <a href="{{url('purchasing/invoice/lunas/detail')}}/{{ $lunas->no_pengajuan }}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>

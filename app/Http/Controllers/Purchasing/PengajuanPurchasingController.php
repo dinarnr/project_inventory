@@ -20,7 +20,8 @@ class PengajuanPurchasingController extends Controller
     public function pengpembelian()
     {
         $pembelian= Pengajuan::all()->where('jenisBarang','','');
-        return view('purchasing/pengajuan/pembelian', compact('pembelian'));
+        $alasan= Pembelian::all()->where('status','','')->first();
+        return view('purchasing/pengajuan/pembelian', compact('pembelian','alasan'));
     }
 
     public function addpembelian()

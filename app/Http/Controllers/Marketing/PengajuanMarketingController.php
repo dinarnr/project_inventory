@@ -433,9 +433,10 @@ class PengajuanMarketingController extends Controller
     {
         $profil = Profil::all();
         $data_detail = DetailPengajuan::where('no_pengajuan', $no_pengajuan)->get();
-        $pengajuan_retur = Pengajuan::all()->where('no_pengajuan', $no_pengajuan);
-        // dd($data_detail);
-        return view('/marketing/pengajuan/detailpengajuanpembelian', compact('pengajuan_retur', 'data_detail', 'profil'));
+        $pengajuan = Pengajuan::all()->where('no_pengajuan', $no_pengajuan);
+        $no_peng = $no_pengajuan;
+        // dd($no_peng);
+        return view('/marketing/pengajuan/detailpengajuanpembelian', compact('pengajuan', 'data_detail', 'profil','no_peng'));
     }
 
     public function prosespembelian(Request $request, $no_pengajuan)
@@ -445,39 +446,40 @@ class PengajuanMarketingController extends Controller
         $user = Auth::user();
         $centang = collect($request->is_active)->duplicates()->toArray();
         $uncentang = collect($request->is_active)->diff($centang)->toArray();
+        // dd($centang);
 
-        DetailPengajuan::whereIn('id_detailPengajuan', $centang)
-            ->update(
-                [
-                    'status' => '2'
-                ]
-            );
-        DetailPengajuan::whereIn('id_detailPengajuan', $uncentang)
-            ->update(
-                [
-                    'status' => ''
-                ]
-            );
-        Pengajuan::where('no_pengajuan', $no_pengajuan)
-            ->update(
-                [
-                    'status' => '2',
-                    'pic_marketing' => $user->name
-                ]
-            );
-
-
-        Log::create(
-            [
-                'name' => $user->name,
-                'email' => $user->email,
-                'divisi' => $user->divisi,
-                'deskripsi' => 'Confirm Pengajuan Retur ',
-                'status' => '2',
-                'ip' => $request->ip()
-
-            ]
-        );
+                DetailPengajuan::whereIn('id_detailPengajuan', $centang)
+                    ->update(
+                        [
+                        'status' => '2'
+                        ]
+                    );
+                DetailPengajuan::whereIn('id_detailPengajuan', $uncentang)
+                    ->update(
+                        [
+                        'status' => ''
+                        ]
+                    );
+                Pengajuan::where('no_pengajuan', $no_pengajuan)
+                    ->update(
+                        [
+                            'status' => '4',
+                            'pic_marketing' => $user->name
+                        ]
+                    );
+                
+        
+                Log::create(
+                    [
+                        'name' => $user->name,
+                        'email' => $user->email,
+                        'divisi' => $user->divisi,
+                        'deskripsi' => 'Confirm Pengajuan Retur ',  
+                        'status' => '2',
+                        'ip' => $request->ip()
+        
+                    ]
+                );
 
         return redirect('marketing/pengajuan/pembelian');
     }

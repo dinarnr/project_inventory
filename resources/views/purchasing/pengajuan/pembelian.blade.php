@@ -62,13 +62,18 @@
                                                             Pengajuan ditolak Purchasing
                                                             @elseif ($pembelian->status === 4 )
                                                             Pengajuan disetujui Purchasing dan segera diproses
+                                                            @elseif ($pembelian->status === 5 )
+                                                                Invoice belum selesai karena {{ $alasan->alasan }}
                                                             @else
                                                             Pengajuan diproses Marketing
                                                             @endif
                                                     </td>
                                                     <td>
+                                                        @if($pembelian->status === 5)
+                                                        <a href="{{url('purchasing/pembelian/invoice/belum') }}/{{$pembelian->no_pengajuan}} "><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
+                                                        @else
                                                         <a href="{{url('purchasing/pembelian/invoice/tambah') }}/{{$pembelian->no_pengajuan}} "><button class="btn btn-success btn-icon-anim btn-square"><i class="fa fa-plus"></i></button></a>
-                                                        
+                                                        @endif
                                                     </td>
                                                 </tr>
                                                 @endforeach

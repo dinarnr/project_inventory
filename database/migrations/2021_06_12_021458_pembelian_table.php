@@ -24,6 +24,7 @@ class PembelianTable extends Migration
             $table->string('pic_admin',50)->nullable();
             $table->string('pic_purchasing',50)->nullable();
             $table->string('alasan',50)->nullable();
+            $table->integer('status')->nullable();
             $table->timestamps();
         });
     }

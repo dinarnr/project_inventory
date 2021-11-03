@@ -18,7 +18,7 @@ class PembelianPurchasingController extends Controller
 {
     public function pembelian()
     {
-        $lunas = Pembelian::all()->where('status','!=','hutang');
+        $lunas = Pembelian::all()->where('status','1');
         $hutang = Pembelian::all()->where('status','','hutang');
         return view('purchasing/pembelian/invoice', compact('lunas','hutang'));
     }
@@ -36,50 +36,133 @@ class PembelianPurchasingController extends Controller
     public function addpembelian2(Request $request)
     {
         $user = Auth::user();
-        // dd(preg_replace('/[^0-9]/','',$request->harga_jual));
-        Pembelian::create([
-            'no_pengajuan' => $request->no_pengajuan,
-            'nama_pemohon' => $request->nama_pemohon,
-            'tgl_pengajuan' => $request->tgl_pengajuan,
-            'pic_teknisi' => $request->pic_teknisi,
-            'pic_marketing' => $request->pic_marketing,
-            'pic_warehouse' => $request->pic_warehouse,
-            'pic_admin' => $request->pic_admin,
-            'pic_purchasing' => $user->name,
-            'alasan' => $request->alasan,
-
-        ]);
-        Pengajuan::where('no_pengajuan', $request->no_pengajuan)
-                ->update([
-                    'status' => '5'
-                ]);
-        $jumlah_data = count($request->no_peng);
-        for ($i = 0; $i < $jumlah_data; $i++) {
-            DetailPembelian::create([
-                'no_pengajuan' => $request->no_peng[$i],
-                'namaBarang'=> $request->nama_barang[$i],
-                'harga' => preg_replace('/[^0-9]/','',$request->harga[$i]),
-                'jmlBarang' => $request->jumlah[$i],
-                'totalBeli' => preg_replace('/[^0-9]/','',$request->totalBeli[$i]),
-                'jenisTransaksi' => $request->jenisTransaksi[$i],
-                'info' => $request->info[$i],
-                'harga_beli' => preg_replace('/[^0-9]/','',$request->harga_beli[$i]),
-                'amount' => preg_replace('/[^0-9]/','',$request->amount[$i]),
-                'supplier' => $request->supplier[$i],
+        if ($request->radioButton == 'belumSelesai'){
+            Pembelian::create([
+                'no_pengajuan' => $request->no_pengajuan,
+                'nama_pemohon' => $request->nama_pemohon,
+                'tgl_pengajuan' => $request->tgl_pengajuan,
+                'pic_teknisi' => $request->pic_teknisi,
+                'pic_marketing' => $request->pic_marketing,
+                'pic_warehouse' => $request->pic_warehouse,
+                'pic_admin' => $request->pic_admin,
+                'pic_purchasing' => $user->name,
+                'alasan' => $request->alasan,
 
             ]);
-        }
-        Log::create(
-            [
-            'name' => $user->name,
-            'email' => $user->email,
-            'divisi' => $user->divisi,
-            'deskripsi' => 'Create Invoice',
-            'status' => '2',
-            'ip'=> $request->ip()
+            Pengajuan::where('no_pengajuan', $request->no_pengajuan)
+                    ->update([
+                        'status' => '5'
+                    ]);
+            $jumlah_data = count($request->no_peng);
+            for ($i = 0; $i < $jumlah_data; $i++) {
+                DetailPembelian::create([
+                    'no_pengajuan' => $request->no_peng[$i],
+                    'namaBarang'=> $request->nama_barang[$i],
+                    'harga' => preg_replace('/[^0-9]/','',$request->harga[$i]),
+                    'jmlBarang' => $request->jumlah[$i],
+                    'totalBeli' => preg_replace('/[^0-9]/','',$request->totalBeli[$i]),
+                    'jenisTransaksi' => $request->jenisTransaksi[$i],
+                    'info' => $request->info[$i],
+                    'harga_beli' => preg_replace('/[^0-9]/','',$request->harga_beli[$i]),
+                    'amount' => preg_replace('/[^0-9]/','',$request->amount[$i]),
+                    'supplier' => $request->supplier[$i],
 
-            ]
-        );
+                ]);
+            }
+            Log::create(
+                [
+                'name' => $user->name,
+                'email' => $user->email,
+                'divisi' => $user->divisi,
+                'deskripsi' => 'Create Invoice Belum Selesai',
+                'status' => '2',
+                'ip'=> $request->ip()
+
+                ]
+            );
+        } elseif ($request->radioButton == 'selesai1'){
+            Pembelian::where('no_pengajuan', $request->no_pengajuan)
+                    ->update([
+                        'status' => '1'
+                    ]);
+            Pengajuan::where('no_pengajuan', $request->no_pengajuan)
+                    ->update([
+                        'status' => '6'
+                    ]);
+            $jumlah_data = count($request->no_peng);
+            for ($i = 0; $i < $jumlah_data; $i++) {
+                DetailPembelian::create([
+                    'no_pengajuan' => $request->no_peng[$i],
+                    'namaBarang'=> $request->nama_barang[$i],
+                    'harga' => preg_replace('/[^0-9]/','',$request->harga[$i]),
+                    'jmlBarang' => $request->jumlah[$i],
+                    'totalBeli' => preg_replace('/[^0-9]/','',$request->totalBeli[$i]),
+                    'jenisTransaksi' => $request->jenisTransaksi[$i],
+                    'info' => $request->info[$i],
+                    'harga_beli' => preg_replace('/[^0-9]/','',$request->harga_beli[$i]),
+                    'amount' => preg_replace('/[^0-9]/','',$request->amount[$i]),
+                    'supplier' => $request->supplier[$i],
+
+                ]);
+            }
+            Log::create(
+                [
+                'name' => $user->name,
+                'email' => $user->email,
+                'divisi' => $user->divisi,
+                'deskripsi' => 'Update Invoice',
+                'status' => '2',
+                'ip'=> $request->ip()
+
+                ]
+            );
+        }
+        else {
+            Pembelian::create([
+                'no_pengajuan' => $request->no_pengajuan,
+                'nama_pemohon' => $request->nama_pemohon,
+                'tgl_pengajuan' => $request->tgl_pengajuan,
+                'pic_teknisi' => $request->pic_teknisi,
+                'pic_marketing' => $request->pic_marketing,
+                'pic_warehouse' => $request->pic_warehouse,
+                'pic_admin' => $request->pic_admin,
+                'pic_purchasing' => $user->name,
+                'status' => '1',
+
+            ]);
+            Pengajuan::where('no_pengajuan', $request->no_pengajuan)
+                    ->update([
+                        'status' => '6'
+                    ]);
+            $jumlah_data = count($request->no_peng);
+            for ($i = 0; $i < $jumlah_data; $i++) {
+                DetailPembelian::create([
+                    'no_pengajuan' => $request->no_peng[$i],
+                    'namaBarang'=> $request->nama_barang[$i],
+                    'harga' => preg_replace('/[^0-9]/','',$request->harga[$i]),
+                    'jmlBarang' => $request->jumlah[$i],
+                    'totalBeli' => preg_replace('/[^0-9]/','',$request->totalBeli[$i]),
+                    'jenisTransaksi' => $request->jenisTransaksi[$i],
+                    'info' => $request->info[$i],
+                    'harga_beli' => preg_replace('/[^0-9]/','',$request->harga_beli[$i]),
+                    'amount' => preg_replace('/[^0-9]/','',$request->amount[$i]),
+                    'supplier' => $request->supplier[$i],
+
+                ]);
+            }
+            Log::create(
+                [
+                'name' => $user->name,
+                'email' => $user->email,
+                'divisi' => $user->divisi,
+                'deskripsi' => 'Create Invoice',
+                'status' => '2',
+                'ip'=> $request->ip()
+
+                ]
+            );
+
+        }
         // return view('pembelian/purchase');
         return redirect('purchasing/pembelian/invoice');
     }
@@ -104,7 +187,7 @@ class PembelianPurchasingController extends Controller
             'divisi' => $user->divisi,
             'deskripsi' => 'Edit Pelunasan',
             'status' => '2',
-            'ip'=> $request->ip()
+            'ip'=> $request->ip() 
 
             ]
         );
@@ -113,13 +196,13 @@ class PembelianPurchasingController extends Controller
 
     public function detaillunas($no_pengajuan)
     {
-        $data_detail = DetailPengajuan::where('no_pengajuan', $no_pengajuan)->get();
+        $lunas = DetailPembelian::where('no_pengajuan', $no_pengajuan)->get();
         $pembelian = Pembelian::where('no_pengajuan', $no_pengajuan)->get();
         // dd($data_detail);
         // $user = Auth::user();
         $profil = Profil::all();
         // dd($pembelian);
-        return view('purchasing/pembelian/detaillunas', compact('pembelian', 'data_detail', 'profil'));
+        return view('purchasing/pembelian/detaillunas', compact('pembelian', 'lunas', 'profil'));
     }
 
     public function hutang($no_pengajuan)
@@ -150,5 +233,15 @@ class PembelianPurchasingController extends Controller
                 ]);
         }
         return redirect('purchasing/pembelian/invoice');
+    }
+    public function belumselesai($no_pengajuan)
+    {
+        $data_pembelian = Pengajuan::where('no_pengajuan',$no_pengajuan)->first();
+        $alasan= Pembelian::all()->where('no_pengajuan',$no_pengajuan)->first();
+        $data_detail = DetailPembelian::where('no_pengajuan',$no_pengajuan)->get();
+        $coba= DetailPengajuan::where('no_pengajuan',$no_pengajuan)->get();
+        $supplier =  SupplierModel::all();
+        // dd($data_detail);
+        return view('purchasing/pembelian/detailbelumselesai', compact('alasan','coba','data_pembelian', 'data_detail', 'supplier'));
     }
 }
