@@ -161,7 +161,7 @@
                                         <select class="form-control" id="jenisTransaksi" name="jenisTransaksi">
                                             <option value="tunai">Tunai</option>
                                             <option value="transfer">Transfer</option>
-                                            <option value="hutang">Angsuran</option>
+                                            <option value="angsuran">Angsuran</option>
                                         </select>
                                     </div>
                                 </div>
@@ -245,7 +245,7 @@
         <!-- /#wrapper -->
         <script>
             $('select[name=jenisTransaksi]').on('change', function() {
-                if (this.value == 'hutang') {
+                if (this.value == 'angsuran') {
                     $("#total").show();
                     $("#total2").show();
                     $("#info1").hide();
