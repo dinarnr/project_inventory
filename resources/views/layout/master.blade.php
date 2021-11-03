@@ -166,7 +166,7 @@
                         <div class="clearfix"></div>
                     </a>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="javascript:void(0);" data-toggle="collapse" data-target="#pembelian">
                         <div class="pull-left"><i class="zmdi zmdi-shopping-basket mr-20"></i><span class="right-nav-text">Pembelian</span></div>
                         <div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>
@@ -180,7 +180,7 @@
                             <a href="/warehouse/pembelian/invoice">Invoice</a>
                         </li>
                     </ul>
-                </li>
+                </li> -->
                 <li>
                     <a href="{{ url('warehouse/so/dataSO') }}">
                         <div class="pull-left"><i class="zmdi zmdi-shopping-cart mr-20"></i><span class="right-nav-text">Data SO</span></div>

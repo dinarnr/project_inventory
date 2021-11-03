@@ -453,6 +453,7 @@
                                                             '"></td><td><input type="text" style="outline:none;border:0;" readonly name="jumlah[]" id="jumlah" value="' + jumlah + 
                                                             '"></td><td><input type="text" style="outline:none;border:0;" readonly name="harga[]" id="harga" value="' + harga + 
                                                             '"></td><td><input type="text" style="outline:none;border:0;" readonly name="totalBeli[]" id="totalBeli" value="' + totalBeli + 
+                                                            '"></td><td style="display:none;"><input type="text" style="outline:none;border:0;"  name="tgl_beli[]" id="tgl_beli" value="' + tgl_beli +
                                                             '"></td><td style="display:none;"><input type="text" style="outline:none;border:0;"  name="jenisTransaksi[]" id="jenisTransaksi" value="' + jenisTransaksi +
                                                             '"></td><td style="display:none;"><input type="text" style="outline:none;border:0;"  name="no_peng[]" id="no_peng" value="' + no_peng +
                                                             '"></td><td style="display:none;"><input type="text" style="outline:none;border:0;"  name="info[]" id="info" value="' + info +
