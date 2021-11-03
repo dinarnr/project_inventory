@@ -83,9 +83,9 @@
                                                         </div>
                                                     </div>
                                                     <div class="text-left">
-                                                        <h6 class="txt-dark"><strong>TANGGAL PEMBELIAN : </strong></h6>
+                                                        <h6 class="txt-dark"><strong>PIC MARKETING</strong></h6>
                                                         <div class="">
-                                                            <div class="txt-dark"> {{ $pembelian->tglBeli }}
+                                                            <div class="txt-dark"> {{ $pembelian->pic_marketing }}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -105,7 +105,7 @@
                                                 <th>Harga</th>
                                                 <th>Jumlah</th>
                                                 <th>Pembayaran</th>
-                                                <th>Info</th>
+                                                <th>supplier</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -113,24 +113,17 @@
                                             @foreach ($lunas as $detail)
                                                 <tr>
                                                     <td>{{ $no++ }}</td>
-                                                    <td>
-                                                        <a href="#" id="" style="font-weight:bold" data-type="text"
-                                                            data-pk="1"
-                                                            data-title="Nama barang">{{ $detail->namaBarang }}</a>
+                                                    <td>{{ $detail->namaBarang }}</td>
+                                                    <td>{{ number_format($detail->harga), 2 }}</td>
+                                                    <td>{{ $detail->jmlBarang }}</td>
+                                                    <td> 
+                                                        @if ($detail->jenisTransaksi=== 'transfer')
+                                                        {{ $detail->jenisTransaksi}} ({{ $detail->info }})
+                                                        @else
+                                                        {{ $detail->jenisTransaksi}}
+                                                        @endif
                                                     </td>
-                                                    <td>
-                                                        <a href="#" id="" style="font-weight:bold" data-type="text"
-                                                            data-pk="1" data-title="Jumlah">{{ $detail->harga }}</a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="#" id="" style="font-weight:bold" data-type="text"
-                                                            data-pk="1" data-title="Jumlah">{{ $detail->jmlBarang }}</a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="#" id="" style="font-weight:bold" data-type="text"
-                                                            data-pk="1" data-title="Jumlah">{{ $detail->jenisTransaksi }}</a>
-                                                    </td>
-                                                    <td> {{$detail->info}} </td>
+                                                    <td> {{$detail->supplier}}</td>
                                                 </tr>
                                             @endforeach
                                         
@@ -139,12 +132,7 @@
                                         <tr class="txt-dark">
                                             <td colspan="3"></td>
                                             <td><strong> Total Harga </strong></td>
-                                            <td>{{ $pembelian->harga }}</td>
-                                        </tr>
-                                        <tr class="txt-dark">
-                                            <td colspan="3"></td>
-                                            <td><strong>Status</strong> </td>
-                                            <td>{{ $pembelian->status }}</td>
+                                            <td>{{ number_format($lunas->sum('harga')), 2 }}</td>
                                         </tr>
                                     {{-- @endforeach --}}
                                 </tbody>
