@@ -85,7 +85,7 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::post('barang/simpan', [DataBarangController::class, 'addbarang2']);
         Route::get('barang/ubah/{id_master}', [DataBarangController::class, 'editBarang']);
         Route::put('barang/ubah/simpan', [DataBarangController::class, 'updateBarang']);
-        
+
         // <---------------------DATA STOK _--------------------------->
         Route::get('stok', [StokController::class, 'data_stok']);
         Route::get('stok/{kode_barang}', [StokController::class, 'detailstok']);
@@ -197,7 +197,6 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         // <----------------------PENGATURAN--------------------------->
         Route::get('pengaturan/profil', [PengaturanController::class, 'profil']);
         Route::post('pengaturan/profil/simpan', [PengaturanController::class, 'updateProfil']);
-
     });
 
     Route::group(['prefix' => 'marketing/'], function () {
@@ -250,8 +249,8 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::get('pengajuan/pembelian/detailpembelian/{no_pengajuan}', [PengajuanMarketingController::class, 'detailpembelian']);
         Route::get('pengajuan/pembelian/tambah', [PengajuanMarketingController::class, 'addpembelian']);
         Route::post('pengajuan/pembelian/simpan', [PengajuanMarketingController::class, 'addpembelian2']);
-        Route::post('pengajuan/confirmpembelian/{no_pengajuan}', [PengajuanMarketingController::class, 'prosespembelian']);
-        Route::post('pengajuan/edit/{id_detailPengajuan}', [PengajuanMarketingController::class, 'edit_jumlah']);
+        Route::post('pengajuan/confirmpembelian/{no_pengajuan}', [PengajuanMarketingController::class, 'prosespembelian'])->name('pengajan.confirm');
+        Route::post('pengajuan/pembelian/edit/{id}', [PengajuanMarketingController::class, 'edit_jumlah'])->name('pengajuan.edit');
 
         // Route::post('pengajuan/pembelian/editable', [PengajuanMarketingController::class, 'editable'])->name('pengajuanmarketingcontroller.editable');
     });
