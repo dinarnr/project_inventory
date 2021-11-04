@@ -18,8 +18,8 @@
             <div class="col-md-12">
                 <div class="panel panel-default card-view">
                     <div class="panel-heading">
-                        @foreach ($no_pengajuan as $no_pengajuan)
-                        <form action="{{ url('purchasing/pembelian/hutang/simpan')}}/{{$no_pengajuan->no_pengajuan}}" method="post" enctype="multipart/form-data">
+                        @foreach ($data_detail as $id)
+                        <form action="{{ url('purchasing/pembelian/hutang/simpan')}}/{{$id->id_pembelian}}" method="post" enctype="multipart/form-data">
                             @endforeach
                             {{ csrf_field() }}
                             <div class="row">
@@ -67,33 +67,18 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="text-left">
-                                                        <h6 class="txt-dark"><strong>NAMA PEMOHON : </strong></h6>
-                                                        <div class="">
-                                                            <div class="txt-dark">
-                                                                {{ $pembelian->nama_pemohon }}
-                                                            </div>
-                                                        </div>
-                                                    </div>
                                                 </table>
 
                                             </div>
                                         </div>
                                         <div class="col-xs-4">
                                             <div class="form-group">
-                                                <table>
-                                                    <div class="text-left">
-                                                        <h6 class="txt-dark"><strong>TANGGAL PENGAJUAN</strong></h6>
-                                                        <div class="">
-                                                            <div class="txt-dark"> {{ $pembelian->tgl_pengajuan }}
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                <table> 
                                                     <div class="text-left">
                                                         <h6 class="txt-dark"><strong>TANGGAL PEMBELIAN : </strong>
                                                         </h6>
                                                         <div class="">
-                                                            <div class="txt-dark"> {{ $pembelian->tglBeli }}
+                                                            <div class="txt-dark"> {{ $pembelian->tgl_beli }}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -110,9 +95,12 @@
                                             <tr>
                                                 <th>#</th>
                                                 <th>Nama barang</th>
-                                                <th>Keterangan</th>
+                                                <th>Supplier</th>
                                                 <th>Jumlah</th>
-                                                <th>Estimasi Harga</th>
+                                                <th>Harga</th>
+                                                <th>Total Harga</th>
+                                                <th>Total Bayar</th>
+                                                <th>Sisa Bayar</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -124,7 +112,7 @@
                                                     <a href="#" id="" style="font-weight:bold" data-type="text" data-pk="1" data-title="Nama barang">{{ $detail->namaBarang }}</a>
                                                 </td>
                                                 <td>
-                                                    <a href="#" id="" style="font-weight:bold" data-type="text" data-pk="1" data-title="Rate">{{ $detail->keterangan }}</a>
+                                                    <a href="#" id="" style="font-weight:bold" data-type="text" data-pk="1" data-title="Rate">{{ $detail->supplier }}</a>
                                                 </td>
                                                 <td>
                                                     <a href="#" id="" style="font-weight:bold" data-type="text" data-pk="1" data-title="Jumlah">{{ $detail->jmlBarang }}</a>
@@ -132,23 +120,17 @@
                                                 <td>
                                                     Rp {{number_format ($detail->harga, 0, ',', '.') }}
                                                 </td>
+                                                <td>
+                                                    Rp {{number_format ($detail->totalBeli, 0, ',', '.') }}
+                                                </td>
+                                                <td>
+                                                    Rp {{number_format ($detail->harga_beli, 0, ',', '.') }}
+                                                </td>
+                                                <td>
+                                                    Rp {{number_format ($detail->amount, 0, ',', '.') }}
+                                                </td>
                                             </tr>
                                             @endforeach
-                                            <tr class="txt-dark">
-                                                <td colspan="3"></td>
-                                                <td><strong> Total Harga </strong></td>
-                                                <td>Rp {{number_format ($pembelian->harga, 0, ',', '.') }}</td>
-                                            </tr>
-                                            <tr class="txt-dark">
-                                                <td colspan="3"></td>
-                                                <td><strong> Bayar </strong></td>
-                                                <td>Rp {{number_format ($pembelian->totalBayar, 0, ',', '.') }}</td>
-                                            </tr>
-                                            <tr class="txt-dark">
-                                                <td colspan="3"></td>
-                                                <td><strong> Sisa Bayar </strong></td>
-                                                <td>Rp {{number_format ($pembelian->sisaBayar, 0, ',', '.') }}</td>
-                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -158,28 +140,34 @@
                                             <div class="form-group">
                                                 <label class="control-label mb-10 text-left">Jenis transaksi</label>
                                                 <select class="form-control" id="jenisTransaksi" name="jenisTransaksi">
-                                                    <option value="hutang">Hutang</option>
-                                                    <option value="cash">Cash (lunas)</option>
-                                                    <option value="transfer">Transfer (lunas)</option>
+                                                    <option value="angsuran">Angsuran</option>
+                                                    <option value="tunai">Tunai</option>
+                                                    <option value="transfer">Transfer</option>
                                                 </select>
                                             </div>
                                         </div>
+                                        @foreach ($data_detail as $data_detail)
                                         <div class="col-md-4">
+                                            <div class="form-group" id="info1" name="info1" style="display: none;">
+                                                <label class="control-label mb-10 text-left">Info Transfer</label>
+                                                <input type="text" id="info" name="info" class="form-control " value="">
+                                            </div>
                                             <div class="form-group" id="total2" name="total2">
                                                 <label class="control-label mb-10 text-left">Total Bayar</label>
-                                                <input type="text" id="harga_beli" name="harga_beli" class="form-control a2" value="">
-                                                <input type="hidden" class="form-control c2" id="totalBayar" name="totalBayar" readonly>
+                                                <input type="text" id="harga_beli" name="harga_beli" class="form-control a2" >
+                                                <input type="hidden" class="form-control c2" id="totalBayar" name="totalBayar" value="{{$data_detail->harga_beli}}" readonly>
+                                                <input type="hidden" class="form-control" id="totalBayar1" name="totalBayar1" readonly>
 
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group" id="total" name="total">
                                                 <label class="control-label mb-10 text-left"> Sisa Bayar</label>
-                                                <input type="hidden" class="form-control b2" id="sisabyr" name="sisabyr" value="{{ $pembelian->sisaBayar}}" readonly>
-                                                <input type="hidden" class="form-control c2" id="totalBayar1" name="totalBayar1" value="{{ $pembelian->totalBayar}}" readonly>
+                                                <input type="hidden" class="form-control b2" id="sisabyr" name="sisabyr" value="{{ $data_detail->amount}}" readonly>
                                                 <input type="text" class="form-control " id="sisabayar" name="sisabayar" readonly>
                                             </div>
                                         </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
@@ -211,9 +199,11 @@
         if (this.value == 'hutang') {
             $("#total2").show();
             $("#total").show();
+            $("#info1").hide();
         } else {
             $("#total2").hide();
             $("#total").hide();
+            $("#info1").show();
         }
     });
 
@@ -221,14 +211,18 @@
     $(document).ready(function() {
         $(".a2, .b2, .c2").on("keydown keyup", function(event) {
             var beli = $("#harga_beli").val().split('.').join('');
-            var totalBayar1 = $("#totalBayar1").val();
             var sisa = $("#sisabyr").val().split('.').join('');
-            totalBayar = +beli + +totalBayar1;
             var reverse = (sisa - beli).toString().split('').reverse().join('');
-            amount1 = reverse.match(/\d{1,3}/g);
-            amount = amount1.join('.').split('').reverse().join('');
+            amount = reverse.match(/\d{1,3}/g);
+            amount = amount.join('.').split('').reverse().join('');
             $("#sisabayar").val(amount);
-            $("#totalBayar").val(totalBayar);
+
+            var totalBayar = $("#totalBayar").val().split('.').join('');
+            var reverse1 = (+totalBayar + +beli).toString().split('').reverse().join('');
+            amount1 = reverse1.match(/\d{1,3}/g);
+            amount1 = amount1.join('.').split('').reverse().join('');
+            $("#totalBayar1").val(amount1);
+
 
         });
     });

@@ -304,7 +304,7 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::post('pembelian/invoice/simpan', [PembelianPurchasingController::class, 'addpembelian2']);
         Route::get('/invoice/lunas/detail/{no_pengajuan}', [PembelianPurchasingController::class, 'detaillunas']);
         Route::get('/invoice/hutang/{no_pengajuan}', [PembelianPurchasingController::class, 'hutang']);
-        Route::post('pembelian/hutang/simpan/{no_pengajuan}', [PembelianPurchasingController::class, 'bayar']);
+        Route::post('pembelian/hutang/simpan/{id_pembelian}', [PembelianPurchasingController::class, 'bayar']);
 
 
 

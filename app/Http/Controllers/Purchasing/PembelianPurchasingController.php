@@ -19,7 +19,8 @@ class PembelianPurchasingController extends Controller
     public function pembelian()
     {
         $lunas = Pembelian::all()->where('status','1');
-        $hutang = Pembelian::all()->where('status','','hutang');
+        $hutang = DetailPembelian::all()->where('jenisTransaksi','','angsuran');
+        // dd($hutang);
         return view('purchasing/pembelian/invoice', compact('lunas','hutang'));
     }
 
@@ -199,7 +200,13 @@ class PembelianPurchasingController extends Controller
 
     public function detaillunas($no_pengajuan)
     {
-        $lunas = DetailPembelian::where('no_pengajuan', $no_pengajuan)->get();
+        $lunas = DetailPembelian::where([
+
+            ['no_pengajuan', $no_pengajuan],
+    
+            ['jenisTransaksi', '!=', 'angsuran']
+    
+        ])->get();
         $pembelian = Pembelian::where('no_pengajuan', $no_pengajuan)->get();
         // dd($data_detail);
         // $user = Auth::user();
@@ -208,31 +215,32 @@ class PembelianPurchasingController extends Controller
         return view('purchasing/pembelian/detaillunas', compact('pembelian', 'lunas', 'profil'));
     }
 
-    public function hutang($no_pengajuan)
+    public function hutang($id_pembelian)
     {
-        $data_detail = DetailPengajuan::where('no_pengajuan', $no_pengajuan)->get();
-        $pembelian = Pembelian::where('no_pengajuan', $no_pengajuan)->get();
+        $data_detail = DetailPembelian::where('id_pembelian', $id_pembelian)->get();
+        $pembelian = DetailPembelian::where('id_pembelian', $id_pembelian)->get();
         $profil = Profil::all();
-        $no_pengajuan = Pembelian::where('no_pengajuan', $no_pengajuan)->get();
+        $no_pengajuan = DetailPembelian::where('id_pembelian', $id_pembelian)->get();
         // dd($no_pengajuan);
         $purchase = PO::all()->where('status','=','4');
         return view('purchasing/pembelian/hutang', compact('no_pengajuan','purchase', 'data_detail', 'pembelian', 'profil'));
 
     }
 
-    public function bayar(Request $request, $no_pengajuan)
+    public function bayar(Request $request, $id_pembelian)
     {
         if ($request->jenisTransaksi == 'hutang') {
-            Pembelian::where('no_pengajuan',$no_pengajuan)
+            DetailPembelian::where('id_pembelian',$id_pembelian)
                 ->update([
-                    'sisaBayar' => preg_replace('/[^0-9]/','',$request->sisabayar),
-                    'totalBayar' => $request->totalBayar,
+                    'harga_beli' => preg_replace('/[^0-9]/','',$request->sisabayar),
+                    'amount' => preg_replace('/[^0-9]/','',$request->totalBayar),
 
                 ]);
         } else{
-            Pembelian::where('no_pengajuan',$no_pengajuan)
+            DetailPembelian::where('id_pembelian',$id_pembelian)
                 ->update([
-                    'status' => $request->jenisTransaksi
+                    'status' => $request->jenisTransaksi,
+                    'info' => $request->info 
                 ]);
         }
         return redirect('purchasing/pembelian/invoice');

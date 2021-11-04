@@ -58,11 +58,11 @@
                                         <thead>
                                             <tr>
                                                 <th>N0 Pengajuan </th>
-                                                <th>Nama Pemohon</th>
+                                                <th>Nama Barang</th>
+                                                <th>jumlah</th>
                                                 <th>Total Harga</th>
                                                 <th>Sisa Bayar</th>
                                                 <th>Supplier</th>
-                                                <th>Tanggal Beli</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -70,13 +70,13 @@
                                             @foreach ($hutang as $hutang)
                                             <tr>
                                                 <td>{{ $hutang->no_pengajuan}}</td>
-                                                <td>{{ $hutang->nama_pemohon}}</td>
-                                                <td> Rp {{number_format ($hutang->harga, 0, ',', '.') }}</td>
-                                                <td> Rp {{number_format ($hutang->sisaBayar, 0, ',', '.') }}</td>
+                                                <td>{{ $hutang->namaBarang}}</td>
+                                                <td>{{ $hutang->jmlBarang}}</td>
+                                                <td> Rp {{number_format ($hutang->totalBeli, 0, ',', '.') }}</td>
+                                                <td> Rp {{number_format ($hutang->amount, 0, ',', '.') }}</td>
                                                 <td>{{ $hutang->supplier}}</td>
-                                                <td>{{ $hutang->tglBeli}}</td>
                                                 <td>
-                                                    <a href="{{url('purchasing/invoice/hutang')}}/{{ $hutang->no_pengajuan }}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-dollar"></i></button></a>
+                                                    <a href="{{url('purchasing/invoice/hutang')}}/{{ $hutang->id_pembelian }}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-dollar"></i></button></a>
 
                                                     {{-- <button class="btn btn-primary btn-icon-anim" data-toggle="modal" data-target="#lunas{{ $hutang->id_pembelian }}">Lunasi</button> --}}
                                                 </td>
