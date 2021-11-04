@@ -2,7 +2,6 @@
 @section('title', 'Detail Pengajuan Retur')
 @section('content')
 
-<!-- Main Content -->
 <div class="page-wrapper">
     <div class="container-fluid">
         <div class="row">
@@ -11,7 +10,6 @@
                     <div class="panel-heading">
                         <!-- <form method="post"> -->
                         <div class="row">
-
                             <div class="col-md-12">
                                 <div class="row">
                                     <div class="col-xs-8">
@@ -32,10 +30,8 @@
                                             </table>
                                         </div>
                                     </div>
-
                                     <div class="col-xs-4">
                                         <div class="form-group mt-20 ">
-
                                             <img src="{{asset('template')}}/dist/img/ns.jpg">
                                         </div>
                                     </div>
@@ -101,12 +97,7 @@
                 <!-- form tutup -->
             </div>
             </form>
-
         </div>
-
-
-        <!-- /Row -->
-        <!-- /Main Content -->
     </div>
     <!-- /#wrapper -->
 

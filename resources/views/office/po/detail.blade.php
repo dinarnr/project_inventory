@@ -28,7 +28,6 @@
                                             <table>
                                                 <tr>
                                                     <div class="row">
-
                                                         <td class="txt-dark"> {{$profil->alamat}} <br>
                                                             Phone : {{$profil->telp}}<br> Email : {{$profil->email}}</td>
                                                         @endforeach
@@ -37,7 +36,6 @@
                                             </table>
                                         </div>
                                             </div>
-
                                             <div class="col-xs-4">
                                                 <div class="form-group mt-20 ">
 

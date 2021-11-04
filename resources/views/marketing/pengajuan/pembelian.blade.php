@@ -56,7 +56,7 @@
                                                             @elseif ($pembelian->status === 3 )
                                                             Pengajuan ditolak Purchasing
                                                             @elseif ($pembelian->status === 4 )
-                                                            Pengajuan disetujui Purchasing dan segera diproses
+                                                            Pengajuan disetujui Marketing dan segera diproses
                                                             @else
                                                             Pengajuan diproses Marketing
                                                             @endif

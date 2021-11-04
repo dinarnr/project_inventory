@@ -9,10 +9,8 @@
     }
 </style>
 
-<!-- Main Content -->
 <div class="page-wrapper">
     <div class="container-fluid">
-        <!-- Title -->
         <div class="row heading-bg">
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
                 <h5 class="txt-dark">Detail Keluar Instalasi</h5>
@@ -25,9 +23,6 @@
                 </ol>
             </div>
         </div>
-        <!-- /Title -->
-
-        <!-- Row -->
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-default card-view">
@@ -45,7 +40,6 @@
                                             <table>
                                                 <tr>
                                                     <div class="row">
-
                                                         <td class="txt-dark"> {{$profil->alamat}} <br>
                                                             Phone : {{$profil->telp}}<br> Email : {{$profil->email}}</td>
                                                         @endforeach

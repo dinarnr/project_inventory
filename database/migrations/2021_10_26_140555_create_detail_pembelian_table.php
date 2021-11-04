@@ -19,7 +19,7 @@ class CreateDetailPembelianTable extends Migration
             $table->string('namaBarang',50);
             $table->integer('harga');
             $table->integer('jmlBarang');
-            $table->string('tgl_beli');
+            $table->string('tgl_beli')->nullable();
             $table->integer('totalBeli');
             $table->string('jenisTransaksi',50);
             $table->string('info',50)->nullable();

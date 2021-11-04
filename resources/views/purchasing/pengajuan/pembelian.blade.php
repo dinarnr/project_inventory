@@ -12,9 +12,7 @@
             </div>
             <!-- Breadcrumb -->
             <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                <ol class="breadcrumb">
-                    <!-- <li><a href="inventory"></a></li> -->
-                    <!-- <li class="active"><span>Data Pembelian</span></li> -->   
+                <ol class="breadcrumb">  
                 </ol>
             </div>
             <!-- /Breadcrumb -->
@@ -61,7 +59,7 @@
                                                             @elseif ($pembelian->status === 3 )
                                                             Pengajuan ditolak Purchasing
                                                             @elseif ($pembelian->status === 4 )
-                                                            Pengajuan disetujui Purchasing dan segera diproses
+                                                            Pengajuan disetujui Marketing dan segera diproses
                                                             @elseif ($pembelian->status === 5 )
                                                                 Invoice belum selesai karena {{ $alasan->alasan }}
                                                             @else

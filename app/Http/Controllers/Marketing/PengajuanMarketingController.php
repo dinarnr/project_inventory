@@ -21,7 +21,7 @@ class PengajuanMarketingController extends Controller
     // ------------REKOM-----------
     public function tabelBaru(Request $request)
     {
-        $data_baru = Pengajuan::all()->where('jenisBarang', '', 'Rekomendasi');
+        $data_baru = DetailPengajuan::all()->where('kode', '', 'rekomendasi');
         return view('marketing/pengajuan/brgbaru', compact('data_baru'));
     }
 
@@ -441,7 +441,7 @@ class PengajuanMarketingController extends Controller
 
     public function prosespembelian(Request $request, $no_pengajuan)
     {
-        dd('test2');
+        // dd('test2');
         // dd($no_pengajuan);
         $user = Auth::user();
         $centang = collect($request->is_active)->duplicates()->toArray();

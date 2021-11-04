@@ -2,14 +2,12 @@
 @section('title', 'Detail Pengajuan Rekomendasi')
 @section('content')
 
-<!-- Main Content -->
 <div class="page-wrapper">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-default card-view">
                     <div class="panel-heading">
-                        <!-- <form method="post"> -->
                         <div class="row">
 
                             <div class="col-md-12">
@@ -35,7 +33,6 @@
 
                                     <div class="col-xs-4">
                                         <div class="form-group mt-20 ">
-
                                             <img src="{{asset('template')}}/dist/img/ns.jpg">
                                         </div>
                                     </div>
@@ -85,7 +82,7 @@
                                         <tr>
                                             <th>no</th>
                                             <th>Nama Barang</th>
-                                            <th>Jumlah</th>
+                                            <th>Keterangan</th>
                                         </tr>
                                     </thead>
                                 
