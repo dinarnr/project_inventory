@@ -7,10 +7,10 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h5 class="modal-title" id="exampleModalLabel1">Edit Jumlah</h5>
             </div>
-            <form action="{{url('marketing/pengajuan/edit')}}/{{ $detail->id_detailPengajuan }} " method="POST" enctype="multipart/form-data">
+            <form action="{{url('marketing/pengajuan/pembelian/edit')}}/{{ $detail->id_detailPengajuan }} " method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
-                    <div class="form-group">
+                    <div class="form-group" hidden>
                         <label class="control-label">ID</label>
                         <input type="text" class="form-control" name="edit_id" value="{{$detail->id_detailPengajuan}}" readonly>
                     </div>

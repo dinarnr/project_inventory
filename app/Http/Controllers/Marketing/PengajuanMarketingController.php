@@ -486,13 +486,12 @@ class PengajuanMarketingController extends Controller
 
     public function edit_jumlah(Request $request, $id_detailPengajuan)
     {
-        dd('test');
+        // dd('test');
         // dd($request);
         DetailPengajuan::where('id_detailPengajuan', $id_detailPengajuan)
             ->update([
                 'jmlBarang' => $request->edit_jumlah
             ]);
-
         return back();
     }
 }
