@@ -12,9 +12,7 @@
             </div>
             <!-- Breadcrumb -->
             <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                <ol class="breadcrumb">
-                    <!-- <li><a href="inventory"></a></li> -->
-                    <!-- <li class="active"><span>Data Pembelian</span></li> -->   
+                <ol class="breadcrumb">  
                 </ol>
             </div>
             <!-- /Breadcrumb -->
@@ -61,7 +59,7 @@
                                                             @elseif ($pembelian->status === 3 )
                                                             Pengajuan ditolak Purchasing
                                                             @elseif ($pembelian->status === 4 )
-                                                            Pengajuan disetujui Purchasing dan segera diproses
+                                                            Pengajuan disetujui Marketing dan segera diproses
                                                             @elseif ($pembelian->status === 5 )
                                                                 Invoice belum selesai karena {{ $alasan->alasan }}
                                                             @else
@@ -70,7 +68,7 @@
                                                     </td>
                                                     <td>
                                                         @if($pembelian->status === 5)
-                                                        <a href="{{url('purchasing/pembelian/invoice/belum') }}/{{$pembelian->no_pengajuan}} "><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
+                                                        <a href="{{url('purchasing/pembelian/invoice/belum') }}/{{$pembelian->no_pengajuan}} "><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-edit"></i></button></a>
                                                         @else
                                                         <a href="{{url('purchasing/pembelian/invoice/tambah') }}/{{$pembelian->no_pengajuan}} "><button class="btn btn-success btn-icon-anim btn-square"><i class="fa fa-plus"></i></button></a>
                                                         @endif

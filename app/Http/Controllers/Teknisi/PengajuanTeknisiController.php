@@ -19,7 +19,7 @@ class PengajuanTeknisiController extends Controller
 
     public function tabelRekom(Request $request)
     {
-        $data_baru = Pengajuan::all()->where('jenisBarang', '', 'Rekomendasi');
+        $data_baru = DetailPengajuan::all()->where('kode', '', 'rekomendasi');
         return view('teknisi/pengajuan/brgrekom', compact('data_baru'));
     }
 
@@ -38,24 +38,24 @@ class PengajuanTeknisiController extends Controller
 
     public function addrekom2(Request $request)
     {
+        $rules = [
+            'nama_barang' => 'required',
+            'keterangan' => 'required',
+        ];
+
+        $messages = [
+            'nama_barang.required' => '*nama barang tidak boleh kosong',
+            'keterangan.required' => '*keterangan tidak boleh kosong',
+
+        ];
+        $this->validate($request, $rules, $messages);
         // dd($request->all());
         $user = Auth::user();
-        $jumlah_data = count($request->no_peng);
-        for ($i = 0; $i < $jumlah_data; $i++) {
             DetailPengajuan::create(
                 [
-                    'no_pengajuan' => $request->no_peng[$i],
-                    'namaBarang' => $request->nama_barang[$i],
-                    'jmlBarang' => $request->jumlah[$i],
-                    'jenisBarang' => 'Rekomendasi'
-                ]
-            );
-        }
-            Pengajuan::create(
-                [
-                    'no_pengajuan' => $request->no_pengajuan,
+                    'namaBarang' => $request->nama_barang,
                     'keterangan' => $request->keterangan,
-                    'jenisBarang' => 'Rekomendasi',
+                    'kode' => 'rekomendasi',
                     'pic_teknisi' => $user->name
                 ]
             );
@@ -66,7 +66,7 @@ class PengajuanTeknisiController extends Controller
                     'name' => $user->name,
                     'email' => $user->email,
                     'divisi' => $user->divisi,
-                    'deskripsi' => 'Create Pengajuan Barang Retur',
+                    'deskripsi' => 'Create Pengajuan Barang Rekom',
                     'status' => '2',
                     'ip' => $request->ip()
 

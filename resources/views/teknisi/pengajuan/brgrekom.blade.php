@@ -34,10 +34,8 @@
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
+                                                    <th>Nama Barang</th>
                                                     <th>Keterangan</th>
-                                                    <th>Tanggal pengajuan</th>
-                                                    <th>PIC Teknisi</th>
-                                                    <th>Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -45,12 +43,11 @@
                                                 @foreach ($data_baru as $data_baru)
                                                 <tr>
                                                     <td>{{ $no++ }}</td>
+                                                    <td>{{ $data_baru->namaBarang}}</td>
                                                     <td>{{ $data_baru->keterangan}}</td>
-                                                    <td>{{ date('d-m-Y',strtotime($data_baru->created_at))}}</td>
-                                                    <td>{{$data_baru->pic_teknisi}} </td>
-                                                    <td>
+                                                    <!-- <td>
                                                         <a href="{{ url('teknisi/pengajuan/rekomendasi/detail') }}/{{ $data_baru->no_pengajuan }}"> <button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
-                                                    </td>
+                                                    </td> -->
                                                 </tr>
                                                 @endforeach
                                             </tbody>

@@ -1,34 +1,26 @@
 @extends('layout.master')
 @section('title', 'Data Barang Rekomendasi')
 @section('content')
-<!-- Main Content -->
 <div class="page-wrapper">
     <div class="container-fluid">
 
-        <!-- Title -->
         <div class="row heading-bg">
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
                 <h5 class="txt-dark">Data Pengajuan Barang Rekomendasi</h5>
             </div>
-            <!-- Breadcrumb -->
             <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                 <ol class="breadcrumb">
                     <li><a href="#"><span>Pengajuan</span></a></li>
                     <li class="active"><span>Barang Rekomendasi</span></li>
                 </ol>
             </div>
-            <!-- /Breadcrumb -->
         </div>
-        <!-- /Title -->
 
-        <!-- Row -->
         <div class="row">
             <div class="col-sm-12">
                 <div class="panel panel-default card-view">
                     <div class="panel-heading">
                         <p>
-                            <!-- <a href="addbaru" class="btn btn-success btn-icon-anim">Tambah baru
-                            </a> -->
                         </p>
                         <div class="clearfix"></div>
 
@@ -40,10 +32,8 @@
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
-                                                    <th>No Pengajuan</th>
-                                                    <th>Keterangan</th>
-                                                    <th>Tanggal pengajuan</th> 
-                                                    <th>Aksi</th>
+                                                    <th>Nama Barang</th>
+                                                    <th>Keterangan</th> 
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -51,12 +41,11 @@
                                                 @foreach ($data_baru as $data_baru)
                                                 <tr>
                                                     <td>{{ $no++ }}</td>
-                                                    <td>{{ $data_baru->no_pengajuan}}</td>
+                                                    <td>{{ $data_baru->namaBarang}}</td>
                                                     <td>{{ $data_baru->keterangan}}</td>
-                                                    <td>{{ date('d-m-Y',strtotime($data_baru->created_at))}}</td>
-                                                    <td>
+                                                    <!-- <td>
                                                         <a href="{{ url('marketing/pengajuan/detailrekom') }}/{{ $data_baru->no_pengajuan }}"> <button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
-                                                    </td>
+                                                    </td> -->
                                                 </tr>
                                                 @endforeach
                                             </tbody>

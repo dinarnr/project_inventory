@@ -196,14 +196,18 @@
 <!-- /#wrapper -->
 <script>
     $('select[name=jenisTransaksi]').on('change', function() {
-        if (this.value == 'hutang') {
+        if (this.value == 'angsuran') {
             $("#total2").show();
             $("#total").show();
             $("#info1").hide();
-        } else {
+        } else if(this.value == 'transfer') {
             $("#total2").hide();
             $("#total").hide();
             $("#info1").show();
+        } else {
+            $("#total2").hide();
+            $("#total").hide();
+            $("#info1").hide();
         }
     });
 

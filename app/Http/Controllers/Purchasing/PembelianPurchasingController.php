@@ -47,12 +47,12 @@ class PembelianPurchasingController extends Controller
                 'pic_warehouse' => $request->pic_warehouse,
                 'pic_admin' => $request->pic_admin,
                 'pic_purchasing' => $user->name,
-                'alasan' => $request->alasan,
 
             ]);
             Pengajuan::where('no_pengajuan', $request->no_pengajuan)
                     ->update([
-                        'status' => '5'
+                        'status' => '5',
+                        'alasan' => $request->alasan,
                     ]);
             $jumlah_data = count($request->no_peng);
             for ($i = 0; $i < $jumlah_data; $i++) {
@@ -229,22 +229,24 @@ class PembelianPurchasingController extends Controller
 
     public function bayar(Request $request, $id_pembelian)
     {
-        if ($request->jenisTransaksi == 'hutang') {
+        // dd($request->all());
+        if ($request->jenisTransaksi == 'angsuran') {
             DetailPembelian::where('id_pembelian',$id_pembelian)
                 ->update([
-                    'harga_beli' => preg_replace('/[^0-9]/','',$request->sisabayar),
+                    'harga_beli' => preg_replace('/[^0-9]/','',$request->totalBayar1),
                     'amount' => preg_replace('/[^0-9]/','',$request->totalBayar),
 
                 ]);
         } else{
             DetailPembelian::where('id_pembelian',$id_pembelian)
                 ->update([
-                    'status' => $request->jenisTransaksi,
+                    'jenisTransaksi' => $request->jenisTransaksi,
                     'info' => $request->info 
                 ]);
         }
         return redirect('purchasing/pembelian/invoice');
     }
+
     public function belumselesai($no_pengajuan)
     {
         $data_pembelian = Pengajuan::where('no_pengajuan',$no_pengajuan)->first();

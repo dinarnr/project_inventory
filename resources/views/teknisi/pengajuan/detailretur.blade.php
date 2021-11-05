@@ -2,14 +2,12 @@
 @section('title', 'Detail Pengajuan Retur')
 @section('content')
 
-<!-- Main Content -->
 <div class="page-wrapper">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-default card-view">
                     <div class="panel-heading">
-                        <!-- <form method="post"> -->
                         <div class="row">
 
                             <div class="col-md-12">
@@ -32,16 +30,13 @@
                                             </table>
                                         </div>
                                     </div>
-
                                     <div class="col-xs-4">
                                         <div class="form-group mt-20 ">
-
                                             <img src="{{asset('template')}}/dist/img/ns.jpg">
                                         </div>
                                     </div>
                                 </div>
                                 <hr>
-
                                 <div class="row">
                                     <div class="col-xs-8">
                                         <div class="form-group">
@@ -64,7 +59,7 @@
                                                     <div class="text-left">
                                                         <h6 class="txt-dark"><strong>TANGGAL PENGAJUAN : </strong></h6>
                                                         <div class="">
-                                                            <div class="txt-dark"> {{ $detail->created_at }}</div>
+                                                            <div class="txt-dark"> {{ date('d M Y',strtotime($detail->created_at)) }}</div>
                                                         </div>
                                                     </div>
                                                 @endforeach
@@ -92,10 +87,10 @@
                                         <tr>
                                             <td>{{ $no++ }}</td>
                                             <td>
-                                                <a href="#" id="" style="font-weight:bold" data-type="text" data-pk="1" data-title="Nama barang">{{$detail->namaBarang}}</a>
+                                                <a href="#" id="" style="" data-type="text" data-pk="1" data-title="Nama barang">{{$detail->namaBarang}}</a>
                                             </td>
                                             <td>
-                                                <a href="#" id="" style="font-weight:bold" data-type="text" data-pk="1" data-title="Jumlah">{{$detail->jmlBarang}}</a>
+                                                <a href="#" id="" style="" data-type="text" data-pk="1" data-title="Jumlah">{{$detail->jmlBarang}}</a>
                                             </td>
                                         </tr>
                                         @endforeach
@@ -121,18 +116,8 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="pull-right hide-from-printer">
-                <button class="btn btn-danger" name="draft" type="submit" value="draft" id="draft">Tolak</button>
-                <button class="btn btn-primary mr-10" name="proses" type="submit"  value="proses" id="proses">Setuju</button>
-                <!-- form tutup -->
-            <!-- </div> --> 
         </form>
-        
         </div>
-        
-        
-        <!-- /Row -->
-        <!-- /Main Content -->
     </div>
     <!-- /#wrapper -->
 

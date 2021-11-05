@@ -12,7 +12,7 @@ class Pengajuan extends Model
     protected $table = "pengajuan";
     protected $primaryKey = "id_pengajuan";
     protected $fillable = ['id_pengajuan','kode', 'noPO','no_pengajuan','nama_pemohon','judul','jumlah', 'status','tgl_pengajuan','jenisBarang','keterangan', 'pic_teknisi'
-                            , 'pic_marketing','pic_warehouse','created_at'];
+                            , 'pic_marketing','pic_warehouse','alasan','created_at'];
                             
 
     public function pengajuan()
