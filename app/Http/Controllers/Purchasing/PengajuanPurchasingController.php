@@ -68,7 +68,7 @@ class PengajuanPurchasingController extends Controller
                'name' => $user->name,
                'email' => $user->email,
                'divisi' => $user->divisi,
-               'deskripsi' => 'Create Masuk Baru',
+               'deskripsi' => 'Create Add Invoice',
                'status' => '2',
                'ip'=> $request->ip()
            ]);

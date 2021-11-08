@@ -158,7 +158,7 @@
 @section('scripts')
 <script type="text/javascript">
 	function ambildata() {
-		var jumlah = document.forms["myForm"]["jumlah"].value;
+		var jumlah = document.getElementById("jumlah").value;
 		if (jumlah == "") {
 			alert("Jumlah tidak boleh kosong");
 			return false;

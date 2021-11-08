@@ -50,9 +50,8 @@ class AuthController extends Controller
             
            
         ];
-        // Auth::attempt($data);
-        // if(Auth::attempt($request->only('email','password')) ){
-        if(Auth::attempt(['email' => $request->input('email'),'password' => $request->input('password'), 'status' => '2']) ){
+        $login = Auth::attempt(['email' => $request->email,'password' => $request->password, 'status' => '2']);
+        if($login === TRUE ){
             $user = Auth::user();
             Log::create(
                 [
@@ -71,9 +70,11 @@ class AuthController extends Controller
                     'lastIP' => $request->ip()
                 ]);
             return redirect('/dashboard/home');
-        }elseif(Auth::attempt(['email' => $request->input('email'),'password' => $request->input('password'), 'status' => '1']) ){
-            Session::flash('error', 'aaaaaaaaaaaaaaaaaaaaaaaaa');
+
+        }elseif($login === FALSE ){
+            Session::flash('error', 'Akun belum AKTIF, silahkan hubungi Administrator');
             return redirect()->route('login');
+
         }else { // false
   
             //Login Fail

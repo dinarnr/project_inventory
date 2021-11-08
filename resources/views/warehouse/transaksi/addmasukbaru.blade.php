@@ -185,11 +185,11 @@
 @section('scripts') 
 <script type="text/javascript">
 	function ambildata() {
-		var pengirim = document.forms["myForm"]["pengirim"].value;
-		var penerima = document.forms["myForm"]["penerima"].value;
-		var jumlah = document.forms["myForm"]["jumlah"].value;
-		var keterangan = document.forms["myForm"]["keterangan"].value;
-		var tanggal = document.forms["myForm"]["tgl_transaksi"].value;
+		var pengirim = document.getElementById("pengirim").value;
+		var penerima = document.getElementById("penerima").value;
+		var jumlah = document.getElementById("jumlah").value;
+		var keterangan = document.getElementById("keterangan").value;
+		var tanggal = document.getElementById("tgl_transaksi").value;
 
 			if (pengirim == "") {
 				alert("Nama pengirim tidak boleh kosong");

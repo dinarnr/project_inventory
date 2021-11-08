@@ -44,7 +44,7 @@
                             <div class="col-md-5 personal-info">
                                 <h3>Personal info</h3>
                                 <div class="form-group">
-                                    <label class="col-lg-3 control-label">Nama:</label>
+                                    <label class="col-lg-3 control-label">Nama</label>
                                     <div class="col-lg-8">
                                         <input class="form-control" name="edit_id" type="hidden" value="{{ Auth::user()->id }}">
                                         <input class="form-control" name="edit_nama" type="text" value="{{ Auth::user()->name }}">
@@ -57,7 +57,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-3 control-label">Email:</label>
+                                    <label class="col-lg-3 control-label">Email</label>
                                     <div class="col-lg-8">
                                         <input class="form-control" name="edit_email" type="text" value="{{ Auth::user()->email }}">
                                     </div>

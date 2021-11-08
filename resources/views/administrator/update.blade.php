@@ -28,9 +28,6 @@
                                         <input name="edit_email" type="text" class="form-control" value="{{ $users->email }}">
                                     </div>
 
-
-
-                                    
                                     <div class="form-group mt-30 mb-30">
                                         <label class="control-label mb-10 text-left">Level Hak Akses</label>
                                         <select name="edit_divisi" value="{{ $users->divisi }}" class="form-control">

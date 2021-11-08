@@ -40,7 +40,7 @@
                                 <div class="form-group mt-30 mb-30">
                                     <label class="control-label mb-10 text-left">Level Hak Akses</label>
                                     <select name="divisi" id="divisi"class="form-control select2">   
-                                        <option value="">--Select One--</option>
+                                        <option value="">--Pilih Devisi--</option>
                                         <option value="warehouse">Warehouse</option>
                                         <option value="marketing">Marketing</option>
                                         <option value="admin">Admin</option>

@@ -17,6 +17,7 @@ class DetailPeminjamanTable extends Migration
             $table->increments('id_peminjaman');
             $table->string('no_peminjaman');
             $table->string('nama_barang',50);
+            $table->integer('kode_barang');
             $table->integer('jumlah');
             $table->integer('jumlah_kembali');
             $table->string('keterangan')->nullable();

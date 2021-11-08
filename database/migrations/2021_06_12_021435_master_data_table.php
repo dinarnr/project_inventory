@@ -19,6 +19,7 @@ class MasterDataTable extends Migration
             $table->string('nama_barang');
             $table->string('kode_barang');
             $table->integer('stok')->nullable()->default(0);
+            $table->integer('stok_akhir')->nullable();
             $table->string('gambar')->nullable()->default('no_image.png');
             $table->string('status');
             $table->timestamps();
