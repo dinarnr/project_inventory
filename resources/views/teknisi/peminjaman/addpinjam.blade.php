@@ -62,7 +62,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label mb-10">Nama Barang</label>
-                                                <select name="nama_barang" id="nama_barang" class="form-control select2" data-dependent="kode_barang">
+                                                <select name="nama_barang" id="nama_brg" class="form-control select2" data-dependent="kode_barang">
                                                     <option value="">Pilih Nama Barang</option>
                                                     @foreach($barang as $brg)
                                                     <option value="{{ $brg->nama_barang }}">{{ $brg->nama_barang }} | {{ $brg->kode_barang }} </option>

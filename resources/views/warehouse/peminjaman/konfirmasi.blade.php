@@ -12,7 +12,7 @@
                     
                         <div class="form-group">
                             <label class="control-label txt-left">Jumlah Yang di Kembalikan</label>
-                            <input type="text" class="form-control" name="jumlah_kembali" value="{{$detail->jumlah_kembali}}">
+                            <input type="number" class="form-control" name="jumlah_kembali" value="{{$detail->jumlah}}">
                         </div>
                    
                 </div>

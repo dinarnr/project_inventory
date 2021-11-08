@@ -58,7 +58,8 @@
 													<div class="col-md-6">
 														<div class="form-group">
 															<label class="control-label mb-10">NO PO</label>
-															<select name="no_PO" id="no_PO" class="form-control">
+															<select name="no_PO" id="no_po" class="form-control select2">
+																<option value="">Pilih NO PO</option>
 																@foreach($noPO as $noPO)
 																<option value="{{ $noPO->no_PO }}">{{ $noPO->no_PO }}</option>
 																@endforeach
@@ -77,7 +78,7 @@
 													<div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="control-label mb-10">Nama Barang</label>
-                                                            <select name="nama_barang" id="nama_barang" class="form-control" data-dependent="kode_barang">
+                                                            <select name="nama_barang" id="nama_barang" class="form-control select2" data-dependent="kode_barang">
 																<option value="">Pilih Nama Barang</option>
 																@foreach($barang as $brg)
 																	<option value="{{ $brg->nama_barang }}">{{ $brg->nama_barang }} | {{ $brg->kode_barang }} </option>
@@ -194,6 +195,7 @@
 
 		$('#nama_barang').select2();
 		$('#nama_supplier').select2();
+		$('#no_po').select2();
 </script>
 <script>
 	$('#nama_barang').change(function(){

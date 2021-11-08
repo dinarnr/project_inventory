@@ -55,7 +55,7 @@
 													<div class="col-md-6">
 														<div class="form-group">
 															<label class="control-label mb-10">NO SO</label>
-															<select name="no_SO dynamic2" id="no_SO" class="form-control" data-dependent="TabelDinamis">
+															<select name="no_SO dynamic2" id="no_SO" class="form-control select2" data-dependent="TabelDinamis">
 																<option value="">Pilih NO SO</option>
 																@foreach ($SO as $no_SO)
 																	<option value="{{ $no_SO->no_SO }}">{{ $no_SO->no_SO }}</option>
@@ -198,6 +198,7 @@
 	});
 
 	$('#nama_supplier').select2();
+	$('#no_SO').select2();
 </script>
 <script>
 	$('#no_SO').change(function() {

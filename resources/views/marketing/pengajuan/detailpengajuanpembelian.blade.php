@@ -46,7 +46,45 @@
                                         <div class="col-xs-4">
                                             <div class="form-group">
                                                 <table>
+                                                    @foreach($pengajuan as $pengajuan)
+
+                                                        
                                                     
+                                                        <div class="text-left">
+                                                            <h6 class="txt-dark"><strong>NO PENGAJUAN : </strong></h6>
+                                                                <div class="">
+                                                                    <div class="txt-dark">{{ $pengajuan->no_pengajuan }}</div>
+                                                                </div>
+                                                        </div>
+                                                    
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <div class="form-group">
+                                                <table>
+                                                   
+                                                        <div class="text-left">
+                                                            <h6 class="txt-dark"><strong>NAMA PEMOHON : </strong></h6>
+                                                            <div class="">
+                                                                <div class="txt-dark"> {{ $pengajuan->nama_pemohon }}</div>
+                                                            </div>
+                                                        </div>
+                                                       
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <div class="form-group">
+                                                <table>
+                                                   
+                                                        <div class="text-left">
+                                                            <h6 class="txt-dark"><strong>TANGGAL PENGAJUAN : </strong></h6>
+                                                            <div class="">
+                                                                <div class="txt-dark"> {{ date('d M Y',strtotime($pengajuan->tgl_pengajuan)) }}</div>
+                                                            </div>
+                                                        </div>
+                                                        @endforeach
                                                 </table>
                                             </div>
                                         </div>

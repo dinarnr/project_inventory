@@ -374,6 +374,7 @@
 
 
     $('#instansi').select2();
+    $('#nama_barang').select2();
 </script>
 <script>
 	$('#nama_barang').change(function(){

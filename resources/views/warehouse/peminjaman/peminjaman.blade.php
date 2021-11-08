@@ -61,13 +61,13 @@
 
                                                     <td style="text-align:center;">
                                                         @if($peminjaman->status == "1")
-                                                        <button class="btn btn-default btn-sm btn-rounded">Menunggu persetujuan peminjaman</button>
+                                                        <span class="label label-default btn-sm btn-rounded">Menunggu persetujuan peminjaman</span>
                                                         @elseif($peminjaman->status == "2")
-                                                        <button class="btn btn-primary btn-sm btn-rounded">Pinjam</button>
+                                                        <span class="label label-primary btn-sm btn-rounded">Pinjam</span>
                                                         @elseif($peminjaman->status == "3" )
-                                                        <button class="btn btn-warning btn-sm btn-rounded">Diproses Warehouse</button>
+                                                        <span class="label label-warning btn-sm btn-rounded">Pengembalian Menunggu Konfirmassi Warehouse</span>
                                                         @else
-                                                        <button class="btn btn-success btn-sm btn-rounded">Dikembalikan</button>
+                                                        <span class="label label-success btn-sm btn-rounded">Dikembalikan</span>
                                                         @endif
                                                     </td>
                                                     <td>
