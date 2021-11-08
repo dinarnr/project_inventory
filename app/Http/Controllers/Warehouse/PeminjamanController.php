@@ -23,7 +23,67 @@ class PeminjamanController extends Controller
         return view('warehouse/peminjaman/peminjaman', compact('peminjaman',));
     }
 
-   
+    public function setuju(Request $request, $no_peminjaman)
+    {
+       
+        $user = Auth::user();
+        DetailPeminjaman::where('no_peminjaman', $no_peminjaman)
+        ->update(
+            [
+                'status' => '2',
+            ]
+        );  
+        Peminjaman::where('no_peminjaman', $request->no_peminjaman)
+            ->update(
+                [
+                'status' => '2',
+                 
+                ]
+            );
+        Log::create(
+            [
+                'name' => $user->name,
+                'email' => $user->email,
+                'divisi' => $user->divisi,
+                'deskripsi' => 'Menyetujui peminjaman',
+                'status' => '2',
+                'ip' => $request->ip()
+
+            ]
+        );
+        $kode_barang = DetailPeminjaman::where('no_peminjaman',$no_peminjaman)->pluck('kode_barang');
+        $nama_barang = DetailPeminjaman::where('no_peminjaman',$no_peminjaman)->pluck('nama_barang');
+        $jumlah = DetailPeminjaman::where('no_peminjaman',$no_peminjaman)->pluck('jumlah');
+        $new_stok = Master::whereIn('kode_barang',$kode_barang)->pluck('stok');
+
+        $jumlah_stok = count($new_stok);
+        for ($i = 0; $i < $jumlah_stok; $i++) {
+            Stok::create(
+                [
+                    'nama_barang' => $nama_barang[$i],
+                    'stok' => $jumlah[$i],
+                    'stok_akhir' => $new_stok[$i],
+                    'kode_barang' => $kode_barang[$i],
+                    'keterangan' => 'Teknisi Pinjam Barang'
+                ]  
+            );
+        }
+        return redirect('warehouse/peminjaman');
+    }
+
+    // konfirmasi jumlah  barang dikembalikan
+    public function kembali_barang(Request $request, $id_peminjaman)
+    {
+        // dd($request->non);
+        DetailPeminjaman::where('id_peminjaman', $id_peminjaman)
+        ->update(
+            [
+                'jumlah_kembali' => $request -> jumlah_kembali,
+            ]
+        );  
+        return redirect()->back();
+    }
+    // konfirmasi barang dikembalikan
     public function confirm(Request $request, $no_peminjaman)
     {
         // dd($request->no_peminjaman);
@@ -53,71 +113,32 @@ class PeminjamanController extends Controller
                 'name' => $user->name,
                 'email' => $user->email,
                 'divisi' => $user->divisi,
-                'deskripsi' => 'Pinjaman di Konfirmasi Warehouse',
+                'deskripsi' => 'Pengembalian Pinjaman di Konfirmasi Warehouse',
                 'status' => '2',
                 'ip' => $request->ip()
 
             ]
         );
-        return redirect('warehouse/peminjaman');
-    }
 
-    public function setuju(Request $request, $no_peminjaman)
-    {
-        // dd($request->non);
-        $user = Auth::user();
-        DetailPeminjaman::where('no_peminjaman', $no_peminjaman)
-        ->update(
-            [
-                'status' => '2',
-            ]
-        );  
-        Peminjaman::where('no_peminjaman', $request->no_peminjaman)
-            ->update(
-                [
-                'status' => '2',
-                    
-                ]
-            );
-        Log::create(
-            [
-                'name' => $user->name,
-                'email' => $user->email,
-                'divisi' => $user->divisi,
-                'deskripsi' => 'Menyetujui peminjaman',
-                'status' => '2',
-                'ip' => $request->ip()
+        $kode_barang = DetailPeminjaman::where('no_peminjaman',$no_peminjaman)->pluck('kode_barang');
+        $nama_barang = DetailPeminjaman::where('no_peminjaman',$no_peminjaman)->pluck('nama_barang');
+        $jumlah = DetailPeminjaman::where('no_peminjaman',$no_peminjaman)->pluck('jumlah');
+        $new_stok = Master::whereIn('kode_barang',$kode_barang)->pluck('stok');
 
-            ]
-        );
-        $new_stok = Master::whereIn('kode_barang',$request->kode_barang)->pluck('stok');
         $jumlah_stok = count($new_stok);
         for ($i = 0; $i < $jumlah_stok; $i++) {
             Stok::create(
                 [
-                    'nama_barang' => $request->nama_barang[$i],
-                    'stok' => $request->jumlah[$i],
+                    'nama_barang' => $nama_barang[$i],
+                    'stok' => $jumlah[$i],
                     'stok_akhir' => $new_stok[$i],
-                    'kode_barang' => $request->kode_barang[$i],
-                    'keterangan' => 'Teknisi Pinjam Barang'
+                    'kode_barang' => $kode_barang[$i],
+                    'keterangan' => 'Pengembalian Pinjaman di Konfirmasi Warehouse'
                 ]  
             );
         }
         return redirect('warehouse/peminjaman');
     }
-    public function kembali_barang(Request $request, $id_peminjaman)
-    {
-        // dd($request->non);
-        DetailPeminjaman::where('id_peminjaman', $id_peminjaman)
-        ->update(
-            [
-                'jumlah_kembali' => $request -> jumlah_kembali,
-                'status' => '5',
-            ]
-        );  
-        return redirect()->back();
-    }
-
     public function detailpeminjaman($no_peminjaman)
     {
         $data_detail = DetailPeminjaman::where('no_peminjaman', $no_peminjaman)->get();
