@@ -51,6 +51,8 @@ class AuthController extends Controller
            
         ];
         $login = Auth::attempt(['email' => $request->email,'password' => $request->password, 'status' => '2']);
+        $login2 = Auth::attempt(['email' => $request->email,'password' => $request->password, 'status' => '1']);
+// dd($login2);
         if($login === TRUE ){
             $user = Auth::user();
             Log::create(
@@ -71,15 +73,16 @@ class AuthController extends Controller
                 ]);
             return redirect('/dashboard/home');
 
-        }elseif($login === FALSE ){
-            Session::flash('error', 'Akun belum AKTIF, silahkan hubungi Administrator');
-            return redirect()->route('login');
-
-        }else { // false
-  
-            //Login Fail
-            Session::flash('error', 'Email atau password salah');
-            return redirect()->route('login');
+        }else{
+            if($login2 == TRUE){
+                    Auth::logout();
+                    Session::flash('error', 'Akun belum AKTIF, silahkan hubungi Administrator');
+                return redirect()->route('login');
+            }else{
+                //Login Fail
+                    Session::flash('error', 'Email atau password salah');
+                return redirect()->route('login');
+            }
         }
     }
   

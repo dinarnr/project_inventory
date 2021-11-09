@@ -19,7 +19,10 @@ class PengajuanWarehouseController extends Controller
 {
     public function tabelRetur()
     {
-        $data_retur = Pengajuan::all()->where('jenisBarang', '', 'Retur');
+        $data_retur =Pengajuan::where([
+            ['jenisBarang', 'retur'],
+            ['status','2']
+            ])->get();
         return view('warehouse/pengajuan/brgretur', compact('data_retur'));
     }
 
@@ -163,7 +166,7 @@ class PengajuanWarehouseController extends Controller
         $profil = Profil ::all();
         $data_detail = DetailPengajuan::where([
             ['no_pengajuan', $no_pengajuan],
-            ['status','==','2']
+            ['status','2']
             ])->get();
         $pengajuan_retur = Pengajuan::where('no_pengajuan', $no_pengajuan)->get();
         return view('/warehouse/pengajuan/detailpengajuanretur', compact('pengajuan_retur', 'data_detail', 'profil'));
