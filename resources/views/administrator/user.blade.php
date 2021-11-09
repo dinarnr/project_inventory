@@ -55,11 +55,11 @@
                                                 <td>{{ $users->lastIP }}</td>
                                                 <td>
                                                     @if($users->status == '2')
-                                                    <button class="btn btn-success btn-sm  btn-rounded" data-toggle="modal" data-target="#exampleModal">Aktif</button>
+                                                    <span class="label label-success " >Aktif</span>
                                                     @else
-                                                    <button class="btn btn-danger btn-sm  btn-rounded" data-toggle="modal" data-target="#exampleModal">Non Aktif</button>
+                                                    <span class="label label-danger " >Non Aktif</span>
                                                     @endif
-                                                    @include('administrator.status')
+                                                   
                                                 </td>
                                                 <td>
                                                     <a href="{{ url('administrator/edit') }}/{{ $users->id}}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-pencil"></i></button></a>
