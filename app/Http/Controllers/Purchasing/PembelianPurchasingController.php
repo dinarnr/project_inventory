@@ -27,7 +27,10 @@ class PembelianPurchasingController extends Controller
     public function addinvoice($no_pengajuan)
     {
         $data_pembelian = Pengajuan::where('no_pengajuan',$no_pengajuan)->first();
-        $data_detail = DetailPengajuan::where('no_pengajuan',$no_pengajuan)->get();
+        $data_detail = DetailPengajuan::where([
+            ['no_pengajuan', $no_pengajuan],
+            ['status', '2'],
+            ])->get();
         $coba= DetailPengajuan::where('no_pengajuan',$no_pengajuan)->get();
         $supplier =  SupplierModel::all();
         // dd($data_detail);
