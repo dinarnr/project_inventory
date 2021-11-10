@@ -19,70 +19,78 @@
                                 enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 <div class="row">
-                                    <div class="col-xs-2">
-                                        <div class="text-left">
-                                            <h6 class="txt-dark"><strong>No Pengajuan : </strong></h6>
-                                        </div>
-                                        <div class="">
-                                            <div class="txt-dark">
-                                                <input type="text" id="no_pengajuan" name="no_pengajuan"
-                                                    value="{{ $data_pembelian->no_pengajuan }}"
-                                                    style="outline:none;border:0;" readonly>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-2">
-                                        <div class="text-left">
-                                            <h6 class="txt-dark"><strong>Nama Pemohon :</strong></h6>
-                                        </div>
-                                        <div class="">
-                                            <td class="txt-dark">
-                                                <input type="text" id="nama_pemohon" name="nama_pemohon"
-                                                    value=" {{ $data_pembelian->nama_pemohon }}"
-                                                    style="outline:none;border:0;" readonly>
-                                            </td>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-2">
+                                    <div class="col-xs-8">
                                         <div class="form-group">
-                                            <div class="text-left">
-                                                <h6 class="txt-dark"><strong>PIC Marketing :</strong></h6>
-                                            </div>
-                                            <div class="">
-                                                <td class="txt-dark">
-                                                    <input type="text" id="nama_pemohon" name="nama_pemohon"
-                                                        value=" {{ $data_pembelian->pic_marketing }}"
-                                                        style="outline:none;border:0;" readonly>
-                                                </td>
-                                            </div>
+                                            <table>
+                                                <div class="text-left">
+                                                    <h6 class="txt-dark"><strong>No Pengajuan : </strong></h6>
+                                                </div>
+                                                <div class="">
+                                                    <div class="txt-dark">
+                                                        <input type="text" id="no_pengajuan" name="no_pengajuan"
+                                                            value="{{ $data_pembelian->no_pengajuan }}"
+                                                            style="outline:none;border:0;" readonly>
+                                                    </div>
+                                                </div>
+                                            </table>
+                                            <table>
+                                                <div class="text-left">
+                                                    <h6 class="txt-dark"><strong>Nama Pemohon :</strong></h6>
+                                                </div>
+                                                <div class="">
+                                                    <td class="txt-dark">
+                                                        <input type="text" id="nama_pemohon" name="nama_pemohon"
+                                                            value=" {{ $data_pembelian->nama_pemohon }}"
+                                                            style="outline:none;border:0;" readonly>
+                                                    </td>
+                                                </div>
+                                            </table>
                                         </div>
+                                        
                                     </div>
-                                    <div class="col-xs-2">
+                        
+                                    <div class="col-xs-4">
                                         <div class="form-group">
-                                            <div class="text-left">
-                                                <h6 class="txt-dark"><strong>Tanggal Pengajuan :</strong></h6>
-                                            </div>
-                                            <div class="">
-                                                <td class="txt-dark">
-                                                    <input type="text" id="tgl_pengajuan" name="tgl_pengajuan"
-                                                        value="{{ $data_pembelian->tgl_pengajuan }}"
-                                                        style="outline:none;border:0;" readonly>
-                                                    <input type="hidden" id="pic_teknisi" name="pic_teknisi"
-                                                        value="{{ $data_pembelian->pic_teknisi }}"
-                                                        style="outline:none;border:0;" readonly>
-                                                    <input type="hidden" id="pic_markeing" name="pic_markeing"
-                                                        value="{{ $data_pembelian->pic_markeing }}"
-                                                        style="outline:none;border:0;" readonly>
-                                                    <input type="hidden" id="pic_warehouse" name="pic_warehouse"
-                                                        value="{{ $data_pembelian->pic_warehouse }}"
-                                                        style="outline:none;border:0;" readonly>
-                                                    <input type="hidden" id="pic_admin" name="pic_admin"
-                                                        value="{{ $data_pembelian->pic_admin }}"
-                                                        style="outline:none;border:0;" readonly>
-                                                </td>
-                                            </div>
+                                            <table>
+                                                <div class="text-left">
+                                                    <h6 class="txt-dark"><strong>PIC Marketing :</strong></h6>
+                                                </div>
+                                                <div class="">
+                                                    <td class="txt-dark">
+                                                        <input type="text" id="nama_pemohon" name="nama_pemohon"
+                                                            value=" {{ $data_pembelian->pic_marketing }}"
+                                                            style="outline:none;border:0;" readonly>
+    
+                                                        <input type="hidden" id="pic_teknisi" name="pic_teknisi"
+                                                            value="{{ $data_pembelian->pic_teknisi }}"
+                                                            style="outline:none;border:0;" readonly>
+                                                        <input type="hidden" id="pic_markeing" name="pic_marketing"
+                                                            value="{{ $data_pembelian->pic_marketing }}"
+                                                            style="outline:none;border:0;">
+                                                        <input type="hidden" id="pic_warehouse" name="pic_warehouse"
+                                                            value="{{ $data_pembelian->pic_warehouse }}"
+                                                            style="outline:none;border:0;" >
+                                                        <input type="hidden" id="pic_admin" name="pic_admin"
+                                                            value="{{ $data_pembelian->pic_admin }}"
+                                                            style="outline:none;border:0;" readonly>
+                                                    </td>
+                                                </div>
+                                            </table>
+                                            <table>
+                                                <div class="text-left">
+                                                    <h6 class="txt-dark"><strong>Tanggal Pengajuan :</strong></h6>
+                                                </div>
+                                                <div class="">
+                                                    <td class="txt-dark">
+                                                        <input type="text" id="tgl_pengajuan" name="tgl_pengajuan"value="{{ date('d M Y',strtotime($data_pembelian->tgl_pengajuan ))}}"
+                                                            style="outline:none;border:0;" readonly>
+                                                        
+                                                    </td>
+                                                </div>
+                                            </table>
                                         </div>
                                     </div>
+                                    
                                     <!-- end -->
 
                                 </div>

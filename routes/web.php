@@ -338,9 +338,15 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::get('po/datapo2', [POOfficeController::class, 'searchBystatus']);
         Route::get('so/dataso', [SOOfficeController::class, 'so']);
         Route::get('so/dataso2', [SOOfficeController::class, 'searchBystatus']);
+
         Route::get('peminjaman/datapinjam', [PeminjamanOfficeController::class, 'peminjaman']);
         Route::get('peminjaman/datapinjam2', [PeminjamanOfficeController::class, 'searchBydate']);
+
+
         Route::get('pembelian/datapembelian', [PembelianOfficeController::class, 'pembelian']);
+        Route::get('/invoice/lunas/detail/{no_pengajuan}', [PembelianOfficeController::class, 'detaillunas']);
+        Route::get('/invoice/detailhutang/', [PembelianOfficeController::class, 'hutang']);
+
         Route::get('po/detail/{no_PO}', [POOfficeController::class, 'detailpo']);
         Route::get('so/detail/{no_SO}', [SOOfficeController::class, 'detailso']);
         Route::get('peminjaman/detail/{no_peminjaman}', [PeminjamanOfficeController::class, 'detailpeminjaman']);
