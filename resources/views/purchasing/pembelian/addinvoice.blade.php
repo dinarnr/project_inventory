@@ -50,7 +50,7 @@
                                             </div>
                                             <div class="">
                                                 <td class="txt-dark">
-                                                    <input type="text" id="nama_pemohon" name="nama_pemohon"
+                                                    <input type="text" id="pic_marketing" name="pic_marketing"
                                                         value=" {{ $data_pembelian->pic_marketing }}"
                                                         style="outline:none;border:0;" readonly>
                                                 </td>

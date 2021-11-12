@@ -161,6 +161,12 @@
                     </ul>
                 </li>
                 <li>
+                    <a href="/warehouse/pembelian/invoice">
+                        <div class="pull-left"><i class="zmdi zmdi-shopping-basket mr-20"></i><span class="right-nav-text">Pembelian</span></div>
+                        <div class="clearfix"></div>
+                    </a>
+                </li>
+                <li>
                     <a href="{{ url('warehouse/peminjaman') }}">
                         <div class="pull-left"><i class="zmdi zmdi-balance-wallet mr-20"></i><span class="right-nav-text">Peminjaman</span></div>
                         <div class="clearfix"></div>
@@ -256,6 +262,12 @@
                 <li>
                     <a href="{{ url('teknisi/peminjaman') }}">
                         <div class="pull-left"><i class="zmdi zmdi-balance-wallet mr-20"></i><span class="right-nav-text">Peminjaman</span></div>
+                        <div class="clearfix"></div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('teknisi/po') }}">
+                        <div class="pull-left"><i class="zmdi zmdi-balance-wallet mr-20"></i><span class="right-nav-text">Purchase Order</span></div>
                         <div class="clearfix"></div>
                     </a>
                 </li>

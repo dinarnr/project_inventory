@@ -21,6 +21,8 @@ use App\Http\Controllers\Marketing\PengajuanMarketingController;
 
 use App\Http\Controllers\Teknisi\PeminjamanTeknisiController;
 use App\Http\Controllers\Teknisi\PengajuanTeknisiController;
+use App\Http\Controllers\Teknisi\POTeknisiController;
+
 
 use App\Http\Controllers\Purchasing\PembelianPurchasingController;
 use App\Http\Controllers\Purchasing\PengajuanPurchasingController;
@@ -189,10 +191,7 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
 
         // <----------------------DATA PEMBELIAN--------------------------->
         Route::get('pembelian/invoice', [PembelianWarehouseController::class, 'pembelian']);
-        Route::get('pembelian/invoice/tambah/{id_PO}', [PembelianWarehouseController::class, 'addinvoice']);
-        Route::get('pembelian/purchase', [PembelianWarehouseController::class, 'purchase']);
-        Route::get('pembelian/invoice/tambah', [PembelianWarehouseController::class, 'addpembelian']);
-        Route::post('pembelian/invoice/simpan', [PembelianWarehouseController::class, 'addpembelian2']);
+        Route::get('pembelian/detaillunas/{no_pengajuan}', [PembelianWarehouseController::class, 'detaillunas']);
 
         // <----------------------PENGATURAN--------------------------->
         Route::get('pengaturan/profil', [PengaturanController::class, 'profil']);
@@ -256,6 +255,10 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
     });
 
     Route::group(['prefix' => 'teknisi/'], function () {
+        // <----------------------DATA PO--------------------------->
+        Route::get('po', [POTeknisiController::class, 'po']);
+        Route::get('po/detailpo/{no_PO}', [POTeknisiController::class, 'detailpo']);
+
         // <----------------------DATA PEMINJAMAN--------------------------->
         Route::get('peminjaman', [PeminjamanTeknisiController::class, 'peminjaman']);
         Route::get('peminjaman/tambah', [PeminjamanTeknisiController::class, 'addpinjam']);

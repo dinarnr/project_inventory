@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Purchasing;
-
+ 
 use App\Http\Controllers\Controller;
 use App\Models\DetailPengajuan;
 use App\Models\Log;

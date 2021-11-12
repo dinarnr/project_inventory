@@ -8,18 +8,18 @@
      
         <div class="col-lg-12 col-md-12 mt-40">
             <div class="panel panel-default card-view">
-                <div class="panel-heading">
+                {{-- <div class="panel-heading">
                     <div class="pull-left">
                         <h6 class="panel-title txt-dark">Invoice</h6>
                     </div>
                     <div class="clearfix"></div>
-                </div>
+                </div> --}}
                 <div class="panel-wrapper collapse in">
                     <div class="panel-body">
                         <div class="tab-struct custom-tab-1 ">
                             <ul role="tablist" class="nav nav-tabs" id="myTabs_7">
-                                <li class="active" role="presentation"><a aria-expanded="true" data-toggle="tab" role="tab" id="home_tab_7" href="#admin">Lunas</a></li>
-                                <li role="presentation" class=""><a data-toggle="tab" id="profile_tab_7" role="tab" href="#admin2" aria-expanded="false">Hutang</a></li>
+                                <li class="active" role="presentation"><a aria-expanded="true" data-toggle="tab" role="tab" id="home_tab_7" href="#admin">Invoice</a></li>
+                                <li role="presentation" class=""><a data-toggle="tab" id="profile_tab_7" role="tab" href="#admin2" aria-expanded="false">Angsuran</a></li>
 
                             </ul>
                             <!-- BARANG -->
@@ -28,26 +28,27 @@
                                     <table id="datable_1" class="table table-bordered display  pb-30">
                                         <thead>
                                             <tr>
-                                                <th>N0 PO </th>
-                                                <th>Nama Barang</th>
-                                                <th>Jumlah</th>
-                                                <th>Jenis Transaksi</th>
-                                                <th>Total Harga</th>
-                                                <th>Tanggal Beli</th>
+                                                <th>N0 Pengajuan </th>
+                                                <th>Nama Pemohon</th>
+                                                <th>Tanggal Pengajuan</th>
+                                                <th>PIC Marketing</th>
+                                                <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($lunas as $lunas)
                                             <tr>
-                                                <td>{{ $lunas->no_PO}}</td>
-                                                <td>{{ $lunas->namaBarang}}</td>
-                                                <td>{{ $lunas->jumlah}}</td>
-                                                <td>{{ $lunas->status}}</td>
-                                                <td>Rp {{number_format ($lunas->harga, 0, ',', '.')}}</td>
-                                                <td>{{ $lunas->tglBeli}}</td>
+                                                <td>{{ $lunas->no_pengajuan}}</td>
+                                                <td>{{ $lunas->nama_pemohon}}</td>
+                                                <td>{{ $lunas->tgl_pengajuan}}</td>
+                                                <td>{{ $lunas->pic_marketing}}</td>
+                                                {{-- <td>{{ $lunas->tglBeli}}</td> --}}
+                                                <td>
+                                                    <a href="{{url('warehouse/pembelian/detaillunas')}}/{{ $lunas->no_pengajuan }}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fa fa-info"></i></button></a>
+                                                </td>
                                             </tr>
                                             @endforeach
-                                        </tbody>
+                                        </tbody> 
                                     </table>
                                 </div>
 
@@ -56,30 +57,29 @@
                                     <table id="data_table1" class="table table-bordered display  pb-30">
                                         <thead>
                                             <tr>
-                                                <th>N0 PO </th>
+                                                <th>N0 Pengajuan </th>
                                                 <th>Nama Barang</th>
-                                                <th>Jumlah</th>
+                                                <th>jumlah</th>
                                                 <th>Total Harga</th>
-                                                <th>Total Bayar</th>
                                                 <th>Sisa Bayar</th>
-                                                <th>Tanggal Beli</th>
-                                                <th>Lunas</th>
+                                                <th>Supplier</th>
+                                                {{-- <th>Aksi</th> --}}
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($hutang as $hutang)
                                             <tr>
-                                                <td>{{ $hutang->no_PO}}</td>
+                                                <td>{{ $hutang->no_pengajuan}}</td>
                                                 <td>{{ $hutang->namaBarang}}</td>
-                                                <td>{{ $hutang->jumlah}}</td>
-                                                <td> Rp {{number_format ($hutang->harga, 0, ',', '.') }}</td>
-                                                <td> Rp {{number_format ($hutang->totalBayar, 0, ',', '.') }}</td>
-                                                <td> Rp {{number_format ($hutang->sisaBayar, 0, ',', '.') }}</td>
-                                                <td>{{ $hutang->tglBeli}}</td>
-                                                <td>
+                                                <td>{{ $hutang->jmlBarang}}</td>
+                                                <td> Rp {{number_format ($hutang->totalBeli, 0, ',', '.') }}</td>
+                                                <td> Rp {{number_format ($hutang->amount, 0, ',', '.') }}</td>
+                                                <td>{{ $hutang->supplier}}</td>
+                                                {{-- <td>
+                                                    <a href="{{url('purchasing/invoice/hutang')}}/{{ $hutang->id_pembelian }}"><button class="btn btn-primary btn-icon-anim btn-square"><i class="fas fa-dollar"></i></button></a>
+
                                                     <button class="btn btn-primary btn-icon-anim" data-toggle="modal" data-target="#lunas{{ $hutang->id_pembelian }}">Lunasi</button>
-                                                </td>
-                                                @include('pembelian.lunas')
+                                                </td> --}}
                                             </tr>
                                             @endforeach
                                         </tbody>

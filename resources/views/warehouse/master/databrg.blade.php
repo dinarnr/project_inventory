@@ -39,13 +39,17 @@
                     <div class="clearfix"></div>
                 </div>
                 @foreach ($barang as $barangs)
-                @if ($barangs->stok <= 5) <div class="alert alert-danger" role="alert">
-                    Stok {{ $barangs->nama_barang }} Hampir Habis
-            </div>
-
-            @endif
-
-            @endforeach
+                @if($barang->status = "aktif")
+                    @if ($barangs->stok <= 5)
+                        <div class="alert alert-danger" role="alert">
+                            Stok <strong>{{ $barangs->nama_barang }}</strong> Hampir Habis
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                        </div>
+                    
+                    @endif
+                @endif
+                @endforeach
             <div class="panel-wrapper collapse in">
                 <div class="panel-body">
                     <div class="table-wrap">

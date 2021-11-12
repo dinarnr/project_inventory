@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Purchasing;
 use App\Http\Controllers\Controller;
 use App\Models\DetailPembelian;
 use App\Models\DetailPengajuan;
-use Illuminate\Http\Request;
+use Illuminate\Http\Request; 
 use App\Models\Log;
 use App\Models\Pembelian;
 use App\Models\Pengajuan;
@@ -215,7 +215,7 @@ class PembelianPurchasingController extends Controller
         // $user = Auth::user();
         $profil = Profil::all();
         // dd($pembelian);
-        return view('purchasing/pembelian/detaillunas', compact('pembelian', 'lunas', 'profil'));
+        return view('purchasing/pembelian/detaillunas', compact('pembelian', 'lunas', 'profil', 'data_detail'));
     }
 
     public function hutang($id_pembelian)

@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Middleware\CekDivisi;
 use App\Models\Log;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\RateLimiter;
 
 class AuthController extends Controller
 {
@@ -54,6 +55,7 @@ class AuthController extends Controller
         $login2 = Auth::attempt(['email' => $request->email,'password' => $request->password, 'status' => '1']);
 // dd($login2);
         if($login === TRUE ){
+            // RateLimiter::hit($this->throttleKey());
             $user = Auth::user();
             Log::create(
                 [
@@ -156,5 +158,10 @@ class AuthController extends Controller
                 ]);
         Auth::logout(); // menghapus session yang aktif
         return redirect()->route('login');
+    }
+
+    public function throttleKey(Request $request)
+    {
+        return  Str::lower($request->email).'|'.$this->ip();
     }
 }
