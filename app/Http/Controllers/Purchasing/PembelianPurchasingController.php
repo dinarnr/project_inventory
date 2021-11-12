@@ -19,9 +19,10 @@ class PembelianPurchasingController extends Controller
     public function pembelian()
     {
         $lunas = Pembelian::all()->where('status','1');
+        $pic = Pengajuan::all()->where('status','6');
         $hutang = DetailPembelian::all()->where('jenisTransaksi','','angsuran');
         // dd($hutang);
-        return view('purchasing/pembelian/invoice', compact('lunas','hutang'));
+        return view('purchasing/pembelian/invoice', compact('lunas','hutang','pic'));
     }
 
     public function addinvoice($no_pengajuan)
@@ -31,7 +32,9 @@ class PembelianPurchasingController extends Controller
             ['no_pengajuan', $no_pengajuan],
             ['status', '2'],
             ])->get();
-        $coba= DetailPengajuan::where('no_pengajuan',$no_pengajuan)->get();
+        $coba= DetailPengajuan::where([['no_pengajuan',$no_pengajuan],
+                                                ['status','2']
+        ])->get();
         $supplier =  SupplierModel::all();
         // dd($data_detail);
         return view('purchasing/pembelian/addinvoice', compact('coba','data_pembelian', 'data_detail', 'supplier'));

@@ -2,33 +2,23 @@
 @section('title', 'Tambah Pinjam')
 @section('content')
 
-<!-- Main Content -->
 <div class="page-wrapper">
     <div class="container-fluid">
-
-        <!-- Title -->
         <div class="row heading-bg">
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
                 <h5 class="txt-dark">Buat Peminjaman</h5>
             </div>
-            <!-- Breadcrumb -->
             <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                 <ol class="breadcrumb">
                     <li><a href="purchasing">Peminjaman</a></li>
                     <li class="active"><span>Tambah Peminjaman</span></li>
                 </ol>
             </div>
-            <!-- /Breadcrumb -->
         </div>
-        <!-- /Title -->
-
         <!-- Row -->
         <div class="row">
             <div class="col-sm-12">
                 <div class="panel panel-default card-view ">
-                    <!-- <div class="panel-heading">
-                                <div class="clearfix"></div>
-                            </div> -->
                     <div class="panel-wrapper collapse in ">
                         <div class="panel-body">
                             <div class="form-wrap mt-3">
@@ -62,7 +52,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label mb-10">Nama Barang</label>
-                                                <select name="nama_barang" id="nama_brg" class="form-control select2" data-dependent="kode_barang">
+                                                <select name="nama_barang" id="nama_barang" class="form-control select2" data-dependent="kode_barang">
                                                     <option value="">Pilih Nama Barang</option>
                                                     @foreach($barang as $brg)
                                                     <option value="{{ $brg->nama_barang }}">{{ $brg->nama_barang }} | {{ $brg->kode_barang }} </option>
@@ -87,15 +77,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- <div class="form-group">
-                                        <label class="control-label mb-10 text-left" for="example-email">keterangan<span class="help"> </span></label>
-                                        <input type="text" id="keterangan" name="keterangan" class="form-control" placeholder="">
-
-                                        @error('keterangan')
-                                        <div class="tulisan">{{$message}}</div>
-                                        @enderror
-                                    </div> -->
-
                                     <div class="form-group" style="text-align:right;">
                                         <button type="button" onclick="ambildata()" class="btn btn-primary ">Tambah Data</button>
                                     </div>
@@ -144,12 +125,7 @@
             </div>
         </div>
         <div class="">
-
-            <!-- Basic Table -->
-
         </div>
-        <!-- /Row -->
-        <!-- /Main Content -->
     </div>
     <!-- /#wrapper -->
     @endsection
@@ -198,7 +174,7 @@
             $('#row' + row_id + '').remove();
         });
 
-        $('#nama_brg').select2();
+        $('#nama_barang').select2();
     </script>
     <script>
         $('#nama_barang').change(function(){

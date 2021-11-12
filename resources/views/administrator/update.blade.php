@@ -43,6 +43,7 @@
                                     <div class="form-group">
                                         <label class="control-label mb-10 text-left">Status</label>
                                         <select name="edit_status" value="{{ $users->status }}" class="form-control select2">
+                                            <option value="">Pilih Status</option>
                                             <option value="2">Aktif</option>
                                             <option value="1">Non Aktif</option>
                                         </select>

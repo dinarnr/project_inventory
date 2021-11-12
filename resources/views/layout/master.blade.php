@@ -223,10 +223,10 @@
                     </a>
                     <ul id="pengajuan" class="collapse collapse-level-1">
                         <li>
-                            <a href="/marketing/pengajuan/brgbaru">Barang rekomendasi</a>
+                            <a href="/marketing/pengajuan/barang/rekom">Barang rekomendasi</a>
                         </li>
                         <li>
-                            <a href="/marketing/pengajuan/brgretur">Barang retur</a>
+                            <a href="/marketing/pengajuan/barang/retur">Barang retur</a>
                         </li>
                         <li>
                             <a href="/marketing/pengajuan/pembelian">Pengajuan Pembelian</a>

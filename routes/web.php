@@ -231,18 +231,18 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::get('po/cetak_pdf={id}', [PDFController::class, 'cetak_pdf'])->name('cetak_pdf');
 
         //  -------------------------RETUR-----------------------------
-        Route::get('pengajuan/brgretur', [PengajuanMarketingController::class, 'tabelRetur']);
+        Route::get('pengajuan/barang/retur', [PengajuanMarketingController::class, 'tabelRetur']);
         Route::post('pengajuan/confirmpengajuan/{id_detailPengajuan}', [PengajuanMarketingController::class, 'proses']);
-        Route::get('pengajuan/detail/{no_pengajuan}', [PengajuanMarketingController::class, 'detailretur']);
+        Route::get('pengajuan/detail/retur/{no_pengajuan}', [PengajuanMarketingController::class, 'detailretur']);
         //----------------------------- BARU -----------------------------------------------
-        Route::get('pengajuan/brgbaru', [PengajuanMarketingController::class, 'tabelBaru']);
+        Route::get('pengajuan/barang/rekom', [PengajuanMarketingController::class, 'tabelBaru']);
         Route::get('/addbaru', 'App\Http\Controllers\PengajuanController@addbaru');
         Route::post('pengajuan/confirmrekom/{id_detailPengajuan}', [PengajuanMarketingController::class, 'prosesrekom']);
         Route::post('/addbaru2', 'App\Http\Controllers\PengajuanController@addbaru2')->name('addbaru2');
         Route::get('pengajuan/editBaru/{id_pengajuan}', [PengajuanController::class, 'editBaru']);
         Route::post('/updateBaru', 'App\Http\Controllers\PengajuanController@updateBaru')->name('updateBaru');
         Route::delete('deletebaru/{id_pengajuan}', 'App\Http\Controllers\PengajuanController@deletebaru');
-        Route::get('pengajuan/detailrekom/{no_pengajuan}', [PengajuanMarketingController::class, 'detailbaru']);
+        Route::get('pengajuan/detail/rekom/{no_pengajuan}', [PengajuanMarketingController::class, 'detailbaru']);
         // -------------------------------- Pengajuan Pembelian -----------------------------------------
         Route::get('pengajuan/pembelian', [PengajuanMarketingController::class, 'pengpembelian']);
         Route::get('pengajuan/pembelian/detailpembelian/{no_pengajuan}', [PengajuanMarketingController::class, 'detailpembelian']);
@@ -341,9 +341,15 @@ Route::group(['middleware' => 'auth', 'cekdivisi:teknisi,warehouse,marketing,adm
         Route::get('po/datapo2', [POOfficeController::class, 'searchBystatus']);
         Route::get('so/dataso', [SOOfficeController::class, 'so']);
         Route::get('so/dataso2', [SOOfficeController::class, 'searchBystatus']);
+
         Route::get('peminjaman/datapinjam', [PeminjamanOfficeController::class, 'peminjaman']);
         Route::get('peminjaman/datapinjam2', [PeminjamanOfficeController::class, 'searchBydate']);
+
+
         Route::get('pembelian/datapembelian', [PembelianOfficeController::class, 'pembelian']);
+        Route::get('/invoice/lunas/detail/{no_pengajuan}', [PembelianOfficeController::class, 'detaillunas']);
+        Route::get('/invoice/detailhutang/', [PembelianOfficeController::class, 'hutang']);
+
         Route::get('po/detail/{no_PO}', [POOfficeController::class, 'detailpo']);
         Route::get('so/detail/{no_SO}', [SOOfficeController::class, 'detailso']);
         Route::get('peminjaman/detail/{no_peminjaman}', [PeminjamanOfficeController::class, 'detailpeminjaman']);
